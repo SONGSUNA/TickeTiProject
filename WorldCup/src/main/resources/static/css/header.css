@@ -1,0 +1,9 @@
+.header_wrap {
+    width: 100%;
+    height: 150px;
+    background-color: #dadada;
+}
+
+.header_wrap img {
+    height: 100%;
+}

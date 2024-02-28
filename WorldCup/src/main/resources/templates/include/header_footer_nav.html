@@ -1,0 +1,21 @@
+<header th:fragment="header">
+
+	<div class="header_wrap">
+	
+		<div class="logo">
+			<img th:src="@{/img/logo.png}">
+		</div>
+		
+		<div class="link" th:if="${session.loginedUserDto == null}">
+			<a href="#none">회원가입</a>
+			<a href="#none">로그인</a>
+		</div>
+		<div class="link" th:if="${session.loginedUserDto != null}">
+			<a href="#none">나의 게임</a>
+			<a href="#none">마이페이지</a>
+			<a href="#none">로그아웃</a>
+		</div>
+	
+	</div>
+
+</header>
