@@ -2,9 +2,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+
+<title th:replace="~{/include/title.html::title}"></title>
+
+<link th:href="@{/css/header.css}" rel="stylesheet" />
+
 </head>
 <body>
+
+	<header th:replace="~{/include/header_footer_nav.html::header}"></header>
 
 	main home
 
