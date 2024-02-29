@@ -8,6 +8,7 @@
 <link th:href="@{/css/include/header.css}" rel="stylesheet" />
 <link th:href="@{/css/include/nav.css}" rel="stylesheet" />
 <link th:href="@{/css/include/footer.css}" rel="stylesheet" />
+<link th:href="@{/css/include/game_list_item.css}" rel="stylesheet" />
 <link th:href="@{/css/home.css}" rel="stylesheet" />
 
 </head>
@@ -29,12 +30,14 @@
 				<div th:replace="~{/include/game_list_item.html::item}"></div>
 			</div>
 
-			<div class="game_ranking">
-				게임 랭킹
-			</div>
-
-			<div class="banner">
-				<img th:src="@{/img/dummy/banner.jpg}">
+			<div class="right_containor">
+				<div class="game_ranking">
+					게임 랭킹
+				</div>
+	
+				<div class="banner">
+					<img th:src="@{/img/dummy/banner.jpg}">
+				</div>
 			</div>
 		</div>
 	</section>
