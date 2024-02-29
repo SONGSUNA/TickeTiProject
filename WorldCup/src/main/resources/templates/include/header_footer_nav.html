@@ -8,6 +8,7 @@
 		<div class="link" th:if="${session.loginedUserDto == null}">
 			<a th:href="@{/user/create_account_form}">회원가입</a>
 			<a th:href="@{/user/user_login_form}">로그인</a>
+			<a th:href="@{/user/user_modify_form}">정보수정</a>
 		</div>
 		<div class="link" th:if="${session.loginedUserDto != null}">
 			<a th:href="@{/}">나의 게임</a>	<!-- hover로 메뉴 추가 -->
