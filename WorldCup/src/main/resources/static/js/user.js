@@ -30,11 +30,11 @@ function createAccountForm() {
 		alert('이름을 입력해주세요.');
 		form.u_mail.focus();
 		
-	} else if (form.u_reg_num_pre.value === '') {
+	} else if (form.u_sc_num_pre.value === '') {
 		alert('주민번호를 입력해주세요.');
 		form.u_reg_num_pre.focus();
 		
-	}else if (form.u_reg_num_suf.value === '') {
+	}else if (form.u_sc_num_suf.value === '') {
 		alert('주민번호를 입력해주세요.');
 		form.u_reg_num_suf.focus();
 		
