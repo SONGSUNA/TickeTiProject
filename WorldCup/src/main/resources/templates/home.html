@@ -19,9 +19,14 @@
 	<section>
 		<div class="section_wrap">
 			<div class="game_list">
-				<br><br><br>
-				게임 목록 나올 부분
-				<br><br><br>
+				<div th:replace="~{/include/game_list_item.html::item}"></div>
+				<div th:replace="~{/include/game_list_item.html::item}"></div>
+				<div th:replace="~{/include/game_list_item.html::item}"></div>
+				<div th:replace="~{/include/game_list_item.html::item}"></div>
+				<div th:replace="~{/include/game_list_item.html::item}"></div>
+				<div th:replace="~{/include/game_list_item.html::item}"></div>
+				<div th:replace="~{/include/game_list_item.html::item}"></div>
+				<div th:replace="~{/include/game_list_item.html::item}"></div>
 			</div>
 
 			<div class="game_ranking">
@@ -29,7 +34,7 @@
 			</div>
 
 			<div class="banner">
-				<img th:src="@{/img/banner/banner1.jpg}">
+				<img th:src="@{/img/dummy/banner.jpg}">
 			</div>
 		</div>
 	</section>
