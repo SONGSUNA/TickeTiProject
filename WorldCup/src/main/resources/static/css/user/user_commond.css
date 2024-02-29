@@ -15,6 +15,7 @@ section #section_wrap .word {
 	font-weight: bold;
 	text-align: center;
 	padding-bottom: 20px;
+	color: #2D9596;
 	
 }
 
@@ -32,6 +33,7 @@ input[type="reset"],
 	border-radius: 5px;
 	text-align: center;
 	font-weight: bold;
+	color: #265073;
 }
 
 /* 양식 내 하단 submit btn */
@@ -54,8 +56,22 @@ input[type="reset"]:hover,
 
 b {
 	font-size: 1.0em;
+	color: #265073;
 } 
 
 form > div {
 	margin-top: 10px;
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="number"] {
+	border-color: #9AD0C2;
+	border-width: 0 0 1px;
+}
+
+form input[type="text"]:focus,
+form input[type="password"]:focus,
+form input[type="number"]:focus {
+	outline: none;
 }

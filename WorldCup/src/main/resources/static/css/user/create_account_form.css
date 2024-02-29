@@ -9,6 +9,7 @@ input[type="number"]::-webkit-inner-spin-button {
 .input_info input {
 	width: 200px;
 	height: 30px;
+	font-size: 15px;
 }
 
 #checkId ,
@@ -25,4 +26,12 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 .input_info:nth-child(9) #address {
 	width: 500px;
+}
+#detailAddress,
+#extraAddress {
+	width: 246px;
+}
+
+.input_info span {
+	color: #265073;
 }

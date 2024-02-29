@@ -1,13 +1,20 @@
 @charset "UTF-8";
+.input_info input {
+  width: 300px;
+  height: 30px;
+}
 
 form div:last-child{
   border-top: 1px solid #9AD0C2;
   width: 300px;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
-.login_form input[type="text"],
-.login_form input[type="password"]  {
-  width: 300px;
-  height: 30px;
+.sub_menu_wrap span {
+  color: #9AD0C2;
 }
+
+.sub_menu_wrap a {
+  color: #265073;
+}
+

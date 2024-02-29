@@ -21,7 +21,7 @@
 		
 		<div id="section_wrap">
 			<div class="word">
-				<span>회원가입</span>
+				<span>정보수정</span>
 			</div>
 			
 			
@@ -29,9 +29,8 @@
 				
 			<form th:action="@{/user/create_account_confirm}" name="create_account_form" method="post">
           		<div class="input_info">
-          		  <label><b>아이디  &emsp;&emsp;&emsp;</b><br/>
-           			<input type="text" name="u_id"></label> 
-           			<input type="button" id="checkId" value="ID중복 검사"><span id="check_id_msg"></span><br>
+          		  <b>아이디  &emsp;&emsp;&emsp;</b><br/>
+           			<input type="text" name="u_id" readonly disabled><br>
 				</div>
 				
 				<div class="input_info">
@@ -50,10 +49,10 @@
 		       </div>
 		       
 		       <div class="input_info">
-		            <label><b>주민등록번호  &emsp;&emsp;&emsp;</b><br>
-           			<input type="number" name="u_sc_num_pre"> </label>
+		            <label for="u_sc_num_suf"><b>주민등록번호  &emsp;&emsp;&emsp;</b> </label><br>
+           			<input type="number" name="u_sc_num_pre" readonly disabled>
                	 <span>-</span>&nbsp;
-           		    <input type="password" name="u_sc_num_suf"><br>
+           		    <input type="password" id="u_sc_num_suf" name="u_sc_num_suf"><br>
 	               	<input type="hidden" name="u_sc_num">
 		         
 		        </div>
