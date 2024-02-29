@@ -5,9 +5,11 @@
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" th:src="@{/js/user.js}"></script>
-<!-- <script type="text/javascript" th:src="@{/js/config/adress.js}"></script> -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
+<link rel="stylesheet" th:href="@{/css/home.css}">
+<link rel="stylesheet" th:href="@{/css/user/user_commond.css}">
+<link rel="stylesheet" th:href="@{/css/user/login_form.css}">
 </head>
 <body>
 	<header th:replace="~{/include/header_footer_nav.html::header}"></header>
@@ -16,18 +18,30 @@
 	<section>
 		<div id="section_wrap">
 			<div class="word">
-				<span>LOGIN FORM</span>
+				<span>로그인</span>
 			</div>
 			<div class="login_form">
 				<form th:action="@{/user/user_login_confirm}" name="login_form" method="post">
+					<div class="input_info">
+	          		 	 <label><b>아이디  &emsp;&emsp;&emsp;</b><br/>
+	           			 <input type="text" name="u_id"></label> 
+           			</div>
 				
-					<input type="text" name="u_id" placeholder="INPUT ID"> <br />
-					<input type="password" name="u_pw" placeholder="INPUT PW"><br />
-					<input type="button" value="Login" onclick="loginForm();">
-					<input type="reset" value="reset">	<br />
+					<div class="input_info">
+		           		 <label><b>비밀번호  &emsp;&emsp;&emsp;</b> <br/>
+		           		 <input type="password" name="u_pw"></label><br>
+					</div>
 					
-					<a th:href="@{/user/create_account_form}">회원가입</a>
+					<div>
+						<input type="button" class="submit_btn"  value="로그인" onclick="loginForm();">
+						<input type="reset" class="reset_btn" value="초기화">	<br />
+					</div>
 					
+					<div>
+						<a th:href="@{/user/create_account_form}">회원가입</a>
+						&emsp;&emsp;|&emsp;&emsp;
+						<a th:href=@{/}>비밀번호찾기</a>
+					</div>
 				</form>
 				
 			</div>
