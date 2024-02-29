@@ -43,7 +43,7 @@ public class UserDao {
 							+ "U_NAME,"
 							+ "U_MAIL,"
 							+ "U_PHONE,"
-							+ "U_REG_NUM,"
+							+ "U_SC_NUM,"
 							+ "U_ADDRESS,"
 							+ "U_REG_DATE,"
 							+ "U_MOD_DATE) "
@@ -57,7 +57,7 @@ public class UserDao {
 											userDto.getU_name(),
 											userDto.getU_mail(),
 											userDto.getU_phone(),
-											userDto.getU_reg_num(),
+											userDto.getU_sc_num(),
 											userDto.getU_address());
 		} catch (Exception e) {
 			e.printStackTrace();
