@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" th:src="@{/js/user.js}"></script>
+<!-- <script type="text/javascript" th:src="@{/js/config/adress.js}"></script> -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+</head>
+<body>
+	<header th:replace="~{/include/header_footer_nav.html::header}"></header>
+	<nav th:replace="~{/include/header_footer_nav.html::nav}"></nav>
+	
+	<section>
+		<div id="section_wrap">
+			<div class="word">
+				<span>LOGIN FORM</span>
+			</div>
+			<div class="login_form">
+				<form th:action="@{/user/user_login_confirm}" name="login_form" method="post">
+				
+					<input type="text" name="u_id" placeholder="INPUT ID"> <br />
+					<input type="password" name="u_pw" placeholder="INPUT PW"><br />
+					<input type="button" value="Login" onclick="loginForm();">
+					<input type="reset" value="reset">	<br />
+					
+					<a th:href="@{/user/create_account_form}">회원가입</a>
+					
+				</form>
+				
+			</div>
+			</div>
+	</section>
+	
+	
+	<footer th:replace="~{/include/header_footer_nav.html::footer}"></footer>
+</body>
+</html>
