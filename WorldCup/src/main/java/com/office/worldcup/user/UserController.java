@@ -61,7 +61,7 @@ public class UserController {
 	public String userLoginForm() {
 		log.info("userLoginForm()");
       
-		String nextPage = "user/user_login_formgit";
+		String nextPage = "user/user_login_form";
       
 		return nextPage;   
       

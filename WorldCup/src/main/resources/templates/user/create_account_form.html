@@ -7,6 +7,9 @@
 <script type="text/javascript" th:src="@{/js/user.js}"></script>
 <script type="text/javascript" th:src="@{/js/config/adress.js}"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+<link rel="stylesheet" th:href="@{/css/home.css}">
+<link rel="stylesheet" th:href="@{/css/user/user_commond.css}">
 <link rel="stylesheet" th:href="@{/css/user/create_account_form.css}">
 </head>
 <body>
@@ -18,58 +21,75 @@
 		
 		<div id="section_wrap">
 			<div class="word">
-				<span>회원가입 페이지</span>
+				<span>회원가입</span>
 			</div>
 			
 			
 			<div class="create_account_form">
 				
 			<form th:action="@{/user/create_account_confirm}" name="create_account_form" method="post">
-          		  <b>아이디</b><br>
-           		 <input type="text" name="u_id"> <input type="button" id="checkId" value="ID중복 검사"><span id="check_id_msg"></span><br>
-
-           		 <b>비밀번호</b><br>
-           		 <input type="password" name="u_pw"><br>
-
-           		 <b>비밀번호 재확인</b><br>
-          		 <input type="password" name="u_pw_confirm"><br>
-
-		          <b>이름</b><br>
-		         <input type="text" name="u_name"><br>
+          		<div class="input_info">
+          		  <label><b>아이디  &emsp;&emsp;&emsp;</b><br/>
+           			<input type="text" name="u_id"></label> 
+           			<input type="button" id="checkId" value="ID중복 검사"><span id="check_id_msg"></span><br>
+				</div>
+				
+				<div class="input_info">
+	           		 <label><b>비밀번호  &emsp;&emsp;&emsp;</b> <br/>
+	           		 <input type="password" name="u_pw"></label><br>
+				</div>
+				
+				<div class="input_info">
+	           		 <label><b>비밀번호 재확인  &emsp;&emsp;&emsp;</b><br/>
+	          		 <input type="password" name="u_pw_confirm"></label><br/>
+				</div>
+				
+				<div class="input_info">
+			         <label><b>이름  &emsp;&emsp;&emsp;</b><br>
+			         <input type="text" name="u_name"></label> <br>
+		       </div>
 		       
-            	 <b>주민등록번호</b><br>
-           
-             		<input type="number" name="u_sc_num_pre"> 
+		       <div class="input_info">
+		            <label><b>주민등록번호  &emsp;&emsp;&emsp;</b><br>
+           			<input type="number" name="u_sc_num_pre"> </label>
                	 -
            		    <input type="password" name="u_sc_num_suf"><br>
 	               	<input type="hidden" name="u_sc_num">
 		         
-		         <b>이메일</b><br>
-		         <input type="text" name="u_mail_pre"> @ 
-		         <input type="text" name="u_mail_suf"><br>
-	             <input type="hidden" name="u_mail">
+		        </div>
+		        
+		        <div class="input_info">
+			         <label><b>이메일  &emsp;&emsp;&emsp;</b><br>
+			         <input type="text" name="u_mail_pre"></label> @ 
+			         <input type="text" name="u_mail_suf"><br>
+		             <input type="hidden" name="u_mail">
+	             </div>
 	             
-	           	 <b>휴대전화</b><br>
-	                <input type="number" class="u_phone" value="010" name="u_phone_bas"> - 
-	                <input type="number" class="u_phone" name="u_phone_pre"> - 
-	                <input type="number" class="u_phone" name="u_phone_suf"><br>
-	                <input type="hidden" name="u_phone">
-	                
-	     		 <b>주소</b><br>
-						<input type="text" id="postcode" name="postcode" placeholder="우편번호">
-						<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
-						<input type="text" id="address" name="address" placeholder="주소"><br>
-						<input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소">
-						<input type="text" id="extraAddress" name="extraAddress" placeholder="참고항목"><br>
-						<input type="hidden" name="u_address">
-						
-						<input type="button" id="submit_btn" value="create account" onclick="createAccountForm();">
-						<input type="reset" id="reset_btn" value="reset">
+	             <div class="input_info">
+		           	 <label for="u_phone_pre"><b>휴대전화	&emsp;&emsp;&emsp;</b></label><br>
+		             <input type="number" class="u_phone" value="010" name="u_phone_bas"> - 
+		             <input type="number" id="u_phone_pre" class="u_phone" name="u_phone_pre"> - 
+		             <input type="number" class="u_phone" name="u_phone_suf"><br>
+		             <input type="hidden" name="u_phone">
+	             </div>
+	             
+	             <div class="input_info">
+	     		 	 <label><b>주소	&emsp;&emsp;&emsp;</b><br>
+					 <input type="text" id="postcode" name="postcode" placeholder="우편번호"></label>
+					 <input type="button" id="find_zip_code"onclick="execDaumPostcode()" value="우편번호 찾기"><br>
+					 <input type="text" id="address" name="address" placeholder="주소"><br>
+					 <input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소">
+				     <input type="text" id="extraAddress" name="extraAddress" placeholder="참고항목"><br>
+					 <input type="hidden" name="u_address">
+				</div>
+				
+				<div>	
+					 <input type="button" class="submit_btn" value="회원가입" onclick="createAccountForm();">
+					 <input type="reset" class="reset_btn" value="초기화">
+				</div>
 			</form>	
 			</div>
 		</div>		
-				
-				
 				
 	
 	</section>
