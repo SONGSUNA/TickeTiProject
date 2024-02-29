@@ -2,6 +2,17 @@ function createAccountForm() {
 	console.log('createAccountForm()');
 	
 	let form = document.create_account_form;
+	let u_mail = form.u_mail_pre.value + "@" + form.u_mail_suf.value;
+	let u_sc_num = form.u_sc_num_pre.value + "-" + form.u_sc_num_suf.value;
+	let u_address = form.postcode.value +"/"+ form.address.value + "/" 
+	+ form.detailAddress.value + "/" + form.extraAddress.value;
+	let u_phone = form.u_phone_bas.value+"-"+form.u_phone_pre.value+"-"+
+	form.u_phone_suf.value;
+	
+	form.u_phone.value= u_phone;
+	form.u_mail.value = u_mail;
+	form.u_sc_num.value = u_sc_num;
+	form.u_address.value = u_address;
 	
 	if (form.u_id.value === '') {
 		alert('아이디를 입력해주세요.');
@@ -48,6 +59,7 @@ function createAccountForm() {
 		form.extraAddress.focus();
 		
 	} else {
+		
 		form.submit();
 		
 	}

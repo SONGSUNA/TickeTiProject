@@ -40,19 +40,25 @@ public class UserDao {
 							+ "U_NO,"
 							+ "U_ID,"
 							+ "U_PW,"
+							+ "U_NAME,"
 							+ "U_MAIL,"
 							+ "U_PHONE,"
+							+ "U_SC_NUM,"
+							+ "U_ADDRESS,"
 							+ "U_REG_DATE,"
 							+ "U_MOD_DATE) "
 					+ "VALUES ("
-							+ "USER_SEQ.NEXTVAL,?,?,?,?,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)";
+							+ "USER_SEQ.NEXTVAL,?,?,?,?,?,?,?,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)";
 		int result =-1;
 		try {
 			result= jdbcTemplate.update(sql,
 											userDto.getU_id(),
 											passwordEncoder.encode(userDto.getU_pw()),
+											userDto.getU_name(),
 											userDto.getU_mail(),
-											userDto.getU_phone());
+											userDto.getU_phone(),
+											userDto.getU_sc_num(),
+											userDto.getU_address());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
