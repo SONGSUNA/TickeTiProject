@@ -2,6 +2,7 @@ package com.office.worldcup.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,15 +31,16 @@ public class UserController {
 	
 	// 유저 회원가입 확인
 	@PostMapping("/create_account_confirm")
-	public String createAccountConfirm(UserDto userDto) {
+	public String createAccountConfirm(UserDto userDto,Model model) {
 		log.info("createAccountConfirm()");
 		
-		String nextPage = "user/create_account_ok";
-		
+
 		int result = userService.createAccountConfirm(userDto);
+		model.addAttribute("rst", result);
 		
+		String nextPage = "/user/create_account_result";
 		if (result <= UserService.INSERT_INFO_FAIL_AT_DATABASE) {
-			nextPage = "user/create_account_ng";
+			log.info("INSERT_INFO_FAIL_AT_DATABASE");
 		}
 		
 		return nextPage;

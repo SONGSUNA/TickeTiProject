@@ -29,7 +29,7 @@ public class UserService {
 			
 			userDto.setU_pw(passwordEncoder.encode(userDto.getU_pw()));
 			
-			int result = userDao.insertUser(userDao);
+			int result = userDao.insertUser(userDto);
 			
 			if (result == DATABASE_COMMUNICATION_TROUBLE) {
 				log.info("DATABASE COMMUNICATION TROUBLE");
