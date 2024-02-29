@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.log4j.Log4j2;
@@ -46,6 +48,14 @@ public class UserController {
 		return nextPage;
 		
 	}
+	// 유저 아이디 중복체크버튼
+	@PostMapping("/checkId")
+	@ResponseBody
+	public boolean checkId(@RequestParam("u_id") String u_id_check) {
+	   log.info("실행됨?");
+		return userService.checkId(u_id_check);
+	}
+	
 	// 유저 로그인폼 이동
 	@GetMapping("/user_login_form")
 	public String userLoginForm() {

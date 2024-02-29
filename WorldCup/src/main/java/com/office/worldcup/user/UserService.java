@@ -14,6 +14,7 @@ public class UserService {
 	@Autowired
 	PasswordEncoder passwordEncoder;
 	
+	
 	final static public int ID_ALREADY_EXIST				= -2;
 	final static public int DATABASE_COMMUNICATION_TROUBLE	= -1;
 	final static public int INSERT_INFO_FAIL_AT_DATABASE	= 0;
@@ -45,6 +46,9 @@ public class UserService {
 		}
 		
 	}
+	public boolean checkId(String u_id_check) {
+        return !userDao.isUser(u_id_check);
+    }
 
 
 
@@ -71,4 +75,9 @@ public class UserService {
 		
 		return 0;
 	}
+
+
+
+
+	
 }
