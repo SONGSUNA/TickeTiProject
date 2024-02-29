@@ -7,7 +7,7 @@
 <script type="text/javascript" th:src="@{/js/user.js}"></script>
 <script type="text/javascript" th:src="@{/js/config/adress.js}"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
+<link rel="stylesheet" th:href="@{/css/user/create_account_form.css}">
 </head>
 <body>
 	<header th:replace="~{/include/header_footer_nav.html::header}"></header>
@@ -63,8 +63,8 @@
 						<input type="text" id="extraAddress" name="extraAddress" placeholder="참고항목"><br>
 						<input type="hidden" name="u_address">
 						
-						<input type="button" value="create account" onclick="createAccountForm();">
-						<input type="reset" value="reset">
+						<input type="button" id="submit_btn" value="create account" onclick="createAccountForm();">
+						<input type="reset" id="reset_btn" value="reset">
 			</form>	
 			</div>
 		</div>		
