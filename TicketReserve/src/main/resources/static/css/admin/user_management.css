@@ -1,0 +1,72 @@
+@font-face {
+    font-family: 'LINESeedKR-Th';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Th.woff2') format('woff2');
+    font-weight: 100;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'LINESeedKR-Rg';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Rg.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+ @font-face {
+    font-family: 'LINESeedKR-Bd';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+          
+body {
+    font-family: 'LINESeedKR-Rg';
+}
+
+a {
+	text-decoration: none;
+	color: #fff;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #265073;
+  color: #fff;
+  padding: 20px;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, .2);
+}
+
+.sidebar li.active {
+  background-color: #2D9596;
+}
+
+.sidebar li.logout {
+	position: absolute;
+  	bottom: 10px;
+  	width: 250px;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(255, 255, 255, .2);
+} 
+
+.sidebar li	a {
+	display: inline-block;
+	width: 100%;
+}
