@@ -27,6 +27,7 @@ public class reviewController {
 		return nextPage;
 	}
 	
+	
 	@PostMapping("/review_write")
 	public String reviewWrite(@RequestParam("rv_txt") String rv_txt, @RequestParam("rv_score") int rv_score, Model model) {
 		log.info("review_write");

@@ -21,8 +21,8 @@
 			parameterType="com.office.worldcup.admin.AdminDto">
 		
 		INSERT INTO TBL_ADMIN(A_NO, A_ID, A_PW, A_NAME, A_MAIL, A_PHONE, A_REG_DATE, A_MOD_DATE) 
-		VALUES(ADMIN_SEQ.NEXTVAL, 'super', 'Tnvj123!', '장지현', 'super_admin@gmail.com', '010-1234-5678', SYSTIMESTAMP, SYSTIMESTAMP)
-			
+		VALUES(ADMIN_SEQ.NEXTVAL, #{a_id}, #{a_pw},#{a_name},#{a_mail},#{a_phone}, SYSTIMESTAMP, SYSTIMESTAMP)
+
 	</insert>
 	
 </mapper>
