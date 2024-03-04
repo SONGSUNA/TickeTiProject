@@ -165,3 +165,13 @@ ul{
     margin-top: 90px;
     text-align: center;
 }
+
+#prevMonth, #nextMonth {
+    border: none;
+    background: none;
+}
+
+#prevMonth img, #nextMonth img {
+    width: 15px;
+    height: 15px;
+}

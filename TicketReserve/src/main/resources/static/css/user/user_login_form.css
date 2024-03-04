@@ -18,3 +18,7 @@ form div:last-child{
   color: #265073;
 }
 
+#login_form {
+	margin-top :200px;
+}
+
