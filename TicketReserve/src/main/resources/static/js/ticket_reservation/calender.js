@@ -11,7 +11,7 @@ window.onload = function() {
             html = '<table>';
 
         // 월 표시 추가
-        html += '<tr><th><button id="prevMonth"><img src="back_btn.png" alt="이전 달"></button></th><th colspan="5">' + year + '. ' + (month + 1) + '</th><th><button id="nextMonth"><img src="next_btn.png" alt="다음 달"></button></th></tr>';
+        html += '<tr><th><button id="prevMonth"><img src="../img/ticket_reservation/back_btn.png" alt="이전 달"></button></th><th colspan="5">' + year + '. ' + (month + 1) + '</th><th><button id="nextMonth"><img src="../img/ticket_reservation/next_btn.png" alt="다음 달"></button></th></tr>';
         html += '<tr>';
 
         for (var i = 0; i < 7; i++)
