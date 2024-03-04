@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title th:replace="~{/include/title.html::title}"></title>
+<title th:replace="~{include/title.html::title}"></title>
 
 <link rel="stylesheet" th:href="@{/css/admin/home.css}">
 
@@ -30,6 +30,9 @@
 				 </li>
 				 <li>
 				 	  <a th:href="@{/admin/performance_modify}">공연 정보 수정</a>
+				 </li>
+				 <li>
+				 	  <a th:href="@{/admin/review_management}">공연 리뷰 관리</a>
 				 </li>
 				 <li>
 				 	  <a th:href="@{/admin/ticket_state}">티켓 예매 현황</a>

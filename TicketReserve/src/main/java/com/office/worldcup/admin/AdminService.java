@@ -10,7 +10,7 @@ import lombok.extern.log4j.Log4j2;
 public class AdminService {
 	
 	@Autowired
-	AdminDao adminDao;
+	AdminDaoForMyBatis adminDao;
 
 	public boolean checkId(String adminId) {
 		log.info("[AdminService] checkId()");
@@ -18,6 +18,14 @@ public class AdminService {
 		AdminDto adminDto = adminDao.selectAdminById(adminId);
 		
 		return adminDto == null ? true : false;
+	}
+
+	public int adminRegist(AdminDto adminDto) {
+		log.info("[AdminService] adminRegist()");
+		
+		return adminDao.insertAdmin(adminDto);
 	}	
 
 }
+
+

@@ -3,8 +3,7 @@ function adminRegist() {
    
    let form = document.regist_form;
    let a_mail = form.a_mail_pre.value + "@" + form.a_mail_suf.value;
-   let a_phone = form.a_phone_bas.value+"-"+form.a_phone_pre.value+"-"+
-   form.a_phone_suf.value;
+   let a_phone = form.a_phone_bas.value+"-"+form.a_phone_pre.value+"-"+form.a_phone_suf.value;
    let pwRegex = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/;
    
    form.a_phone.value= a_phone;
@@ -20,7 +19,7 @@ function adminRegist() {
       
    } else if (form.a_pw.value !== form.a_pw_confirm.value) {
       alert('입력한 비밀번호가 일치하지않습니다.');
-      form.a_pw.focus();
+      form.a_pw_confirm.focus();
       
    } else if (!pwRegex.test(form.a_pw.value)) {
        alert('비밀번호는 6-20자로 알파벳 대 소문자, 숫자 또는 특수 문자를 포함해야 합니다.');
@@ -28,7 +27,7 @@ function adminRegist() {
       
    } else if (form.a_name.value === '') {
       alert('이름을 입력해주세요.');
-      form.a_mail.focus();
+      form.a_name.focus();
       
    } else if (form.a_mail_pre.value === '') {
       alert('이메일을 입력해주세요.');

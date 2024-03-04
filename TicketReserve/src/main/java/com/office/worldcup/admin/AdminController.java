@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.log4j.Log4j2;
@@ -45,11 +46,25 @@ public class AdminController {
 	}
 	
 	@ResponseBody
-	@PostMapping("/admin/checkId")
-	public boolean checkId(String adminId) {
-		log.info("[AdminController] checkId()");
+	@PostMapping("/checkId")
+	public boolean checkId(@RequestParam("adminId") String id) {
+	    log.info("[AdminController] checkId()");
+	    
+	    return adminService.checkId(id);
+	}
+	
+	@PostMapping("/admin_regist_confirm")
+	public String checkId(AdminDto adminDto) {
+		log.info("[AdminController] admin_regist_confirm()");
 		
-		return adminService.checkId(adminId);
+		int result = adminService.adminRegist(adminDto);
+		
+		String nextPage = "/admin/regist_success";
+		
+		if (result <= 0)
+			nextPage = "/admin/regist_fail";
+		
+		return nextPage;
 	}
 	
 	@GetMapping("/admin_management")
