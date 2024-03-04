@@ -78,23 +78,24 @@ public class UserDao {
 
 	public UserDto selectUserForLogin(UserDto userDto) {
 		log.info("[UserDao] selectUserForLogin()");
+		log.info(userDto.getU_id() +","+ userDto.getU_pw());
 		
-		String sql = "SELECT * FROM TBL_MEMBER WHERE U_ID = ? AND U_PW = ?";
+		String sql = "SELECT * FROM TBL_USER WHERE U_ID = ? AND U_PW = ?";
 		
-		List<UserDto> userDtos = new ArrayList<>();
 		
-		try {
-			
-			RowMapper<UserDto> rowMapper = 
-					BeanPropertyRowMapper.newInstance(UserDto.class);
-			userDtos = jdbcTemplate.query(sql, rowMapper, userDto.getU_id(), userDto.getU_pw());
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			
-		}
-		
-		return userDtos.size() > 0 ? userDtos.get(0) : null;
-		
-	}
+		 try {
+			 
+			 	RowMapper<UserDto> rowMapper = BeanPropertyRowMapper.newInstance(UserDto.class);
+			 	
+		        List<UserDto> userDtos = jdbcTemplate.query(sql, rowMapper, userDto.getU_id(), userDto.getU_pw());
+		        log.info("[UserDao] selectUserForLogin(===============>>>>)"+userDtos);
+		      
+		        return !userDtos.isEmpty() ? userDtos.get(0) : null;
+		        
+		    } catch (Exception e) {
+		       
+		        return null;
+		    }
+		 
+}
 }
