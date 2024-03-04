@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" th:src="@{/js/user.js}"></script>
+<script type="text/javascript" th:src="@{/js/config/adress.js}"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+<link rel="stylesheet" th:href="@{/css/home.css}">
+<link rel="stylesheet" th:href="@{/css/user/user_commond.css}">
+<link rel="stylesheet" th:href="@{/css/user/create_account_form.css}">
+</head>
+<body>
+	<header th:replace="~{/include/header_footer_nav.html::header}"></header>
+	<nav th:replace="~{/include/header_footer_nav.html::nav}"></nav>
+	
+	<section>
+		
+		
+		<div id="section_wrap">
+			<div class="word">
+				<span>정보수정</span>
+			</div>
+			
+			
+			<div class="create_account_form">
+				
+			<form th:action="@{/user/create_account_confirm}" name="create_account_form" method="post">
+          		<div class="input_info">
+          		  <b>아이디  &emsp;&emsp;&emsp;</b><br/>
+           			<input type="text" name="u_id" readonly disabled><br>
+				</div>
+				
+				<div class="input_info">
+	           		 <label><b>비밀번호  &emsp;&emsp;&emsp;</b> <br/>
+	           		 <input type="password" name="u_pw"></label><br>
+				</div>
+				
+				<div class="input_info">
+	           		 <label><b>비밀번호 재확인  &emsp;&emsp;&emsp;</b><br/>
+	          		 <input type="password" name="u_pw_confirm"></label><br/>
+				</div>
+				
+				<div class="input_info">
+			         <label><b>이름  &emsp;&emsp;&emsp;</b><br>
+			         <input type="text" name="u_name"></label> <br>
+		       </div>
+		       
+		       <div class="input_info">
+		            <label for="u_sc_num_suf"><b>주민등록번호  &emsp;&emsp;&emsp;</b> </label><br>
+           			<input type="number" name="u_sc_num_pre" readonly disabled>
+               	 <span>-</span>&nbsp;
+           		    <input type="password" id="u_sc_num_suf" name="u_sc_num_suf"><br>
+	               	<input type="hidden" name="u_sc_num">
+		         
+		        </div>
+		        
+		        <div class="input_info">
+			         <label><b>이메일  &emsp;&emsp;&emsp;</b><br>
+			         <input type="text" name="u_mail_pre"></label> <span>@</span> 
+			         <input type="text" name="u_mail_suf"><br>
+		             <input type="hidden" name="u_mail">
+	             </div>
+	             
+	             <div class="input_info">
+		           	 <label for="u_phone_pre"><b>휴대전화	&emsp;&emsp;&emsp;</b></label><br>
+		             <input type="number" class="u_phone" value="010" name="u_phone_bas"> - 
+		             <input type="number" id="u_phone_pre" class="u_phone" name="u_phone_pre"> - 
+		             <input type="number" class="u_phone" name="u_phone_suf"><br>
+		             <input type="hidden" name="u_phone">
+	             </div>
+	             
+	             <div class="input_info">
+	     		 	 <label><b>주소	&emsp;&emsp;&emsp;</b><br>
+					 <input type="text" id="postcode" name="postcode" placeholder="우편번호"></label>
+					 <input type="button" id="find_zip_code"onclick="execDaumPostcode()" value="우편번호 찾기"><br>
+					 <input type="text" id="address" name="address" placeholder="주소"><br>
+					 <input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소">
+				     <input type="text" id="extraAddress" name="extraAddress" placeholder="참고항목"><br>
+					 <input type="hidden" name="u_address">
+				</div>
+				
+				<div>	
+					 <input type="button" class="submit_btn" value="회원가입" onclick="createAccountForm();">
+					 <input type="reset" class="reset_btn" value="초기화">
+				</div>
+			</form>	
+			</div>
+		</div>		
+				
+	
+	</section>
+	
+	
+	<footer th:replace="~{/include/header_footer_nav.html::footer}"></footer>
+</body>
+</html>
