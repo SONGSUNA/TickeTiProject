@@ -22,3 +22,7 @@ form div:last-child{
 	margin-top :200px;
 }
 
+.login_rs_message {
+	font-size: 2em;
+    font-weight: bold;
+}
