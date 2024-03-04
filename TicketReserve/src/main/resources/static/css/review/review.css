@@ -1,0 +1,88 @@
+body{
+	margin: 0;
+	padding: 0;
+	background-color:#fff;
+}
+img {
+    min-width: 100px;
+    max-width: 100px;
+    min-height: 120px;
+    max-height: 120px;
+    margin: 30px;
+}
+h2 {
+	line-height:120px;
+}
+.review_title {
+    display: flex;
+    height: 170px;
+    
+    background-color:#dadada;
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style: none;
+}
+textarea {
+	margin-left:30px;
+	max-width: 650px;
+	min-width: 650px;
+	max-height: 150px;
+	min-height: 150px;
+}
+.reviewBtn {
+	width:90px;
+	height: 30px;
+	background-color: #9AD0C2;
+	border:none;
+	border-radius: 15px;
+	margin-top: 10px;
+	margin-right: 20px;
+}
+
+
+.current-length_wrap {
+	float: right;
+	margin-right:15px;
+}
+
+
+.rate { display: inline-block;  border: 0;margin-right: 15px; display: flex; margin-left: 20px;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-items: center;}
+.rate > input {display: none;}
+.rate > label {float: right;color: #ddd}
+.rate > label:before {display: inline-block;font-size: 1rem;padding: .3rem .2rem;margin: 0;cursor: pointer;font-family: "Font Awesome 5 Free";
+    content: "\f005 "; font-weight: 900;}
+.rate .half:before {content: "\f123 "; position: absolute;padding-right: 0; font-weight: 900;}
+.rate input:checked ~ label, 
+.rate label:hover,.rate label:hover ~ label { color: #f73c32 !important;  } 
+.rate input:checked + .rate label:hover,
+.rate input input:checked ~ label:hover,
+.rate input:checked ~ .rate label:hover ~ label,  
+.rate label:hover ~ input:checked ~ label { color: #f73c32 !important;  } 
+
+@font-face {
+    font-family: 'LINESeedKR-Th';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Th.woff2') format('woff2');
+    font-weight: 100;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'LINESeedKR-Rg';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Rg.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+ @font-face {
+    font-family: 'LINESeedKR-Bd';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+          
+body {
+    font-family: 'LINESeedKR-Rg';
+}

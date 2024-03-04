@@ -1,18 +1,28 @@
 package com.office.worldcup.user;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
+import lombok.extern.log4j.Log4j2;
+
+@Log4j2
 @Repository
 public class UserDao {
+	
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 	@Autowired
 	PasswordEncoder passwordEncoder;
 	
 	public boolean isUser(String u_id) {
+		log.info("[UserDao] isUser()");
 		
 		String sql= "SELECT COUNT(*) FROM TBL_USER WHERE U_ID = ? ";
 		
@@ -64,5 +74,27 @@ public class UserDao {
 		}
 		
 		return result;
+	}
+
+	public UserDto selectUserForLogin(UserDto userDto) {
+		log.info("[UserDao] selectUserForLogin()");
+		
+		String sql = "SELECT * FROM TBL_MEMBER WHERE U_ID = ? AND U_PW = ?";
+		
+		List<UserDto> userDtos = new ArrayList<>();
+		
+		try {
+			
+			RowMapper<UserDto> rowMapper = 
+					BeanPropertyRowMapper.newInstance(UserDto.class);
+			userDtos = jdbcTemplate.query(sql, rowMapper, userDto.getU_id(), userDto.getU_pw());
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}
+		
+		return userDtos.size() > 0 ? userDtos.get(0) : null;
+		
 	}
 }

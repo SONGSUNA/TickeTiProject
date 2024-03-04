@@ -54,6 +54,8 @@ public class UserService {
 
 
 	public UserDto userLoginConfirm(UserDto userDto) {
+		log.info("[UserService] userLoginConfirm()");
+		
 		
 		return null;
 	}

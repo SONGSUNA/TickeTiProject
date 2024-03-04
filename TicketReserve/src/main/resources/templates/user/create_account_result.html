@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" th:src="@{/js/create_account_form.js}"></script> 
+<script type="text/javascript" th:src="@{/js/create_account_form.js}"></script>
+
+<link th:href="@{/css/include/footer.css}" rel="stylesheet" /> 
 </head>
 <body>
 	
@@ -17,7 +19,10 @@
 			
 		</div>
 	</section>
-	
+	<div class="current-length_wrap">
+   		 
+   		 <input class="reviewExitBtn" type="button" value="닫기">
+		</div>
 	
 	<footer th:replace="~{/include/header_footer_nav.html::footer}"></footer>
 </body>

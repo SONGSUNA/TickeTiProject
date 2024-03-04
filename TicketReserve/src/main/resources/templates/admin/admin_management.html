@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title th:replace="~{/include/title.html::title}"></title>
+
+<link rel="stylesheet" th:href="@{/css/admin/user_management.css}">
+<script type="text/javascript" th:src="@{/js/admin/user_search.js}"></script>
+
+</head>
+<body>
+
+	<div class="container">
+		<div class="sidebar">
+			 <ul>
+				 <li>
+				 	  <a th:href="@{/admin}">Admin Home</a>
+				 </li>
+				 <li>
+				 	  <a th:href="@{/admin/user_management}">유저 관리</a>
+				 </li>
+				 <li class="active">
+				 	  <a th:href="@{/admin/admin_regist}">어드민 등록</a>
+				 </li>
+				 <li>
+				 	  <a th:href="@{/admin/admin_management}">어드민 관리</a>
+				 </li>
+				 <li>
+				 	  <a th:href="@{/admin/perfomance_regist}">공연 등록</a>
+				 </li>
+				 <li>
+				 	  <a th:href="@{/admin/performance_modify}">공연 정보 수정</a>
+				 </li>
+ 				 <li>
+				 	  <a th:href="@{/admin/review_management}">공연 리뷰 관리</a>
+				 </li>
+				 <li>
+				 	  <a th:href="@{/admin/ticket_state}">티켓 예매 현황</a>
+				 </li>
+				 <li class="logout">
+				 	  <a th:href="@{/}">로그아웃</a>
+				 </li>
+			</ul>
+		</div>
+		
+		<div class="main">
+			<h1>어드민 등록</h1>
+			
+			<div class="user_search">
+				<form action="">
+					<span>아이디</span>
+					<input type="text" name="u_id">
+					<span>이름</span>
+					<input type="text" name="u_name">
+					<span>메일</span>
+					<input type="text" name="u_mail">
+					<input type="button" value="검색">
+				</form> 
+			</div>
+			
+			<div class="user_table">
+				<table>
+					<thead>
+						<tr>
+							<th>No</th>
+							<th>아이디</th>
+							<th>이름</th>
+							<th>메일</th>
+							<th>주민등록번호</th>
+							<th>연락처</th>
+							<th>가입일</th>
+							<th>최근수정일</th>
+							<th>수정/삭제</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>

@@ -71,7 +71,7 @@ public class UserController {
 	public String userLoginConfirm(UserDto userDto, HttpSession session) {
 		log.info("userLoginConfirm()");
 	      
-		String nextPage = "user/user_login_ok";
+		String nextPage = "/";
 	      
 		UserDto loginedUserDto = userService.userLoginConfirm(userDto);
 	    
