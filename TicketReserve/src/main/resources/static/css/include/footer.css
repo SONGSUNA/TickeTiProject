@@ -1,5 +1,16 @@
-.footer_wrap {
-    width: 100%;
-    height: 50px;
-    background-color: #dadada;
-} 
+footer {
+	width: 100%;
+	border-top: 1px solid #ccc;
+	padding: 10px 0;
+	background-color: #cecece;
+}
+
+footer #footer_wrap {
+	width: 1500px;
+	height: 100px;
+	line-height: 100px;
+	color: #fafafa;
+	margin: 0 auto;
+	text-align: center;
+	font-size: .9em;
+}
