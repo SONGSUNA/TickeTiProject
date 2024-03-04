@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title th:replace="~{/include/title.html::title}"></title>
+
+<link rel="stylesheet" th:href="@{/css/admin/user_management.css}">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript" th:src="@{/js/admin/admin_regist.js}"></script>
+
+</head>
+<body>
+
+	<div class="container">
+		<div class="sidebar">
+			 <ul>
+				 <li>
+				 	  <a th:href="@{/admin}">Admin Home</a>
+				 </li>
+				 <li>
+				 	  <a th:href="@{/admin/user_management}">유저 관리</a>
+				 </li>
+				 <li class="active">
+				 	  <a th:href="@{/admin/admin_regist}">어드민 등록</a>
+				 </li>
+				 <li>
+				 	  <a th:href="@{/admin/admin_management}">어드민 관리</a>
+				 </li>
+ 				 <li>
+				 	  <a th:href="@{/admin/perfomance_regist}">공연 등록</a>
+				 </li>
+				 <li>
+				 	  <a th:href="@{/admin/performance_modify}">공연 정보 수정</a>
+				 </li>
+				 <li>
+				 	  <a th:href="@{/admin/ticket_state}">티켓 예매 현황</a>
+				 </li>
+				 <li class="logout">
+				 	  <a th:href="@{/}">로그아웃</a>
+				 </li>
+			</ul>
+		</div>
+		
+		<div class="main">
+			<h1>어드민 등록</h1>
+			
+			<div class="user_search">
+				<form th:action="@{/admin/admin_regist_confirm}" name="regist_form" method="post">
+				
+				<input type="hidden" id="csrfToken" th:value="${_csrf.token}"/>
+				
+          		<div class="input_info">
+          		  <label><b>아이디  &emsp;&emsp;&emsp;</b><br/>
+           			<input type="text" name="a_id"></label> 
+           			<input type="button" id="checkId" value="ID중복 검사"><span id="check_id_msg"></span><br>
+				</div>
+				
+				<div class="input_info">
+	           		 <label><b>비밀번호  &emsp;&emsp;&emsp;</b> <br/>
+	           		 <input type="password" name="a_pw" class="a_pw" id="a_pw"></label> <br />
+	           		 <span id="regexp"></span>
+				</div>
+				
+				<div class="input_info">
+	           		 <label><b>비밀번호 재확인  &emsp;&emsp;&emsp;</b><br/>
+	          		 <input type="password" name="a_pw_confirm" class="a_pw" id="a_pw_check"></label>
+	          		 <span id="pw_matching"></span><br/>
+				</div>
+				
+				<div class="input_info">
+			         <label><b>이름  &emsp;&emsp;&emsp;</b><br>
+			         <input type="text" name="a_name"></label> <br>
+		       </div>
+		        
+		        <div class="input_info">
+			         <label><b>이메일  &emsp;&emsp;&emsp;</b><br>
+			         <input type="text" name="a_mail_pre"></label> <span>@</span> 
+			         <input type="text" name="a_mail_suf"><br>
+		             <input type="hidden" name="a_mail">
+	             </div>
+	             
+	             <div class="input_info">
+		           	 <label for="a_phone_pre"><b>휴대전화	&emsp;&emsp;&emsp;</b></label><br>
+		             <input type="number" class="a_phone" value="010" name="a_phone_bas"> - 
+		             <input type="number" id="a_phone_pre" class="a_phone" name="a_phone_pre"> - 
+		             <input type="number" class="a_phone" name="a_phone_suf"><br>
+		             <input type="hidden" name="a_phone">
+	             </div>
+				
+				<div>	
+					 <input type="button" class="submit_btn" value="등록" onclick="adminRegist();">
+					 <input type="reset" class="reset_btn" value="초기화">
+				</div>
+			</form>	
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>

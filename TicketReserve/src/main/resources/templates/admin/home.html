@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title th:replace="~{/include/title.html::title}"></title>
+
+<link rel="stylesheet" th:href="@{/css/admin/home.css}">
+
+</head>
+<body>
+
+	<div class="container">
+		<div class="sidebar">
+			 <ul>
+				 <li class="active">
+				 	  <a th:href="@{/admin}">Admin Home</a>
+				 </li>
+				 <li>
+				 	  <a th:href="@{/admin/user_management}">유저 관리</a>
+				 </li>
+				 <li>
+				 	  <a th:href="@{/admin/admin_regist}">어드민 등록</a>
+				 </li>
+				 <li>
+				 	  <a th:href="@{/admin/admin_management}">어드민 관리</a>
+				 </li>
+				 <li>
+				 	  <a th:href="@{/admin/perfomance_regist}">공연 등록</a>
+				 </li>
+				 <li>
+				 	  <a th:href="@{/admin/performance_modify}">공연 정보 수정</a>
+				 </li>
+				 <li>
+				 	  <a th:href="@{/admin/ticket_state}">티켓 예매 현황</a>
+				 </li>
+				 <li class="logout">
+				 	  <a th:href="@{/}">로그아웃</a>
+				 </li>
+			</ul>
+		</div>
+	</div>
+	
+</body>
+</html>
