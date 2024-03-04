@@ -1,0 +1,167 @@
+body {
+    
+    margin: 0;
+    padding: 0;
+
+}
+a{
+    text-decoration: none;
+}
+ul{
+    list-style: none;
+}
+
+#title_data {
+    max-width: 1600px;
+    margin: auto;
+    padding: 20px;
+    border-bottom: 1px #242424 solid;
+    margin-bottom: 50px;
+}
+#content_container{
+    max-width: 1600px;
+    margin: auto;
+}
+#content_data {
+    max-width: 1600px;
+    margin: auto;
+    display: flex;
+    gap: 60px;
+}
+.cd_img{
+    border-bottom: #dadada solid 1px;
+    
+}
+.likes{
+    margin: 20px;
+}
+.cd_info,
+.time_info{
+    width: 700px;
+    border-bottom: 1px solid #242424;
+}
+#content_data .cd_img img {
+    max-width: 430px;
+    min-width: 430px;
+    max-height: 600px;
+    min-height: 600px;
+}
+#content_data .cd_info_wrap .cd_info li {
+   margin-bottom: 50px;
+}
+.time_info li{
+    margin-bottom: 20px;
+}
+#date_time_choice{
+    max-width: 1600;
+    max-width: 1600px;
+    margin: auto;
+    display: flex;
+    border: 1px solid #dadada;
+}
+#date_time_choice .left,
+#date_time_choice .right{
+    width: 800px;
+    padding: 50px;
+    border: #dadada solid 1px;
+}
+
+#date_time_choice .date_time_h3{
+    border-bottom: 2px #242424 solid;
+}
+#date_time_choice #calendar table{
+    width: 350px;
+    text-align: center;
+    padding: 30px;
+    border-right: #dadada 1px solid;
+}
+#date_time_choice .calendar_wrap{
+    display: flex;
+}
+#date_time_choice .calendar_data{
+    padding: 30px;
+}
+#dateDisplay
+ {
+    border-bottom: 1px solid black;  /* 밑줄 추가 */
+    padding-bottom: 10px;  /* 밑에 여백 추가 */
+    font-size: 30px;
+}
+#prevMonth,
+#nextMonth {
+    margin-bottom: 10px;
+}
+.right .right_data{
+    margin: 30px;
+    width: 600px;
+    height: 300px;
+    border: #dadada 1px solid;
+}
+#reserveBtn_wrap{
+    height: 60px;
+    margin: 30px auto;
+    text-align: center;
+}
+#reserveBtn_wrap input{
+    height: 80px;
+    width: 200px;
+    background-color: rgba(239, 235, 8, 0.677);
+    border: none;
+    border-radius: 15px;
+    font-size: 30px;
+    color: #055b78;
+    cursor: pointer;
+}
+#reserve_nav {
+    display: flex;
+    
+    font-size: 30px;
+    border-bottom: 2px solid #242424;
+    margin-top: 90px;
+    justify-content: space-around;
+}
+#reserve_nav div {
+    margin-top: 30px;
+    width: 300px;
+    text-align: center;
+}
+.more_info_data{
+    margin-top: 100px;
+    text-align: center;
+    border-bottom: #242424 1px solid;
+}
+.product-info {
+    max-width: 600px;
+    margin: 20px auto;
+    margin-bottom: 30px;
+}
+
+.product-info table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.product-info th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.product-info th {
+    background-color: #f2f2f2;
+}
+#location_info {
+    text-align: center;
+}
+#map {
+    display: block;
+    margin: auto;
+    width: 1200px;
+    height: 600px;
+    border: 1px solid #242424;
+}
+#review_page{
+    margin-top: 90px;
+    text-align: center;
+}
