@@ -78,18 +78,15 @@ div.section_wrap  {
 }
 
 div.itembody {
-    width: 80%;
+    width: 70%;
     margin: 0 auto; /* 가로 중앙 정렬 */
 }
-
 
 div.section_wrap .container{
 	display: flex;
 	justify-content: center;
 
 }
-
-
 
 .container .list{
 	display: flex;
