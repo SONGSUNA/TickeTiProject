@@ -20,12 +20,18 @@
 	<insert id="insertAdmin" 
 			parameterType="com.office.worldcup.admin.AdminDto">
 		
+<<<<<<< HEAD
 		INSERT INTO 
 			TBL_ADMIN
 				(A_NO, A_ID, A_PW, A_NAME, A_MAIL, A_PHONE, A_REG_DATE, A_MOD_DATE) 
 		VALUES
 			(ADMIN_SEQ.NEXTVAL, #{a_id}, #{a_pw}, #{a_name}, #{a_mail}, #{a_phone}, SYSTIMESTAMP, SYSTIMESTAMP)
 			
+=======
+		INSERT INTO TBL_ADMIN(A_NO, A_ID, A_PW, A_NAME, A_MAIL, A_PHONE, A_REG_DATE, A_MOD_DATE) 
+		VALUES(ADMIN_SEQ.NEXTVAL, #{a_id}, #{a_pw},#{a_name},#{a_mail},#{a_phone}, SYSTIMESTAMP, SYSTIMESTAMP)
+
+>>>>>>> 94b649e6bfcf6723e8f8a9c67efec2a3ded82569
 	</insert>
 	
 </mapper>
