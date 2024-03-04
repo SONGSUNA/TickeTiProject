@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" th:src="@{/js/create_account_form.js}"></script> 
+</head>
+<body>
+	<header th:replace="~{/include/header_footer_nav.html::header}"></header>
+	<nav th:replace="~{/include/header_footer_nav.html::nav}"></nav>
+	
+	<section>
+		<div id="section_wrap">
+			<div class="word">
+				<span th:if="${rst == 1}">회원가입에 성공하였습니다</span>
+				<span th:if="${rst != 1}">회원가입에 실패하였습니다</span>
+			</div>
+			
+		</div>
+	</section>
+	
+	
+	<footer th:replace="~{/include/header_footer_nav.html::footer}"></footer>
+</body>
+</html>

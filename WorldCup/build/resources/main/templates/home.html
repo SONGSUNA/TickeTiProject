@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title th:replace="~{/include/title.html::title}"></title>
+
+<link th:href="@{/css/include/header.css}" rel="stylesheet" />
+<link th:href="@{/css/include/nav.css}" rel="stylesheet" />
+<link th:href="@{/css/include/footer.css}" rel="stylesheet" />
+<link th:href="@{/css/include/game_list_item.css}" rel="stylesheet" />
+<link th:href="@{/css/home.css}" rel="stylesheet" />
+
+</head>
+<body>
+
+	<header th:replace="~{/include/header_footer_nav.html::header}"></header>
+	<nav th:replace="~{/include/header_footer_nav.html::nav}"></nav>
+
+	<section>
+		<div class="section_wrap">
+			<div class="game_list">
+				<div th:replace="~{/include/game_list_item.html::item}"></div>
+				<div th:replace="~{/include/game_list_item.html::item}"></div>
+				<div th:replace="~{/include/game_list_item.html::item}"></div>
+				<div th:replace="~{/include/game_list_item.html::item}"></div>
+				<div th:replace="~{/include/game_list_item.html::item}"></div>
+				<div th:replace="~{/include/game_list_item.html::item}"></div>
+				<div th:replace="~{/include/game_list_item.html::item}"></div>
+				<div th:replace="~{/include/game_list_item.html::item}"></div>
+			</div>
+
+			<div class="right_containor">
+				<div class="game_ranking">
+					게임 랭킹
+				</div>
+	
+				<div class="banner">
+					<img th:src="@{/img/dummy/banner.jpg}">
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<footer th:replace="~{/include/header_footer_nav.html::footer}"></footer>
+	
+</body>
+</html>

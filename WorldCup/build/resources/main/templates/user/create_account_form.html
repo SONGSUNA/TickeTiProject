@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" th:src="@{/js/user.js}"></script>
+</head>
+<body>
+	<header th:replace="~{/include/header_footer_nav.html::header}"></header>
+	<nav th:replace="~{/include/header_footer_nav.html::nav}"></nav>
+	
+	<section>
+		<div id="section_wrap">
+			<div class="word">
+				<span>CREATE ACCOUNT FORM</span>
+			</div>
+			<div class="create_account_form">
+				
+				<form th:action="@{/user/create_account_confirm}" name="create_account_form" method="post">
+					<input type="text" name="u_id" placeholder="INPUT ID"><br>
+					<input type="password" name="u_pw" placeholder="INPUT PW"><br>
+					<input type="text" name="u_mail" placeholder="INPUT MAIL"><br>
+					<input type="text" name="u_phone" placeholder="INPUT PHONE"><br>
+					<input type="button" value="create account" onclick="createAccountForm();">
+					<input type="reset" value="reset">
+				</form>
+				
+			</div>
+			</div>
+	</section>
+	
+	
+	<footer th:replace="~{/include/header_footer_nav.html::footer}"></footer>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<header th:fragment="header">
+
+	<div class="header_wrap">
+		<a class="logo" th:href="@{/}">
+			<img th:src="@{/img/logo.png}">
+		</a>
+		
+		<div class="link" th:if="${session.loginedUserDto == null}">
+			<a th:href="@{/user/create_account_form}">회원가입</a>
+			<a th:href="@{/}">로그인</a>
+		</div>
+		<div class="link" th:if="${session.loginedUserDto != null}">
+			<a th:href="@{/}">나의 게임</a>	<!-- hover로 메뉴 추가 -->
+			<a th:href="@{/}">마이페이지</a>
+			<a th:href="@{/}">로그아웃</a>
+		</div>
+		<div class="link" th:if="${session.loginedAdminDto != null}">
+			<a th:href="@{/}">정보 수정</a>
+			<a th:href="@{/}">게임 관리</a>
+			<a th:href="@{/}">유저 관리</a>
+			<a th:href="@{/}">광고 관리</a>
+			<a th:href="@{/}">신고 관리</a>
+		</div>
+		<!--
+		<div class="link" th:if="${session.loginedAdminDto.getAId == 'super'}">
+			<a th:href="@{/}">어드민 관리</a>
+		</div>
+		-->
+	</div>
+
+</header>
+
+
+<nav th:fragment="nav">
+	<div class="nav_wrap">
+		<div class="list_change_btn"> 
+			<a href="#none">조회순</a>
+			<a href="#none">인기순</a>
+			<a href="#none">최신순</a>
+		</div>
+		
+		<div class="search">
+			<div class="serach_txt">
+				<input type="text" 		placeholder="토너먼트를 검색하세요.">
+				<input type="button" 	value="검색">
+			</div>
+		</div>
+	</div>
+</nav>
+
+
+<footer th:fragment="footer">
+	<div class="footer_wrap"> 
+		This Cooperation good. 
+	</div>
+</footer>
