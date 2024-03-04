@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <title>티켓 예매</title>
 
-<link rel="stylesheet" href="tikect_reservation._step2.css">
+<link rel="stylesheet" th:href="@{/css/ticket_reservation/ticket_reservation._step2.css}">
 
-<script src="seat.js"></script>
+<script th:src="@{/js/ticket_reservation/seat.js}"></script>
 
 </head>
 <body>
@@ -55,7 +55,7 @@
 
            <div class="reservation_info">
                 <div class="performance">
-                    <img src="/thum.jpg">
+                    <img src="@{/img/ticket_reservation/thum.jpg}">
                     <div class="performance_info">
                         <p class="name">2024 KIM MYUNGSOO BIRTHDAY PARTY</p>
                         <p class="date">2024.03.10~2024.03.10</p>
@@ -67,11 +67,11 @@
                     <p>선택한 좌석 :</p>
                 </div>
 
-                <a class="pre_button" href="/tikect_reservation_step1.html">
+                <a class="pre_button" th:href="@{/ticket_reservation/ticket_reservation_step1.html}">
                     이전 단계
                 </a>
 
-                <a class="next_button" href="/tikect_reservation_step3.html">
+                <a class="next_button" href="@{/ticket_reservation/ticket_reservation_step3.html}">
                     다음 단계
                 </a>
            </div>
