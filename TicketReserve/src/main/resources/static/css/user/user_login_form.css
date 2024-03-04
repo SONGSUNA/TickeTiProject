@@ -1,10 +1,11 @@
 @charset "UTF-8";
+
 .input_info input {
   width: 300px;
   height: 30px;
 }
 
-form div:last-child{
+form div:last-child {
   border-top: 1px solid #9AD0C2;
   width: 300px;
   margin-top: 30px;
@@ -19,10 +20,23 @@ form div:last-child{
 }
 
 #login_form {
-	margin-top :200px;
+  margin-top: 200px;
 }
 
 .login_rs_message {
-	font-size: 2em;
-    font-weight: bold;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.login_result_ms {
+  border: 1px solid #265073;
+  text-align: center;
+  width: 0 500px;
+  height: 200px;
+  padding-top: 100px;
+}
+
+#login_wrap,
+#login_rs_wrap {
+  margin-top: 200px;
 }

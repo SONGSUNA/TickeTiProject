@@ -17,14 +17,15 @@
 	
 	<section>
 		<div id="section_wrap">
-			<div class="word">
+			<div class="word" id="login_rs_wrap">
 				<span>로그인</span>
 			</div>
-			<div class="login_form">
+			<div class="login_result_ms">
 				<div>
-					<div class="login_rs_message">로그인 실패하였습니다.</div>
-						<a>로그인</a>
-						<a>회원가입</a>
+					<div class="login_rs_message">로그인 실패하였습니다.</div> <br />
+						<a th:href="@{/user/create_account_form}">회원가입</a>
+						&emsp;<span>|</span>&emsp;
+						<a th:href="@{/user/user_login_form}">로그인</a>
 				</div>
 			</div>
 			</div>

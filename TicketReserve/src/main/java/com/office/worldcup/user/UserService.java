@@ -56,8 +56,17 @@ public class UserService {
 	public UserDto userLoginConfirm(UserDto userDto) {
 		log.info("[UserService] userLoginConfirm()");
 		
+		UserDto selectedMemberDtoById= userDao.selectUserForLogin(userDto);
 		
-		return null;
+		
+		if (selectedMemberDtoById != null && passwordEncoder.matches(userDto.getU_pw(), selectedMemberDtoById.getU_pw())) {
+			return selectedMemberDtoById;
+			
+		} else {
+			return null;
+			
+		}
+		
 	}
 
 
