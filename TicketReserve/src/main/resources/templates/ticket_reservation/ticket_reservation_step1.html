@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <title>티켓 예매</title>
 
-<link rel="stylesheet" href="tikect_reservation._step1.css">
-<script src="/calender.js"></script>
+<link rel="stylesheet" th:href="@{/css/ticket_reservation/ticket_reservation._step1.css}">
+<script th:src="@{/js/ticket_reservation/calender.js}"></script>
 
 </head>
 <body>
@@ -79,7 +79,7 @@
 
            <div class="reservation_info">
                 <div class="performance">
-                    <img src="/thum.jpg">
+                    <img th:src="@{/img/ticket_reservation/thum.jpg}">
                     <div class="performance_info">
                         <p class="name">2024 KIM MYUNGSOO BIRTHDAY PARTY</p>
                         <p class="date">2024.03.10~2024.03.10</p>
@@ -113,7 +113,7 @@
                         <span class="value">0</span>
                     </div>
                     <div class="line">
-                        <span class="label" class="plus_mony">총 금액(+)</span>
+                        <span class="label">총 금액(+)</span>
                         <span class="value">120,000</span>
                     </div>
                     <div class="line">
@@ -125,16 +125,16 @@
                         <span class="value">0</span>
                     </div>
                     <div class="line">
-                        <span  class="label">총 할인금액(-)</span>
+                        <span class="label">총 할인금액(-)</span>
                         <span class="value">0</span>
                     </div>
                     <div class="line">
                         <span class="label">최종 결제 금액</span>
-                        <span  class="value">120,000</span>
+                        <span class="value">120,000</span>
                     </div>
                 </div>
 
-                <a class="next_button" href="/tikect_reservation_step2.html">
+                <a class="next_button" th:href="@{/ticket_reservation_step2.html}">
                     다음 단계
                 </a>
            </div>
