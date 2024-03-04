@@ -11,9 +11,6 @@ public class AdminService {
 	
 	@Autowired
 	AdminDaoForMyBatis adminDao;
-	
-	@Autowired
-	AdminDao dao;
 
 	public boolean checkId(String adminId) {
 		log.info("[AdminService] checkId()");
@@ -26,7 +23,7 @@ public class AdminService {
 	public int adminRegist(AdminDto adminDto) {
 		log.info("[AdminService] adminRegist()");
 		
-		return dao.insertAdmin(adminDto);
+		return adminDao.insertAdmin(adminDto);
 	}	
 
 }
