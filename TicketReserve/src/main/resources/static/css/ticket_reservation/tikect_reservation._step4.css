@@ -1,0 +1,182 @@
+@font-face {
+    font-family: 'LINESeedKR-Th';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Th.woff2') format('woff2');
+    font-weight: 100;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'LINESeedKR-Rg';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Rg.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+ @font-face {
+    font-family: 'LINESeedKR-Bd';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+          
+body {
+    font-family: 'LINESeedKR-Rg';
+}
+
+.section_wrap {
+    display: flex;
+}
+
+* {
+    color: #242424;
+}
+
+/* reservation_wrap ---------------------------------------------------------------------*/
+.reservation_wrap {
+    width: 630px;
+    height: 550px;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #265073;
+}
+
+/* step -------------------------------------------------------------------------------- */
+.step {
+    width: 610px;
+    height: 50px;
+    display: flex;
+    background-color: #265073;
+    font-family: 'LINESeedKR-Bd';
+    font-size: 1.1em;
+}
+
+.step   div {
+    width: 100px;
+    text-align: center;
+    line-height: 55px;
+    background-color: #dfecf7;
+}
+
+.step   .step4 {
+    background-color: #fff;
+    color: #265073;
+}
+
+.step   p {
+    margin: auto;
+    margin-left: 70px;
+    color: #fff;
+    font-size: 1.2em;
+}
+
+/* reservation ------------------------------------------------------------------------- */
+.reservation {
+    width:  610px;
+    height: 480px;
+    display: inline-block;
+    background-color: #fff;
+    margin: auto;
+}
+
+
+
+/* reservation info -------------------------------------------------------------------- */
+.reservation_info {
+    width: 210px;
+    height: 550px;
+    border: 10px solid #265073;
+    border-left: none;
+    box-sizing: border-box;
+    display: inline-block;
+    background-color: #265073;
+}
+
+.reservation_info   div {
+    border-bottom: 5px solid #265073;
+    background-color: #fff;
+}
+
+.reservation_info   .performance {
+    width: 200px;
+    height: 110px;
+    background-color: #265073;
+    display: flex;
+}
+
+.reservation_info   .performance    .performance_info {
+    background-color: #265073;
+    font-size: .7em;
+    word-break: break-all;
+    color: #fff;
+}
+
+.reservation_info   .performance    .performance_info   p.name {
+    display: inline-block;
+    font-family: 'LINESeedKR-Bd';
+    height: 40px;
+    overflow: hidden;
+    margin: 0;
+    margin-top: 10px;
+    color: #fff;
+}
+
+.reservation_info   .performance    .performance_info   p.date {
+    display: inline-block;
+    font-family: 'LINESeedKR-Th';
+    font-size: .8;
+    height: 20px;
+    overflow: hidden;
+    margin: 0;
+    letter-spacing: 0px;
+    color: #fff;
+}
+
+.reservation_info   .performance    .performance_info   p.location {
+    display: inline-block;
+    font-family: 'LINESeedKR-Th';
+    font-size: .8;
+    height: 20px;
+    overflow: hidden;
+    margin: 0;
+    letter-spacing: 0px;
+    color: #fff;
+}
+
+.performance    img {
+    width: 70px;
+    height: 100px;
+    margin-right: 8px;
+    margin-top: 5px;
+}
+
+.reservation_info   .select_show {
+    width: 200px;
+    height: 325px;
+}
+
+.reservation_info   .pre_button {
+    display: block;
+    width: 200px;
+    height: 40px;
+    background-color: #fcfff4;
+    text-decoration: none;
+    text-align: center;
+    line-height: 43px;
+    font-family: 'LINESeedKR-Bd';
+    font-size: 1.3em;
+    color: #242424;
+    border-radius: 3px;
+    margin-bottom: 5px;
+}
+
+.reservation_info   .next_button {
+    display: block;
+    width: 200px;
+    height: 40px;
+    background-color: #F1FADA;
+    text-decoration: none;
+    text-align: center;
+    line-height: 43px;
+    font-family: 'LINESeedKR-Bd';
+    font-size: 1.3em;
+    color: #242424;
+    border-radius: 3px;
+}

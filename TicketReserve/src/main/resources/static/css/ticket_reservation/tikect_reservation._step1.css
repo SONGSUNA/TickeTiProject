@@ -1,0 +1,335 @@
+@font-face {
+    font-family: 'LINESeedKR-Th';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Th.woff2') format('woff2');
+    font-weight: 100;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'LINESeedKR-Rg';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Rg.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+ @font-face {
+    font-family: 'LINESeedKR-Bd';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+          
+body {
+    font-family: 'LINESeedKR-Rg';
+}
+
+.section_wrap {
+    display: flex;
+}
+
+* {
+    color: #242424;
+}
+
+/* reservation_wrap ---------------------------------------------------------------------*/
+.reservation_wrap {
+    width: 630px;
+    height: 550px;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #265073;
+}
+
+/* step -------------------------------------------------------------------------------- */
+.step {
+    width: 610px;
+    height: 50px;
+    display: flex;
+    background-color: #265073;
+    font-family: 'LINESeedKR-Bd';
+    font-size: 1.1em;
+}
+
+.step   div {
+    width: 100px;
+    text-align: center;
+    line-height: 55px;
+    background-color: #dfecf7;
+}
+
+.step   .step1 {
+    background-color: #fff;
+    color: #265073;
+}
+
+.step   p {
+    margin: auto;
+    margin-left: 70px;
+    color: #fff;
+    font-size: 1.2em;
+}
+
+/* reservation ------------------------------------------------------------------------- */
+.reservation {
+    width:  610px;
+    height: 480px;
+    display: inline-block;
+    background-color: #fff;
+    margin: auto;
+}
+
+.reservation_select {
+    width: 570px;
+    height: 300px;
+    padding: 10px;
+    margin: 0 auto;
+    display: flex;
+}
+
+.reservation_select     table {
+    border-collapse: collapse;
+    width: 230px;
+    height: 235px;
+    table-layout: fixed;
+    margin-top: 25px;
+    margin-left: 20px;
+}
+
+#prevMonth, #nextMonth {
+    border: none;
+    background: none;
+}
+
+#prevMonth img, #nextMonth img {
+    width: 15px;
+    height: 15px;
+}
+
+.reservation_select     td, th {
+    border: 1px solid #999;
+    padding: 0.3rem;
+    text-align: center;
+    font-size: .8em;
+}
+
+.reservation_select     tr:nth-child(2) {
+    background-color: #eff8ff;
+    font-family: 'LINESeedKR-Bd';
+}
+
+.reservation_select     th {
+    font-size: 1em;
+    border: 0;
+}
+
+.reservation_select     td:nth-child(1) {
+    color: #ff7c7c;
+}
+
+.reservation_select     td:nth-child(7) {
+    color: #6f64ff;
+}
+
+.reservation_select     .time_seat_select {
+    margin: 30px;
+    margin-left: 50px;
+    font-size: .9em;
+}
+
+.reservation_select     .time   > div,
+.reservation_select     .seat   > div {
+    border: 1px solid #dadada;
+    width: 220px;
+    height: 85px;
+    box-sizing: border-box;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: .9em;
+}
+
+.reservation_select     ul {
+    padding: 0;
+    display: flex;
+    margin: 0;
+    margin-bottom: 5px;
+    background-color: #f3f3f3;
+}
+
+.reservation_select     li {
+    list-style: none;
+    margin-right: 5px;
+    background-color: #f3f3f3;
+}
+
+.notice {
+    width: 570px;
+    height: 130px;
+    border: 1px solid #dadada;
+    padding: 10px;
+    margin: 0 auto;
+    font-family: 'LINESeedKR-Rg';
+    font-size: 0.8em;
+    letter-spacing: -1px;
+}
+
+.notice     span {
+    font-size: 1.2em;
+    font-family: 'LINESeedKR-Bd';
+    line-height: 27px;
+    margin-left: 5px;
+}
+
+/* reservation info -------------------------------------------------------------------- */
+.reservation_info {
+    width: 210px;
+    height: 550px;
+    border: 10px solid #265073;
+    border-left: none;
+    box-sizing: border-box;
+    display: inline-block;
+    background-color: #265073;
+}
+
+.reservation_info   div {
+    border-bottom: 5px solid #265073;
+    background-color: #fff;
+}
+
+.reservation_info   .performance {
+    width: 200px;
+    height: 110px;
+    background-color: #265073;
+    display: flex;
+}
+
+.reservation_info   .performance    .performance_info {
+    background-color: #265073;
+    font-size: .7em;
+    word-break: break-all;
+    color: #fff;
+}
+
+.reservation_info   .performance    .performance_info   p.name {
+    display: inline-block;
+    font-family: 'LINESeedKR-Bd';
+    height: 40px;
+    overflow: hidden;
+    margin: 0;
+    margin-top: 10px;
+    color: #fff;
+}
+
+.reservation_info   .performance    .performance_info   p.date {
+    display: inline-block;
+    font-family: 'LINESeedKR-Th';
+    font-size: .8;
+    height: 20px;
+    overflow: hidden;
+    margin: 0;
+    letter-spacing: 0px;
+    color: #fff;
+}
+
+.reservation_info   .performance    .performance_info   p.location {
+    display: inline-block;
+    font-family: 'LINESeedKR-Th';
+    font-size: .8;
+    height: 20px;
+    overflow: hidden;
+    margin: 0;
+    letter-spacing: 0px;
+    color: #fff;
+}
+
+.performance    img {
+    width: 70px;
+    height: 100px;
+    margin-right: 8px;
+    margin-top: 5px;
+}
+
+.reservation_info   .select_show {
+    width: 200px;
+    height: 150px;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: .8em;
+    color: #4b4b4b;
+    line-height: 20px;
+}
+
+.reservation_info   .select_show    p {
+    margin: 0;
+    font-family: 'LINESeedKR-Bd';
+    font-size: 1.2em;
+    color: #242424;
+    margin-bottom: 8px;
+}
+
+.reservation_info   .select_show    span {
+    font-family: 'LINESeedKR-Bd';
+    color: #4b4b4b;
+    margin-right: 8px;
+}
+
+.reservation_info   .money {
+    width: 200px;
+    height: 225px;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: .8em;
+    color: #4b4b4b;
+    line-height: 20px;
+    text-align: left;
+}
+
+.reservation_info   .money    p {
+    margin: 0;
+    font-family: 'LINESeedKR-Bd';
+    font-size: 1.2em;
+    color: #242424;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.reservation_info   .money  >   div {
+    border: none;
+}
+
+.reservation_info   .money  .line {
+    display: flex;
+    justify-content: space-between;
+}
+
+.reservation_info   .money  .line:nth-child(4),
+.reservation_info   .money  .line:nth-child(8) {
+    font-family: 'LINESeedKR-Bd';
+    border-bottom: 1px dashed  #dadada;
+    margin-bottom: 5px;
+}
+
+.reservation_info   .money  .line:nth-child(9) {
+    font-family: 'LINESeedKR-Bd';
+}
+
+.reservation_info   .money  .label {
+    color: #4b4b4b;
+    margin-right: 8px;
+    text-align: left;
+}
+
+.reservation_info   .money  .value {
+    text-align: right;
+}
+
+.reservation_info   .next_button {
+    display: block;
+    width: 200px;
+    height: 40px;
+    background-color: #F1FADA;
+    text-decoration: none;
+    text-align: center;
+    line-height: 43px;
+    font-family: 'LINESeedKR-Bd';
+    font-size: 1.3em;
+    color: #242424;
+    border-radius: 3px;
+}
