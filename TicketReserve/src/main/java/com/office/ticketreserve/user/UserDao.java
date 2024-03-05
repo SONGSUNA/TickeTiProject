@@ -113,21 +113,26 @@ public class UserDao {
 	}
 
 	public List<UserDto> selectAllUsers() {
-		log.info("[UserDao] selectUserForLogin()");
+		log.info("[UserDao] selectAllUsers()");
 		
 		String sql = "SELECT * FROM TBL_USER";
 		
-		List<UserDto> allUserDtos = new ArrayList<>();
-		
+		List<UserDto> userDtos = new ArrayList<UserDto>();
+        
 		try {
-			RowMapper<UserDto> rowMapper =
+			RowMapper<UserDto> rowMapper = 
 					BeanPropertyRowMapper.newInstance(UserDto.class);
-			allUserDtos = jdbcTemplate.query(sql, rowMapper);
-		} 
-		catch (Exception e) {
+			userDtos = jdbcTemplate.query(sql, rowMapper);
+
+			if (userDtos.isEmpty()) {
+				return null;
+			}
+
+		} catch (Exception e) {
 			e.printStackTrace();
+			
 		}
 		
-		return allUserDtos;
+		return userDtos;
 	}
 }
