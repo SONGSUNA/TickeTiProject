@@ -23,7 +23,8 @@
 				 	  <a th:href="@{/admin/admin_regist}">어드민 등록</a>
 				 </li>
 				 <li>
-				 	  <a th:href="@{/admin/admin_management}">어드민 관리</a>
+				 	  <a th:href="@{/admin/admin_management}"
+				 	  	  th:if="${#httpSession.getAttribute('loginedAdminDto').a_id == 'super'}">어드민 관리</a>
 				 </li>
 				 <li>
 				 	  <a th:href="@{/admin/perfomance_regist}">공연 등록</a>

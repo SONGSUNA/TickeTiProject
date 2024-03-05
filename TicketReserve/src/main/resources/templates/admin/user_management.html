@@ -75,7 +75,20 @@
 						</tr>
 					</thead>
 					<tbody>
-					
+					    <tr th:each="user : ${#httpSession.getAttribute('allUserDtos')}">
+					        <td th:text="${user.u_no}"></td>
+					        <td th:text="${user.u_id}"></td>
+					        <td th:text="${user.u_name}"></td>
+					        <td th:text="${user.u_mail}"></td>
+					        <td th:text="${user.u_sc_num}"></td>
+					        <td th:text="${user.u_phone}"></td>
+					        <td th:text="${user.u_reg_date}"></td>
+					        <td th:text="${user.u_mod_date}"></td>
+					        <td>
+					            <button>수정</button>
+					            <button>삭제</button>
+					        </td>
+					    </tr>
 					</tbody>
 				</table>
 			</div>

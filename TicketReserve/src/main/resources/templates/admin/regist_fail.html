@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<script type="text/javascript">
 
-	fail
+	window.onload = function() {
+	    fail();
+	};
 
-</body>
-</html>
+	function fail() {
+	    alert('어드민 등록에 실패했습니다. 계속 실패할 경우 관리에게 문의해주세요.');
+	    window.location.href = "/admin/admin_regist";
+	}
+
+</script>
