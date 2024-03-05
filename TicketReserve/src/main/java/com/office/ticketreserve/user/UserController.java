@@ -80,7 +80,6 @@ public class UserController {
 			session.setAttribute("loginedUserDto", loginedUserDto);
 			session.setMaxInactiveInterval(60 * 30);
 			
-			
 		} else {
 			nextPage = "user/user_login_ng";
 			

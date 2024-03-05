@@ -47,7 +47,7 @@ public class AdminController {
 	
 	@ResponseBody
 	@PostMapping("/checkId")
-	public boolean checkId(@RequestParam("adminId") String id) {
+	public boolean checkId(@RequestParam("a_id_check") String id) {
 	    log.info("[AdminController] checkId()");
 	    
 	    return adminService.checkId(id);
@@ -60,7 +60,7 @@ public class AdminController {
 		int result = adminService.adminRegist(adminDto);
 		
 		String nextPage = "/admin/regist_success";
-		
+	
 		if (result <= 0)
 			nextPage = "/admin/regist_fail";
 		

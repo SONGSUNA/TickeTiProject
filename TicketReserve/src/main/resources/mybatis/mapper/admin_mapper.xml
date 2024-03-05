@@ -4,17 +4,13 @@
 
 <mapper namespace="com.office.ticketreserve.admin.AdminDaoForMyBatis" >
 
-	<select id="selectAdminById" 
-			parameterType="String" 
-			resultType="com.office.ticketreserve.admin.AdminDto">
-		
-		SELECT 
-			* 
-		FROM 
-			TBL_ADMIN 
-		WHERE 
-			A_ID = #{adminId}
-			
+	<select id="selectAdminById" parameterType="String" resultType="com.office.ticketreserve.admin.AdminDto">
+	    SELECT 
+	        * 
+	    FROM 
+	        TBL_ADMIN 
+	    WHERE 
+	        A_ID = #{a_id}
 	</select>
 	
 	<insert id="insertAdmin" 
