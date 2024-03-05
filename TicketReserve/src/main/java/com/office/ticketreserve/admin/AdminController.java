@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.office.ticketreserve.user.UserDto;
 
-import jakarta.mail.Session;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.log4j.Log4j2;
 
