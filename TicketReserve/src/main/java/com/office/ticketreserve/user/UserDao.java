@@ -80,22 +80,45 @@ public class UserDao {
 		log.info("[UserDao] selectUserForLogin()");
 		log.info(userDto.getU_id() +","+ userDto.getU_pw());
 		
-		String sql = "SELECT * FROM TBL_USER WHERE U_ID = ? AND U_PW = ?";
+		String sql = "SELECT * FROM TBL_USER WHERE U_ID = ?";
 		
+		List<UserDto> userDtos = new ArrayList<UserDto>();
+        
+		try {
+			
+			RowMapper<UserDto> rowMapper = 
+					BeanPropertyRowMapper.newInstance(UserDto.class);
+			userDtos = jdbcTemplate.query(sql, rowMapper, userDto.getU_id());
+			
+			if(userDtos.isEmpty()) {
+				System.out.println("true");
+			} else {
+				System.out.println("false");
+			}
+			
+			if(passwordEncoder.matches(userDto.getU_pw(), userDtos.get(0).getU_pw())) {
+				
+				System.out.println("true");
+			} 
+			else {
+				System.out.println("false");
+				System.out.println(userDtos.get(0).getU_pw());
+				
+				
+				userDtos.clear();
+			}
+			
+			/*
+			 * if (userDtos.isEmpty() || !passwordEncoder.matches(userDto.getU_pw(),
+			 * userDtos.get(0).getU_pw())) { userDtos.clear(); }
+			 */
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}
 		
-		 try {
-			 
-			 	RowMapper<UserDto> rowMapper = BeanPropertyRowMapper.newInstance(UserDto.class);
-			 	
-		        List<UserDto> userDtos = jdbcTemplate.query(sql, rowMapper, userDto.getU_id(), userDto.getU_pw());
-		        log.info("[UserDao] selectUserForLogin(===============>>>>)"+userDtos);
-		      
-		        return !userDtos.isEmpty() ? userDtos.get(0) : null;
-		        
-		    } catch (Exception e) {
-		       
-		        return null;
-		    }
+		System.out.println("====>" + userDtos);
+		return userDtos.size() > 0 ? userDtos.get(0) : null;
 		 
 }
 }
