@@ -52,7 +52,8 @@ public class UserController {
 	@PostMapping("/checkId")
 	@ResponseBody
 	public boolean checkId(@RequestParam("u_id") String u_id_check) {
-	   log.info("실행됨?");
+	   log.info("[UserController] checkId()");
+	   
 		return userService.checkId(u_id_check);
 	}
 	
