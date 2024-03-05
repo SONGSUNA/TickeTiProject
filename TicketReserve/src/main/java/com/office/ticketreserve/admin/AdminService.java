@@ -1,8 +1,13 @@
 package com.office.ticketreserve.admin;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import com.office.ticketreserve.user.UserDao;
+import com.office.ticketreserve.user.UserDto;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -15,6 +20,16 @@ public class AdminService {
 	
 	@Autowired
 	PasswordEncoder passwordEncoder;
+
+	public List<UserDto> getAllUserDto() {
+		log.info("[AdminService] getAllUserDto()");
+		
+		UserDao userDao = new UserDao();
+		
+		List<UserDto> userDtos = userDao.selectAllUsers();
+		
+		return userDtos;
+	}
 
 	public boolean checkId(String adminId) {
 		log.info("[AdminService] checkId()");

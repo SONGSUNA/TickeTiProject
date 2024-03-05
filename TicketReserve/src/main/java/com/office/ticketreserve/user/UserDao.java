@@ -111,4 +111,23 @@ public class UserDao {
 		return userDtos.get(0);
 		 
 	}
+
+	public List<UserDto> selectAllUsers() {
+		log.info("[UserDao] selectUserForLogin()");
+		
+		String sql = "SELECT * FROM TBL_USER";
+		
+		List<UserDto> allUserDtos = new ArrayList<>();
+		
+		try {
+			RowMapper<UserDto> rowMapper =
+					BeanPropertyRowMapper.newInstance(UserDto.class);
+			allUserDtos = jdbcTemplate.query(sql, rowMapper);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return allUserDtos;
+	}
 }

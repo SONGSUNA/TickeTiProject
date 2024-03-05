@@ -1,5 +1,7 @@
 package com.office.ticketreserve.admin;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.office.ticketreserve.user.UserDto;
+
+import jakarta.mail.Session;
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
@@ -28,8 +34,12 @@ public class AdminController {
 	}
 	
 	@GetMapping("/user_management")
-	public String user_management() {
+	public String user_management(HttpSession session) {
 		log.info("[AdminController] user_management()");
+		
+		List<UserDto> userDtos = adminService.getAllUserDto();
+		
+		session.setAttribute("allUserDtos", userDtos);
 		
 		String nextPage = "/admin/user_management";
 		
@@ -74,6 +84,7 @@ public class AdminController {
 		String nextPage = "/admin/admin_management";
 		
 		return nextPage;
+		
 	}
 	
 } 
