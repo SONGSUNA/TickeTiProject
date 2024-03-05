@@ -18,6 +18,7 @@ public class UserDao {
 	
 	@Autowired
 	JdbcTemplate jdbcTemplate;
+	
 	@Autowired
 	PasswordEncoder passwordEncoder;
 	
@@ -90,35 +91,24 @@ public class UserDao {
 					BeanPropertyRowMapper.newInstance(UserDto.class);
 			userDtos = jdbcTemplate.query(sql, rowMapper, userDto.getU_id());
 			
-			if(userDtos.isEmpty()) {
-				System.out.println("true");
+			if (userDtos.size() <= 0) {
+				System.out.println("11111111111111111");
+				return null;
+				
 			} else {
-				System.out.println("false");
+				
+				if (!passwordEncoder.matches(userDto.getU_pw(), userDtos.get(0).getU_pw())) {
+					System.out.println("33333333333333333333333");
+					return null;
+				} 
 			}
-			
-			if(passwordEncoder.matches(userDto.getU_pw(), userDtos.get(0).getU_pw())) {
-				
-				System.out.println("true");
-			} 
-			else {
-				System.out.println("false");
-				System.out.println(userDtos.get(0).getU_pw());
-				
-				
-				userDtos.clear();
-			}
-			
-			/*
-			 * if (userDtos.isEmpty() || !passwordEncoder.matches(userDto.getU_pw(),
-			 * userDtos.get(0).getU_pw())) { userDtos.clear(); }
-			 */
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			
 		}
 		
-		System.out.println("====>" + userDtos);
-		return userDtos.size() > 0 ? userDtos.get(0) : null;
+		return userDtos.get(0);
 		 
-}
+	}
 }
