@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" th:src="@{/js/user/user.js}"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+<link rel="stylesheet" th:href="@{/css/user/user_login_form.css}">
+<link rel="stylesheet" th:href="@{/css/user/user_commond.css}">
+<link rel="stylesheet" th:href="@{/css/home.css}">
+<link th:href="@{/css/include/footer.css}" rel="stylesheet" />
+</head>
+<body>
+	
+	
+	<section>
+		<div id="section_wrap">
+			<div class="word" id="login_rs_wrap">
+				<span>로그인</span>
+			</div>
+			<div class="login_result_ms">
+				<div>
+					<div class="login_rs_message">로그인되었습니다.</div> <br />
+						<a th:href="@{/user/create_account_form}">회원가입</a>
+						&emsp;<span>|</span>&emsp;
+						<a th:href="@{/user/user_login_form}">로그인</a>
+				</div>
+			</div>
+			</div>
+	</section>
+	
+	
+	<footer th:replace="~{/include/header_footer_nav.html::footer}"></footer>
+</body>
+</html>
