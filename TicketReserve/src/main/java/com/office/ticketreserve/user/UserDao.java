@@ -131,4 +131,89 @@ public class UserDao {
 		
 		return allUserDtos;
 	}
+
+	public static UserDto selectAdminById(String u_id_check) {
+		log.info("[UserDao] selectAdminById()");
+		
+		return null;
+	}
+
+	public int deleteUser(int u_no) {
+		log.info("[UserDao] deleteUser()");
+		
+		String sql =  "DELETE FROM TBL_USER "
+				+ "WHERE U_NO = ?";
+	
+	int result = -1;
+	
+	try {
+		
+		result = jdbcTemplate.update(sql, u_no);
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+		
+	}
+	
+	return result;
+	}
+
+	public int editUserInfo(UserDto userDto) {
+		log.info("[UserDao] deleteUser()");
+
+		String sql =  "UPDATE "
+				+ 	"TBL_USER"
+				+ "SET "
+				+ "U_PW, "
+				+ "U_NAME, "
+				+ "U_MAIL, "
+				+ "U_PHONE, "
+				+ "U_SC_NUM, "
+				+ "U_ADDRESS, "
+				+ "U_MOD_DATE = NOW() "
+				+ "WHERE "
+				+ 	"U_NO = ?";
+	
+	int result = -1;
+	
+	try {
+		
+		result = jdbcTemplate.update(sql, 
+										userDto.getU_pw(),
+										userDto.getU_name(),
+										userDto.getU_mail(),
+										userDto.getU_phone(),
+										userDto.getU_sc_num(),
+										userDto.getU_address(),
+										userDto.getU_mod_date());
+				
+	} catch (Exception e) {
+		e.printStackTrace();
+		
+	}
+	
+	return result;
+	
+	}
+
+	public UserDto getLatestUserInfo(UserDto userDto) {
+		log.info("[UserDao] getLatestUserInfo()");
+		
+		String sql = "SELECT * FROM TBL_USER WHERE U_NO = ?";
+		List<UserDto> UserDtos = new ArrayList<>();
+		
+		try {
+			
+			RowMapper<UserDto> rowMapper =
+					BeanPropertyRowMapper.newInstance(UserDto.class);
+			
+			UserDtos = jdbcTemplate.query(sql, rowMapper, userDto.getU_no());
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return UserDtos.size() > 0 ? UserDtos.get(0) : null;	}
+
+
 }

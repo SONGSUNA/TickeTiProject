@@ -52,7 +52,7 @@ public class UserService {
 	public boolean checkId(String u_id_check) {
 		log.info("[UserService] checkId()");
 		
-		/* UserDto userDto = UserDao.selectAdminById(u_id_check); */
+		UserDto userDto = UserDao.selectAdminById(u_id_check); 
 		
         return false;
     }
@@ -72,17 +72,24 @@ public class UserService {
 
 
 	public UserDto userModifyConfirm(UserDto userDto) {
+		log.info("[UserService] userModifyConfirm()");
 		
-		return null;
+		int result =userDao.editUserInfo(userDto);
+		
+		if(result > 0)
+			return userDao.getLatestUserInfo(userDto);
+		else
+			return null;
 	}
 
 
 
 
 
-	public int memberDeleteConfirm(int u_no) {
+	public int userDeleteConfirm(int u_no) {
+		log.info("[UserService] userLoginConfirm()");
 		
-		return 0;
+		return userDao.deleteUser(u_no);
 	}
 
 

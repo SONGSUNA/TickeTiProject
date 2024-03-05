@@ -5,24 +5,28 @@
 <title>Insert title here</title>
 <script type="text/javascript" th:src="@{/js/create_account_form.js}"></script>
 
+<link th:href="@{/css/user/user_login_form.css}" rel="stylesheet" /> 
 <link th:href="@{/css/include/footer.css}" rel="stylesheet" /> 
 </head>
 <body>
-	
+	<header th:replace="~{/user/create_account_form.html::header}">
+	</header>
 	
 	<section>
 		<div id="section_wrap">
-			<div class="word">
+			<div class="create_result_ms">
+				<div>
 				<span th:if="${rst == 1}">회원가입에 성공하였습니다</span>
-				<span th:if="${rst != 1}">회원가입에 실패하였습니다</span>
+				<span th:if="${rst != 1}">회원가입에 실패하였습니다</span> <br /><br />
+				<a th:href="@{/user/create_account_form}">뒤로가기</a>
+						&emsp;<span>|</span>&emsp;&emsp;
+				<a th:href="@{/}">홈</a>
+				</div>
 			</div>
 			
 		</div>
 	</section>
-	<div class="current-length_wrap">
-   		 
-   		 <input class="reviewExitBtn" type="button" value="닫기">
-		</div>
+	
 	
 	<footer th:replace="~{/include/header_footer_nav.html::footer}"></footer>
 </body>

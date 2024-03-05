@@ -99,7 +99,10 @@ $(document).ready(function () {
                     $('#check_id_msg').text('이미 사용 중인 아이디입니다.');
                     $('#check_id_msg').css('color', 'red');
                 }
-            }
+            },
+             error: function () {
+                alert('서버 오류가 발생했습니다.');
+             }
         });
     });
     
