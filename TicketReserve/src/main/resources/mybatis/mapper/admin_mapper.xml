@@ -2,11 +2,11 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.office.worldcup.admin.AdminDaoForMyBatis" >
+<mapper namespace="com.office.ticketreserve.admin.AdminDaoForMyBatis" >
 
 	<select id="selectAdminById" 
 			parameterType="String" 
-			resultType="com.office.worldcup.admin.AdminDto">
+			resultType="com.office.ticketreserve.admin.AdminDto">
 		
 		SELECT 
 			* 
@@ -18,7 +18,7 @@
 	</select>
 	
 	<insert id="insertAdmin" 
-			parameterType="com.office.worldcup.admin.AdminDto">
+			parameterType="com.office.ticketreserve.admin.AdminDto">
 		
 		INSERT INTO 
 			TBL_ADMIN
