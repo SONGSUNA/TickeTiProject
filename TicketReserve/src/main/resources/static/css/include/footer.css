@@ -27,13 +27,18 @@ footer #footer_wrap {
 	margin-top:20px;
 	display:inline-block;
 }
-.footer_logo img{
+.footer_link a{
+	display: inline-block;
 	margin-right: 20px;
-	margin-top:30px;
-	max-width: 130px;
-	min-width: 130px;
-	max-height: 34px;
-	min-height: 34px;
+	margin-left: 20px;
+}
+.footer_logo img{
+	margin-right: 85px;
+	margin-top:40px;
+	max-width: 160px;
+	min-width: 160px;
+	max-height: 50px;
+	min-height: 50px;
 }
 @font-face {
     font-family: 'LINESeedKR-Th';

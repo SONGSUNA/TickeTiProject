@@ -17,6 +17,15 @@ div.section_wrap .top_bar {
     display: none; /* 초기에는 숨김 상태 */
     z-index: 1000; /* 다른 요소 위에 표시 */
 }
+#header_top_bar .top_bar {
+    position: fixed; /* 화면 상단에 고정 */
+    top: 0;
+    left: 0;
+    background-color: #000; /* 배경색을 검은색으로 설정합니다. */
+    width: 100%;
+    display: block; /* 초기에는 숨김 상태 */
+    z-index: 1; /* 다른 요소 위에 표시 */
+}
 
 div.top_bar .top_menu_containerfix{
 	display: flex;
