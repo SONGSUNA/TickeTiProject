@@ -14,14 +14,18 @@ import lombok.extern.log4j.Log4j2;
 @Configuration
 @EnableWebSecurity
 public class SpringSecurity {
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-			log.info("passwordEncoder");
+	
+	@Bean PasswordEncoder passwordEncoder() {
+		log.info("passwordEncoder");
 		
 		return new BCryptPasswordEncoder();
+		
 	}
-	 @Bean
-	    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		 return http.build();
-	    }
+	
+	@Bean SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+		
+		return http.build();
+		
+	}
+	
 }

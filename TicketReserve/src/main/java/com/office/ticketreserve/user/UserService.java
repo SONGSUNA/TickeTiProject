@@ -11,6 +11,7 @@ import lombok.extern.log4j.Log4j2;
 public class UserService {
 	@Autowired
 	UserDao userDao;
+	
 	@Autowired
 	PasswordEncoder passwordEncoder;
 	
@@ -28,7 +29,7 @@ public class UserService {
 		
 		if (!isMember) {
 			
-			userDto.setU_pw(passwordEncoder.encode(userDto.getU_pw()));
+//			userDto.setU_pw(passwordEncoder.encode(userDto.getU_pw()));
 			
 			int result = userDao.insertUser(userDto);
 			
@@ -58,6 +59,7 @@ public class UserService {
 		
 		UserDto dto =  userDao.selectUserForLogin(userDto);
 		
+
 		return dto;
 	
 		
