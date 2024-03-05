@@ -58,8 +58,6 @@ public class UserService {
 		
 		UserDto dto =  userDao.selectUserForLogin(userDto);
 		
-		System.out.println("------------>" + dto);
-		
 		return dto;
 	
 		

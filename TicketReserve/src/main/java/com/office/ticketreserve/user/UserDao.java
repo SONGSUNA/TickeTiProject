@@ -91,34 +91,22 @@ public class UserDao {
 			userDtos = jdbcTemplate.query(sql, rowMapper, userDto.getU_id());
 			
 			if(userDtos.isEmpty()) {
-				System.out.println("true");
-			} else {
-				System.out.println("false");
+				return null;
 			}
 			
 			if(passwordEncoder.matches(userDto.getU_pw(), userDtos.get(0).getU_pw())) {
-				
 				System.out.println("true");
 			} 
 			else {
-				System.out.println("false");
-				System.out.println(userDtos.get(0).getU_pw());
-				
-				
-				userDtos.clear();
+				return null;
 			}
 			
-			/*
-			 * if (userDtos.isEmpty() || !passwordEncoder.matches(userDto.getU_pw(),
-			 * userDtos.get(0).getU_pw())) { userDtos.clear(); }
-			 */
 		} catch (Exception e) {
 			e.printStackTrace();
 			
 		}
 		
-		System.out.println("====>" + userDtos);
-		return userDtos.size() > 0 ? userDtos.get(0) : null;
+		return userDtos.isEmpty() ? null : userDtos.get(0);
 		 
 }
 }
