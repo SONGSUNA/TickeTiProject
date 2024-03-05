@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,14 +34,14 @@ public class AdminController {
 	}
 	
 	@GetMapping("/user_management")
-	public String user_management(HttpSession session) {
+	public String user_management(Model model) {
 		log.info("[AdminController] user_management()");
 		
 		List<UserDto> userDtos = adminService.getAllUserDto();
 		
-		session.setAttribute("allUserDtos", userDtos);
+		model.addAttribute("userList", userDtos);
 		
-		String nextPage = "/admin/user_management";
+		String nextPage = "admin/user_management";
 		
 		return nextPage;
 	}

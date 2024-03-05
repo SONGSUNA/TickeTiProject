@@ -24,9 +24,17 @@ public class AdminService {
 	public List<UserDto> getAllUserDto() {
 		log.info("[AdminService] getAllUserDto()");
 		
-		UserDao userDao = new UserDao();
+		List<UserDto> userDtos = adminDao.selectAllUsers();
 		
-		List<UserDto> userDtos = userDao.selectAllUsers();
+		log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + userDtos.get(0).getU_no());
+		log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + userDtos.get(0).getU_id());
+		log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + userDtos.get(0).getU_pw());
+		log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + userDtos.get(0).getU_name());
+		log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + userDtos.get(0).getU_mail());
+		log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + userDtos.get(0).getU_phone());
+		log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + userDtos.get(0).getU_address());
+		log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + userDtos.get(0).getU_reg_date());
+		log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + userDtos.get(0).getU_mod_date());
 		
 		return userDtos;
 	}
