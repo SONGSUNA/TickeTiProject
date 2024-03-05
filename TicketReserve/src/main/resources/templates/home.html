@@ -22,12 +22,12 @@
 <body>
 	<section>
 		<div class="section_wrap">
-			<div class="top_bar">
+			<div class="top_bar" th:fragment="top_bar1">
 				<div class="top_menu_containerfix">
 					<div class="empty">
 					</div>
 					<div class="category">
-						<a th:href="@{/}">콘서트</a>&nbsp;&nbsp;
+						<a th:href="@{/category/concert}">콘서트</a>&nbsp;&nbsp;
 						<a th:href="@{/}">뮤지컬</a>&nbsp;&nbsp;
 						<a th:href="@{/}">연극</a>&nbsp;&nbsp;
 						<a th:href="@{/}">클래식</a>&nbsp;&nbsp;
@@ -41,11 +41,11 @@
 					</div>
 				</div>
 			</div>
-			<div class="top_menu_container">
+			<div class="top_menu_container" th:fragment="top_bar2" >
 				<div class="empty">
 					
 				</div>
-				<div class="category">
+				<div class="category"  >
 					<a th:href="@{/product_page}">콘서트</a>&nbsp;&nbsp;
 					<a th:href="@{/}">뮤지컬</a>&nbsp;&nbsp;
 					<a th:href="@{/}">연극</a>&nbsp;&nbsp;
