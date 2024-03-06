@@ -1,6 +1,7 @@
 package com.office.ticketreserve.admin;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -21,6 +22,8 @@ public interface AdminDaoForMyBatis {
 
 	public List<UserDto> selectUsersByMail(String u_mail);
 	
-	public AdminDto selectAdminByIdPw(String a_id, String a_pw);
+	public AdminDto selectAdminByIdPw(Map<String, String> user);
+
+	public List<AdminDto> selectAllAdmins();
 
 }
