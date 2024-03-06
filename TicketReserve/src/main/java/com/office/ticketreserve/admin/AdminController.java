@@ -15,6 +15,7 @@ import com.office.ticketreserve.user.UserDao;
 import com.office.ticketreserve.user.UserDto;
 import com.office.ticketreserve.user.UserService;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
@@ -154,5 +155,15 @@ public class AdminController {
 		return nextPage;
 	}
 	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		log.info("[AdminController] logout()");
+		
+		session.removeAttribute("loginedAdminDto");
+		
+		String nextPage = "redirect:/";
+		
+		return nextPage;
+	}
 	
 } 
