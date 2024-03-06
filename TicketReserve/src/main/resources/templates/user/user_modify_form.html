@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript" th:src="@{/js/user.js}"></script>
+<script type="text/javascript" th:src="@{/js/user/user.js}"></script>
 <script type="text/javascript" th:src="@{/js/config/adress.js}"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
@@ -28,7 +28,7 @@
 			
 			<div class="create_account_form">
 				
-			<form th:action="@{/user/create_account_confirm}" name="create_account_form" method="post">
+			<form th:action="@{/user/create_account_confirm}" name="modify_form" method="post">
           		<div class="input_info">
           		  <b>아이디  &emsp;&emsp;&emsp;</b><br/>
            			<input type="text" name="u_id" readonly disabled><br>
@@ -36,12 +36,14 @@
 				
 				<div class="input_info">
 	           		 <label><b>비밀번호  &emsp;&emsp;&emsp;</b> <br/>
-	           		 <input type="password" name="u_pw"></label><br>
+	           		 <input type="password" name="u_pw" class="u_pw" id="modify_pw"></label><br>
+	           		  <span id="m_regexp"></span>
 				</div>
 				
 				<div class="input_info">
 	           		 <label><b>비밀번호 재확인  &emsp;&emsp;&emsp;</b><br/>
-	          		 <input type="password" name="u_pw_confirm"></label><br/>
+	          		 <input type="password" name="u_pw_confirm" id="modify_pw_check"></label><br/>
+	          		  <span id="m_pw_matching"></span><br/>
 				</div>
 				
 				<div class="input_info">
@@ -53,7 +55,7 @@
 		            <label for="u_sc_num_suf"><b>주민등록번호  &emsp;&emsp;&emsp;</b> </label><br>
            			<input type="number" name="u_sc_num_pre" readonly disabled>
                	 <span>-</span>&nbsp;
-           		    <input type="password" id="u_sc_num_suf" name="u_sc_num_suf"><br>
+           		    <input type="password" id="u_sc_num_suf" name="u_sc_num_suf" readonly disabled><br>
 	               	<input type="hidden" name="u_sc_num">
 		         
 		        </div>
@@ -84,7 +86,7 @@
 				</div>
 				
 				<div>	
-					 <input type="button" class="submit_btn" value="회원가입" onclick="createAccountForm();">
+					 <input type="button" class="submit_btn" value="정보수정" onclick="modifyForm();">
 					 <input type="reset" class="reset_btn" value="초기화">
 				</div>
 			</form>	
