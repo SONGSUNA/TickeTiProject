@@ -29,6 +29,7 @@
 			<div class="create_account_form">
 				
 			<form th:action="@{/user/user_modify_confirm}" th:object="${loginedUserMemberDto}" name="modify_form" method="post">
+          		<input type="hidden" name="u_no" th:field="*{u_no}">
           		<div class="input_info">
           		  <b>아이디  &emsp;&emsp;&emsp;</b><br/>
            			<input type="text" name="u_id" readonly disabled th:field="*{u_id}"><br>
@@ -37,13 +38,13 @@
 				
 				<div class="input_info">
 	           		 <label><b>비밀번호  &emsp;&emsp;&emsp;</b> <br/>
-	           		 <input type="password" name="u_pw" value="********"></label><br>
+	           		 <input type="password" name="u_pw" value="********" ></label><br>
 	           		  <span id="regexp"></span>
 				</div>
 				
 				<div class="input_info">
 	           		 <label><b>비밀번호 재확인  &emsp;&emsp;&emsp;</b><br/>
-	          		 <input type="password" name="u_pw_confirm" value="********"></label><br/>
+	          		 <input type="password" name="u_pw_confirm" value="********" ></label><br/>
 	          		  <span id="pw_matching"></span><br/>
 				</div>
 				
@@ -56,31 +57,31 @@
 		            <label for="u_sc_num_suf"><b>주민등록번호  &emsp;&emsp;&emsp;</b> </label><br>
            			<input type="text" name="u_sc_num_pre" readonly disabled th:value="${scNumPre}">
                	 <span>-</span>&nbsp;
-           		    <input type="password" id="u_sc_num_suf" name="u_sc_num_suf" readonly disabled><br>
+           		    <input type="password" id="u_sc_num_suf" name="u_sc_num_suf" value="*******" readonly disabled><br>
 	               	<input type="hidden" name="u_sc_num">
 		         
 		        </div>
 		        
 		        <div class="input_info">
 			         <label><b>이메일  &emsp;&emsp;&emsp;</b><br>
-			         <input type="text" name="u_mail_pre"></label> <span>@</span> 
-			         <input type="text" name="u_mail_suf"><br>
+			         <input type="text" name="u_mail_pre" id="u_mail_pre" th:value="${mailPre}"></label> <span>@</span> 
+			         <input type="text" name="u_mail_suf" th:value="${mailSuf}"><br>
 		             <input type="hidden" name="u_mail">
 	             </div>
 	             
 	             <div class="input_info">
 		           	 <label for="u_phone_pre"><b>휴대전화	&emsp;&emsp;&emsp;</b></label><br>
 		             <input type="number" class="u_phone" value="010" name="u_phone_bas"> - 
-		             <input type="number" id="u_phone_pre" class="u_phone" name="u_phone_pre"> - 
-		             <input type="number" class="u_phone" name="u_phone_suf"><br>
+		             <input type="number" id="u_phone_pre" class="u_phone" name="u_phone_pre" th:value="${centerPoneN}"> - 
+		             <input type="number" class="u_phone" name="u_phone_suf" th:value="${endPoneN}"><br>
 		             <input type="hidden" name="u_phone">
 	             </div>
 	             
 	             <div class="input_info">
 	     		 	 <label><b>주소	&emsp;&emsp;&emsp;</b><br>
-					 <input type="text" id="postcode" name="postcode" placeholder="우편번호"></label>
+					 <input type="text" id="postcode" name="postcode" placeholder="우편번호" th:value="${zipCode}"></label>
 					 <input type="button" id="find_zip_code"onclick="execDaumPostcode()" value="우편번호 찾기"><br>
-					 <input type="text" id="address" name="address" placeholder="주소"><br>
+					 <input type="text" id="address" name="address" placeholder="주소" th:value="${mainAdr}"><br>
 					 <input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소">
 				     <input type="text" id="extraAddress" name="extraAddress" placeholder="참고항목"><br>
 					 <input type="hidden" name="u_address">

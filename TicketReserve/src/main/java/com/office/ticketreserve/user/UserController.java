@@ -90,8 +90,9 @@ public class UserController {
 			session.setAttribute("loginedAdminDto", loginedUserDto);
 			
 			return "redirect:/admin";
-		} 
-			return nextPage = "user/user_login_form";
+		} else 
+			
+		 return "redirect:/user/user_login_form";
 		
 	}
 	// 유저 정보수정폼 이동
@@ -108,10 +109,23 @@ public class UserController {
 		    }
 		    
 		    String scNumPre = loginedUserMemberDto.getU_sc_num().substring(0, 6);
-		    System.out.println("==================>" + scNumPre);
-		    
+		    String mailPre = loginedUserMemberDto.getU_mail().split("@")[0];
+		    String mailSuf = loginedUserMemberDto.getU_mail().split("@")[1];
+		    String centerPoneN = loginedUserMemberDto.getU_phone().split("-")[1];
+		    String endPoneN = loginedUserMemberDto.getU_phone().split("-")[2];
+		    String zipCode = loginedUserMemberDto.getU_address().split("/")[0];
+		    String mainAdr = loginedUserMemberDto.getU_address().split("/")[1];
+			/* String referenceAdr = loginedUserMemberDto.getU_address().split("//")[1]; */
+		   		    
 		    model.addAttribute("loginedUserMemberDto", loginedUserMemberDto);
 		    model.addAttribute("scNumPre", scNumPre);
+		    model.addAttribute("mailPre", mailPre);
+		    model.addAttribute("mailSuf", mailSuf);
+		    model.addAttribute("centerPoneN", centerPoneN);
+		    model.addAttribute("endPoneN", endPoneN);
+		    model.addAttribute("zipCode", zipCode);
+		    model.addAttribute("mainAdr", mainAdr);
+			/* model.addAttribute("referenceAdr", referenceAdr); */
 		    
 		    return nextPage;
 	}
@@ -121,7 +135,7 @@ public class UserController {
 	   log.info("[UserController] userModifyConfirm()");
 	    
 	   String nextPage = "user/user_modify_ok";
-	   
+	   System.out.println("=========>" + userDto);
 	   UserDto loginedUserDto = userService.userModifyConfirm(userDto);
 	    
 	    if (loginedUserDto != null) {
