@@ -12,6 +12,9 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class UserService {
 	@Autowired
+	IUserDaoForMybatis IUserDao;
+	
+	@Autowired
 	UserDao userDao;
 	
 	@Autowired
@@ -89,7 +92,7 @@ public class UserService {
 	public int userDeleteConfirm(int u_no) {
 		log.info("[UserService] userLoginConfirm()");
 		
-		return userDao.deleteUser(u_no);
+		return IUserDao.deleteUser(u_no);
 	}
 
 

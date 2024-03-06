@@ -16,11 +16,18 @@
 		<div id="section_wrap">
 			<div class="create_result_ms">
 				<div>
-				<span th:if="${rst == 1}">회원가입에 성공하였습니다</span>
-				<span th:if="${rst != 1}">회원가입에 실패하였습니다</span> <br /><br />
-				<a th:href="@{/user/create_account_form}">뒤로가기</a>
-						&emsp;<span>|</span>&emsp;&emsp;
+				<span th:if="${rst == 1}">회원가입에 성공하였습니다  <br /><br /> 
+				<a th:href="@{/user/user_login_form}">로그인</a>
+					&emsp;<span>|</span>&emsp;&emsp;
 				<a th:href="@{/}">홈</a>
+				</span>
+				<span th:if="${rst != 1}">회원가입에 실패하였습니다  <br /><br /> 
+				<a th:href="@{/user/create_account_form}">뒤로가기</a>
+					&emsp;<span>|</span>&emsp;&emsp;
+				<a th:href="@{/}">홈</a>
+				</span>
+				
+					
 				</div>
 			</div>
 			
