@@ -27,21 +27,20 @@ public class UserDao {
 		
 		String sql= "SELECT COUNT(*) FROM TBL_USER WHERE U_ID = ? ";
 		
-		boolean flag = false;
+		int result = -1;
 		
 		try {
 			
-			int result = jdbcTemplate.queryForObject(sql,Integer.class,u_id);
+			result = jdbcTemplate.queryForObject(sql,Integer.class,u_id);
 			
-			if (result > 0) 
-				flag = true;
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		
-		return flag ;
+		return result > 0 ? true : false;
 	}
 
 	public int insertUser(UserDto userDto) {
