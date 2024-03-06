@@ -91,7 +91,7 @@ public class UserController {
 	// 유저 정보수정폼 이동
 	@GetMapping("/user_modify_form")
 	public String userModifyForm(HttpSession session) {
-		log.info("userModifyForm()");
+		log.info("[UserController] userModifyForm()");
 	      
 		String nextPage = "user/user_modify_form";
 		
@@ -102,7 +102,7 @@ public class UserController {
 	//유저 정보수정 확인
 	@PostMapping("/user_modify_confirm")
 	public String userModifyConfirm(UserDto userDto, HttpSession session) {
-	   log.info("userModifyConfirm()");
+	   log.info("[UserController] userModifyConfirm()");
 	    
 	   String nextPage = "user/user_modify_ok";
 	   
@@ -128,7 +128,7 @@ public class UserController {
 	 */
 	@GetMapping("/user_logout_confirm")
     public String userLogoutConfirm(HttpSession session) {
-		log.info("userLogoutConfirm()");
+		log.info("[UserController] userLogoutConfirm()");
 
 		String nextPage = "redirect:/";
 		
@@ -142,7 +142,7 @@ public class UserController {
 	 */
 	@GetMapping("/user_delete_confirm")
 	public String userDeleteConfirm(HttpSession session) {
-		log.info("userDeleteConfirm()");
+		log.info("[UserController] userDeleteConfirm()");
       
 		String nextPage = "redirect:/user/user_logout_confirm";
 
