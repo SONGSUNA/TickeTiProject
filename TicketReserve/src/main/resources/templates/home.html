@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
+	<link rel="icon" type="image/x-icon" th:href="@{/img/icon.png}">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     
 	<title th:replace="~{/include/title.html::title}"></title>
@@ -28,16 +28,16 @@
 					</div>
 					<div class="category">
 						<a th:href="@{/category/concert}">콘서트</a>&nbsp;&nbsp;
-						<a th:href="@{/}">뮤지컬</a>&nbsp;&nbsp;
-						<a th:href="@{/}">연극</a>&nbsp;&nbsp;
-						<a th:href="@{/}">클래식</a>&nbsp;&nbsp;
-						<a th:href="@{/}">전시</a>
+						<a th:href="@{/category/musical}">뮤지컬</a>&nbsp;&nbsp;
+						<a th:href="@{/category/theater}">연극</a>&nbsp;&nbsp;
+						<a th:href="@{/category/classic}">클래식</a>&nbsp;&nbsp;
+						<a th:href="@{/category/exhibition}">전시</a>
 					</div>
 					<div class="search">
 						<input type="text">&nbsp;&nbsp;
 						<a th:href="@{/}"><span class="material-symbols-outlined" style="color:#dadada">search</span></a>&nbsp;&nbsp;&nbsp;&nbsp;
 						<a th:href="@{/}"><span class="material-symbols-outlined" style="color:#dadada">confirmation_number</span></a>&nbsp;&nbsp;
-						<a th:href="@{/}"><span class="material-symbols-outlined" style="color:#dadada">account_circle</span></a>&nbsp;&nbsp;
+						<a th:href="@{/user_login_form}"><span class="material-symbols-outlined" style="color:#dadada">account_circle</span></a>&nbsp;&nbsp;
 					</div>
 				</div>
 			</div>
@@ -46,17 +46,17 @@
 					
 				</div>
 				<div class="category"  >
-					<a th:href="@{/product_page}">콘서트</a>&nbsp;&nbsp;
-					<a th:href="@{/}">뮤지컬</a>&nbsp;&nbsp;
-					<a th:href="@{/}">연극</a>&nbsp;&nbsp;
-					<a th:href="@{/}">클래식</a>&nbsp;&nbsp;
-					<a th:href="@{/}">전시</a>
+					<a th:href="@{/category/concert}">콘서트</a>&nbsp;&nbsp;
+					<a th:href="@{/category/musical}">뮤지컬</a>&nbsp;&nbsp;
+					<a th:href="@{/category/theater}">연극</a>&nbsp;&nbsp;
+					<a th:href="@{/category/classic}">클래식</a>&nbsp;&nbsp;
+					<a th:href="@{/category/exhibition}">전시</a>
 				</div>
 				<div class="search">
 					<input type="text">&nbsp;&nbsp;
 					<a th:href="@{/}"><span class="material-symbols-outlined" style="color:#dadada">search</span></a>&nbsp;&nbsp;&nbsp;&nbsp;
 					<a th:href="@{/}"><span class="material-symbols-outlined" style="color:#dadada">confirmation_number</span></a>&nbsp;&nbsp;
-					<a th:href="@{/}"><span class="material-symbols-outlined" style="color:#dadada">account_circle</span></a>&nbsp;&nbsp;
+					<a th:href="@{/user/user_login_form}"><span class="material-symbols-outlined" style="color:#dadada">account_circle</span></a>&nbsp;&nbsp;
 				</div>
 			
 			</div>
