@@ -22,10 +22,10 @@
 				 <li>
 				 	  <a th:href="@{/admin/user_management}">유저 관리</a>
 				 </li>
-				 <li class="active">
+				 <li class="active"  th:if="${session.loginedAdminDto.a_id == 'super'}">
 				 	  <a th:href="@{/admin/admin_regist}">어드민 등록</a>
 				 </li>
-				 <li>
+				 <li th:if="${session.loginedAdminDto.a_id == 'super'}">
 				 	  <a th:href="@{/admin/admin_management}">어드민 관리</a>
 				 </li>
  				 <li>
@@ -41,7 +41,7 @@
 				 	  <a th:href="@{/admin/ticket_state}">티켓 예매 현황</a>
 				 </li>
 				 <li class="logout">
-				 	  <a th:href="@{/}">로그아웃</a>
+				 	  <a th:href="@{/admin/logout}">로그아웃</a>
 				 </li>
 			</ul>
 		</div>
