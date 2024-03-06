@@ -66,20 +66,18 @@ public class UserService {
 
 
 
-	public int userLoginConfirm(UserDto userDto) {
+	public Object userLoginConfirm(UserDto userDto) {
 		log.info("[UserService] userLoginConfirm()");
 		
 		UserDto seletedUserDto= userDao.selectUserForLogin(userDto);
 		if(seletedUserDto != null) {
-			return 99;
+			
+			return seletedUserDto;
 		} 
-			int selectedAdminDto = 
+			AdminDto selectedAdminDto = 
 					adminDaoForMyBatis.selectAdminByIdPw(userDto.getU_id(), userDto.getU_pw());
-			if(selectedAdminDto > 0) {
-				//어드민 
-				return selectedAdminDto;
-			}
-				
+			
+			return selectedAdminDto;
 	}
 
 
