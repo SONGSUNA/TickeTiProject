@@ -72,10 +72,10 @@
 	
 	<select  id="selectAdminByIdPw" 
 			 parameterType="String"
-			 resultType="Integer">
+			 resultType="com.office.ticketreserve.admin.AdminDto">
 			 
 			 SELECT
-			 	COUNT(*)
+			 	*
 			 FROM
 			 	TBL_ADMIN
 			 WHERE
