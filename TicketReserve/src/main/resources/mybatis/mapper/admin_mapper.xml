@@ -77,7 +77,7 @@
 	    SELECT 
 	    	*
 	    FROM 
-	    	TBL_ADMIN
+	    	TBL_ADMIN 
 	    WHERE 
 	    	A_ID = #{a_id} 
 	    	AND 

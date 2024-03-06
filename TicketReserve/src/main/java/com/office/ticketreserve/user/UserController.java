@@ -87,7 +87,9 @@ public class UserController {
 			
 		} else if(loginedUserDto instanceof AdminDto){
 			
-			return "admin/home";
+			session.setAttribute("loginedAdminDto", loginedUserDto);
+			
+			return "redirect:/admin";
 		} 
 			return nextPage = "user/user_login_form";
 		
