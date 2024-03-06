@@ -87,14 +87,14 @@ $(document).ready(function () {
             },
             data: {"u_id_check": userId},
             success: function (data) {
-                if (data) {
+                if (!data) {
 					isIdChecked = true; 
-                    alert('중복된 ID');
+                    alert('중복 안된 ID');
                     $('#check_id_msg').text('사용 가능한 아이디입니다.');
                     $('#check_id_msg').css('color', 'blue');
                 } else {
 					 isIdChecked = false;
-	               alert('중복안된 ID');
+	               alert('중복 된 ID');
                     $('#check_id_msg').text('이미 사용 중인 아이디입니다.');
                     $('#check_id_msg').css('color', 'red');
                 }
