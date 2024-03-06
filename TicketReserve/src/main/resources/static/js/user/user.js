@@ -71,7 +71,7 @@ function createAccountForm() {
 $(document).ready(function () {
 	
     $('#checkId').click(function () {
-        var userId = $('input[name="u_id"]').val();
+        let userId = $('input[name="u_id"]').val();
         
         if(userId ===''){
          alert('ID를 입력하세요');

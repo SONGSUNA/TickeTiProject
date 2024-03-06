@@ -57,7 +57,7 @@ public class UserService {
 		
 		UserDto userDto = UserDao.selectAdminById(u_id_check); 
 		
-        return false;
+        return userDto == null ? false : true;
     }
 
 

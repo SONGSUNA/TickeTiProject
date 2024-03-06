@@ -17,7 +17,7 @@ $(document).ready(function () {
 				   "u_name": u_name,
 				   "u_mail": u_mail},
 			success: function (data) {
-		        if (data != null) {
+		        if (data) {
 		            let html = '';
 		            
 		            $.each(data, function(index, user) {
@@ -30,8 +30,8 @@ $(document).ready(function () {
 		                html += '<td>' + user.u_reg_date + '</td>';
 		                html += '<td>' + user.u_mod_date + '</td>';
 		                html += '<td>';
-		                html += '<button onclick="UserModify(' + user.u_no + ')">수정</button>';
-		                html += '<button onclick="UserDelete(' + user.u_no + ')">삭제</button>';
+		                html += '<button onclick="UserModifyInSearch(' + user.u_no + ',' + data + ')">수정</button>';
+		                html += '<button onclick="UserDeleteInSearch(' + user.u_no + ',' + data + ')">삭제</button>';
 		                html += '</td>';
 		                html += '</tr>';
 		            });
@@ -56,9 +56,19 @@ $(document).ready(function () {
 // User Modify --------------------------------------------------------------------------------------------------------------------
 function UserModify (u_no) {
 	console.log("UserModify()");
+	
+	
+}
+
+function UserModifyInSearch (u_no) {
+	console.log("UserModifyInSearch()");
 }
 
 // User Delete --------------------------------------------------------------------------------------------------------------------
 function UserDelete (u_no) {
 	console.log("UserDelete()");
+}
+
+function UserDeleteInSearch(u_no) {
+	console.log("UserDeleteInSearch()");
 }

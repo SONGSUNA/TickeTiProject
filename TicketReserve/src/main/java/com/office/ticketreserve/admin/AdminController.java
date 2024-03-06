@@ -11,10 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.office.ticketreserve.user.UserDao;
 import com.office.ticketreserve.user.UserDto;
 
-import jakarta.servlet.http.HttpSession;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
@@ -56,7 +54,7 @@ public class AdminController {
 		
 		List<UserDto> userDtos = adminService.getSelectUserDtos(u_id, u_name, u_mail);
 
-		return userDtos;
+		return userDtos.isEmpty() ? null : userDtos;
 	}
 	
 	@GetMapping("/admin_regist")
@@ -73,16 +71,7 @@ public class AdminController {
 	public boolean checkId(@RequestParam("a_id_check") String id) {
 	    log.info("[AdminController] checkId()");
 	    
-	    boolean checked = false;
-	    
-	    checked = adminService.checkId(id);
-	    
-	    if (checked) {
-	    	UserDao userDao = new UserDao();
-	    	checked = userDao.isUser(id);
-	    }
-	    
-	    return checked;
+	    return adminService.isAdmin(id);
 	}
 	
 	@PostMapping("/admin_regist_confirm")

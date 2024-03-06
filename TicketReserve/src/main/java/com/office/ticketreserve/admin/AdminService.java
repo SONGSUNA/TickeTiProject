@@ -47,12 +47,21 @@ public class AdminService {
 			return userDtos;
 	}
 
-	public boolean checkId(String adminId) {
+	public boolean isAdmin(String adminId) {
 		log.info("[AdminService] checkId()");
 		
-		AdminDto adminDto = adminDao.selectAdminById(adminId);
+//		boolean result = true;
+//		
+//		AdminDto adminDto = adminDao.selectAdminById(adminId);
+//		if (adminDto == null) {
+//			UserDao userDao = new UserDao();
+//			result = userDao.isUser(adminId);
+//		}
+//		
+//		return result;
 		
-		return adminDto == null ? true : false;
+		UserDao userDao = new UserDao();
+		return userDao.isUser(adminId);
 	}
 
 	public int adminRegist(AdminDto adminDto) {

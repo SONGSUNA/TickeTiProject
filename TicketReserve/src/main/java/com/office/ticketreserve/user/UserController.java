@@ -51,7 +51,7 @@ public class UserController {
 	// 유저 아이디 중복체크버튼
 	@PostMapping("/checkId")
 	@ResponseBody
-	public boolean checkId(@RequestParam("u_id") String u_id_check) {
+	public boolean checkId(@RequestParam("u_id_check") String u_id_check) {
 	   log.info("[UserController] checkId()");
 	   
 		return userService.checkId(u_id_check);
