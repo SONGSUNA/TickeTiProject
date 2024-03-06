@@ -164,30 +164,28 @@ public class UserDao {
 		log.info("[UserDao] deleteUser()");
 
 		String sql =  "UPDATE "
-				+ 	"TBL_USER"
-				+ "SET "
-				+ "U_PW, "
-				+ "U_NAME, "
-				+ "U_MAIL, "
-				+ "U_PHONE, "
-				+ "U_SC_NUM, "
-				+ "U_ADDRESS, "
-				+ "U_MOD_DATE = NOW() "
-				+ "WHERE "
-				+ 	"U_NO = ?";
+                + "TBL_USER "
+                + "SET "
+                + "U_PW = ?, "                
+                + "U_NAME = ?, "
+                + "U_MAIL = ?, "
+                + "U_PHONE = ?, "
+                + "U_ADDRESS = ?, "
+                + "U_MOD_DATE = CURRENT_TIMESTAMP "
+                + "WHERE "
+                + "U_NO = ?";
 	
 	int result = -1;
 	
 	try {
 		
-		result = jdbcTemplate.update(sql, 
+		result = jdbcTemplate.update(sql,
 										userDto.getU_pw(),
 										userDto.getU_name(),
 										userDto.getU_mail(),
 										userDto.getU_phone(),
-										userDto.getU_sc_num(),
 										userDto.getU_address(),
-										userDto.getU_mod_date());
+										userDto.getU_no());
 				
 	} catch (Exception e) {
 		e.printStackTrace();

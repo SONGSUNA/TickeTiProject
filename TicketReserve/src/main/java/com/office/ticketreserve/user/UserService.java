@@ -102,10 +102,7 @@ public class UserService {
 			return null;
 	}
 
-
-
-
-
+	
 	public int userDeleteConfirm(int u_no) {
 		log.info("[UserService] userLoginConfirm()");
 		
