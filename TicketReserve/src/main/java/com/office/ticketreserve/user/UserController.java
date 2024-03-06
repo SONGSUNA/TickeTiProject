@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.office.ticketreserve.admin.AdminDto;
+
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.log4j.Log4j2;
 
@@ -74,19 +76,21 @@ public class UserController {
 	      
 		String nextPage = "/home";
 	      
-		int result = userService.userLoginConfirm(userDto);
+		Object loginedUserDto = userService.userLoginConfirm(userDto);
 	    
-		if (loginedUserDto != null) {
+		if (loginedUserDto instanceof UserDto) {
 			
 			session.setAttribute("loginedUserDto", loginedUserDto);
 			session.setMaxInactiveInterval(60 * 30);
 			
-		} else {
-			nextPage = "user/user_login_ng";
+			return nextPage;
 			
-		}
+		} else if(loginedUserDto instanceof AdminDto){
+			
+			return "admin/home";
+		} 
+			return nextPage = "user/user_login_form";
 		
-		return nextPage;
 	}
 	// 유저 정보수정폼 이동
 	@GetMapping("/user_modify_form")
