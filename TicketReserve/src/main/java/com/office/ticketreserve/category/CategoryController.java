@@ -1,8 +1,16 @@
 package com.office.ticketreserve.category;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.office.ticketreserve.productpage.PerfomanceDto;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -10,12 +18,19 @@ import lombok.extern.log4j.Log4j2;
 @RequestMapping("/category")
 @Log4j2
 public class CategoryController {
+	@Autowired
+	CategoryService categoryService;
+
 	
 	@GetMapping("/concert")
-	public String goConcert() {
+	public String goConcert(Model model) {
 		log.info("goConcertPage");
 		
-		String nextPage = "/category/concert_page";
+		String nextPage = "category/concert_page";
+		
+		List<PerfomanceDto> categoryDtos = categoryService.goConcert();
+		model.addAttribute("categoryDtos", categoryDtos);
+		log.info("====================>"+categoryDtos.get(0).getPStartDate());
 		
 		return nextPage;
 	
