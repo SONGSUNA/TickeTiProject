@@ -20,6 +20,9 @@ public class AdminService {
 	
 	@Autowired
 	PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	UserDao userDao;
 
 	public List<UserDto> getAllUserDto() {
 		log.info("[AdminService] getAllUserDto()");
@@ -48,19 +51,13 @@ public class AdminService {
 	}
 
 	public boolean isAdmin(String adminId) {
-		log.info("[AdminService] checkId()");
+		log.info("[AdminService] isAdmin()");
 		
-//		boolean result = true;
-//		
-//		AdminDto adminDto = adminDao.selectAdminById(adminId);
-//		if (adminDto == null) {
-//			UserDao userDao = new UserDao();
-//			result = userDao.isUser(adminId);
-//		}
-//		
-//		return result;
+		boolean result = true;
 		
-		UserDao userDao = new UserDao();
+		AdminDto adminDto = adminDao.selectAdminById(adminId);
+		if (adminDto != null) return result;
+		
 		return userDao.isUser(adminId);
 	}
 
@@ -74,6 +71,12 @@ public class AdminService {
 		adminDto.setA_pw(encodePw);
 		
 		return adminDao.insertAdmin(adminDto);
+	}
+
+	public List<AdminDto> getAllAdminDtos() {
+		log.info("[AdminService] adminRegist()");
+		
+		return adminDao.selectAllAdmins();
 	}	
 
 }

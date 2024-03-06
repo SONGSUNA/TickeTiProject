@@ -117,10 +117,15 @@ public class AdminController {
 	}
 	
 	@GetMapping("/admin_management")
-	public String admin_management() {
+	
+	public String admin_management(Model model) {
 		log.info("[AdminController] admin_management()");
 		
 		String nextPage = "/admin/admin_management";
+		
+		List<AdminDto> adminDtos = adminService.getAllAdminDtos();
+		
+		model.addAttribute("adminList", adminDtos);
 		
 		return nextPage;
 		

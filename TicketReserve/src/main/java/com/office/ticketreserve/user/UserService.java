@@ -1,5 +1,8 @@
 package com.office.ticketreserve.user;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -67,17 +70,19 @@ public class UserService {
 
 
 	public Object userLoginConfirm(UserDto userDto) {
-		log.info("[UserService] userLoginConfirm()");
-		
-		UserDto seletedUserDto= userDao.selectUserForLogin(userDto);
-		if(seletedUserDto != null) {
-			
-			return seletedUserDto;
-		} 
-			AdminDto selectedAdminDto = 
-					adminDaoForMyBatis.selectAdminByIdPw(userDto.getU_id(), userDto.getU_pw());
-			
-			return selectedAdminDto;
+	    log.info("[UserService] userLoginConfirm()");
+	    
+	    UserDto seletedUserDto= userDao.selectUserForLogin(userDto);
+	    if(seletedUserDto != null) {
+	        return seletedUserDto;
+	    } 
+
+	    Map<String, String> user = new HashMap<>();
+	    user.put("a_id", userDto.getU_id());
+	    user.put("a_pw", userDto.getU_pw());
+	    AdminDto selectedAdminDto = adminDaoForMyBatis.selectAdminByIdPw(user);
+	        
+	    return selectedAdminDto;
 	}
 
 
