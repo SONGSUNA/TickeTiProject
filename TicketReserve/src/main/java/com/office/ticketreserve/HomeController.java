@@ -21,6 +21,9 @@ public class HomeController  {
 		
 		String nextPage = "/home";
 		
+		KopisApi api = new KopisApi();
+		api.getMusicalInfo();
+		
 		return nextPage;
 	}
 	
