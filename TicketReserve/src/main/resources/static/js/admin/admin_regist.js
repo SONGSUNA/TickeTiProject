@@ -69,7 +69,7 @@ $(document).ready(function () {
             },
             data: {"a_id_check": adminId},
             success: function (data) {
-                if (data) {
+                if (!data) {
                     isIdChecked = true;  // 아이디 중복 검사 완료
                     alert('중복되지 않은 ID');
                     $('#check_id_msg').text('사용 가능한 아이디입니다.');
