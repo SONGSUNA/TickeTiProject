@@ -73,6 +73,7 @@ public class UserService {
 	    log.info("[UserService] userLoginConfirm()");
 	    
 	    UserDto seletedUserDto= userDao.selectUserForLogin(userDto);
+	    
 	    if(seletedUserDto != null) {
 	        return seletedUserDto;
 	    } 

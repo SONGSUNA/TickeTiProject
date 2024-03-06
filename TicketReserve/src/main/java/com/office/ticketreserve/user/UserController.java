@@ -96,18 +96,22 @@ public class UserController {
 	@GetMapping("/user_modify_form")
 	public String userModifyForm(Model model , HttpSession session) {
 		log.info("[UserController] userModifyForm()");
-	      
-		String nextPage = "user/user_modify_form";
 		
-
-		  UserDto loginedUserMemberDto = 
-				  (UserDto) session.getAttribute("loginedUserDto");
-		  
-		  model.addAttribute("loginedUserMemberDto", loginedUserMemberDto);
-		  	
-		  if (loginedUserMemberDto == null) nextPage = "redirect:/user/user_login_form";
+		  String nextPage = "user/user_modify_form";
 	      
-		return nextPage;
+		 UserDto loginedUserMemberDto = (UserDto) session.getAttribute("loginedUserDto");
+		    
+		    if (loginedUserMemberDto == null) {
+		        return "redirect:/user_login_form"; 
+		    }
+		    
+		    String scNumPre = loginedUserMemberDto.getU_sc_num().substring(0, 6);
+		    System.out.println("==================>" + scNumPre);
+		    
+		    model.addAttribute("loginedUserMemberDto", loginedUserMemberDto);
+		    model.addAttribute("scNumPre", scNumPre);
+		    
+		    return nextPage;
 	}
 	//유저 정보수정 확인
 	@PostMapping("/user_modify_confirm")
