@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.office.ticketreserve.user.UserDao;
 import com.office.ticketreserve.user.UserDto;
 
 import jakarta.servlet.http.HttpSession;
@@ -46,6 +47,18 @@ public class AdminController {
 		return nextPage;
 	}
 	
+	@GetMapping("/user_search")
+	@ResponseBody
+	public List<UserDto> user_search(@RequestParam("u_id") String u_id,
+									 @RequestParam("u_name") String u_name,
+									 @RequestParam("u_mail") String u_mail) {
+		log.info("[AdminController] user_search()");
+		
+		List<UserDto> userDtos = adminService.getSelectUserDtos(u_id, u_name, u_mail);
+
+		return userDtos;
+	}
+	
 	@GetMapping("/admin_regist")
 	public String admin_regist() {
 		log.info("[AdminController] admin_regist()");
@@ -60,7 +73,16 @@ public class AdminController {
 	public boolean checkId(@RequestParam("a_id_check") String id) {
 	    log.info("[AdminController] checkId()");
 	    
-	    return adminService.checkId(id);
+	    boolean checked = false;
+	    
+	    checked = adminService.checkId(id);
+	    
+	    if (checked) {
+	    	UserDao userDao = new UserDao();
+	    	checked = userDao.isUser(id);
+	    }
+	    
+	    return checked;
 	}
 	
 	@PostMapping("/admin_regist_confirm")

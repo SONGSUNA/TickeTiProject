@@ -26,17 +26,25 @@ public class AdminService {
 		
 		List<UserDto> userDtos = adminDao.selectAllUsers();
 		
-		log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + userDtos.get(0).getU_no());
-		log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + userDtos.get(0).getU_id());
-		log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + userDtos.get(0).getU_pw());
-		log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + userDtos.get(0).getU_name());
-		log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + userDtos.get(0).getU_mail());
-		log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + userDtos.get(0).getU_phone());
-		log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + userDtos.get(0).getU_address());
-		log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + userDtos.get(0).getU_reg_date());
-		log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + userDtos.get(0).getU_mod_date());
-		
 		return userDtos;
+	}
+
+	public List<UserDto> getSelectUserDtos(String u_id, String u_name, String u_mail) {
+		log.info("[AdminService] getSelectUserDtos()");
+		
+		List<UserDto> userDtos = null;
+		
+		if(u_id != "") {
+			userDtos = adminDao.selectUsersById(u_id);
+			return userDtos;
+		}
+		else if (u_name != "") {
+			userDtos = adminDao.selectUsersByName(u_name);
+			return userDtos;
+		}
+		else
+			userDtos = adminDao.selectUsersByMail(u_mail);
+			return userDtos;
 	}
 
 	public boolean checkId(String adminId) {
@@ -51,9 +59,7 @@ public class AdminService {
 		log.info("[AdminService] adminRegist()");
 		
 		AdminDto checkAdminDto = adminDao.selectAdminById(adminDto.getA_id());
-		if(checkAdminDto != null) {
-			return -99;
-		}
+		if(checkAdminDto != null) return -99;
 		
 		String encodePw = passwordEncoder.encode(adminDto.getA_pw());
 		adminDto.setA_pw(encodePw);

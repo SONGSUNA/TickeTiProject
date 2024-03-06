@@ -15,4 +15,10 @@ public interface AdminDaoForMyBatis {
 
 	public List<UserDto> selectAllUsers();
 
+	public List<UserDto> selectUsersById(String u_id);
+
+	public List<UserDto> selectUsersByName(String u_name);
+
+	public List<UserDto> selectUsersByMail(String u_mail);
+
 }

@@ -80,7 +80,12 @@ $(document).ready(function () {
                     $('#check_id_msg').text('이미 사용 중인 아이디입니다.');
                     $('#check_id_msg').css('color', 'red');
                 }
-            }
+            },
+            	error: function (xhr, status, error) {
+			        console.log("AJAX 요청 실패: " + status);
+			        console.log("HTTP 상태 코드: " + xhr.status);
+			        console.log("오류 내용: " + error);
+			    }
         });
     });
     
