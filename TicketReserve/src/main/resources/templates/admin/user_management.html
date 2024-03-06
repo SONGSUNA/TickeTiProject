@@ -6,6 +6,8 @@
 <title th:replace="~{/include/title.html::title}"></title>
 
 <link rel="stylesheet" th:href="@{/css/admin/user_management.css}">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script type="text/javascript" th:src="@{/js/admin/user_management.js}"></script>
 
 </head>
@@ -55,7 +57,7 @@
 					<input type="text" name="u_name">
 					<span>메일</span>
 					<input type="text" name="u_mail">
-					<input type="button" value="검색" onclick="userSearch()">
+					<input type="button" value="검색" 	id="user_search_btn">
 				</form> 
 			</div>
 			

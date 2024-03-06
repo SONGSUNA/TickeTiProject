@@ -31,4 +31,43 @@
 	        TBL_USER 
 	</select>
 	
+	<select id="selectUsersById" 
+			parameterType="String"
+			resultType="com.office.ticketreserve.user.UserDto">
+			
+	    SELECT 
+	        * 
+	    FROM 
+	        TBL_USER 
+	    WHERE
+	    	U_ID = #{u_id}
+	        
+	</select>
+	
+	<select id="selectUsersByName" 
+			parameterType="String"
+			resultType="com.office.ticketreserve.user.UserDto">
+			
+	    SELECT 
+	        * 
+	    FROM 
+	        TBL_USER 
+	    WHERE
+	    	U_NAME = #{u_name}
+	        
+	</select>
+	
+	<select id="selectUsersByMail" 
+			parameterType="String"
+			resultType="com.office.ticketreserve.user.UserDto">
+			
+	    SELECT 
+	        * 
+	    FROM 
+	        TBL_USER 
+	    WHERE
+	    	U_MAIL = #{u_mail}
+	        
+	</select>
+	
 </mapper>
