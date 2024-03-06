@@ -72,5 +72,5 @@ function UserDelete (u_no, u_id) {
 	
 	let confirm = window.confirm(u_id + ' 유저를 탈퇴처리 하시겠습니까?');
 	
-	if (confirm) location.href = "/admin/user_delete&u_no=" + u_no; 
+	if (confirm) location.href = "/admin/user_delete?u_no=" + u_no; 
 }
