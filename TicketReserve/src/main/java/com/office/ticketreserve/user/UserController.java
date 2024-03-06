@@ -90,12 +90,18 @@ public class UserController {
 	}
 	// 유저 정보수정폼 이동
 	@GetMapping("/user_modify_form")
-	public String userModifyForm(HttpSession session) {
+	public String userModifyForm(Model model , HttpSession session) {
 		log.info("[UserController] userModifyForm()");
 	      
 		String nextPage = "user/user_modify_form";
 		
-		session.getAttribute("loginedUserDto");
+
+		  UserDto loginedUserMemberDto = (UserDto)
+		  session.getAttribute("loginedUserDto");
+		  
+		  if (loginedUserMemberDto == null) nextPage =
+		  "redirect:/user/user_modify_form";
+	
 	      
 		return nextPage;
 	}

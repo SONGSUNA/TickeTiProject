@@ -31,18 +31,19 @@
 			<form th:action="@{/user/user_modify_confirm}" name="modify_form" method="post">
           		<div class="input_info">
           		  <b>아이디  &emsp;&emsp;&emsp;</b><br/>
-           			<input type="text" name="u_id" readonly disabled><br>
+           			<input type="text" name="u_id" readonly disabled value="${loginedUserDto.u_id}"><br>
+           			
 				</div>
 				
 				<div class="input_info">
 	           		 <label><b>비밀번호  &emsp;&emsp;&emsp;</b> <br/>
-	           		 <input type="password" name="u_pw"></label><br>
+	           		 <input type="password" name="u_pw" value="********"></label><br>
 	           		  <span id="regexp"></span>
 				</div>
 				
 				<div class="input_info">
 	           		 <label><b>비밀번호 재확인  &emsp;&emsp;&emsp;</b><br/>
-	          		 <input type="password" name="u_pw_confirm"></label><br/>
+	          		 <input type="password" name="u_pw_confirm" value="********"></label><br/>
 	          		  <span id="pw_matching"></span><br/>
 				</div>
 				
