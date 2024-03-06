@@ -55,9 +55,9 @@ public class UserService {
 	public boolean checkId(String u_id_check) {
 		log.info("[UserService] checkId()");
 		
-		UserDto userDto = UserDao.selectAdminById(u_id_check); 
+		boolean result = userDao.isUser(u_id_check); 
 		
-        return userDto == null ? false : true;
+        return result;
     }
 
 

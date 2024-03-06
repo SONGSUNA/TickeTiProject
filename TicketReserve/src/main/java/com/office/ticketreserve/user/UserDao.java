@@ -217,5 +217,11 @@ public class UserDao {
 		
 		return UserDtos.size() > 0 ? UserDtos.get(0) : null;	}
 
+	public static UserDto selectUserById(String u_id_check) {
+		log.info("[UserDao] getLatestUserInfo()");
+		
+		return null;
+	}
+
 
 }
