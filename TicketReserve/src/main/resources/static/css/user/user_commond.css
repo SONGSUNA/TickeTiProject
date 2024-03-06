@@ -96,3 +96,7 @@ form input[type="password"]:focus,
 form input[type="number"]:focus {
 	outline: none;
 }
+
+.all_user_form_wrap {
+	margin-bottom: 120px;
+}
