@@ -18,7 +18,42 @@ public class CategoryController {
 		String nextPage = "/category/concert_page";
 		
 		return nextPage;
+	
+	}
+	@GetMapping("/musical")
+	public String goMusical() {
+		log.info("goMusicalPage");
 		
+		String nextPage = "/category/musical_page";
 		
-}
+		return nextPage;
+	
+	}
+	@GetMapping("/theater")
+	public String goTheater() {
+		log.info("goTheaterPage");
+		
+		String nextPage = "/category/theater_page";
+		
+		return nextPage;
+	
+	}
+	@GetMapping("/classic")
+	public String goClassic() {
+		log.info("goClassicPage");
+		
+		String nextPage = "/category/classic_page";
+		
+		return nextPage;
+	
+	}
+	@GetMapping("/exhibition")
+	public String goExhibition() {
+		log.info("goExhibitionPage");
+		
+		String nextPage = "/category/exhibition_page";
+		
+		return nextPage;
+	
+	}
 }
