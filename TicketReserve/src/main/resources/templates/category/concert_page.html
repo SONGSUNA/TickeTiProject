@@ -8,12 +8,16 @@
 <link th:href="@{/css/include/footer.css}" rel="stylesheet" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript" th:src="@{/js/category/category.js}" ></script>
+<script type="text/javascript" th:src="@{/js/category/upcoming_js.html::upcoming}" ></script>
+
+
 
    
  
- <script type='text/javascript' src='http://tkfile.yes24.com/New/Js/swiper_min.js'></script>
+
 </head>
 <body>
+
 	<div id="header_top_bar">
 	<div th:replace="~{/home.html::top_bar1}"></div>
 	</div>
@@ -27,7 +31,7 @@
 							<tr class="image-cell">
 								<td>1위</td>
 								<td><a href="#none"><img th:src="@{/img/home/poster/hot1.jfif}"></a></td>
-								<td><a href="#none"><span>랭킹1위 제목</span></a></td>
+								<td><a href="#none"><span th:text="@{/img/home/poster/hot1.jfif}">랭킹1위 제목</span></a></td>
 							</tr>
 							<tr class="image-cell">
 								<td>2위</td>
@@ -54,30 +58,11 @@
 				
 				<div class="soon_forthcoming">
 					<h3>개봉예정</h3>
-						<ul>
-							<li><div class="item"><a href="#none"><img th:src="@{/img/home/poster/hot1.jfif}"></a></div>
-								<div class="item_title"> 제목들어갈 자리</div>
-							</li>
-							<li><div class="item"><a href="#none"><img th:src="@{/img/home/poster/hot2.jfif}"></a></div>
-								<div class="item_title"> 제목들어갈 자리</div>
-							</li>
-							<li><div class="item"><a href="#none"><img th:src="@{/img/home/poster/hot3.jfif}"></a></div>
-								<div class="item_title"> 제목들어갈 자리</div>
-							</li>
-							<li><div class="item"><a href="#none"><img th:src="@{/img/home/poster/hot4.jfif}"></a></div>
-								<div class="item_title"> 제목들어갈 자리</div>
-							</li>
-							<li><div class="item"><a href="#none"><img th:src="@{/img/home/poster/hot5.jfif}"></a></div>
-								<div class="item_title"> 제목들어갈 자리</div>
-							</li>
-							<li><div class="item"><a href="#none"><img th:src="@{/img/home/poster/hot6.jfif}"></a></div>
-								<div class="item_title"> 제목들어갈 자리</div>
-							</li>
-							
-							
+						<ul id="upcoming">
 						</ul>
 				</div>
 	    </div>
+	    
 			<div class="itembody">
 				<h2>What`s HOT</h2>
 				<div class="popularity">
@@ -134,7 +119,7 @@
 		
 	</section>
 	
-	
+	<script th:replace="~{/category/upcoming_js.html}"></script>
 	<footer th:replace="~{/include/header_footer_nav.html::footer}"></footer>
 </body>
 </html>

@@ -9,15 +9,15 @@
     <link rel="stylesheet" th:href="@{/css/product_page/product_page.css}">
 </head>
 <body>
-    <body>
+    <body th:object="${productDto}">
     
         <div id="title_data">
             <div class="catergory">
-                <a href="#none"><span class="super_category"> 콘서트(대분류) </span></a> > <a href="#none"><span class="base_category"> 페스티벌(중분류) </span></a>
+                <a href="#none"><span class="super_category" th:text="*{pCategory}"></span></a> > <a href="#none"><span class="base_category"> 페스티벌(중분류) </span></a>
             </div>
             
             <div class="big_title">
-                <h1>제목이 들어갈 자리!</h1>
+                <h1 th:text="${productDto.pName}"></h1>
             </div>
             <div id="short_data" >
                 <span class="con_date">날짜자리!</span>&nbsp;|&nbsp;<a href="#none" class="con_location">장소자리!</a>

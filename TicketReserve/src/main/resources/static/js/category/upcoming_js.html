@@ -1,0 +1,25 @@
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var allConcerts = /*[[${categoryDtos}]]*/ 'default';
+
+    // 오늘 날짜를 구합니다.
+    var today = new Date();
+    today.setHours(0, 0, 0, 0); // 오늘 날짜의 시간을 00:00:00으로 설정
+
+    // 개봉 예정작만 필터링합니다.
+    var upcomingConcerts = allConcerts.filter(function(concert) {
+        // concert.pStartDate는 'yyyy-mm-dd' 형식이어야 합니다.
+        var concertDate = new Date(concert.pstartDate);
+        return concertDate >= today;
+    });
+	console.log(allConcerts);
+    // 개봉 예정작을 최대 6개까지만 가져옵니다.
+    upcomingConcerts = upcomingConcerts.slice(0, 6);
+
+    // 화면에 개봉 예정작을 표시합니다.
+    $('#upcomingMovies').empty();
+    upcomingConcerts.forEach(function(concert) {
+        $('#upcomingMovies').append('<li><div class="item"><a href="#none"><img src="' + concert.pthum + '"></a></div><div class="item_title">' + concert.pname + '</div></li>');
+    });
+    /*]]>*/
+</script>
