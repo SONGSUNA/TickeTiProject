@@ -51,6 +51,7 @@
 			
 			<div class="user_search">
 				<form th:action="@{/admin/user_search}" name="user_search_form" method="get">
+					<input type="hidden" id="csrfToken" th:value="${_csrf.token}"/>
 					<span>아이디</span>
 					<input type="text" name="u_id">
 					<span>이름</span>
@@ -85,8 +86,8 @@
 					        <td th:text="${user.u_reg_date}"></td>
 					        <td th:text="${user.u_mod_date}"></td>
 					        <td>
-								<button th:onclick="'UserModify(\'' + ${user.u_no} + '\')'">수정</button>
-					            <button th:onclick="'UserDelete(\'' + ${user.u_no} + '\')'">삭제</button>
+								<button th:attr="onclick='UserModify(\'' + ${user.u_no} + '\')'">수정</button>
+					            <button th:attr="onclick='UserDelete(\'' + ${user.u_no} + '\',\'' + ${user.u_id} + '\')'">삭제</button>
 					        </td>
 					    </tr>
 					</tbody>

@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.office.ticketreserve.user.UserDao;
 import com.office.ticketreserve.user.UserDto;
+import com.office.ticketreserve.user.UserService;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -45,7 +47,7 @@ public class AdminController {
 		return nextPage;
 	}
 	
-	@GetMapping("/user_search")
+	@PostMapping("/user_search")
 	@ResponseBody
 	public List<UserDto> user_search(@RequestParam("u_id") String u_id,
 									 @RequestParam("u_name") String u_name,
@@ -57,6 +59,30 @@ public class AdminController {
 		return userDtos.isEmpty() ? null : userDtos;
 	}
 	
+	@GetMapping("/user_modify_form")
+	public String user_modify_form(@RequestParam("u_no") int u_no,
+								   @RequestParam("u_id") String u_id,
+								   @RequestParam("u_name") String u_name,
+								   @RequestParam("u_mail") String u_mail) {
+		log.info("[AdminController] user_modify_form()");
+		
+		String nextPage = "admin/user_modify_form";
+			
+		return nextPage;
+	}
+	
+	@GetMapping("/user_delete")
+	public String user_delete_confirm(@RequestParam("u_no") int u_no) {
+		log.info("[AdminController] user_delete_confirm()");
+		
+		UserService userService = new UserService();
+		userService.userDeleteConfirm(u_no);
+		
+		String nextPage = "reirect:admin/user_management";
+		
+		return nextPage;
+	}
+		
 	@GetMapping("/admin_regist")
 	public String admin_regist() {
 		log.info("[AdminController] admin_regist()");

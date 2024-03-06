@@ -96,12 +96,12 @@ public class UserController {
 		String nextPage = "user/user_modify_form";
 		
 
-		  UserDto loginedUserMemberDto = (UserDto)
-		  session.getAttribute("loginedUserDto");
+		  UserDto loginedUserMemberDto = 
+				  (UserDto) session.getAttribute("loginedUserDto");
 		  
-		  if (loginedUserMemberDto == null) nextPage =
-		  "redirect:/user/user_modify_form";
-	
+		  model.addAttribute("loginedUserMemberDto", loginedUserMemberDto);
+		  	
+		  if (loginedUserMemberDto == null) nextPage = "redirect:/user/user_login_form";
 	      
 		return nextPage;
 	}
