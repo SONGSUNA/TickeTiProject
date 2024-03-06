@@ -28,10 +28,10 @@
 			
 			<div class="create_account_form">
 				
-			<form th:action="@{/user/user_modify_confirm}" name="modify_form" method="post">
+			<form th:action="@{/user/user_modify_confirm}" th:object="${loginedUserMemberDto}" name="modify_form" method="post">
           		<div class="input_info">
           		  <b>아이디  &emsp;&emsp;&emsp;</b><br/>
-           			<input type="text" name="u_id" readonly disabled value="${loginedUserDto.u_id}"><br>
+           			<input type="text" name="u_id" readonly disabled th:field="*{u_id}"><br>
            			
 				</div>
 				
