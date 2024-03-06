@@ -33,8 +33,6 @@ public class UserDao {
 			
 			result = jdbcTemplate.queryForObject(sql,Integer.class,u_id);
 			
-			
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

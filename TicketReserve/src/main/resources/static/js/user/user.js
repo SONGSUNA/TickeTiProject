@@ -82,6 +82,9 @@ $(document).ready(function () {
         $.ajax({
             url: '/user/checkId',
             type: 'POST',
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader("X-CSRF-TOKEN", $('#csrfToken').val());
+            },
             data: {"u_id_check": userId},
             success: function (data) {
                 if (data) {
