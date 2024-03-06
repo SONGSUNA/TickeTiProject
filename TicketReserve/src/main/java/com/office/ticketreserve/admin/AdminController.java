@@ -63,8 +63,8 @@ public class AdminController {
 	}
 	
 	@GetMapping("/user_modify_form")
-	public String user_modify_form(@RequestParam("u_no") int u_no,
-								   @RequestParam("u_id") String u_id,
+	public String user_modify_form(@RequestParam("u_no")   int u_no,
+								   @RequestParam("u_id")   String u_id,
 								   @RequestParam("u_name") String u_name,
 								   @RequestParam("u_mail") String u_mail) {
 		log.info("[AdminController] user_modify_form()");
@@ -121,7 +121,7 @@ public class AdminController {
 	public String admin_management(Model model) {
 		log.info("[AdminController] admin_management()");
 		
-		String nextPage = "/admin/admin_management";
+		String nextPage = "admin/admin_management";
 		
 		List<AdminDto> adminDtos = adminService.getAllAdminDtos();
 		
@@ -130,5 +130,29 @@ public class AdminController {
 		return nextPage;
 		
 	}
+	
+	@PostMapping("/admin_search")
+	@ResponseBody
+	public List<AdminDto> admin_search(@RequestParam("a_id")   String a_id,
+									  @RequestParam("a_name") String a_name,
+									  @RequestParam("a_mail") String a_mail) {
+		log.info("[AdminController] user_search()");
+		
+		List<AdminDto> adminDtos = adminService.getSelectAdminDtos(a_id, a_name, a_mail);
+
+		return adminDtos.isEmpty() ? null : adminDtos;
+	}
+	
+	@GetMapping("/admin_delete")
+	public String admin_delete_confirm(@RequestParam("a_no") int a_no) {
+		log.info("[AdminController] admin_delete_confirm()");
+		
+		adminService.adminDeleteConfirm(a_no);
+		
+		String nextPage = "redirect:/admin/admin_management";
+		
+		return nextPage;
+	}
+	
 	
 } 

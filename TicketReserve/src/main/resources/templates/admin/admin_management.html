@@ -8,7 +8,7 @@
 <link rel="stylesheet" th:href="@{/css/admin/admin_management.css}">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script type="text/javascript" th:src="@{/js/admin/admin_search.js}"></script>
+<script type="text/javascript" th:src="@{/js/admin/admin_management.js}"></script>
 
 </head>
 <body>
@@ -86,8 +86,8 @@
 					        <td th:text="${admin.a_reg_date}"></td>
 					        <td th:text="${admin.a_mod_date}"></td>
 					        <td>
-								<button th:attr="onclick='adminModify(\'' + ${admin.u_no} + '\')'">수정</button>
-					            <button th:attr="onclick='adminDelete(\'' + ${admin.u_no} + '\',\'' + ${admin.u_id} + '\')'">삭제</button>
+								<button th:attr="onclick='adminModify(\'' + ${admin.a_no} + '\')'">수정</button>
+								<button th:attr="onclick='adminDelete(\'' + ${admin.a_no} + '\',\'' + ${admin.a_id} + '\')'">삭제</button>
 					        </td>
 					    </tr>
 					</tbody>

@@ -77,7 +77,31 @@ public class AdminService {
 		log.info("[AdminService] adminRegist()");
 		
 		return adminDao.selectAllAdmins();
-	}	
+	}
+
+	public List<AdminDto> getSelectAdminDtos(String a_id, String a_name, String a_mail) {
+		log.info("[AdminService] getSelectAdminDtos()");
+		
+		List<AdminDto> adminDtos = null;
+		
+		if(a_id != "") {
+			adminDtos = adminDao.selectAdminsById(a_id);
+			return adminDtos;
+		}
+		else if (a_name != "") {
+			adminDtos = adminDao.selectAdminsByName(a_name);
+			return adminDtos;
+		}
+		else
+			adminDtos = adminDao.selectAdminsByMail(a_mail);
+			return adminDtos;
+	}
+
+	public void adminDeleteConfirm(int a_no) {
+		log.info("[AdminService] getSelectAdminDtos()");
+		
+		adminDao.deleteAdmin(a_no);
+	}
 
 }
 
