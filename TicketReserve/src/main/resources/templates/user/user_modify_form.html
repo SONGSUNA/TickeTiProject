@@ -49,12 +49,12 @@
 				
 				<div class="input_info">
 			         <label><b>이름  &emsp;&emsp;&emsp;</b><br>
-			         <input type="text" name="u_name"></label> <br>
+			         <input type="text" name="u_name" th:field="*{u_name}"></label> <br>
 		       </div>
 		       
 		       <div class="input_info">
 		            <label for="u_sc_num_suf"><b>주민등록번호  &emsp;&emsp;&emsp;</b> </label><br>
-           			<input type="number" name="u_sc_num_pre" readonly disabled>
+           			<input type="number" name="u_sc_num_pre" readonly disabled th:field="*{u_sc_num}">
                	 <span>-</span>&nbsp;
            		    <input type="password" id="u_sc_num_suf" name="u_sc_num_suf" readonly disabled><br>
 	               	<input type="hidden" name="u_sc_num">
