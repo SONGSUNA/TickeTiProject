@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.office.ticketreserve.admin.AdminDaoForMyBatis;
 import com.office.ticketreserve.admin.AdminDto;
 
 import lombok.extern.log4j.Log4j2;
@@ -20,6 +21,8 @@ public class UserService {
 	@Autowired
 	PasswordEncoder passwordEncoder;
 	
+	@Autowired
+	AdminDaoForMyBatis adminDaoForMyBatis;
 	
 	final static public int ID_ALREADY_EXIST				= -2;
 	final static public int DATABASE_COMMUNICATION_TROUBLE	= -1;
@@ -66,8 +69,17 @@ public class UserService {
 	public UserDto userLoginConfirm(UserDto userDto) {
 		log.info("[UserService] userLoginConfirm()");
 		
-		return userDao.selectUserForLogin(userDto);
-		
+		UserDto seletedUserDto= userDao.selectUserForLogin(userDto);
+		if(seletedUserDto != null) {
+			return seletedUserDto;
+		} 
+			int selectedAdminDto = 
+					adminDaoForMyBatis.selectAdminByIdPw(userDto.getU_id(), userDto.getU_pw());
+			if(selectedAdminDto > 0) {
+				//어드민 
+				return selectedAdminDto;
+			}
+				
 	}
 
 
