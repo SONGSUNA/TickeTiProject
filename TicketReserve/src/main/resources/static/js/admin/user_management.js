@@ -8,6 +8,7 @@ $(document).ready(function () {
 		if (u_id == '' && u_name == '' && u_mail == '') {
 			alert("하나 이상의 유저 정보가 필요합니다.");
 			$('input[name="u_id"]').focus();
+			return;
 		}
 		
 		$.ajax({

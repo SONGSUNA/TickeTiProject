@@ -8,6 +8,7 @@ $(document).ready(function () {
 		if (a_id == '' && a_name == '' && a_mail == '') {
 			alert("하나 이상의 관리자 정보가 필요합니다.");
 			$('input[name="a_id"]').focus();
+			return;
 		}
 		
 		$.ajax({

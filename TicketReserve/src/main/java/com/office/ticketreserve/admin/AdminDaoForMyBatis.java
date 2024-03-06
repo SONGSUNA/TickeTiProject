@@ -26,4 +26,12 @@ public interface AdminDaoForMyBatis {
 
 	public List<AdminDto> selectAllAdmins();
 
+	public List<AdminDto> selectAdminsById(String a_id);
+
+	public List<AdminDto> selectAdminsByName(String a_name);
+
+	public List<AdminDto> selectAdminsByMail(String a_mail);
+
+	public void deleteAdmin(int a_no);
+
 }

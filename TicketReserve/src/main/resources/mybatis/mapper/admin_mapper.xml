@@ -85,4 +85,57 @@
 	    
 	</select>
 	
+	<select id="selectAllAdmins" resultType="com.office.ticketreserve.admin.AdminDto">
+	    SELECT 
+	        * 
+	    FROM 
+	        TBL_ADMIN 
+	</select>
+	
+	<select id="selectAdminsById" 
+			parameterType="String"
+			resultType="com.office.ticketreserve.admin.AdminDto">
+			
+	    SELECT 
+	        * 
+	    FROM 
+	        TBL_ADMIN 
+	    WHERE
+	    	A_ID = #{a_id}
+	        
+	</select>
+	
+	<select id="selectAdminsByName" 
+			parameterType="String"
+			resultType="com.office.ticketreserve.admin.AdminDto">
+			
+	    SELECT 
+	        * 
+	    FROM 
+	        TBL_ADMIN 
+	    WHERE
+	    	A_NAME = #{a_name}
+	        
+	</select>
+	
+	<select id="selectAdminsByMail" 
+			parameterType="String"
+			resultType="com.office.ticketreserve.admin.AdminDto">
+			
+	    SELECT 
+	        * 
+	    FROM 
+	        TBL_ADMIN 
+	    WHERE
+	    	A_MAIL = #{a_mail}
+	        
+	</select>
+	
+	<delete id="deleteAdmin"
+			parameterType="Integer">
+	
+		DELETE FROM TBL_ADMIN WHERE A_NO = #{a_no}
+	
+	</delete>
+	
 </mapper>
