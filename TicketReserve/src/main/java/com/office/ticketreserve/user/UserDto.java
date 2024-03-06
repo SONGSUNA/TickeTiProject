@@ -10,8 +10,8 @@ public class UserDto {
 	private String u_pw;
 	private String u_name;
 	private String u_mail;	
-	private String u_phone;
 	private String u_sc_num;
+	private String u_phone;
 	private String u_address;
 	private String u_reg_date;
 	private String u_mod_date;		

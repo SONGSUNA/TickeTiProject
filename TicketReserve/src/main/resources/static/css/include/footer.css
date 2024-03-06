@@ -1,5 +1,5 @@
 footer {
-  position: fixed;
+  margin-top:150px;
   left: 0;
   bottom: 0;
   width: 100%;
@@ -17,4 +17,48 @@ footer #footer_wrap {
 	margin: 0 auto;
 	text-align: center;
 	font-size: .9em;
+}
+.footer_info{
+	display:flex;
+	justify-content:center;
+	text-align: justify;
+}
+.footer_company{
+	margin-top:20px;
+	display:inline-block;
+}
+.footer_link a{
+	display: inline-block;
+	margin-right: 20px;
+	margin-left: 20px;
+}
+.footer_logo img{
+	margin-right: 85px;
+	margin-top:40px;
+	max-width: 160px;
+	min-width: 160px;
+	max-height: 50px;
+	min-height: 50px;
+}
+@font-face {
+    font-family: 'LINESeedKR-Th';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Th.woff2') format('woff2');
+    font-weight: 100;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'LINESeedKR-Rg';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Rg.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+ @font-face {
+    font-family: 'LINESeedKR-Bd';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+          
+body {
+    font-family: 'LINESeedKR-Rg';
 }

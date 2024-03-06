@@ -23,5 +23,12 @@
 			(ADMIN_SEQ.NEXTVAL, #{a_id}, #{a_pw}, #{a_name}, #{a_mail}, #{a_phone}, SYSTIMESTAMP, SYSTIMESTAMP)
 
 	</insert>
+
+	<select id="selectAllUsers" resultType="com.office.ticketreserve.user.UserDto">
+	    SELECT 
+	        * 
+	    FROM 
+	        TBL_USER 
+	</select>
 	
 </mapper>
