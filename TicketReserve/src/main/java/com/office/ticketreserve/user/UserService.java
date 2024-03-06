@@ -78,12 +78,13 @@ public class UserService {
 	        return seletedUserDto;
 	    } 
 
-	    Map<String, String> user = new HashMap<>();
-	    user.put("a_id", userDto.getU_id());
-	    user.put("a_pw", userDto.getU_pw());
-	    AdminDto selectedAdminDto = adminDaoForMyBatis.selectAdminByIdPw(user);
+	    AdminDto adminDto = adminDaoForMyBatis.selectAdminById(userDto.getU_id());
+	    
+	    if(passwordEncoder.matches(userDto.getU_pw(), adminDto.getA_pw())) {
+	    	return adminDto;
+	    }
 	        
-	    return selectedAdminDto;
+	    return null;
 	}
 
 
