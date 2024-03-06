@@ -4,11 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.office.ticketreserve.admin.AdminDto;
+
 import lombok.extern.log4j.Log4j2;
 
 @Service
 @Log4j2
 public class UserService {
+	@Autowired
+	IUserDaoForMybatis IUserDao;
+	
 	@Autowired
 	UserDao userDao;
 	
@@ -48,7 +53,11 @@ public class UserService {
 		
 	}
 	public boolean checkId(String u_id_check) {
-        return !userDao.isUser(u_id_check);
+		log.info("[UserService] checkId()");
+		
+		UserDto userDto = UserDao.selectAdminById(u_id_check); 
+		
+        return false;
     }
 
 
@@ -57,11 +66,7 @@ public class UserService {
 	public UserDto userLoginConfirm(UserDto userDto) {
 		log.info("[UserService] userLoginConfirm()");
 		
-		UserDto dto =  userDao.selectUserForLogin(userDto);
-		
-
-		return dto;
-	
+		return userDao.selectUserForLogin(userDto);
 		
 	}
 
@@ -70,17 +75,24 @@ public class UserService {
 
 
 	public UserDto userModifyConfirm(UserDto userDto) {
+		log.info("[UserService] userModifyConfirm()");
 		
-		return null;
+		int result =userDao.editUserInfo(userDto);
+		
+		if(result > 0)
+			return userDao.getLatestUserInfo(userDto);
+		else
+			return null;
 	}
 
 
 
 
 
-	public int memberDeleteConfirm(int u_no) {
+	public int userDeleteConfirm(int u_no) {
+		log.info("[UserService] userLoginConfirm()");
 		
-		return 0;
+		return IUserDao.deleteUser(u_no);
 	}
 
 

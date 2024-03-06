@@ -15,8 +15,22 @@
 <link rel="stylesheet" th:href="@{/css/user/create_account_form.css}">
 <link th:href="@{/css/include/footer.css}" rel="stylesheet" />
 </head>
+
 <body>
-	
+
+	<header th:fragment="header">
+		<div id="header_wrap" th:if="${session.loginedUserDto == null}">
+			<a th:href="@{/}">home</a> &nbsp;&nbsp;
+			<a th:href="@{/user/create_account_form}">회원가입</a> &nbsp;&nbsp;
+			<a th:href="@{/user/user_login_form}">로그인</a> &nbsp;&nbsp;
+		</div>
+		<div id="header_wrap" th:unless="${session.loginedUserDto == null}">
+			<a th:href="@{/}">home</a> &nbsp;&nbsp;
+			<a th:href="@{/user/user__modify_form}">정보수정</a> &nbsp;&nbsp;
+			<a th:href="@{/user/user_logout_confirm}">로그아웃</a> &nbsp;&nbsp;
+			<a th:href="@{/user/user_delete_confirm}">회원탈퇴</a> &nbsp;&nbsp;
+		</div>
+	</header>
 	
 	<section>
 		

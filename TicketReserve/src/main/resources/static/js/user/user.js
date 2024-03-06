@@ -73,6 +73,7 @@ function createAccountForm() {
 
 
 $(document).ready(function () {
+	
     $('#checkId').click(function () {
         var userId = $('input[name="u_id"]').val();
         
@@ -88,15 +89,20 @@ $(document).ready(function () {
             data: {"u_id_check": userId},
             success: function (data) {
                 if (data) {
+					isIdChecked = true; 
                     alert('중복된 ID');
                     $('#check_id_msg').text('사용 가능한 아이디입니다.');
                     $('#check_id_msg').css('color', 'blue');
                 } else {
-               alert('중복안된 ID');
+					 isIdChecked = false;
+	               alert('중복안된 ID');
                     $('#check_id_msg').text('이미 사용 중인 아이디입니다.');
                     $('#check_id_msg').css('color', 'red');
                 }
-            }
+            },
+             error: function () {
+                alert('서버 오류가 발생했습니다.');
+             }
         });
     });
     
@@ -119,6 +125,8 @@ $(document).ready(function () {
    if(pwRegex.test(pw)){
             $('#regexp').html('비밀번호는 6-20자로 알파벳 대 소문자, 숫자 또는 특수 문자를 포함해야 합니다.')
             .css('color','green')
+             .css('font-size','0.6em');
+             
         } else{
             $('#regexp').html('비밀번호는 6-20자로 알파벳 대 소문자, 숫자 또는 특수 문자를 포함해야 합니다.')
             .css('color','red')

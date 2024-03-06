@@ -52,7 +52,8 @@ public class UserController {
 	@PostMapping("/checkId")
 	@ResponseBody
 	public boolean checkId(@RequestParam("u_id") String u_id_check) {
-	   log.info("실행됨?");
+	   log.info("[UserController] checkId()");
+	   
 		return userService.checkId(u_id_check);
 	}
 	
@@ -89,10 +90,12 @@ public class UserController {
 	}
 	// 유저 정보수정폼 이동
 	@GetMapping("/user_modify_form")
-	public String userModifyForm() {
+	public String userModifyForm(HttpSession session) {
 		log.info("userModifyForm()");
 	      
 		String nextPage = "user/user_modify_form";
+		
+		session.getAttribute("loginedUserDto");
 	      
 		return nextPage;
 	}
@@ -146,7 +149,7 @@ public class UserController {
 		UserDto loginedUserDto =
 				(UserDto) session.getAttribute("loginedUserDto");
 		
-		int result = userService.memberDeleteConfirm(loginedUserDto.getU_no());
+		int result = userService.userDeleteConfirm(loginedUserDto.getU_no());
 		if (result <= 0) {
 	         nextPage = "user/user_delete_ng";
 		} 
