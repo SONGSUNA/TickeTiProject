@@ -74,7 +74,7 @@ public class UserController {
 	      
 		String nextPage = "/home";
 	      
-		UserDto loginedUserDto = userService.userLoginConfirm(userDto);
+		int result = userService.userLoginConfirm(userDto);
 	    
 		if (loginedUserDto != null) {
 			

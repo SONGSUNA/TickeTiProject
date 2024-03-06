@@ -66,12 +66,12 @@ public class UserService {
 
 
 
-	public UserDto userLoginConfirm(UserDto userDto) {
+	public int userLoginConfirm(UserDto userDto) {
 		log.info("[UserService] userLoginConfirm()");
 		
 		UserDto seletedUserDto= userDao.selectUserForLogin(userDto);
 		if(seletedUserDto != null) {
-			return seletedUserDto;
+			return 99;
 		} 
 			int selectedAdminDto = 
 					adminDaoForMyBatis.selectAdminByIdPw(userDto.getU_id(), userDto.getU_pw());

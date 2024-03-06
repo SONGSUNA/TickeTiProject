@@ -24,6 +24,9 @@ public class AdminController {
 	
 	@Autowired
 	AdminService adminService;
+	
+	@Autowired
+	UserService userService;
 
 	@GetMapping({"/", ""})
 	public String admin_home() {
@@ -75,10 +78,9 @@ public class AdminController {
 	public String user_delete_confirm(@RequestParam("u_no") int u_no) {
 		log.info("[AdminController] user_delete_confirm()");
 		
-		UserService userService = new UserService();
 		userService.userDeleteConfirm(u_no);
 		
-		String nextPage = "redirect:admin/user_management";
+		String nextPage = "redirect:/admin/user_management";
 		
 		return nextPage;
 	}
