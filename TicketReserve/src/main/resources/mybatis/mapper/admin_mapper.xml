@@ -70,4 +70,19 @@
 	        
 	</select>
 	
+	<select  id="selectAdminByIdPw" 
+			 parameterType="String"
+			 resultType="Integer">
+			 
+			 SELECT
+			 	COUNT(*)
+			 FROM
+			 	TBL_ADMIN
+			 WHERE
+			 	A_ID = #{a_id}
+			 	AND
+			 	A_PW = #{a_pw}
+	
+	</select>
+	
 </mapper>

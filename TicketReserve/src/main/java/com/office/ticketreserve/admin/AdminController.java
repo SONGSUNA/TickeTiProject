@@ -78,7 +78,7 @@ public class AdminController {
 		UserService userService = new UserService();
 		userService.userDeleteConfirm(u_no);
 		
-		String nextPage = "reirect:admin/user_management";
+		String nextPage = "redirect:admin/user_management";
 		
 		return nextPage;
 	}

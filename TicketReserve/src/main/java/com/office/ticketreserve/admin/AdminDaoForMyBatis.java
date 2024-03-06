@@ -20,5 +20,7 @@ public interface AdminDaoForMyBatis {
 	public List<UserDto> selectUsersByName(String u_name);
 
 	public List<UserDto> selectUsersByMail(String u_mail);
+	
+	public int selectAdminByIdPw(String a_id, String a_pw);
 
 }
