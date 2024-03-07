@@ -40,6 +40,9 @@ ul{
     width: 700px;
     border-bottom: 1px solid #242424;
 }
+.cd_info{
+	display:flex;
+}
 #content_data .cd_img img {
     max-width: 430px;
     min-width: 430px;
