@@ -71,3 +71,13 @@ p {
 	display: inline-block;
 	width: 100%;
 }
+
+img .thumbPreview,
+img ,detailImgPreview {
+	width: 200px;
+}
+
+.scroll {
+  overflow-y: scroll;
+  height: 600px;
+} 
