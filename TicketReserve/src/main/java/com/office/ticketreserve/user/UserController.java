@@ -199,12 +199,15 @@ public class UserController {
 	
 	// 아이디 찾기 확인
 	@PostMapping("/doFindId")
-	private String doFindId(UserDto userDto){
+	private String doFindId(UserDto userDto, Model model){
 		
-		String nextPage = "user/user_find_id_ok";
-		
-		userService.dofindId(userDto);
-		return nextPage;
+		String userId = userService.dofindId(userDto,model);
+		if(userId != null) {
+			return "user/user_find_id_ok";
+		} else {
+			return "user/user_find_id_ng";
+	        
+		}
 	}
 	
 	//	비밀번호 찾기

@@ -18,7 +18,7 @@ public interface IUserDaoForMybatis {
 	 * selectAdminById(String u_id_check);
 	 */
 	public int deleteUser(int u_no) ;
-	public String dofindIdFromDB(String u_name, String u_mail);
+//	public String dofindIdFromDB(String u_name, String u_mail);
 
 
 }
