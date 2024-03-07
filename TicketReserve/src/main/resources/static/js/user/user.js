@@ -137,7 +137,7 @@ $(document).ready(function () {
 });
 
   
-    $('#modify_pw').keyup(function(){
+    $('.modify_pw').keyup(function(){
       let m_pw = $("#modify_pw").val();
       let m_pwcheck = $("#modify_pw_check").val();
       let pwRegex = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/;
@@ -153,13 +153,13 @@ $(document).ready(function () {
                         .css('font-size','0.6em');
    } 
    
-   if(pwRegex.test(pw)){
-            $('#regexp').html('비밀번호는 6-20자로 알파벳 대 소문자, 숫자 또는 특수 문자를 포함해야 합니다.')
+   if(pwRegex.test(m_pw)){
+            $('#m_regexp').html('비밀번호는 6-20자로 알파벳 대 소문자, 숫자 또는 특수 문자를 포함해야 합니다.')
             .css('color','green')
              .css('font-size','0.6em');
              
         } else{
-            $('#regexp').html('비밀번호는 6-20자로 알파벳 대 소문자, 숫자 또는 특수 문자를 포함해야 합니다.')
+            $('#m_regexp').html('비밀번호는 6-20자로 알파벳 대 소문자, 숫자 또는 특수 문자를 포함해야 합니다.')
             .css('color','red')
             .css('font-size','0.6em');
         }
