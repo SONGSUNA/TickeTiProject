@@ -37,7 +37,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	    		.excludePathPatterns("/user/user_login_confirm")
 	    		.excludePathPatterns("/user/user_find_password_form")
 	    		.excludePathPatterns("/user/user_password_find")
-	    		.excludePathPatterns("/user/user_find_id_form");
+	    		.excludePathPatterns("/user/user_find_id_form")
+			    .excludePathPatterns("/user/doFindId")
+			    .excludePathPatterns("/user/user_find_id_ok")
+			    .excludePathPatterns("/user/user_find_id_ng");
 	}
 	
 }

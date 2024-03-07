@@ -6,6 +6,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.office.ticketreserve.admin.AdminDaoForMyBatis;
 import com.office.ticketreserve.admin.AdminDto;
@@ -177,11 +178,18 @@ public class UserService {
 		return stringBuffer.toString();
 		
 	}
-	public void dofindId(UserDto userDto) {
+	
+	//아이디 찾기 
+	public String dofindId(UserDto userDto, Model model) {
 		log.info("[UserService] dofindId()");
 		
-		userDao.dofindIdFromDB(userDto.getU_name(),userDto.getU_mail());
-		
+		  String userId = userDao.dofindIdFromDB(userDto.getU_name(), userDto.getU_mail());
+		    
+		    if (userId != null) {
+		        model.addAttribute("userId", userId);
+		    }
+		   
+		    return userId;
 	}
 	
 

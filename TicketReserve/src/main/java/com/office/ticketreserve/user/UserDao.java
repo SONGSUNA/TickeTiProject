@@ -270,27 +270,26 @@ public class UserDao {
 		}
 		return result;
 	}
-	/*
-	 * public UserDto dofindIdFromDB(String u_name, String u_mail) {
-	 * log.info("[UserDao] dofindIdFromDB()");
-	 * 
-	 * String sql = "SELECT * FROM TBL_USER WHERE U_NAME = :1 AND U_MAIL = :2";
-	 * 
-	 * List<UserDto> userDtos = new ArrayList<>();
-	 * 
-	 * try {
-	 * 
-	 * RowMapper<UserDto> rowMapper =
-	 * BeanPropertyRowMapper.newInstance(UserDto.class);
-	 * 
-	 * userDtos = jdbcTemplate.query(sql, rowMapper, u_name , u_mail);
-	 * 
-	 * 
-	 * } catch (Exception e) { e.printStackTrace(); } return userDtos.size() > 0 ?
-	 * userDtos.get(0) : null ;
-	 * 
-	 * }
-	 */
+	
+	  public String dofindIdFromDB(String u_name, String u_mail) {
+		  log.info("[UserDao] dofindIdFromDB()");
+		  
+		  String sql = "SELECT U_ID FROM TBL_USER WHERE U_NAME = :1 AND U_MAIL = :2";
+		
+		  try {
+		  
+		  List<String> userIds = jdbcTemplate.queryForList(sql, String.class, u_name, u_mail);
+		  
+		  if (!userIds.isEmpty()) {
+	            return userIds.get(0);
+		  }
+		  
+		  } catch (Exception e) { e.printStackTrace(); } 
+		  
+		  return null;
+	  
+	  }
+	 
 
 
 
