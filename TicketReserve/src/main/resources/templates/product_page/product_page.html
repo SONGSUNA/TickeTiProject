@@ -13,25 +13,25 @@
     
         <div id="title_data">
             <div class="catergory">
-                <a href="#none"><span class="super_category" th:text="*{pCategory}"></span></a> > <a href="#none"><span class="base_category"> 페스티벌(중분류) </span></a>
+                <a href="#none"><span class="super_category" th:text="*{p_category}"></span></a> > <a href="#none"><span class="base_category"> 페스티벌(중분류) </span></a>
             </div>
             
             <div class="big_title">
-                <h1 th:text="${productDto.pName}"></h1>
+                <h1 th:text="*{pName}"></h1>
             </div>
             <div id="short_data" >
-                <span class="con_date">날짜자리!</span>&nbsp;|&nbsp;<a href="#none" class="con_location">장소자리!</a>
+                <span class="con_date" th:text="*{p_start_date + ' ~ ' + p_end_date}"></span>&nbsp;|&nbsp;<a href="#none" class="con_location" th:text=*{p_theater}>장소자리!</a>
             </div>
         </div>
 <div id="content_container">
         <div id="content_data">
             
             <div class="cd_img">
-                <img src="http://tkfile.yes24.com/upload2/PerfBlog/202402/20240214/20240214-48752.jpg" alt="">
+                <img th:src="*{p_thum}" alt="">
                 
                 <div class="likes">
                     ❤
-                    <span id="likeCount"></span>
+                    <span id="likeCount" th:text=*{p_like}></span>
                     
                     <button id="likeButton">좋아요</button>
                 </div>
@@ -44,13 +44,19 @@
                         <li>관람시간</li>
                         <li>출연</li>
                         <li>가격</li>
-                        <li>혜택</li>
+                    </ul>
+                    <ul>
+                    	<li th:text="*{p_grade}"></li>
+                    	<li th:text="*{p_running_time}"></li>
+                    	<li th:text="*{p_characters}"></li>
+                    	<li th:text="*{p_ticket}"></li>
                     </ul>
                 </div>
                 <div class="time_info">
                     <ul>
                         <li>공연시간 안내</li>
-                        <li>공연시간 안내 데이터 들어갈 자리</li>
+                        <li th:text="*{p_detail_cautions}">공연시간 안내 데이터 들어갈 자리</li>
+                        
                         <li>배송정보</li>
                         <li>배송정보 데이터 들어갈 자리</li>
                     </ul>
@@ -122,23 +128,25 @@
                 <!-- 첫번째줄 -->
                 <tr>
                     <th>주최/기획</th>
-                    <td>주최/기획데이터자리</td>
+                   	<!-- <th:if="*{p_host.isEmpty()}">
+				        <td th:text="*{p_agency_info}"></td>
+				    </th:if> -->
                     <th>소비자상담</th>
                     <td>소비자상담전화자리</td>
                 </tr>
                 <!-- 두번째줄 -->
                 <tr>
-                    <th>주연</th>
-                    <td>주연 데이터 자리</td>
+                    <th>출연</th>
+                    <td th:text="*{p_characters}">출연 데이터 자리</td>
                     <th>관람등급</th>
-                    <td>관람등급 데이터 자리</td>
+                    <td th:text="*{p_grade}">관람등급 데이터 자리</td>
                 </tr>
                 <!-- 세번째줄 -->
                 <tr>
                     <th>공연시간</th>
-                    <td>공연시간 데이터 자리</td>
+                    <td th:text="*{p_running_time}">공연시간 데이터 자리</td>
                     <th>공연장소</th>
-                    <td>공연장소 데이터 자리</td>
+                    <td th:text="*{p_theater}">공연장소 데이터 자리</td>
                 </tr>
                 <tr>
                     <th>취소/환불방법</th>
