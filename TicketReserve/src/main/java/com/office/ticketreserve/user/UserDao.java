@@ -180,7 +180,7 @@ public class UserDao {
 	try {
 		
 		result = jdbcTemplate.update(sql,
-										userDto.getU_pw(),
+										passwordEncoder.encode(userDto.getU_pw()),
 										userDto.getU_name(),
 										userDto.getU_mail(),
 										userDto.getU_phone(),

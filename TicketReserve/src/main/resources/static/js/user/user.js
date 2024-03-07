@@ -203,7 +203,19 @@ function modifyForm() {
    form.u_mail.value = u_mail;
    form.u_address.value = u_address;
    
-   if  (form.u_name.value === '') {
+   if (form.u_pw.value === '') {
+      alert('비밀번호를 입력해주세요.');
+      form.u_pw.focus();
+      
+   } else if (form.u_pw.value !== form.u_pw_confirm.value) {
+      alert('등록한 비밀번호가 일치하지않습니다.');
+      form.u_pw.focus();
+      
+   } else if (!pwRegex.test(form.u_pw.value)) {
+       alert('비밀번호는 6-20자로 알파벳 대 소문자, 숫자 또는 특수 문자를 포함해야 합니다.');
+       form.u_pw.focus();
+      
+   } else if (form.u_name.value === '') {
       alert('이름을 입력해주세요.');
       form.u_mail.focus();
       
