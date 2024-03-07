@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.office.ticketreserve.productpage.PerfomanceDto;
 import com.office.ticketreserve.user.UserDto;
 
 @Mapper
@@ -30,5 +31,7 @@ public interface AdminDaoForMyBatis {
 	public List<AdminDto> selectAdminsByMail(String a_mail);
 
 	public void deleteAdmin(int a_no);
+
+	public PerfomanceDto selectPerfomanceById(String id);
 
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.office.ticketreserve.productpage.PerfomanceDto;
 import com.office.ticketreserve.user.UserDao;
 import com.office.ticketreserve.user.UserDto;
 
@@ -106,8 +107,12 @@ public class AdminService {
 	public boolean isPfId(String id) {
 		log.info("[AdminService] isPfId()");
 		
+		boolean result = true;
 		
-		return false;
+		PerfomanceDto perfomanceDto = adminDao.selectPerfomanceById(id);
+		if (perfomanceDto != null) return result;
+		
+		return userDao.isUser(id);
 	}
 
 }
