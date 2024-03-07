@@ -38,13 +38,13 @@
 				
 				<div class="input_info">
 	           		 <label><b>비밀번호  &emsp;&emsp;&emsp;</b> <br/>
-	           		 <input type="password" name="u_pw"  ></label><br>
-	           		  <span id="regexp"></span>
+	           		 <input type="password" name="u_pw" class="modify_pw" id="modify_pw" ></label><br>
+	           		  <span id="m_regexp"></span>
 				</div>
 				
 				<div class="input_info">
 	           		 <label><b>비밀번호 재확인  &emsp;&emsp;&emsp;</b><br/>
-	          		 <input type="password" name="u_pw_confirm"  ></label><br/>
+	          		 <input type="password" name="u_pw_confirm" class="modify_pw" id="modify_pw_check" ></label><br/>
 	          		  <span id="pw_matching"></span><br/>
 				</div>
 				
@@ -64,8 +64,8 @@
 		        
 		        <div class="input_info">
 			         <label><b>이메일  &emsp;&emsp;&emsp;</b><br>
-			         <input type="text" name="u_mail_pre" id="u_mail_pre" th:value="${mailPre}"></label> <span>@</span> 
-			         <input type="text" name="u_mail_suf" th:value="${mailSuf}"><br>
+			         <input type="text" name="u_mail_pre" class="u_mail_pre" id="u_mail_pre" th:value="${mailPre}"></label> <span>@</span> 
+			         <input type="text" name="u_mail_suf" class="u_mail_suf" th:value="${mailSuf}"><br>
 		             <input type="hidden" name="u_mail">
 	             </div>
 	             
