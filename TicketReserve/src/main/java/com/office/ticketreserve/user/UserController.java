@@ -25,7 +25,7 @@ public class UserController {
 	// 유저 회원가입폼이동
 	@GetMapping("/create_account_form")
 	public String createAccountForm() {
-		log.info("createAccountForm()");
+		log.info("[UserController] createAccountForm()");
 		
 		String nextPage = "user/create_account_form";
 		
@@ -36,13 +36,14 @@ public class UserController {
 	// 유저 회원가입 확인
 	@PostMapping("/create_account_confirm")
 	public String createAccountConfirm(UserDto userDto,Model model) {
-		log.info("createAccountConfirm()");
+		log.info("[UserController] createAccountConfirm()");
 		
 
 		int result = userService.createAccountConfirm(userDto);
 		model.addAttribute("rst", result);
 		
 		String nextPage = "/user/create_account_result";
+		
 		if (result <= UserService.INSERT_INFO_FAIL_AT_DATABASE) {
 			log.info("INSERT_INFO_FAIL_AT_DATABASE");
 		}
@@ -62,7 +63,7 @@ public class UserController {
 	// 유저 로그인폼 이동
 	@GetMapping("/user_login_form")
 	public String userLoginForm() {
-		log.info("userLoginForm()");
+		log.info("[UserController] userLoginForm()");
       
 		String nextPage = "user/user_login_form";
       
@@ -71,8 +72,8 @@ public class UserController {
 	}
 	// 유저 로그인 확인
 	@PostMapping("/user_login_confirm")
-	public String userLoginConfirm(UserDto userDto, HttpSession session) {
-		log.info("userLoginConfirm()");
+	public String userLoginConfirm(UserDto userDto, HttpSession session, Model model) {
+		log.info("[UserController] userLoginConfirm()");
 	      
 		String nextPage = "/home";
 	      
@@ -90,9 +91,10 @@ public class UserController {
 			session.setAttribute("loginedAdminDto", loginedUserDto);
 			
 			return "redirect:/admin";
+			
 		} else 
 			
-		 return "redirect:/user/user_login_form";
+			return "/user/user_login_ng";
 		
 	}
 	// 유저 정보수정폼 이동
@@ -186,5 +188,15 @@ public class UserController {
       
 		return nextPage;
 	}
-	//뭐징
+	
+	
+	//	비밀번호 찾기
+	@GetMapping("/user_find_password_form")
+	private String	uFindPwform() {
+		log.info("[UserController] uFindPwform()");
+		
+		String nextPage = "user/user_find_password_form";
+
+		return nextPage;
+	}
 }

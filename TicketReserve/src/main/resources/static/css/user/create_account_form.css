@@ -40,9 +40,12 @@ input[type="number"]::-webkit-inner-spin-button {
 	width: 100px;
 }
 
+
+.input_info:nth-child(7) input,
 .input_info:nth-child(8) input {
-	width: 80px;
+	width: 140px;
 }
+
 
 .input_info:nth-child(9) input {
 	margin-bottom: 5px;
@@ -57,4 +60,8 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .input_info span {
 	color: #265073;
+}
+
+.input_info input.u_phone {
+	width:100px;
 }
