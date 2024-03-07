@@ -80,7 +80,7 @@ public class UserService {
 
 	    AdminDto adminDto = adminDaoForMyBatis.selectAdminById(userDto.getU_id());
 	    
-	    if(passwordEncoder.matches(userDto.getU_pw(), adminDto.getA_pw())) {
+	    if(adminDto != null && passwordEncoder.matches(userDto.getU_pw(), adminDto.getA_pw())) {
 	    	return adminDto;
 	    }
 	        

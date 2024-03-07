@@ -87,8 +87,7 @@ public class UserDao {
 			RowMapper<UserDto> rowMapper = 
 					BeanPropertyRowMapper.newInstance(UserDto.class);
 			userDtos = jdbcTemplate.query(sql, rowMapper, userDto.getU_id());
-			System.out.println("----------------->" + userDtos);
-
+			
 			if (userDtos.size() <= 0) {
 				System.out.println("11111111111111111");
 				return null;
