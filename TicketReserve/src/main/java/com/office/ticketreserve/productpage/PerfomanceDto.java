@@ -1,11 +1,11 @@
 package com.office.ticketreserve.productpage;
 
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Repository;
 
 import lombok.Data;
 
 @Data
-@Configuration
+@Repository
 public class PerfomanceDto {
 	private String pId;
     private String pName;
