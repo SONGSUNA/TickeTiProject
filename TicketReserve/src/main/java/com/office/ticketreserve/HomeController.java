@@ -26,7 +26,7 @@ public class HomeController  {
 		log.info("[HomeController] home()");
 		
 		String nextPage = "/home";
-		//api.getMusicalInfo();
+		api.getMusicalInfo(2);
 		tDB.TicketStringFix();
 		return nextPage;
 	}
