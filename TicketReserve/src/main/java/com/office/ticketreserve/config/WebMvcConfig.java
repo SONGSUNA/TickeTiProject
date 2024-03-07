@@ -23,13 +23,18 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	public void addInterceptors(InterceptorRegistry registry) {
 		// 어드민 인터셉터
 		registry.addInterceptor(new AdminInterceptor())
-				.addPathPatterns("/admin/**");
+				.addPathPatterns("/admin/**")
+				.excludePathPatterns("/admin/checkId");
 		
 		// 유저 인터셑터
 	    registry.addInterceptor(new UserLoginInterceptor())
 	    		.addPathPatterns("/user/**")
 	    		.excludePathPatterns("/user/create_account_form")
-	    		.excludePathPatterns("/user/user_login_form");
+	    		.excludePathPatterns("/user/create_account_confirm")
+	    		.excludePathPatterns("/user/checkId")
+	    		.excludePathPatterns("/user/user_login_form")
+	    		.excludePathPatterns("/user/user_login_confirm")
+	    		.excludePathPatterns("/user/user_login_confirm");
 	}
 	
 }
