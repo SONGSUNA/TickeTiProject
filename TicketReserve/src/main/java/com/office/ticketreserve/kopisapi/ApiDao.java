@@ -169,6 +169,8 @@ public class ApiDao {
 	    catch (Exception e) {
 	        e.printStackTrace();
 	    }
+	    if(result < 1)
+	    	log.info("FAIL()");
 	    return perfomanceDtos;
 	}
 }

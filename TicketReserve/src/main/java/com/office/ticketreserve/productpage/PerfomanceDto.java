@@ -11,6 +11,7 @@ public class PerfomanceDto {
     private String  p_name;
     private String  p_start_date;
     private String  p_end_date;
+    private String  p_time;
     private String  p_grade;
     private String  p_theater;
     private String  p_place;
