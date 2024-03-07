@@ -47,7 +47,7 @@ public class KopisApi {
     		perfomanceList(response);
     	}
     	else if(CALL_RESERVE == mode) {
-    		String apiUrl = ApiConfig.API_URL + "boxoffice?service=" + ApiConfig.API_KEY +  "&ststype=week&date=20240301&catecode=CCCC";
+    		String apiUrl = ApiConfig.API_URL + "boxoffice?service=" + ApiConfig.API_KEY +  "&ststype=week&date=20240301&catecode=GGGA";
     		String response = restTemplate.getForObject(apiUrl, String.class);
 
         	currentReserve(response); 
