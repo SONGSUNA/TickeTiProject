@@ -155,6 +155,23 @@ public class AdminController {
 		return nextPage;
 	}
 	
+	@GetMapping("/perfomance_regist")
+	public String perfomance_regist() {
+		log.info("[AdminController] perfomance_regist()");
+		
+		String nextPage = "/admin/perfomance_regist_form";
+			
+		return nextPage;
+	}
+	
+	@ResponseBody
+	@GetMapping("/isPfId")
+	public boolean isPfId(@RequestParam("p_id_check") String id) {
+	    log.info("[AdminController] checkId()");
+	    
+	    return adminService.isPfId(id);
+	}
+	
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		log.info("[AdminController] logout()");

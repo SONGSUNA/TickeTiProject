@@ -103,6 +103,13 @@ public class AdminService {
 		adminDao.deleteAdmin(a_no);
 	}
 
+	public boolean isPfId(String id) {
+		log.info("[AdminService] isPfId()");
+		
+		
+		return false;
+	}
+
 }
 
 

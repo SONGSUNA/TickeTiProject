@@ -16,12 +16,12 @@ public class PerfomanceDto {
     private String pPlace;
     private String pThum;
     private String pCategory;
-    private int pMaxReserve;
-    private int pNowReserve;
+    private int 	pMaxReserve;
+    private int 	pNowReserve;
     private String pRunningTime;
     private String pCharacters;
     private String pTicket;
-    private int pLike;
+    private int 	pLike;
     private String pDetailCautions;
     private String pDetailImg;
     private String pAgencyInfo;
