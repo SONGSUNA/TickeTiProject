@@ -15,12 +15,12 @@ public class UserLoginInterceptor implements HandlerInterceptor {
     	
     	HttpSession session = request.getSession(false);
     	
-    	if (session != null) {
-    		Object object = session.getAttribute("loginedUserDto");
-    		
-    		if (object != null)
-    			return true;
-    	}
+        if (session != null) {
+            Object object = session.getAttribute("loginedUserDto");
+            
+            if (object != null)
+                return true;
+        }
     	
     	response.sendRedirect(request.getContextPath() + "/user/user_login_form");
         return false;
