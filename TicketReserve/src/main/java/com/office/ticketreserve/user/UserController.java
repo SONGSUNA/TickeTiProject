@@ -189,16 +189,22 @@ public class UserController {
       
 		return nextPage;
 	}
-	
+	//아이디 찾기
+	@GetMapping("/user_find_id_form")
+	private String uFindIdFrom() {
+		log.info("[UserController] uFindIdFrom()");
+		
+		return "user/user_find_password_form";
+	}
 	
 	//	비밀번호 찾기
 	@GetMapping("/user_find_password_form")
 	private String	uFindPwform() {
 		log.info("[UserController] uFindPwform()");
 		
-		String nextPage = "user/user_find_password_form";
+		return "user/user_find_password_form";
 
-		return nextPage;
+		 
 	}
 	
 	// 비밀번호찾기 확인
