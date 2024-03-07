@@ -56,7 +56,12 @@
 					<input type="text">&nbsp;&nbsp;
 					<a th:href="@{/}"><span class="material-symbols-outlined" style="color:#dadada">search</span></a>&nbsp;&nbsp;&nbsp;&nbsp;
 					<a th:href="@{/}"><span class="material-symbols-outlined" style="color:#dadada">confirmation_number</span></a>&nbsp;&nbsp;
+					<div id="header_wrap" th:if="${session.loginedUserDto == null}">
 					<a th:href="@{/user/user_login_form}"><span class="material-symbols-outlined" style="color:#dadada">account_circle</span></a>&nbsp;&nbsp;
+					</div>
+					<div id="header_wrap" th:unless="${session.loginedUserDto == null}">
+					<a th:href="@{/user/user_modify_form}"><span class="material-symbols-outlined" style="color:#dadada">account_circle</span></a>&nbsp;&nbsp;
+					</div>
 				</div>
 			
 			</div>
