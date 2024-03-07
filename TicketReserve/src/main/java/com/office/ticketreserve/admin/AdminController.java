@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.office.ticketreserve.productpage.PerfomanceDto;
-import com.office.ticketreserve.user.UserDao;
 import com.office.ticketreserve.user.UserDto;
 import com.office.ticketreserve.user.UserService;
 
