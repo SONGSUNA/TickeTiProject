@@ -33,7 +33,7 @@ function findIdBtn() {
 	form.u_mail.value = u_mail;
 	
 	if(form.u_name.value == '') {
-		 alert('아이디를 입력해주세요.');
+		 alert('이름을 입력해주세요.');
     	 form.u_id.focus();
     	 
 	} else if(form.u_mail_pre.value == ''){

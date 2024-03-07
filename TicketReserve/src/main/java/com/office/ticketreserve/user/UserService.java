@@ -177,6 +177,12 @@ public class UserService {
 		return stringBuffer.toString();
 		
 	}
+	public void dofindId(UserDto userDto) {
+		log.info("[UserService] dofindId()");
+		
+		userDao.dofindIdFromDB(userDto.getU_name(),userDto.getU_mail());
+		
+	}
 	
 
 	

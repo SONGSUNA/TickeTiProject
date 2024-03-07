@@ -194,7 +194,17 @@ public class UserController {
 	private String uFindIdFrom() {
 		log.info("[UserController] uFindIdFrom()");
 		
-		return "user/user_find_password_form";
+		return "user/user_find_id_form";
+	}
+	
+	// 아이디 찾기 확인
+	@PostMapping("/doFindId")
+	private String doFindId(UserDto userDto){
+		
+		String nextPage = "user/user_find_id_ok";
+		
+		userService.dofindId(userDto);
+		return nextPage;
 	}
 	
 	//	비밀번호 찾기
