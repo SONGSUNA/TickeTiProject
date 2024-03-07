@@ -53,7 +53,7 @@
 			<h1>공연 등록</h1>
 			
 			<div class="perfomance_regist">
-				<form th:action="@{/admin/perfomance_regist_confirm}" name="perfomance_regist_form" method="post">
+				<form th:action="@{/admin/perfomance_regist_confirm}" name="perfomance_regist_form" method="post" enctype="multipart/form-data">
 					<input type="hidden" id="csrfToken" th:value="${_csrf.token}"/>
 					
 					<div class="scroll">
