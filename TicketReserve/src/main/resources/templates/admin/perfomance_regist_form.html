@@ -53,85 +53,90 @@
 			<h1>공연 등록</h1>
 			
 			<div class="perfomance_regist">
-				<form th:action="@{/admin/perfomance_regist_confirm}" name="perfomance_regist_form" method="get">
-					<p>ID</p>
-					<input type="text" name="p_id" placeholder="PF000000">
-					<input type="button" id="checkId" value="ID중복 검사"><span id="check_id_msg"></span>
-					<br>
-					<p>공연명</p>
-					<input type="text" name="p_name">
-					<br>
-					<p>공연 시작 날짜</p>
-					<input type="date" name="p_start_date">	
-					<br>
-					<p>공연 종료 날짜</p>
-					<input type="date" name="p_end_date">
-					<br>
-					<p>연령 등급</p>
-					<select name="p_grade">
-						<option value="none">--연령등급 선택--</option>
-						<option value="전체 관람가">전체 관람가</option>
-						<option value="12개월 이상">12개월 이상</option>
-						<option value="24개월 이상">24개월 이상</option>
-						<option value="36개월 이상">36개월 이상</option>
-						<option value="만 7세 이상">만 7세 이상</option>
-						<option value="만 12세 이상">만 12세 이상</option>
-						<option value="만 15세 이상">만 15세 이상</option>
-						<option value="만 19세 이상">만 19세 이상</option>
-					</select>
-					<br>
-					<p>공연 시설명</p>
-					<input type="text" name="p_theater">
-					<br>
-					<p>시설 주소</p>
-		            <div class="input_info">
-						 <input type="text" id="postcode" name="postcode" placeholder="우편번호">
-						 <input type="button" id="find_zip_code"onclick="execDaumPostcode()" value="우편번호 찾기"><br>
-						 <input type="text" id="address" name="address" placeholder="주소"><br>
-						 <input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소">
-					     <input type="text" id="extraAddress" name="extraAddress" placeholder="참고항목"><br>
-						 <input type="hidden" name="p_place">
+				<form th:action="@{/admin/perfomance_regist_confirm}" name="perfomance_regist_form" method="post">
+					<input type="hidden" id="csrfToken" th:value="${_csrf.token}"/>
+					
+					<div class="scroll">
+						<p>ID</p>
+						<input type="text" name="p_id" placeholder="PF000000">
+						<input type="button" id="checkId" value="ID중복 검사"><span id="check_id_msg"></span>
+						<br>
+						<p>공연명</p>
+						<input type="text" name="p_name">
+						<br>
+						<p>공연 시작 날짜</p>
+						<input type="date" name="p_start_date">	
+						<br>
+						<p>공연 종료 날짜</p>
+						<input type="date" name="p_end_date">
+						<br>
+						<p>연령 등급</p>
+						<select name="p_grade">
+							<option value="none">--연령등급 선택--</option>
+							<option value="전체 관람가">전체 관람가</option>
+							<option value="12개월 이상">12개월 이상</option>
+							<option value="24개월 이상">24개월 이상</option>
+							<option value="36개월 이상">36개월 이상</option>
+							<option value="만 7세 이상">만 7세 이상</option>
+							<option value="만 12세 이상">만 12세 이상</option>
+							<option value="만 15세 이상">만 15세 이상</option>
+							<option value="만 19세 이상">만 19세 이상</option>
+						</select>
+						<br>
+						<p>공연 시설명</p>
+						<input type="text" name="p_theater">
+						<br>
+						<p>시설 주소</p>
+			            <div class="input_info">
+							 <input type="text" id="postcode" name="postcode" placeholder="우편번호">
+							 <input type="button" id="find_zip_code"onclick="execDaumPostcode()" value="우편번호 찾기"><br>
+							 <input type="text" id="address" name="address" placeholder="주소"><br>
+							 <input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소">
+						     <input type="text" id="extraAddress" name="extraAddress" placeholder="참고항목"><br>
+							 <input type="hidden" name="p_place">
+						</div>
+						<p>썸네일 이미지</p>
+						<input type="file" id="thum_img" name="thum_img">
+						<img id="thumbPreview" src="#" alt="Thumbnail Preview" style="display: none;"/>
+						<br>
+						<p>카테고리</p>
+						<select name="p_category">
+							<option value="none">--장르 선택--</option>
+							<option value="대중음악">콘서트</option>
+							<option value="뮤지컬">뮤지컬</option>
+							<option value="연극">연극</option>
+							<option value="서양음악(클래식)">서양음악(클래식)</option>
+							<option value="한국음악(국악)">한국음악(국악)</option>
+						</select>
+						<br>
+						<p>좌석 수</p>
+						<input type="number" name="p_max_reserve">
+						<br>
+						<p>관람 시간</p>
+						<input type="text" name="p_running_time" placeholder="0시간 00분">
+						<br>
+						<p>출연진</p>
+						<input type="text" name="p_characters" placeholder="김ㅇㅇ, 박ㅇㅇ, 이ㅇㅇ">
+						<br>
+						<p>티켓 정보</p>
+						<input type="text" name="p_ticket" placeholder="ㅇ석 00,000원, ㅇ석 00,000원">
+						<br>
+						<p>유의사항</p>
+						<textarea name="p_detail_cautions" placeholder="유의사항이 있을시 입력"></textarea>
+						<br>
+						<p>상세페이지 이미지</p>
+						<input type="file" id="detail_img" name="detail_img">
+						<img id="detailImgPreview" src="#" alt="Detail Image Preview" style="display: none;"/>
+						<br>
+						<p>기획사 정보</p>
+						<textarea name="p_agency_info"></textarea>
+						<br>
+						<p>주최</p>
+						<textarea name="p_host"></textarea>
+						<br>
+						<p>상담</p>
+						<textarea name="p_inquiry"></textarea>
 					</div>
-					<p>썸네일 이미지</p>
-					<input type="file" name="p_thum">
-					<br>
-					<p>카테고리</p>
-					<select name="p_category">
-						<option value="none">--장르 선택--</option>
-						<option value="대중음악">콘서트</option>
-						<option value="뮤지컬">뮤지컬</option>
-						<option value="연극">연극</option>
-						<option value="서양음악(클래식)">서양음악(클래식)</option>
-						<option value="한국음악(국악)">한국음악(국악)</option>
-					</select>
-					<br>
-					<p>예약 가능 좌석 수</p>
-					<input type="number" name="p_max_reserve">
-					<br>
-					<p>관람 시간</p>
-					<input type="text" name="p_running_time" placeholder="0시간 00분">
-					<br>
-					<p>출연진</p>
-					<input type="text" name="p_characters" placeholder="김ㅇㅇ, 박ㅇㅇ, 이ㅇㅇ">
-					<br>
-					<p>티켓 정보</p>
-					<input type="text" name="p_ticket" placeholder="ㅇ석 00,000원, ㅇ석 00,000원">
-					<br>
-					<p>유의사항</p>
-					<textarea name="p_detail_cautions" placeholder="유의사항이 있을시 입력"></textarea>
-					<br>
-					<p>상세페이지 이미지</p>
-					<input type="file" name="p_detail_img">
-					<br>
-					<p>기획사 정보</p>
-					<textarea name="p_agency_info"></textarea>
-					<br>
-					<p>주최</p>
-					<textarea name="p_host"></textarea>
-					<br>
-					<p>상담</p>
-					<textarea name="p_inquiry"></textarea>
-					<br>
 					<input type="button" value="등록"	onclick="perfomanceRegist()">
 					<input type="reset"	 value="초기화">
 				</form>
