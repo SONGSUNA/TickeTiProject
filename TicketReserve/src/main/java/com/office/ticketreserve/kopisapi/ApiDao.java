@@ -35,6 +35,8 @@ public class ApiDao {
                     + "P_GRADE, "
                     + "P_THEATER, "
                     + "P_PLACE, "
+                    + "P_LATITUDE, "
+                    + "P_LOGNITUDE, "                    
                     + "P_THUM, "
                     + "P_CATEGORY, "
                     + "P_MAX_RESERVE, "
@@ -51,7 +53,7 @@ public class ApiDao {
                     + "P_REG_DATE, "
                     + "P_MOD_DATE) "
                     + "VALUES ("
-                    + "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, SYSTIMESTAMP, SYSTIMESTAMP"
+                    + "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, SYSTIMESTAMP, SYSTIMESTAMP"
                     + ")";
         int result = -1;
         
@@ -64,6 +66,8 @@ public class ApiDao {
             			dto.getP_grade(),
                         dto.getP_theater(),
                         dto.getP_place(),
+                        dto.getP_latitude(),
+                        dto.getP_lognitude(),                        
                         dto.getP_thum(),
                         dto.getP_category(),
                         dto.getP_max_reserve(),

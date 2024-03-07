@@ -8,7 +8,7 @@ import lombok.Data;
 @Repository
 public class TicketDto {
 	private int t_no;
-	private int p_id;
+	private String p_id;
 	private String t_seattype_1;
 	private String t_seattype_2;
 	private String t_seattype_3;

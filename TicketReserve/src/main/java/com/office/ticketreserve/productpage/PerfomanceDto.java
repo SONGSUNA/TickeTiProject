@@ -14,6 +14,8 @@ public class PerfomanceDto {
     private String  p_grade;
     private String  p_theater;
     private String  p_place;
+    private float	p_latitude;
+    private float	p_lognitude;	
     private String  p_thum;
     private String  p_category;
     private int 	p_max_reserve;
