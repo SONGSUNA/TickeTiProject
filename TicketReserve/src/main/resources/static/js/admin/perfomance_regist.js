@@ -23,7 +23,7 @@ $(document).ready(function () {
             beforeSend: function(xhr) {
                 xhr.setRequestHeader("X-CSRF-TOKEN", $('#csrfToken').val());
             },
-            data: {"p_id": p_id},
+            data: {"p_id_check": p_id},
             success: function (data) {
                 if (data == false) {
                     isIdChecked = true;  // 아이디 중복 검사 완료
