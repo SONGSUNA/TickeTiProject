@@ -138,4 +138,17 @@
 	
 	</delete>
 	
+	<select id="selectPerfomanceById" 
+			parameterType="String"
+			resultType="com.office.ticketreserve.productpage.PerfomanceDto">
+			
+	    SELECT 
+	        * 
+	    FROM 
+	        TBL_PERFOMANCE 
+	    WHERE
+	    	P_ID = #{id}
+	        
+	</select>
+	
 </mapper>

@@ -30,7 +30,7 @@ public class CategoryController {
 		
 		List<PerfomanceDto> categoryDtos = categoryService.goConcert();
 		model.addAttribute("categoryDtos", categoryDtos);
-		log.info("====================>"+categoryDtos.get(0).getPStartDate());
+		
 		
 		return nextPage;
 	

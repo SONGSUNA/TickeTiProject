@@ -1,5 +1,6 @@
 package com.office.ticketreserve.kopisapi;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class ApiDao {
 	PerfomanceDto perfomanceDto;
 
     public int insertPerfomance(PerfomanceDto dto) {
-        log.info("insertPerfomance() : " + dto.getPId());
+        log.info("insertPerfomance() : " + dto.getP_id());
         String sql = "INSERT INTO TBL_PERFOMANCE ("
                     + "P_ID, "
                     + "P_NAME, "
@@ -34,6 +35,8 @@ public class ApiDao {
                     + "P_GRADE, "
                     + "P_THEATER, "
                     + "P_PLACE, "
+                    + "P_LATITUDE, "
+                    + "P_LOGNITUDE, "                    
                     + "P_THUM, "
                     + "P_CATEGORY, "
                     + "P_MAX_RESERVE, "
@@ -50,32 +53,34 @@ public class ApiDao {
                     + "P_REG_DATE, "
                     + "P_MOD_DATE) "
                     + "VALUES ("
-                    + "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, SYSTIMESTAMP, SYSTIMESTAMP"
+                    + "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, SYSTIMESTAMP, SYSTIMESTAMP"
                     + ")";
         int result = -1;
         
         try {
             result = jdbcTemplate.update(sql, 
-            			dto.getPId(), 
-            			dto.getPName(), 
-            			dto.getPStartDate(), 
-            			dto.getPEndDate(),
-            			dto.getPGrade(),
-                        dto.getPTheater(),
-                        dto.getPPlace(),
-                        dto.getPThum(),
-                        dto.getPCategory(),
-                        dto.getPMaxReserve(),
-                        dto.getPNowReserve(),
-                        dto.getPRunningTime(),
-                        dto.getPCharacters(),
-                        dto.getPTicket(),
-                        dto.getPLike(),
-                        dto.getPDetailCautions(),
-                        dto.getPDetailImg(),
-                        dto.getPAgencyInfo(),
-                        dto.getPHost(),
-                        dto.getPInquiry());
+            			dto.getP_id(), 
+            			dto.getP_name(), 
+            			dto.getP_start_date(), 
+            			dto.getP_end_date(),
+            			dto.getP_grade(),
+                        dto.getP_theater(),
+                        dto.getP_place(),
+                        dto.getP_latitude(),
+                        dto.getP_lognitude(),                        
+                        dto.getP_thum(),
+                        dto.getP_category(),
+                        dto.getP_max_reserve(),
+                        dto.getP_now_reserve(),
+                        dto.getP_running_time(),
+                        dto.getP_characters(),
+                        dto.getP_ticket(),
+                        dto.getP_like(),
+                        dto.getP_detail_cautions(),
+                        dto.getP_detail_img(),
+                        dto.getP_agency_info(),
+                        dto.getP_host(),
+                        dto.getP_inquiry());
         } 
         catch (Exception e) {
             e.printStackTrace();
@@ -107,11 +112,6 @@ public class ApiDao {
         
         return result;
 		
-	}
-	
-
-	public void insertCurrentReserve(List<List<String>> currentReserve) {
-		log.info("insertCurrentReserve()");
 	}
 
 	public boolean checkPerfomance(List<String> list) {
@@ -155,5 +155,20 @@ public class ApiDao {
 	    return perfomanceDto;
 	}
 
-
+	public List<PerfomanceDto> selectPerfomanceAll() {
+		log.info("selectPerfomanceAll()");
+		String sql = "SELECT * FROM TBL_PERFOMANCE";
+        
+	    int result = -1;
+	    
+	    List<PerfomanceDto> perfomanceDtos = new ArrayList<>();
+	    
+	    try {
+	    	 perfomanceDtos = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(PerfomanceDto.class));
+	    } 
+	    catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return perfomanceDtos;
+	}
 }

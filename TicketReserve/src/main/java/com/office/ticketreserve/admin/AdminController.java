@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.office.ticketreserve.productpage.PerfomanceDto;
 import com.office.ticketreserve.user.UserDao;
 import com.office.ticketreserve.user.UserDto;
 import com.office.ticketreserve.user.UserService;
@@ -165,11 +167,25 @@ public class AdminController {
 	}
 	
 	@ResponseBody
-	@GetMapping("/isPfId")
+	@PostMapping("/isPfId")
 	public boolean isPfId(@RequestParam("p_id_check") String id) {
 	    log.info("[AdminController] checkId()");
 	    
 	    return adminService.isPfId(id);
+	}
+	
+	@PostMapping("/perfomance_regist_confirm")
+	public String perfomance_regist_confirm(PerfomanceDto perfomanceDto,
+											@RequestParam("thum_img") MultipartFile thumbImg,
+											@RequestParam("detail_img") MultipartFile detailImg) {
+		log.info("[AdminController] perfomance_regist_confirm()");
+		
+		String nextPage = "/admin/perfomance_regist_success";
+		
+		System.out.println("file: "+ thumbImg);
+		System.out.println("file: "+ detailImg);
+		
+		return nextPage;
 	}
 	
 	@GetMapping("/logout")
