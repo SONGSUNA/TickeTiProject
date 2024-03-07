@@ -1,6 +1,7 @@
 package com.office.ticketreserve.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -199,4 +200,21 @@ public class UserController {
 
 		return nextPage;
 	}
+	
+	// 비밀번호찾기 확인
+	@PostMapping("/user_password_find")
+	private String uFindPwConfirm(UserDto userDto) {
+		log.info("[UserController] uFindPwConfirm()");
+		
+		String nextPage = "user/user_find_password_ok";
+		
+		int result = userService.uFindPwConfirm(userDto);
+		
+		if(result > 0) {
+			return nextPage;
+		}
+			return "/user/user_find_password_ng";
+		
+	}
+	
 }
