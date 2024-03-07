@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.office.ticketreserve.kopisapi.KopisApi;
+import com.office.ticketreserve.kopisapi.TicketDB;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -17,6 +18,8 @@ import lombok.extern.log4j.Log4j2;
 public class HomeController  {
 	@Autowired
 	KopisApi api;
+	@Autowired
+	TicketDB tDB;
 	
 	@GetMapping({"/", ""})
 	public String home() throws JAXBException {
@@ -24,6 +27,7 @@ public class HomeController  {
 		
 		String nextPage = "/home";
 		//api.getMusicalInfo();
+		tDB.TicketStringFix();
 		return nextPage;
 	}
 	

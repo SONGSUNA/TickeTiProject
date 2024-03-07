@@ -82,13 +82,13 @@ public class KopisApi {
     		
     		perfomanceDto = apiDao.selectPerfomance(CurrentReserve.get(i).get(2));
     		
-    		currentReserveDto.setP_name(perfomanceDto.getPName());
+    		currentReserveDto.setP_name(perfomanceDto.getP_name());
     		currentReserveDto.setC_r_rank(Integer.parseInt(CurrentReserve.get(i).get(0)));
     		currentReserveDto.setC_r_period(CurrentReserve.get(i).get(1));
-    		currentReserveDto.setP_id(perfomanceDto.getPId());
-    		currentReserveDto.setP_thum(perfomanceDto.getPThum());
-    		currentReserveDto.setP_theater(perfomanceDto.getPTheater());
-    		currentReserveDto.setP_category(perfomanceDto.getPCategory());
+    		currentReserveDto.setP_id(perfomanceDto.getP_id());
+    		currentReserveDto.setP_thum(perfomanceDto.getP_thum());
+    		currentReserveDto.setP_theater(perfomanceDto.getP_theater());
+    		currentReserveDto.setP_category(perfomanceDto.getP_category());
     		
     		int resutl = apiDao.insertCurrentReserve(currentReserveDto);
     		
@@ -152,29 +152,29 @@ public class KopisApi {
     		
         	log.info("toString" + detailList.get(i).getStyurls().toString());
     		    		
-    		
-    		perfomanceDto.setPId(detailList.get(i).getMt20id());
-    		perfomanceDto.setPName(detailList.get(i).getPrfnm());
-    		perfomanceDto.setPStartDate(detailList.get(i).getPrfpdfrom());
-    		perfomanceDto.setPEndDate(detailList.get(i).getPrfpdto());
-    		perfomanceDto.setPGrade(detailList.get(i).getPrfage());
-    		perfomanceDto.setPTheater(detailList.get(i).getFcltynm());
-    		perfomanceDto.setPPlace(detailList.get(i).getArea());
-    		perfomanceDto.setPThum(detailList.get(i).getPoster());
-    		perfomanceDto.setPCategory(detailList.get(i).getGenrenm());
-    		perfomanceDto.setPMaxReserve(seatscale);
-    		perfomanceDto.setPNowReserve(0);
-    		perfomanceDto.setPRunningTime(detailList.get(i).getPrfruntime());
-    		perfomanceDto.setPCharacters(detailList.get(i).getPrfcast());
-    		perfomanceDto.setPTicket(detailList.get(i).getPcseguidance());
-    		perfomanceDto.setPLike(0);
-    		perfomanceDto.setPDetailCautions(detailList.get(i).getDtguidance());
+        	
+    		perfomanceDto.setP_id(detailList.get(i).getMt20id());
+    		perfomanceDto.setP_name(detailList.get(i).getPrfnm());
+    		perfomanceDto.setP_start_date(detailList.get(i).getPrfpdfrom());
+    		perfomanceDto.setP_end_date(detailList.get(i).getPrfpdto());
+    		perfomanceDto.setP_grade(detailList.get(i).getPrfage());
+    		perfomanceDto.setP_theater(detailList.get(i).getFcltynm());
+    		perfomanceDto.setP_place(detailList.get(i).getArea());
+    		perfomanceDto.setP_thum(detailList.get(i).getPoster());
+    		perfomanceDto.setP_category(detailList.get(i).getGenrenm());
+    		perfomanceDto.setP_max_reserve(seatscale);
+    		perfomanceDto.setP_now_reserve(0);
+    		perfomanceDto.setP_running_time(detailList.get(i).getPrfruntime());
+    		perfomanceDto.setP_characters(detailList.get(i).getPrfcast());
+    		perfomanceDto.setP_ticket(detailList.get(i).getPcseguidance());
+    		perfomanceDto.setP_like(0);
+    		perfomanceDto.setP_detail_cautions(detailList.get(i).getDtguidance());
     		if(detailList.get(i).getStyurls().toString().equals(""))
     			continue;
-			perfomanceDto.setPDetailImg(detailList.get(i).getStyurls().toString());
-    		perfomanceDto.setPAgencyInfo(detailList.get(i).getEntrpsnmA());
-    		perfomanceDto.setPHost(detailList.get(i).getEntrpsnmH());
-    		perfomanceDto.setPInquiry(telno);    			
+			perfomanceDto.setP_detail_img(detailList.get(i).getStyurls().toString());
+    		perfomanceDto.setP_agency_info(detailList.get(i).getEntrpsnmA());
+    		perfomanceDto.setP_host(detailList.get(i).getEntrpsnmH());
+    		perfomanceDto.setP_inquiry(telno);    			
     		
     		int result = apiDao.insertPerfomance(perfomanceDto);
     		
