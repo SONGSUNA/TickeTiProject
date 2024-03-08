@@ -112,3 +112,9 @@ form input[name="u_mail_suf"] {
 	width: 140px;
 }
 
+/*  비밀번호 찾기 결과 페이지 */
+.find_pw_rs_msg {
+    text-align: center;
+    margin: 0 auto;
+}
+

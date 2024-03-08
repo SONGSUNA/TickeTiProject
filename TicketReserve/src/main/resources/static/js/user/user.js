@@ -89,13 +89,13 @@ $(document).ready(function () {
             success: function (data) {
                 if (!data) {
 					isIdChecked = true; 
-                    alert('중복 안된 ID');
+                    alert('사용 가능한 아이디입니다.');
                     $('#check_id_msg').text('사용 가능한 아이디입니다.');
                     $('#check_id_msg').css('color', 'green')
                     				  .css('font-size','0.6em');
                 } else {
 					 isIdChecked = false;
-	               alert('중복 된 ID');
+	               alert('이미 사용중인 아이디입니다.');
                     $('#check_id_msg').text('이미 사용 중인 아이디입니다.');
                     $('#check_id_msg').css('color', 'red')
                     				  .css('font-size','0.6em');
