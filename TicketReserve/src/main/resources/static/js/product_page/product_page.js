@@ -16,30 +16,16 @@ document.addEventListener('DOMContentLoaded', function ddd() {
 
 var modal = document.querySelector('.review_modal_wrap');
 var btn = document.querySelector('.open_review_modal');
+
+// 버튼을 클릭하면 모달 창을 열도록 설정
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// 사용자가 모달 창 외부를 클릭하면 모달 창을 닫도록 설정
+
 var span = document.getElementsByClassName("close")[0];
 
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-btn.onclick = function() {
-  isLoggedIn(function(isLoggedIn) {
-    if (isLoggedIn) {
-      modal.style.display = "block";
-    } else {
-      alert('로그인 후 이용 가능합니다.');
-    }
-  });
-}
-
-function isLoggedIn(callback) {
-  // 서버에 로그인 상태를 확인하는 요청을 보냅니다.
-  fetch('/checkSession')
-    .then(function(response) {
-		console.log(response);
-      return response.text();
-    })
-    .then(function(text) {
-      callback(text == "로그인");
-    });
-}
+	span.onclick = function() {
+	  modal.style.display = "none";
+	}

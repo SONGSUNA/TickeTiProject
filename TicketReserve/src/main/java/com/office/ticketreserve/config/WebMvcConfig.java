@@ -11,6 +11,7 @@ import com.office.ticketreserve.interceptor.UserLoginInterceptor;
 
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
+
 	
 	@Bean
 	public RestTemplate restTemplate() {
