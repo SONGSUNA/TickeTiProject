@@ -235,4 +235,20 @@ public class UserController {
 		
 	}
 	
+	// 상단 우측 사람 이미지 클릭 시
+	@GetMapping("/myPage")
+	private String myPage(HttpSession session) {
+		log.info("[UserController] myPage()");
+		
+		String nextPage = "user/user_modify_form";
+		
+		UserDto loginedUser = (UserDto) session.getAttribute("loginedUserDto");
+		
+		if(loginedUser == null) {
+			return "/user/user_login_form";
+		} 
+		
+		return nextPage;
+	}
+	
 }
