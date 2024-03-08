@@ -1,11 +1,6 @@
 package com.office.ticketreserve.user;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.RowMapper;
 
 @Mapper
 public interface IUserDaoForMybatis {
