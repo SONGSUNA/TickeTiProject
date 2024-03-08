@@ -3,6 +3,8 @@ package com.office.ticketreserve.review;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.office.ticketreserve.productpage.PerfomanceDto;
+
 import lombok.extern.log4j.Log4j2;
 
 @Service
@@ -19,7 +21,19 @@ public class ReviewService {
 		
 		return reviewDao.insertReview(rv_txt,rv_score);
 	}
-	
+
+	public ReviewDto productPage(String p_id) {
+		
+		return null;
+	}
+
+	public String getThumUrl(String p_id) {
+		
+		
+		return null;
+	}
+
+
 
 	
 }

@@ -11,7 +11,7 @@ public class ProductDao {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 	
-	public PerfomanceDto selectProduct(String pId) {
+	public PerfomanceDto selectProduct(String p_id) {
 		
 		String sql ="SELECT * FROM TBL_PERFOMANCE WHERE P_ID = ?";
 		
@@ -19,7 +19,7 @@ public class ProductDao {
 		PerfomanceDto productDto = new PerfomanceDto();
 		try {
 			RowMapper<PerfomanceDto> rowMapper = BeanPropertyRowMapper.newInstance(PerfomanceDto.class);
-			productDto = jdbcTemplate.queryForObject(sql, rowMapper,pId);
+			productDto = jdbcTemplate.queryForObject(sql, rowMapper,p_id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

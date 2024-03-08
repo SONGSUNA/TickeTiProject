@@ -1,0 +1,21 @@
+<script th:inline="javascript">
+/*<![CDATA[*/
+var productDto = /*[[${productDto}]]*/ 'default';
+
+// "StyUrl{url='["와 "]'}" 부분을 제거하고, ", "를 기준으로 URL을 나눕니다.
+var urls = productDto.p_detail_img.substring(13, productDto.p_detail_img.length -2).split(', ');
+
+// 결과에서 대괄호와 작은따옴표를 제거합니다.
+for (var i = 0; i < urls.length; i++) {
+    urls[i] = urls[i].replace('[', '').replace(']', '').replace('\'', '');
+}
+
+// 이미지 태그를 생성하고, src를 설정한 후, 문서에 추가합니다.
+var parentElement = document.getElementById('imageContainer');
+for (var i = 0; i < urls.length; i++) {
+    var img = document.createElement('img');
+    img.src = urls[i];
+    parentElement.appendChild(img);
+}
+/*]]>*/
+</script>
