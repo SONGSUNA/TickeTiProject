@@ -8,12 +8,13 @@
 <script type="text/javascript" th:src="@{/js/review/review.js}"></script>
 </head>
 <body>
-	<div class="review_wrap" >
+	
+	<div class="review_wrap" th:fragment="review">
 	<div>
 		<div class="review_title">
 			<!-- 공연이미지 동글뱅이 조그맣게 -->
-			<img src="http://tkfile.yes24.com/upload2/PerfBlog/202402/20240214/20240214-48752.jpg">
-			<h2>아마자라시 아시아투어 2024 ‘Eternal City’ in Seoul</h2>
+			<img th:src="*{p_thum}">
+			<h3 th:text=*{p_name}></h3>
 		</div>
 	</div>
 </div>

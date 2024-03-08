@@ -2,32 +2,49 @@ body{
 	margin: 0;
 	padding: 0;
 	background-color:#fff;
+	 font-family: 'LINESeedKR-Rg';
 }
 img {
     min-width: 100px;
     max-width: 100px;
     min-height: 120px;
     max-height: 120px;
-    margin: 30px;
+    margin: 30px 10px 30px ;
 }
-h2 {
-	line-height:120px;
-}
+
 .review_title {
     display: flex;
     height: 170px;
     
     background-color:#dadada;
     margin-bottom: 20px;
+     align-items : center;
+}
+.review_title div{
+	background-color:#dadada;
+}
+.review_title .close{
+	align-self: flex-start;
 }
 
+.review_title h3 {
+	vertical-align:middle;
+	font-size: 1.8em;
+	width:600px;
+	
+}
+.review_wrap p {
+	text-align: left;
+	margin:0;
+	
+}
 ul {
     list-style: none;
 }
 textarea {
-	margin-left:30px;
-	max-width: 650px;
-	min-width: 650px;
+	
+	max-width: 700px;
+	min-width: 700px;
 	max-height: 150px;
 	min-height: 150px;
 }
@@ -44,11 +61,11 @@ textarea {
 
 .current-length_wrap {
 	float: right;
-	margin-right:15px;
+	margin-right:-20px;
 }
 
 
-.rate { display: inline-block;  border: 0;margin-right: 15px; display: flex; margin-left: 20px;
+.rate { display: inline-block;  border: 0;margin-right: 15px; display: flex; margin-left: 0px; margin-bottom:15px;
     flex-direction: row-reverse;
     justify-content: flex-end;
     align-items: center;}
@@ -83,6 +100,3 @@ textarea {
     font-style: normal;
 }
           
-body {
-    font-family: 'LINESeedKR-Rg';
-}

@@ -9,7 +9,7 @@
     // 개봉 예정작만 필터링합니다.
     var upcomingConcerts = allConcerts.filter(function(concert) {
         // concert.pStartDate는 'yyyy-mm-dd' 형식이어야 합니다.
-        var concertDate = new Date(concert.pstartDate);
+        var concertDate = new Date(concert.p_start_date);
         return concertDate >= today;
     });
 	console.log(allConcerts);
@@ -19,7 +19,7 @@
     // 화면에 개봉 예정작을 표시합니다.
     $('#upcoming').empty();
 	upcomingConcerts.forEach(function(concert) {
-    $('#upcoming').append('<li><div class="item"><a href="/product/' + concert.pid + '"><img src="' + concert.pthum + '"></a></div><div class="item_title">' + concert.pname + '</div></li>');
+    $('#upcoming').append('<li><div class="item"><a href="/product/' + concert.p_id + '"><img src="' + concert.p_thum + '"></a></div><div class="item_title">' + concert.p_name + '</div></li>');
 });
     /*]]>*/
     

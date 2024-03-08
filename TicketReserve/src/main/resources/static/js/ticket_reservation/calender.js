@@ -1,4 +1,7 @@
 window.onload = function() {
+	
+	
+	
     var date = new Date(),
         month = date.getMonth(),
         year = date.getFullYear(),
