@@ -1,7 +1,6 @@
 package com.office.ticketreserve.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -229,10 +228,10 @@ public class UserController {
 		
 		int result = userService.uFindPwConfirm(userDto);
 		
-		if(result > 0) {
-			return nextPage;
-		}
+		if(result <= 0) {
 			return "/user/user_find_password_ng";
+		}
+		return nextPage;
 		
 	}
 	

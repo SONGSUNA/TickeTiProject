@@ -9,9 +9,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.office.ticketreserve.config.TicketDto;
 import com.office.ticketreserve.productpage.CurrentReserveDto;
 import com.office.ticketreserve.productpage.PerfomanceDto;
-import com.office.ticketreserve.user.UserDto;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -169,8 +169,59 @@ public class ApiDao {
 	    catch (Exception e) {
 	        e.printStackTrace();
 	    }
-	    if(result < 1)
-	    	log.info("FAIL()");
 	    return perfomanceDtos;
+	}
+
+	public int insertTicket(TicketDto ticketDto) {
+		 log.info("insertTicket()");
+	        
+		 String sql = "INSERT INTO TBL_TICKET ("
+			 		+ "T_NO, "
+			 		+ "	P_ID ,"
+			 		+ "	T_SEATTYPE_1, "
+			 		+ "	T_SEATTYPE_2, "
+			 		+ "	T_SEATTYPE_3, "
+			 		+ "	T_SEATTYPE_4, "
+			 		+ "	T_SEATTYPE_5, "
+			 		+ "	T_SEATTYPE_6, "
+			 		+ "	T_PRICE_1, "
+			 		+ "	T_PRICE_2, "
+			 		+ "	T_PRICE_3, "
+			 		+ "	T_PRICE_4, "
+			 		+ "	T_PRICE_5, "
+			 		+ "	T_PRICE_6, "
+			 		+ "	T_P_DATE, "
+			 		+ "	T_REG_DATE, "
+			 		+ "	T_MOD_DATE)"
+			 		+ "VALUES ("
+			 		+ "TICKET_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP"
+			 		+ ")";
+	  
+	        int result = -1;
+	        
+	        try {
+	            result = jdbcTemplate.update(sql, 
+	            		ticketDto.getP_id(),
+	            		ticketDto.getT_seattype_1(),
+	            		ticketDto.getT_seattype_2(),
+	            		ticketDto.getT_seattype_3(),
+	            		ticketDto.getT_seattype_4(),
+	            		ticketDto.getT_seattype_5(),
+	            		ticketDto.getT_seattype_6(),
+	            		ticketDto.getT_price_1(),
+	            		ticketDto.getT_price_2(),
+	            		ticketDto.getT_price_3(),
+	            		ticketDto.getT_price_4(),
+	            		ticketDto.getT_price_5(),
+	            		ticketDto.getT_price_6(),
+	            		ticketDto.getT_p_date()
+	            		);
+	            
+	        } 
+	        catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	        
+	        return result;
 	}
 }

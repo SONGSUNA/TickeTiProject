@@ -27,12 +27,11 @@ body {
 
 section {
 	width: 100%;
-	padding: 30px 0;
 }
 
 section #section_wrap {
-	width: 800px;
-	height: 500px;
+	width: 860px;
+	height: 820px;
 	margin: 0 auto;
 }
 
@@ -40,7 +39,8 @@ section #section_wrap .word {
 	font-size: 2.0em;
 	font-weight: bold;
 	text-align: center;
-	padding-bottom: 20px;
+	padding-bottom: 40px;
+	padding-top: 40px;
 	color: #2D9596;
 
 }
@@ -68,6 +68,7 @@ input[type="reset"] {
 	width: 150px;
 	height: 40px;
 	margin-top: 20px;
+	margin-right: 20px;
 }
 
 /* 양식 내 모든 버튼 호버시 */
@@ -83,10 +84,11 @@ input[type="reset"]:hover,
 b {
 	font-size: 1.0em;
 	color: #265073;
+	margin-top: 5px;
 }
 
 form>div {
-	margin-top: 10px;
+	margin-top: 15px;
 }
 
 form input[type="text"],
@@ -102,9 +104,9 @@ form input[type="number"]:focus {
 	outline: none;
 }
 
-.all_user_form_wrap {
+/* .all_user_form_wrap {
 	margin-bottom: 120px;
-}
+} */
 
 form input[name="u_mail_pre"],
 form input[name="u_mail_suf"] {
@@ -114,7 +116,26 @@ form input[name="u_mail_suf"] {
 
 /*  비밀번호 찾기 결과 페이지 */
 .find_pw_rs_msg {
-    text-align: center;
-    margin: 0 auto;
+	text-align: center;
+	margin: 0 auto;
 }
 
+/* header */
+#header_wrap {
+	text-align: right;
+	margin-top: 20px;
+}
+
+#header_wrap a {
+	font-weight: bold;
+	font-size: 18px;
+	margin-right: 30px;
+	color: #2D9596;
+	margin-top: 20px;
+
+}
+
+form[name="modify_form"] {
+	width: 800px;
+	height: 720px;
+}
