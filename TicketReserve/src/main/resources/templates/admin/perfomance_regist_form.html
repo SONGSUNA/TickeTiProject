@@ -17,37 +17,7 @@
 <body>
 
 	<div class="container">
-		<div class="sidebar">
-			 <ul>
-				 <li>
-				 	  <a th:href="@{/admin}">Admin Home</a>
-				 </li>
-				 <li>
-				 	  <a th:href="@{/admin/user_management}">유저 관리</a>
-				 </li>
-				 <li th:if="${session.loginedAdminDto.a_id == 'super'}">
-				 	  <a th:href="@{/admin/admin_regist}">어드민 등록</a>
-				 </li>
-				 <li th:if="${session.loginedAdminDto.a_id == 'super'}">
-				 	  <a th:href="@{/admin/admin_management}">어드민 관리</a>
-				 </li>
-				 <li class="active">
-				 	  <a th:href="@{/admin/perfomance_regist}">공연 등록</a>
-				 </li>
-				 <li>
-				 	  <a th:href="@{/admin/performance_modify}">공연 정보 수정</a>
-				 </li>
-				 <li>
-				 	  <a th:href="@{/admin/review_management}">공연 리뷰 관리</a>
-				 </li>
-				 <li>
-				 	  <a th:href="@{/admin/ticket_state}">티켓 예매 현황</a>
-				 </li>
-				 <li class="logout">
-				 	  <a th:href="@{/admin/logout}">로그아웃</a>
-				 </li>
-			</ul>
-		</div>
+		<div th:replace="~{/admin/side_bar.html::sidebar}"></div>
 		
 		<div class="main">
 			<h1>공연 등록</h1>
@@ -95,6 +65,12 @@
 						     <input type="text" id="extraAddress" name="extraAddress" placeholder="참고항목"><br>
 							 <input type="hidden" name="p_place">
 						</div>
+						<p>주소 위도</p>
+						<input type="number" name="p_latitude">
+						<br>
+						<p>주소 경도</p>
+						<input type="number" name="p_lognitude">
+						<br>
 						<p>썸네일 이미지</p>
 						<input type="file" id="thum_img" name="thum_img">
 						<img id="thumbPreview" src="#" alt="Thumbnail Preview" style="display: none;"/>
@@ -118,12 +94,6 @@
 						<p>출연진</p>
 						<input type="text" name="p_characters" placeholder="김ㅇㅇ, 박ㅇㅇ, 이ㅇㅇ">
 						<br>
-						<p>티켓 정보</p>
-						<input type="text" name="p_ticket" placeholder="ㅇ석 00,000원, ㅇ석 00,000원">
-						<br>
-						<p>유의사항</p>
-						<textarea name="p_detail_cautions" placeholder="유의사항이 있을시 입력"></textarea>
-						<br>
 						<p>상세페이지 이미지</p>
 						<input type="file" id="detail_img" name="detail_img">
 						<img id="detailImgPreview" src="#" alt="Detail Image Preview" style="display: none;"/>
@@ -134,8 +104,12 @@
 						<p>주최</p>
 						<textarea name="p_host"></textarea>
 						<br>
-						<p>상담</p>
+						<p>상담 번호</p>
 						<textarea name="p_inquiry"></textarea>
+						<br>
+						<p>유의사항</p>
+						<textarea name="p_detail_cautions" placeholder="유의사항이 있을시 입력"></textarea>
+						<br>
 					</div>
 					<input type="button" value="등록"	onclick="perfomanceRegist()">
 					<input type="reset"	 value="초기화">

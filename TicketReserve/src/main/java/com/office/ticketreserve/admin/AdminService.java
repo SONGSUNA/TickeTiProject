@@ -115,6 +115,15 @@ public class AdminService {
 		return userDao.isUser(id);
 	}
 
+	public void perfomanceRegistConfirm(PerfomanceDto perfomanceDto) {
+		log.info("[AdminService] isPfId()");
+		
+		if (perfomanceDto.getP_detail_cautions() != null)
+			adminDao.insertPerfomance(perfomanceDto);
+		else
+			adminDao.insertPerfomanceNotDetailCautions(perfomanceDto);
+	}
+
 }
 
 

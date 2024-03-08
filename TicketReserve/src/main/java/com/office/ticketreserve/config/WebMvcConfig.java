@@ -43,5 +43,5 @@ public class WebMvcConfig implements WebMvcConfigurer {
 			    .excludePathPatterns("/user/user_find_id_ok")
 			    .excludePathPatterns("/user/user_find_id_ng");
 	}
-	//이상함
+	
 }
