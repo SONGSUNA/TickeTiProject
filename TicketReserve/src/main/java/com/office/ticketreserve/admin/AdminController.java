@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.office.ticketreserve.productpage.PerfomanceDto;
 import com.office.ticketreserve.user.UserDto;
 import com.office.ticketreserve.user.UserService;
+import com.office.ticketreserve.util.FileUploadService;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.log4j.Log4j2;
@@ -29,9 +30,12 @@ public class AdminController {
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	FileUploadService fileUploadService;
 
 	@GetMapping({"/", ""})
-	public String admin_home() {
+	public String admin_home(Model model) {
 		log.info("[AdminController] admin_home()");
 		
 		String nextPage = "/admin/home";
@@ -181,8 +185,8 @@ public class AdminController {
 		
 		String nextPage = "/admin/perfomance_regist_success";
 		
-		System.out.println("file: "+ thumbImg);
-		System.out.println("file: "+ detailImg);
+		String pThumPath = fileUploadService.pThumbImgUpload(thumbImg);
+		String pDetailPath = fileUploadService.pDtailImgUpload(detailImg);
 		
 		return nextPage;
 	}
