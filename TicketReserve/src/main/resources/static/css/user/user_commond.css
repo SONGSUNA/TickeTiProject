@@ -68,6 +68,7 @@ input[type="reset"] {
 	width: 150px;
 	height: 40px;
 	margin-top: 20px;
+	margin-right: 20px;
 }
 
 /* 양식 내 모든 버튼 호버시 */

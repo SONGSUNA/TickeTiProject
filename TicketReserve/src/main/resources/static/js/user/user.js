@@ -14,6 +14,7 @@ function createAccountForm() {
    form.u_mail.value = u_mail;
    form.u_sc_num.value = u_sc_num;
    form.u_address.value = u_address;
+   flag = false;
    
    if (form.u_id.value === '') {
       alert('아이디를 입력해주세요.');
