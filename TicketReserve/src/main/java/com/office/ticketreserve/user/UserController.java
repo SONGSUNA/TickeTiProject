@@ -188,15 +188,51 @@ public class UserController {
       
 		return nextPage;
 	}
+	//아이디 찾기
+	@GetMapping("/user_find_id_form")
+	private String uFindIdFrom() {
+		log.info("[UserController] uFindIdFrom()");
+		
+		return "user/user_find_id_form";
+	}
 	
+	// 아이디 찾기 확인
+	@PostMapping("/doFindId")
+	private String doFindId(UserDto userDto, Model model){
+		
+		String userId = userService.dofindId(userDto,model);
+		if(userId != null) {
+			return "user/user_find_id_ok";
+		} else {
+			return "user/user_find_id_ng";
+	        
+		}
+	}
 	
 	//	비밀번호 찾기
 	@GetMapping("/user_find_password_form")
 	private String	uFindPwform() {
 		log.info("[UserController] uFindPwform()");
 		
-		String nextPage = "user/user_find_password_form";
+		return "user/user_find_password_form";
 
-		return nextPage;
+		 
 	}
+	
+	// 비밀번호찾기 확인
+	@PostMapping("/user_password_find")
+	private String uFindPwConfirm(UserDto userDto) {
+		log.info("[UserController] uFindPwConfirm()");
+		
+		String nextPage = "user/user_find_password_ok";
+		
+		int result = userService.uFindPwConfirm(userDto);
+		
+		if(result <= 0) {
+			return "/user/user_find_password_ng";
+		}
+		return nextPage;
+		
+	}
+	
 }

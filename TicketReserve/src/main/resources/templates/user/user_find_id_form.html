@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript" th:src="@{/js/user/user_login.js}"></script>
+<script type="text/javascript" th:src="@{/js/user/do_find_info.js}"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <link rel="stylesheet" th:href="@{/css/user/user_login_form.css}">
@@ -19,30 +19,34 @@
 	<section>
 		<div id="section_wrap">
 			<div class="word" id="login_wrap">
-				<span>로그인</span>
+				<span>아이디 찾기</span>
 			</div>
-			<div class="login_form">
-				<form th:action="@{/user/user_login_confirm}" name="login_form" method="post">
+			<div class="find_password_form">
+				<form th:action="@{/user/doFindId}" name="user_password_find" method="post">
+					
 					<div class="input_info">
-	          		 	 <label><b>아이디  &emsp;&emsp;&emsp;</b><br/>
-	           			 <input type="text" name="u_id"></label> 
-           			</div>
-				
+				         <label><b>이름  &emsp;&emsp;&emsp;</b><br>
+				         <input type="text" name="u_name"></label> <br>
+		      	 	 </div>
+		      	 	 
 					<div class="input_info">
-		           		 <label><b>비밀번호  &emsp;&emsp;&emsp;</b> <br/>
-		           		 <input type="password" name="u_pw"></label><br>
+		           		 <label><b>이메일  &emsp;&emsp;&emsp;</b><br>
+				         <input type="text" name="u_mail_pre"></label> <span>@</span> 
+				         <input type="text" name="u_mail_suf"><br>
+			             <input type="hidden" name="u_mail">
 					</div>
 					
+					
+					
 					<div>
-						<input type="button" class="submit_btn"  value="로그인" onclick="loginForm();">
+						<input type="button" class="submit_btn"  value="아이디찾기" onclick="findIdBtn();">
 						<input type="reset" class="reset_btn" value="초기화">	<br />
 					</div>
 					
 					<div class="sub_menu_wrap">
 						<a th:href="@{/user/create_account_form}">&emsp;&emsp;회원가입</a>
-						&emsp;&emsp;&emsp;&nbsp;&nbsp;<span>|</span>
-						<a th:href=@{/user/user_find_id_form}>아이디</a> / 
-						<a th:href=@{/user/user_find_password_form}>비밀번호찾기</a>
+						&emsp;&emsp;&emsp;&nbsp;&nbsp;<span>|</span>&emsp;&emsp;&emsp;
+						<a th:href="@{/user/user_login_form}">로그인</a>
 					</div>
 				</form>
 				

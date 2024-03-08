@@ -61,8 +61,7 @@ $(document).ready(function () {
     
 function perfomanceRegist() {
     console.log('perfomanceRegist()');
-
-    if (!isIdChecked) {
+        if (!isIdChecked) {
         // 아이디 중복 검사가 이루어지지 않았다면
         alert('아이디 중복 검사를 먼저 성공해주세요.');
         return;

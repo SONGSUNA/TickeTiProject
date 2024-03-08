@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 import com.office.ticketreserve.config.TicketDto;
 import com.office.ticketreserve.productpage.CurrentReserveDto;
 import com.office.ticketreserve.productpage.PerfomanceDto;
-import com.office.ticketreserve.user.UserDto;
 
 import lombok.extern.log4j.Log4j2;
 

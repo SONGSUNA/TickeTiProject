@@ -11,5 +11,16 @@
 		WHERE 
 			U_NO = #{u_no}
 	</delete>
-
+	
+		<!-- <select id="dofindIdFromDB"  parameterType="string" 
+	        resultType="string">
+	        
+	    SELECT u_id
+	 	FROM TBL_USER
+	    WHERE U_NAME = #{u_name} 
+	    AND 
+	    U_MAIL = #{u_mail}
+	    
+	    
+	</select> -->
 </mapper>
