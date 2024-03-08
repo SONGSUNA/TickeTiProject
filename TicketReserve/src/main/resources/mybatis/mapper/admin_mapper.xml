@@ -176,4 +176,29 @@
 
 	</insert>
 	
+	<insert id="insertPerfomanceNotDetailCautions" 
+			parameterType="com.office.ticketreserve.productpage.PerfomanceDto">
+		
+		INSERT INTO 
+			TBL_PERFOMANCE(
+				P_ID, P_NAME, P_START_DATE, P_END_DATE, 
+				P_GRADE, P_THEATER, P_PLACE, 
+				P_LATITUDE, P_LOGNITUDE, P_THUM, 
+				P_CATEGORY, P_MAX_RESERVE, P_NOW_RESERVE, 
+				P_RUNNING_TIME, P_CHARACTERS,
+				P_LIKE, P_DETAIL_IMG, 
+				P_AGENCY_INFO, P_HOST, P_INQUIRY, 
+				P_REG_DATE, P_MOD_DATE) 
+		VALUES(
+				#{p_id}, #{p_name}, #{p_start_date}, #{p_end_date},
+				#{p_grade}, #{p_theater}, #{p_place}, 
+				#{p_latitude}, #{p_lognitude}, #{p_thum}, 
+				#{p_category}, #{p_max_reserve}, 0, 	
+				#{p_running_time}, #{p_characters}, 
+				0, #{p_detail_img},
+				#{p_agency_info}, #{p_host}, #{p_inquiry},
+				SYSTIMESTAMP, SYSTIMESTAMP)
+
+	</insert>
+	
 </mapper>
