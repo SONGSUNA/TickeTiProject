@@ -58,9 +58,17 @@ input[type="number"]::-webkit-inner-spin-button {
     width: 500px;
 }
 
+#postcode {
+    width: 100px;
+}
+
+#address {
+    width: 380px;
+}
+
 #detailAddress,
 #extraAddress {
-    width: 246px;
+    width: 200px;
 }
 
 .input_info span {
