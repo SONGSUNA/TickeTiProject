@@ -34,4 +34,9 @@ public interface AdminDaoForMyBatis {
 
 	public PerfomanceDto selectPerfomanceById(String id);
 
+	public void insertPerfomance(PerfomanceDto perfomanceDto);
+
+	public void insertPerfomanceNotDetailCautions(PerfomanceDto perfomanceDto);
+	
+	
 }
