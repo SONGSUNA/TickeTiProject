@@ -4,6 +4,9 @@ import java.security.SecureRandom;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -11,6 +14,7 @@ import org.springframework.ui.Model;
 import com.office.ticketreserve.admin.AdminDaoForMyBatis;
 import com.office.ticketreserve.admin.AdminDto;
 
+import jakarta.mail.internet.MimeMessage;
 import lombok.extern.log4j.Log4j2;
 
 @Service
@@ -28,7 +32,8 @@ public class UserService {
 	@Autowired
 	AdminDaoForMyBatis adminDaoForMyBatis;
 	
-	
+	@Autowired
+	JavaMailSenderImpl javaMailSenderImpl;
 	
 	final static public int ID_ALREADY_EXIST				= -2;
 	final static public int DATABASE_COMMUNICATION_TROUBLE	= -1;
@@ -142,6 +147,21 @@ public class UserService {
 	private void sendNewPasswordByMail(String toMailAddr , String newPassword) {
 		log.info("[UserService] sendNewPasswordByMail()");
 		
+		MimeMessagePreparator mimeMessagePreparator = new MimeMessagePreparator() {
+			
+			@Override
+			public void prepare(MimeMessage mimeMessage) throws Exception {
+				
+				MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true, "utf-8");
+				mimeMessageHelper.setTo("snsong91@gmail.com");
+				mimeMessageHelper.setSubject("[TikeTi] 새 비밀번호 안내입니다.");
+				String emailBody = "새 비밀번호: " + newPassword + "<br><br>"
+                        + "<p style='color:red;'>로그인 후 보안을 위해 비밀번호를 변경해주세요.</p>";
+				mimeMessageHelper.setText(emailBody, false);
+			}
+		};
+		
+		javaMailSenderImpl.send(mimeMessagePreparator);
 		return;
     }
 		
