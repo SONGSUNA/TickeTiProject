@@ -185,9 +185,8 @@ public class AdminController {
 		
 		String nextPage = "/admin/perfomance_regist_success";
 		
-		String filePath = fileUploadService.pThumbImgUpload(thumbImg);
-		
-		log.info(filePath);
+		String pThumPath = fileUploadService.pThumbImgUpload(thumbImg);
+		String pDetailPath = fileUploadService.pDtailImgUpload(detailImg);
 		
 		return nextPage;
 	}
