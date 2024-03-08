@@ -188,6 +188,15 @@ public class AdminController {
 		String pThumPath = fileUploadService.pThumbImgUpload(thumbImg);
 		String pDetailPath = fileUploadService.pDtailImgUpload(detailImg);
 		
+		if (thumbImg == null || detailImg == null) {
+			return "/admin/perfomance_regist_fail";
+		}
+		
+		perfomanceDto.setP_thum("http://14.42.124.87:8091/perfomanceImg/pThum/" + pThumPath);
+		perfomanceDto.setP_detail_img("[StyUrl{url='[http://14.42.124.87:8091/perfomanceImg/pDetail/" + pDetailPath + "]'}");
+		
+		adminService.perfomanceRegistConfirm(perfomanceDto);
+		
 		return nextPage;
 	}
 	

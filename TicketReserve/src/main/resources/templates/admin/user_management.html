@@ -14,53 +14,7 @@
 <body>
 
 	<div class="container">
-		<div class="sidebar">
-			 <ul>
-				 <li>
-				 	  <a th:href="@{/admin}">Admin Home</a>
-				 </li>
-				 <li class="active">
-				 	  <a th:href="@{/admin/user_management}">유저 관리</a>
-				 </li>
-				 <li  th:if="${session.loginedAdminDto.a_id == 'super'}">
-				 	  <a th:href="@{/admin/admin_regist}">어드민 등록</a>
-				 </li>
-				 <li th:if="${session.loginedAdminDto.a_id == 'super'}">
-				 	  <a th:href="@{/admin/admin_management}">어드민 관리</a>
-				 </li>
- 				 <li>
-				 	  <a th:href="@{/admin/perfomance_regist}">공연 등록</a>
-				 </li>
-				 <li>
-				 	  <a th:href="@{/admin/performance_modify}">공연 정보 수정</a>
-				 </li>
-				 <li>
-				 	  <a th:href="@{/admin/review_management}">공연 리뷰 관리</a>
-				 </li>
-				 <li>
-				 	  <a th:href="@{/admin/ticket_state}">티켓 예매 현황</a>
-				 </li>
-				 <li class="logout">
-				 	  <a th:href="@{/admin/logout}">로그아웃</a>
-				 </li>
-			</ul>
-		</div>
-		
-		<div class="main">
-			<h1>유저 관리</h1>
-			
-			<div class="user_search">
-				<form th:action="@{/admin/user_search}" name="user_search_form" method="get">
-					<input type="hidden" id="csrfToken" th:value="${_csrf.token}"/>
-					<span>아이디</span>
-					<input type="text" name="u_id">
-					<span>이름</span>
-					<input type="text" name="u_name">
-					<span>메일</span>
-					<input type="text" name="u_mail">
-					<input type="button" value="검색" 	id="user_search_btn">
-				</form> 
-			</div>
+		<div th:replace="~{/admin/side_bar.html::sidebar}"></div>
 			
 			<div class="user_table">
 				<table>

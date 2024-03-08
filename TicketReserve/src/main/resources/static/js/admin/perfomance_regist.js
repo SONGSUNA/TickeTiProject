@@ -73,7 +73,7 @@ function perfomanceRegist() {
    + form.detailAddress.value + "/" + form.extraAddress.value;
     
 	form.p_place.value = p_place;
-    
+	
     if (form.p_name.value === '') {
 	    alert('공연명을 입력해주세요.');
 	    form.p_name.focus();
@@ -120,10 +120,6 @@ function perfomanceRegist() {
     } else if (form.p_characters.value === '') {
         alert('출연진을 입력해주세요.');
         form.p_characters.focus();
-        
-    } else if (form.p_ticket.value === '') {
-        alert('티켓 정보를 입력해주세요.');
-        form.p_ticket.focus();
         
     } else if (form.detail_img.value === '') {
         alert('상세페이지 이미지를 첨부해주세요.');

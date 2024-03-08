@@ -54,7 +54,7 @@ body {
   border-bottom: 1px solid rgba(255, 255, 255, .2);
 }
 
-.sidebar li.active {
+.sidebar li.home {
   background-color: #2D9596;
 }
 

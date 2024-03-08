@@ -5,7 +5,7 @@
 
 <title th:replace="~{/include/title.html::title}"></title>
 
-<link rel="stylesheet" th:href="@{/css/admin/user_management.css}">
+<link rel="stylesheet" th:href="@{/css/admin/admin_regist.css}">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script type="text/javascript" th:src="@{/js/admin/admin_regist.js}"></script>
@@ -14,37 +14,7 @@
 <body>
 
 	<div class="container">
-		<div class="sidebar">
-			 <ul>
-				 <li>
-				 	  <a th:href="@{/admin}">Admin Home</a>
-				 </li>
-				 <li>
-				 	  <a th:href="@{/admin/user_management}">유저 관리</a>
-				 </li>
-				 <li class="active"  th:if="${session.loginedAdminDto.a_id == 'super'}">
-				 	  <a th:href="@{/admin/admin_regist}">어드민 등록</a>
-				 </li>
-				 <li th:if="${session.loginedAdminDto.a_id == 'super'}">
-				 	  <a th:href="@{/admin/admin_management}">어드민 관리</a>
-				 </li>
- 				 <li>
-				 	  <a th:href="@{/admin/perfomance_regist}">공연 등록</a>
-				 </li>
-				 <li>
-				 	  <a th:href="@{/admin/performance_modify}">공연 정보 수정</a>
-				 </li>
-				 <li>
-				 	  <a th:href="@{/admin/review_management}">공연 리뷰 관리</a>
-				 </li>
-				 <li>
-				 	  <a th:href="@{/admin/ticket_state}">티켓 예매 현황</a>
-				 </li>
-				 <li class="logout">
-				 	  <a th:href="@{/admin/logout}">로그아웃</a>
-				 </li>
-			</ul>
-		</div>
+		<div th:replace="~{/admin/side_bar.html::sidebar}"></div>
 		
 		<div class="main">
 			<h1>어드민 등록</h1>
