@@ -31,7 +31,7 @@ public class FileUploadService {
 		HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(requestBody, headers);
 		
 		// API 호출
-		String serverURL = "http://14.42.124.93:8091/upload_p_thum";
+		String serverURL = "http://14.42.124.87:8091/upload_file";
 		ResponseEntity<String> response = restTemplate.postForEntity(serverURL, requestEntity, String.class);
 		
 		// 응답에서 파일 경로 추출

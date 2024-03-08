@@ -151,11 +151,4 @@
 	        
 	</select>
 	
-	<select id="test111" 
-			resultType="com.office.ticketreserve.productpage.PerfomanceDto">
-	
-		SELECT * FROM TBL_PERFOMANCE
-	
-	</select>
-	
 </mapper>
