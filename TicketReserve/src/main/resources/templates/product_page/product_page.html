@@ -123,8 +123,8 @@
 
     </div>
     <div class="more_info_data">
-        <h1>유의사항</h1>
-        <span th:text="*{p_detail_cautions}">유의사항 들어갈 자리</span>
+   		 <h1 th:if="${productDto.p_detail_cautions != null and productDto.p_detail_cautions != 'X'}" th:text="유의사항">유의사항</h1>
+		 <span th:if="${productDto.p_detail_cautions != null and productDto.p_detail_cautions != 'X'}" th:text="*{p_detail_cautions}">유의사항 들어갈 자리</span>
 
         <h1>공연정보</h1>
            <div id="imageContainer"></div>
@@ -212,7 +212,7 @@
         <div class="review_notice">
         	<p>매매, 욕설 등 게시판 운영 규정에 위반되는 글은 사전 통보없이 삭제될 수 있습니다.<br>
 			개인정보가 포함된 내용은 삼가 주시기 바라며, 게시물로 인해 발생하는 문제는 작성자 본인에게 책임이 있습니다.</p>
-			<button class="open_review_modal">리뷰등록</button>
+			<button class="open_review_modal" th:if="${session.loginedUserDto != null}">리뷰등록</button>
         </div>
 			
 			<div class="review_modal_wrap">
@@ -227,7 +227,7 @@
 					</div>
 					<p>별점과 이용후기를 작성해주세요.</p>
 					<form method="post" action="/review/review_write" name="review_form">
-		<!-- 	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" /> -->
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 			<fieldset class="rate">
 			     <div id="display-rating"></div>
 			    <input type="radio" id="rating5" name="rv_score" value="5"><label class="rating5" for="rating5" title="5점"></label>
@@ -244,6 +244,7 @@
 					</div>
 					<div class="current-length_wrap">
 			   		 <span id="current-length">0</span>/1000<br>
+			   		 <input type="hidden" name="p_id" th:value="*{p_id}">
 			   		 <input class="reviewBtn" type="submit" value="리뷰등록">
 					</div>
 					

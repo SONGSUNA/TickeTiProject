@@ -14,23 +14,13 @@ public class ReviewService {
 	@Autowired
 	ReviewDao reviewDao;
 	
-	public int reviewWrite(String rv_txt, int rv_score) {
+
+
+
+	public int reviewWrite(String rv_txt, int rv_score, String p_id, String u_id) {
 		log.info("reviewWrite");
 		
-		
-		
 		return reviewDao.insertReview(rv_txt,rv_score);
-	}
-
-	public ReviewDto productPage(String p_id) {
-		
-		return null;
-	}
-
-	public String getThumUrl(String p_id) {
-		
-		
-		return null;
 	}
 
 

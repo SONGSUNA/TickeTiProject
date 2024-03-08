@@ -20,10 +20,8 @@ public class ProductController {
 	ProductService productService;
 	
 	@RequestMapping("/product/{p_id}")
-	public String productPage(@PathVariable("p_id") String p_id, Model model,HttpSession session) {
+	public String productPage(@PathVariable("p_id") String p_id, Model model) {
 		log.info("productPage()");
-		
-		UserDto loginedUserDto =(UserDto) session.getAttribute("loginedUserDto");
 		
 		
 		PerfomanceDto productDto = productService.productPage(p_id);

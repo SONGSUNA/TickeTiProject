@@ -9,7 +9,10 @@ public class ProductService {
 	ProductDao productDao;
 	public PerfomanceDto productPage(String pId) {
 		
+		
+		
 		return productDao.selectProduct(pId);
 	}
+
 
 }

@@ -23,25 +23,19 @@ public class reviewController {
 	@Autowired
 	ReviewService reviewService;
 	
-	@GetMapping("/{p_id}")
-	public String reviewAndGrade(@PathVariable("p_id") String p_id, Model model) {
-		log.info("reviewAndGrade");
-		
-		String nextPage = "review/review";
-		
-		
-		
-		
-		
-		return nextPage;
-	}
-	
+
 	
 	@PostMapping("/review_write")
-	public String reviewWrite(@RequestParam("rv_txt") String rv_txt, @RequestParam("rv_score") int rv_score, Model model) {
+	public String reviewWrite(@RequestParam("rv_txt") String rv_txt, @RequestParam("rv_score") int rv_score,@RequestParam("p_id") String p_id, Model model,HttpSession session) {
 		log.info("review_write");
+		UserDto loginedUserDto=(UserDto) session.getAttribute("loginedUserDto");
 		
-		int result = reviewService.reviewWrite(rv_txt,rv_score);
+		String u_id = loginedUserDto.getU_id();
+		
+
+		int result = reviewService.reviewWrite(rv_txt,rv_score,p_id,u_id);
+		
+		
 		model.addAttribute("rst", result);
 		
 		String nextPage = "review/review_result";
