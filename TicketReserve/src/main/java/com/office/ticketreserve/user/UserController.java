@@ -21,234 +21,228 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
-	
+
 	// 유저 회원가입폼이동
 	@GetMapping("/create_account_form")
 	public String createAccountForm() {
 		log.info("[UserController] createAccountForm()");
-		
+
 		String nextPage = "user/create_account_form";
-		
+
 		return nextPage;
 	}
-	
-	
+
 	// 유저 회원가입 확인
 	@PostMapping("/create_account_confirm")
-	public String createAccountConfirm(UserDto userDto,Model model) {
+	public String createAccountConfirm(UserDto userDto, Model model) {
 		log.info("[UserController] createAccountConfirm()");
-		
 
 		int result = userService.createAccountConfirm(userDto);
 		model.addAttribute("rst", result);
-		
+
 		String nextPage = "/user/create_account_result";
-		
+
 		if (result <= UserService.INSERT_INFO_FAIL_AT_DATABASE) {
 			log.info("INSERT_INFO_FAIL_AT_DATABASE");
 		}
-		
+
 		return nextPage;
-		
+
 	}
+
 	// 유저 아이디 중복체크버튼
 	@PostMapping("/checkId")
 	@ResponseBody
 	public boolean checkId(@RequestParam("u_id_check") String u_id_check) {
-	   log.info("[UserController] checkId()");
-	   
+		log.info("[UserController] checkId()");
+
 		return userService.checkId(u_id_check);
 	}
-	
+
 	// 유저 로그인폼 이동
 	@GetMapping("/user_login_form")
 	public String userLoginForm() {
 		log.info("[UserController] userLoginForm()");
-      
+
 		String nextPage = "user/user_login_form";
-      
-		return nextPage;   
-      
+
+		return nextPage;
+
 	}
+
 	// 유저 로그인 확인
 	@PostMapping("/user_login_confirm")
 	public String userLoginConfirm(UserDto userDto, HttpSession session, Model model) {
 		log.info("[UserController] userLoginConfirm()");
-	      
+
 		String nextPage = "/home";
-	      
+
 		Object loginedUserDto = userService.userLoginConfirm(userDto);
-	    
+
 		if (loginedUserDto instanceof UserDto) {
-			
+
 			session.setAttribute("loginedUserDto", loginedUserDto);
 			session.setMaxInactiveInterval(60 * 30);
-			
+
 			return nextPage;
-			
-		} else if(loginedUserDto instanceof AdminDto){
-			
+
+		} else if (loginedUserDto instanceof AdminDto) {
+
 			session.setAttribute("loginedAdminDto", loginedUserDto);
-			
+
 			return "redirect:/admin";
-			
-		} else 
-			
+
+		} else
+
 			return "/user/user_login_ng";
-		
+
 	}
+
 	// 유저 정보수정폼 이동
 	@GetMapping("/user_modify_form")
-	public String userModifyForm(Model model , HttpSession session) {
+	public String userModifyForm(Model model, HttpSession session) {
 		log.info("[UserController] userModifyForm()");
-		
-		  String nextPage = "user/user_modify_form";
-	      
-		 UserDto loginedUserMemberDto = (UserDto) session.getAttribute("loginedUserDto");
-		    
-		    if (loginedUserMemberDto == null) {
-		        return "redirect:/user_login_form"; 
-		    }
-		    
-		    String scNumPre = loginedUserMemberDto.getU_sc_num().substring(0, 6);
-		    String mailPre = loginedUserMemberDto.getU_mail().split("@")[0];
-		    String mailSuf = loginedUserMemberDto.getU_mail().split("@")[1];
-		    String centerPoneN = loginedUserMemberDto.getU_phone().split("-")[1];
-		    String endPoneN = loginedUserMemberDto.getU_phone().split("-")[2];
-		    String zipCode = loginedUserMemberDto.getU_address().split("/")[0];
-		    String mainAdr = loginedUserMemberDto.getU_address().split("/")[1];
-			/* String referenceAdr = loginedUserMemberDto.getU_address().split("//")[1]; */
-		   		    
-		    model.addAttribute("loginedUserMemberDto", loginedUserMemberDto);
-		    model.addAttribute("scNumPre", scNumPre);
-		    model.addAttribute("mailPre", mailPre);
-		    model.addAttribute("mailSuf", mailSuf);
-		    model.addAttribute("centerPoneN", centerPoneN);
-		    model.addAttribute("endPoneN", endPoneN);
-		    model.addAttribute("zipCode", zipCode);
-		    model.addAttribute("mainAdr", mainAdr);
-			/* model.addAttribute("referenceAdr", referenceAdr); */
-		    
-		    return nextPage;
+
+		String nextPage = "user/user_modify_form";
+
+		UserDto loginedMemberDto = (UserDto) session.getAttribute("loginedUserDto");
+
+		if (loginedMemberDto == null) {
+			return "redirect:/user_login_form";
+		}
+
+		String scNumPre = loginedMemberDto.getU_sc_num().substring(0, 6);
+		String mailPre = loginedMemberDto.getU_mail().split("@")[0];
+		String mailSuf = loginedMemberDto.getU_mail().split("@")[1];
+		String centerPoneN = loginedMemberDto.getU_phone().split("-")[1];
+		String endPoneN = loginedMemberDto.getU_phone().split("-")[2];
+		String zipCode = loginedMemberDto.getU_address().split("/")[0];
+		String mainAdr = loginedMemberDto.getU_address().split("/")[1];
+		/* String referenceAdr = loginedUserMemberDto.getU_address().split("//")[1]; */
+
+		model.addAttribute("loginedMemberDto", loginedMemberDto);
+		model.addAttribute("scNumPre", scNumPre);
+		model.addAttribute("mailPre", mailPre);
+		model.addAttribute("mailSuf", mailSuf);
+		model.addAttribute("centerPoneN", centerPoneN);
+		model.addAttribute("endPoneN", endPoneN);
+		model.addAttribute("zipCode", zipCode);
+		model.addAttribute("mainAdr", mainAdr);
+		/* model.addAttribute("referenceAdr", referenceAdr); */
+
+		return nextPage;
 	}
-	//유저 정보수정 확인
+
+	// 유저 정보수정 확인
 	@PostMapping("/user_modify_confirm")
 	public String userModifyConfirm(UserDto userDto, HttpSession session) {
-	   log.info("[UserController] userModifyConfirm()");
-	    
-	   String nextPage = "user/user_modify_ok";
-	   System.out.println("=========>" + userDto);
-	   UserDto loginedUserDto = userService.userModifyConfirm(userDto);
-	    
-	    if (loginedUserDto != null) {
-	       
-	       session.setAttribute("loginedUserDto", loginedUserDto);
-	       session.setMaxInactiveInterval(60 * 30);
-	   
-	    } else {
-	       
-	       nextPage = "user/user_modify_ng";
-	       
-	    }
-	    
-	    return nextPage;
-	    
+		log.info("[UserController] userModifyConfirm()");
+
+		String nextPage = "user/user_modify_ok";
+		System.out.println("=========>" + userDto);
+		UserDto loginedUserDto = userService.userModifyConfirm(userDto);
+
+		if (loginedUserDto != null) {
+
+			session.setAttribute("loginedUserDto", loginedUserDto);
+			session.setMaxInactiveInterval(60 * 30);
+
+		} else {
+
+			nextPage = "user/user_modify_ng";
+
+		}
+
+		return nextPage;
+
 	}
-	
+
 	/*
 	 * 유저 로그아웃
 	 */
 	@GetMapping("/user_logout_confirm")
-    public String userLogoutConfirm(HttpSession session) {
+	public String userLogoutConfirm(HttpSession session) {
 		log.info("[UserController] userLogoutConfirm()");
 
 		String nextPage = "redirect:/";
-		
+
 		session.removeAttribute("loginedUserDto");
-		
+
 		return nextPage;
-		
-    }
+
+	}
+
 	/*
 	 * 유저 회원탈퇴
 	 */
 	@GetMapping("/user_delete_confirm")
 	public String userDeleteConfirm(HttpSession session) {
 		log.info("[UserController] userDeleteConfirm()");
-      
+
 		String nextPage = "redirect:/user/user_logout_confirm";
 
-		UserDto loginedUserDto =
-				(UserDto) session.getAttribute("loginedUserDto");
-		
+		UserDto loginedUserDto = (UserDto) session.getAttribute("loginedUserDto");
+
 		int result = userService.userDeleteConfirm(loginedUserDto.getU_no());
 		if (result <= 0) {
-	         nextPage = "user/user_delete_ng";
-		} 
-      
+			nextPage = "user/user_delete_ng";
+		}
+
 		return nextPage;
 	}
-	//아이디 찾기
+
+	// 아이디 찾기
 	@GetMapping("/user_find_id_form")
 	private String uFindIdFrom() {
 		log.info("[UserController] uFindIdFrom()");
-		
+
 		return "user/user_find_id_form";
 	}
-	
+
 	// 아이디 찾기 확인
 	@PostMapping("/doFindId")
-	private String doFindId(UserDto userDto, Model model){
-		
-		String userId = userService.dofindId(userDto,model);
-		if(userId != null) {
+	private String doFindId(UserDto userDto, Model model) {
+
+		String userId = userService.dofindId(userDto, model);
+		if (userId != null) {
 			return "user/user_find_id_ok";
 		} else {
 			return "user/user_find_id_ng";
-	        
+
 		}
 	}
-	
-	//	비밀번호 찾기
+
+	// 비밀번호 찾기
 	@GetMapping("/user_find_password_form")
-	private String	uFindPwform() {
+	private String uFindPwform() {
 		log.info("[UserController] uFindPwform()");
-		
+
 		return "user/user_find_password_form";
 
-		 
 	}
-	
+
 	// 비밀번호찾기 확인
 	@PostMapping("/user_password_find")
 	private String uFindPwConfirm(UserDto userDto) {
 		log.info("[UserController] uFindPwConfirm()");
-		
+
 		String nextPage = "user/user_find_password_ok";
-		
+
 		int result = userService.uFindPwConfirm(userDto);
-		
-		if(result <= 0) {
+
+		if (result <= 0) {
 			return "/user/user_find_password_ng";
 		}
 		return nextPage;
-		
+
 	}
-	
+
 	// 상단 우측 사람 이미지 클릭 시
 	@GetMapping("/myPage")
-	private String myPage(HttpSession session) {
+	private String myPage(HttpSession session, Model model) {
 		log.info("[UserController] myPage()");
 		
-		String nextPage = "user/user_modify_form";
+		return userModifyForm(model, session);
 		
-		UserDto loginedUser = (UserDto) session.getAttribute("loginedUserDto");
-		
-		if(loginedUser == null) {
-			return "/user/user_login_form";
-		} 
-		
-		return nextPage;
 	}
-	
 }

@@ -28,7 +28,7 @@
 			
 			<div class="create_account_form">
 				
-			<form th:action="@{/user/user_modify_confirm}" th:object="${loginedUserMemberDto}" name="modify_form" method="post">
+			<form th:action="@{/user/user_modify_confirm}" th:object="${loginedMemberDto}" name="modify_form" method="post">
           		<input type="hidden" name="u_no" th:field="*{u_no}">
           		<div class="input_info">
           		  <b>아이디  &emsp;&emsp;&emsp;</b><br/>
