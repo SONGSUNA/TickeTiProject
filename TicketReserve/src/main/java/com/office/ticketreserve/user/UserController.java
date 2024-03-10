@@ -105,7 +105,8 @@ public class UserController {
 
 		String nextPage = "user/user_modify_form";
 
-		UserDto loginedMemberDto = (UserDto) session.getAttribute("loginedUserDto");
+		UserDto loginedMemberDto = sessionCheck(session);
+		System.out.println("===============>>>>>>"+loginedMemberDto);
 
 		if (loginedMemberDto == null) {
 			return "redirect:/user_login_form";
@@ -139,7 +140,6 @@ public class UserController {
 		log.info("[UserController] userModifyConfirm()");
 
 		String nextPage = "user/user_modify_ok";
-		System.out.println("=========>" + userDto);
 		UserDto loginedUserDto = userService.userModifyConfirm(userDto);
 
 		if (loginedUserDto != null) {
@@ -181,7 +181,7 @@ public class UserController {
 
 		String nextPage = "redirect:/user/user_logout_confirm";
 
-		UserDto loginedUserDto = (UserDto) session.getAttribute("loginedUserDto");
+		UserDto loginedUserDto = sessionCheck(session);
 
 		int result = userService.userDeleteConfirm(loginedUserDto.getU_no());
 		if (result <= 0) {
@@ -237,12 +237,32 @@ public class UserController {
 
 	}
 
-	// 상단 우측 사람 이미지 클릭 시
+	// 상단 우측 사람 이미지 클릭 시 세션에 따른 화면 이동
 	@GetMapping("/myPage")
 	private String myPage(HttpSession session, Model model) {
 		log.info("[UserController] myPage()");
 		
+		String nextPage = "user/user_login_form";
+		
+		UserDto userDtos = sessionCheck(session);
+		if(userDtos == null) {
+			return nextPage;
+		}
+		
 		return userModifyForm(model, session);
+		
+	}
+	
+	//세션확인 
+	private UserDto sessionCheck(HttpSession session) {
+		log.info("[UserController] sessionChek()");
+		
+		UserDto loginedUserDto = (UserDto) session.getAttribute("loginedUserDto");
+		
+		if(loginedUserDto != null) {
+			return loginedUserDto;
+		}
+			return null;
 		
 	}
 }

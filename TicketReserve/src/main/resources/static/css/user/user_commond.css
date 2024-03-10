@@ -35,7 +35,8 @@ section #section_wrap {
 	margin: 0 auto;
 }
 
-section #section_wrap .word {
+section #section_wrap .word,
+.section_wrap_small .word {
 	font-size: 2.0em;
 	font-weight: bold;
 	text-align: center;
@@ -111,7 +112,7 @@ form input[type="number"]:focus {
 form input[name="u_mail_pre"],
 form input[name="u_mail_suf"] {
 
-	width: 140px;
+	width: 150px;
 }
 
 /*  비밀번호 찾기 결과 페이지 */
