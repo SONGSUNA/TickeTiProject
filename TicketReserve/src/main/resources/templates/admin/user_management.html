@@ -15,6 +15,21 @@
 
 	<div class="container">
 		<div th:replace="~{/admin/side_bar.html::sidebar}"></div>
+		
+		<div class="main">
+			<h1>유저 관리</h1>
+			
+			<div class="user_search">
+				<form th:action="@{/admin/user_search}" name="user_search_form" method="get">
+					<span>아이디</span>
+					<input type="text" name="u_id">
+					<span>이름</span>
+					<input type="text" name="u_name">
+					<span>메일</span>
+					<input type="text" name="u_mail">
+					<input type="button" value="검색" 	id="user_search_btn">
+				</form> 
+			</div>
 			
 			<div class="user_table">
 				<table>
