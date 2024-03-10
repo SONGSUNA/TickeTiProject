@@ -20,6 +20,8 @@ public class HomeController  {
 	KopisApi api;
 	@Autowired
 	TicketDB tDB;
+	@Autowired
+	HomeService homeService;
 	
 	@GetMapping({"/", ""})
 	public String home() throws JAXBException {
@@ -28,6 +30,10 @@ public class HomeController  {
 		String nextPage = "/home";
 		api.getMusicalInfo(3);		//인자값 1주면 전체 API땡겨옴 2주면 예매현황 땡겨옴 3주면 그냥 넘어감.
 		//tDB.TicketStringFix();
+		
+		//List<TicketDto> rankOnePerfos = homeService.getRankOnePerfo();
+		
+		
 		return nextPage;
 	}
 	

@@ -69,7 +69,7 @@
 			<div class="itembody">
 				<h2>WHAT`S HOT</h2>
 				<div class="popularity">
-					<div class="container">
+					<div class="container" th:each="rankOne : ${rankOnePerfos}">
 						<div class="big">
 							<div class="item"><img th:src="@{/img/home/poster/hot1.jfif}"></div>
 						</div>
@@ -85,7 +85,7 @@
 				</div>
 				<h2>NEW</h2>
 				<div class="new">
-					<div class="container">
+					<div class="container" >
 						<div class="big">
 							<div class="item"><img th:src="@{/img/home/poster/hot1.jfif}"></div>
 						</div>
