@@ -59,7 +59,7 @@ form div:last-child {
   text-align: center;
   width: 0 500px;
   height: 200px;
-  padding-top: 100px;
+  padding-top: 80px;
 }
 
 .create_result_ms {
@@ -82,4 +82,10 @@ form div:last-child {
 #login_wrap,
 #login_rs_wrap {
   margin-top: 200px;
+}
+
+.section_wrap_small{
+	width: 860px;
+	height: 400px;
+	margin: 0 auto;
 }
