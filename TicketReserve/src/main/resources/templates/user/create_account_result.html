@@ -6,6 +6,7 @@
 <script type="text/javascript" th:src="@{/js/create_account_form.js}"></script>
 
 <link th:href="@{/css/user/user_login_form.css}" rel="stylesheet" /> 
+<link rel="stylesheet" th:href="@{/css/user/user_commond.css}">
 <link th:href="@{/css/include/footer.css}" rel="stylesheet" /> 
 </head>
 <body>
@@ -13,7 +14,7 @@
 	</header>
 	
 	<section>
-		<div id="section_wrap">
+		<div class="section_wrap_small">
 			<div class="create_result_ms">
 				<div>
 				<span th:if="${rst == 1}">회원가입에 성공하였습니다  <br /><br /> 

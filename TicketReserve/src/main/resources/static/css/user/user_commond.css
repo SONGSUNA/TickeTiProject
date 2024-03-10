@@ -140,3 +140,9 @@ form[name="modify_form"] {
 	width: 800px;
 	height: 720px;
 }
+
+.section_wrap_small{
+	width: 860px;
+	height: 400px;
+	margin: 0 auto;
+}

@@ -171,26 +171,34 @@ public class UserController {
 		return nextPage;
 
 	}
-
-	/*
-	 * 유저 회원탈퇴
-	 */
-	@GetMapping("/user_delete_confirm")
+	
+	//회원탈퇴 화면
+	@GetMapping("/user_delete_form")
+	public String userDeleteform() {
+		log.info("[UserController] userDeleteform()");
+		
+		return  "user/user_delete_form";
+		
+	}
+	
+	//회원 탈퇴 확인
+	@PostMapping("/user_delete_confirm")
 	public String userDeleteConfirm(HttpSession session) {
 		log.info("[UserController] userDeleteConfirm()");
 
-		String nextPage = "redirect:/user/user_logout_confirm";
+		String nextPage = "redirect:/";
 
 		UserDto loginedUserDto = sessionCheck(session);
 
 		int result = userService.userDeleteConfirm(loginedUserDto.getU_no());
 		if (result <= 0) {
-			nextPage = "user/user_delete_ng";
+			nextPage = "user/user_delete_ng"; //수정하기 
 		}
 
 		return nextPage;
 	}
 
+	
 	// 아이디 찾기
 	@GetMapping("/user_find_id_form")
 	private String uFindIdFrom() {
@@ -199,9 +207,10 @@ public class UserController {
 		return "user/user_find_id_form";
 	}
 
+	
 	// 아이디 찾기 확인
 	@PostMapping("/doFindId")
-	private String doFindId(UserDto userDto, Model model) {
+	public String doFindId(UserDto userDto, Model model) {
 
 		String userId = userService.dofindId(userDto, model);
 		if (userId != null) {
@@ -214,7 +223,7 @@ public class UserController {
 
 	// 비밀번호 찾기
 	@GetMapping("/user_find_password_form")
-	private String uFindPwform() {
+	public String uFindPwform() {
 		log.info("[UserController] uFindPwform()");
 
 		return "user/user_find_password_form";
@@ -223,7 +232,7 @@ public class UserController {
 
 	// 비밀번호찾기 확인
 	@PostMapping("/user_password_find")
-	private String uFindPwConfirm(UserDto userDto) {
+	public String uFindPwConfirm(UserDto userDto) {
 		log.info("[UserController] uFindPwConfirm()");
 
 		String nextPage = "user/user_find_password_ok";
@@ -239,7 +248,7 @@ public class UserController {
 
 	// 상단 우측 사람 이미지 클릭 시 세션에 따른 화면 이동
 	@GetMapping("/myPage")
-	private String myPage(HttpSession session, Model model) {
+	public String myPage(HttpSession session, Model model) {
 		log.info("[UserController] myPage()");
 		
 		String nextPage = "user/user_login_form";
@@ -254,7 +263,7 @@ public class UserController {
 	}
 	
 	//세션확인 
-	private UserDto sessionCheck(HttpSession session) {
+	public UserDto sessionCheck(HttpSession session) {
 		log.info("[UserController] sessionChek()");
 		
 		UserDto loginedUserDto = (UserDto) session.getAttribute("loginedUserDto");
