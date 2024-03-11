@@ -1,0 +1,38 @@
+@charset "UTF-8";
+/* 드롭다운 이미지 */
+#dropdown_wrap {
+    position: relative;
+    display: inline-block;
+}
+/* 드롭다운 하위 메뉴 wrap */
+#dropdown_menu {
+    display: none;
+    position: absolute; 
+    min-width: 120px;
+    z-index: 1;
+    top: 100%; 
+    left: 0;
+    border: 2px solod #F1FADA;
+    padding-top: 10px;
+}
+
+#dropdown_wrap:hover #dropdown_menu {
+    display: block;
+}
+/* 각가의 하위메뉴 */
+#dropdown_menu > div > a{
+	color: #F1FADA;
+	margin-top:3px;
+	font-size:1.2em;
+	min-width: 120px;
+	background-color: #265073;
+	padding: 2px;
+	font-weight: bold;
+	transition: color 0.2s; 
+}
+
+#dropdown_menu > div > a:hover {
+    color: #265073; 
+    background-color: #F1FADA;
+    
+}
