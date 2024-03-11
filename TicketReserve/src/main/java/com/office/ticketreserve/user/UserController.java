@@ -186,7 +186,7 @@ public class UserController {
 	public String userDeleteConfirm(HttpSession session) {
 		log.info("[UserController] userDeleteConfirm()");
 
-		String nextPage = "redirect:/";
+		String nextPage = "redirect:/user/user_logout_confirm";
 
 		UserDto loginedUserDto = sessionCheck(session);
 
@@ -194,7 +194,7 @@ public class UserController {
 		if (result <= 0) {
 			nextPage = "user/user_delete_ng"; //수정하기 
 		}
-
+		
 		return nextPage;
 	}
 
@@ -257,8 +257,7 @@ public class UserController {
 		if(userDtos == null) {
 			return nextPage;
 		}
-		
-		return userModifyForm(model, session);
+			return userModifyForm(model, session);
 		
 	}
 	
