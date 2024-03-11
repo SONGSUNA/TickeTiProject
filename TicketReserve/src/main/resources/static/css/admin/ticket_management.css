@@ -54,9 +54,9 @@ body {
   border-bottom: 1px solid rgba(255, 255, 255, .2);
 }
 
-.sidebar li.user_management {
+.sidebar li.ticket_management {
   background-color: #2D9596;
-} 
+}
 
 .sidebar li.logout {
 	position: absolute;
@@ -71,28 +71,38 @@ body {
 	width: 100%;
 }
 
-.user_modify {
+.list_menu {
+	display: flex;
+} 
+
+.list_menu	div {
+	margin-right: 15px;
+	border: 1px solid #dadada;
+	width: 120px;
+	
+	&:hover {
+      cursor: pointer;
+  }
+}
+
+.list_menu	.all {
+	background-color: #265073;
+	color: #fff;
+}
+
+.all_table {
+	height: 700px;
+  	overflow-y: scroll;
+}
+
+.yet_table {
 	display: none;
-	width: 600px;
- 	position: fixed;
-  	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-  	background-color: #fff;
-    border: 1px solid #000;
+	height: 700px;
+  	overflow-y: scroll;
 }
 
-.user_modify  .close_bar {
-  	background-color: #265073;
-    text-align: right;
-    padding: 3px 10px;
-}
-
-.user_modify  .close_bar  button {
-  background-color: #fff;
-  border: none;
-}
-
-.user_modify	.form_wrap {
-	padding: 20px 10px;
-}
+.search_table {
+	display: none;
+	height: 700px;
+  	overflow-y: scroll;
+} 

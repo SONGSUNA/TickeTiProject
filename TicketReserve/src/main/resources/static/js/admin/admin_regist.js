@@ -64,9 +64,6 @@ $(document).ready(function () {
         $.ajax({
             url: '/admin/checkId',
             type: 'POST',
-            beforeSend: function(xhr) {
-                xhr.setRequestHeader("X-CSRF-TOKEN", $('#csrfToken').val());
-            },
             data: {"a_id_check": adminId},
             success: function (data) {
                 if (data == false) {

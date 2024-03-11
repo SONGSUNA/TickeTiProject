@@ -1,5 +1,6 @@
 package com.office.ticketreserve.admin;
 
+import java.io.Console;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,16 +69,24 @@ public class AdminController {
 		return userDtos.isEmpty() ? null : userDtos;
 	}
 	
-	@GetMapping("/user_modify_form")
-	public String user_modify_form(@RequestParam("u_no")   int u_no,
-								   @RequestParam("u_id")   String u_id,
-								   @RequestParam("u_name") String u_name,
-								   @RequestParam("u_mail") String u_mail) {
-		log.info("[AdminController] user_modify_form()");
+	@PostMapping("/select_user_for_modify")
+	@ResponseBody
+	public UserDto selectUserForModify(@RequestParam("u_id") String u_id) {
+		log.info("[AdminController] selectUserForModify()");
 		
-		String nextPage = "admin/user_modify_form";
+		UserDto userDto = adminService.selectUserByID(u_id);
 			
-		return nextPage;
+		return userDto;
+	}
+	
+	@PostMapping("/user_modify_confirm")
+	@ResponseBody
+	public String userModifyConfirm(UserDto userDto) {
+		log.info("[AdminController] userModifyConfirm()");
+		
+		adminService.userModifyConfirm(userDto);
+		
+		return userDto.getU_id();
 	}
 	
 	@GetMapping("/user_delete")
@@ -149,6 +158,26 @@ public class AdminController {
 		return adminDtos.isEmpty() ? null : adminDtos;
 	}
 	
+	@PostMapping("select_admin_for_modify")
+	@ResponseBody
+	public AdminDto selectAdminForModify(@RequestParam("a_id") String a_id) {
+		log.info("[AdminController] selectUserForModify()");
+		
+		AdminDto adminDto = adminService.selectAdminById(a_id);
+			
+		return adminDto;
+	}
+	
+	@PostMapping("/admin_modify_confirm")
+	@ResponseBody
+	public String adminModifyConfirm(AdminDto adminDto, Model model) {
+		log.info("[AdminController] adminModifyConfirm()");
+		
+		adminService.adminModifyConfirm(adminDto);
+		
+		return adminDto.getA_id();
+	}
+	
 	@GetMapping("/admin_delete")
 	public String admin_delete_confirm(@RequestParam("a_no") int a_no) {
 		log.info("[AdminController] admin_delete_confirm()");
@@ -198,6 +227,39 @@ public class AdminController {
 		adminService.perfomanceRegistConfirm(perfomanceDto);
 		
 		return nextPage;
+	}
+	
+	@GetMapping("/ticket_management")
+	public String ticketManagement(Model model) {
+		log.info("[AdminController] ticketManagement()");
+		
+		String nextPage = "/admin/ticket_management";
+		
+		List<PerfomanceDto> perfomanceDtos = adminService.getAllPerfomance();
+		
+		model.addAttribute("perfomanceDtos", perfomanceDtos);
+		
+		return nextPage;
+	}
+	
+	@GetMapping("/getNoTicketPfs")
+	@ResponseBody
+	public List<PerfomanceDto> getNoTicketPfs() {
+		log.info("[AdminController] getNoTicketPfs()");
+		
+		List<PerfomanceDto> noTicketPfs = adminService.getNoTicketPfs();
+		
+		return noTicketPfs;
+	}
+	
+	@GetMapping("/getPerfomanceByName")
+	@ResponseBody
+	public List<PerfomanceDto> getPerfomanceByName(@RequestParam("p_name") String p_name) {
+		log.info("[AdminController] getPerfomanceByName()");
+		
+		List<PerfomanceDto> noTicketPfs = adminService.getPerfomanceByName(p_name);
+		
+		return noTicketPfs.isEmpty() ? null : noTicketPfs;
 	}
 	
 	@GetMapping("/logout")

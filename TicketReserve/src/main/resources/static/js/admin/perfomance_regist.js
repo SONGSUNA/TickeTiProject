@@ -13,9 +13,6 @@ $(document).ready(function () {
         $.ajax({
             url: '/admin/isPfId',
             type: 'POST',
-            beforeSend: function(xhr) {
-                xhr.setRequestHeader("X-CSRF-TOKEN", $('#csrfToken').val());
-            },
             data: {"p_id_check": p_id},
             success: function (data) {
                 if (data == false) {

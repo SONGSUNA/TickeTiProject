@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title th:replace="~{include/title.html::title}"></title>
+
+<link rel="stylesheet" th:href="@{/css/admin/ticket_management.css}">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript" th:src="@{/js/admin/ticket_management.js}"></script>
+
+</head>
+<body>
+
+	<div class="container">
+	
+		<div th:replace="~{/admin/side_bar.html::sidebar}"></div>
+		
+		<div class="main">
+			<h1>공연 회차/티켓 관리</h1>
+			<div class="list_menu">
+				<div class="all"	onclick="allPerfomance()">		전체 공연 목록</div>
+				<div class="yet"	onclick="yetPerfomance()">		회차 미등록 공연</div>
+				<div class="search"	onclick="searchPerfomance()">	공연 검색</div>
+			</div>
+			
+			<div class="all_table">
+				<table>
+					<thead>
+						<tr>
+							<th>공연명</th>
+							<th>공연 시간</th>
+							<th>티켓 정보</th>
+							<th>등록/수정</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="perfomance : ${perfomanceDtos}">
+					        <td th:text="${perfomance.p_name}"></td>
+					        <td th:text="${perfomance.p_time != null 	? perfomance.p_time : 	'정보없음'}"></td>
+					        <td th:text="${perfomance.p_ticket != null 	? perfomance.p_ticket : '정보없음'}"></td>
+					        <td th:if="${perfomance.p_time != null || perfomance.p_ticket != null}">
+								<button>수정</button>
+					        </td>
+					        <td th:unless="${perfomance.p_time != null || perfomance.p_ticket != null}">
+					        	<button>등록</button>
+					        </td>
+					    </tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<div class="yet_table">
+				<table>
+					<thead>
+						<tr>
+							<th>공연명</th>
+							<th>공연 시간</th>
+							<th>티켓 정보</th>
+							<th>등록/수정</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+					</tbody>
+				</table>
+			</div>
+			
+			<div class="search_table">
+				<div class="search_form">
+					<p>공연명 : </p>
+					<input  type="text"	name="search_p_name">
+					<button onclick="search_pf()">검색</button>
+				</div>	
+			
+				<table>
+					<thead>
+						<tr>
+							<th>공연명</th>
+							<th>공연 시간</th>
+							<th>티켓 정보</th>
+							<th>등록/수정</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>

@@ -19,15 +19,14 @@
 		<div class="main">
 			<h1>어드민 관리</h1>
 			
-			<div class="user_search">
+			<div class="admin_search">
 				<form th:action="@{/admin/admin_search}" name="admin_search_form" method="get">
-					<input type="hidden" id="csrfToken" th:value="${_csrf.token}"/>
 					<span>아이디</span>
-					<input type="text" name="a_id">
+					<input type="text" name="search_a_id">
 					<span>이름</span>
-					<input type="text" name="a_name">
+					<input type="text" name="search_a_name">
 					<span>메일</span>
-					<input type="text" name="a_mail">
+					<input type="text" name="search_a_mail">
 					<input type="button" value="검색" 	id="admin_search_btn">
 				</form> 
 			</div>
@@ -56,13 +55,55 @@
 					        <td th:text="${admin.a_reg_date}"></td>
 					        <td th:text="${admin.a_mod_date}"></td>
 					        <td>
-								<button th:attr="onclick='adminModify(\'' + ${admin.a_no} + '\')'">수정</button>
+								<button th:attr="onclick='adminModify(\'' + ${admin.a_id} + '\')'">수정</button>
 								<button th:attr="onclick='adminDelete(\'' + ${admin.a_no} + '\',\'' + ${admin.a_id} + '\')'">삭제</button>
 					        </td>
 					    </tr>
 					</tbody>
 				</table>
 			</div>
+			
+			<div class="admin_modify">
+					<div class="close_bar">
+						<button onclick="modify_close()">X</button>
+					</div>
+					
+					<div class="form_wrap">
+						<form id="modify_form" th:action="@{/admin/admin_modify_confirm}" name="modify_form" method="post">
+			          		<input type="hidden" name="a_no" >
+			          		
+			          		<div class="input_info">
+			          		  <b>아이디  &emsp;&emsp;&emsp;</b><br/>
+			           			<input type="text" name="a_id" readonly disabled><br>
+			           			
+							</div>
+							
+							<div class="input_info">
+						         <label><b>이름  &emsp;&emsp;&emsp;</b><br>
+						         <input type="text" name="a_name"></label> <br>
+					       </div>
+					        
+					        <div class="input_info">
+						         <label><b>이메일  &emsp;&emsp;&emsp;</b><br>
+						         <input type="text" name="a_mail_pre" class="a_mail_pre" id="a_mail_pre"></label> <span>@</span> 
+						         <input type="text" name="a_mail_suf" class="a_mail_suf"><br>
+					             <input type="hidden" name="a_mail">
+				             </div>
+				             
+				             <div class="input_info">
+					           	 <label for="a_phone_pre"><b>휴대전화	&emsp;&emsp;&emsp;</b></label><br>
+					             <input type="number" class="a_phone" value="010" name="a_phone_bas"> - 
+					             <input type="number" id="a_phone_pre" class="a_phone" name="a_phone_pre"> - 
+					             <input type="number" class="a_phone" name="a_phone_suf"><br>
+					             <input type="hidden" name="a_phone">
+				             </div>
+							
+							<div>	
+								 <input type="button" class="submit_btn" value="정보수정" onclick="modifyConfirm();">
+							</div>
+						</form>	
+					</div>
+				</div>
 		</div>
 	</div>
 	
