@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" th:src="@{/js/user/modify_info.js}"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+<link rel="stylesheet" th:href="@{/css/user/user_delete_form.css}">
+<link rel="stylesheet" th:href="@{/css/user/user_commond.css}">
+<link rel="stylesheet" th:href="@{/css/home.css}">
+<link th:href="@{/css/include/footer.css}" rel="stylesheet" />
+</head>
+<body>
+	<header th:replace="~{/user/create_account_form.html::header}">
+	</header>
+	
+	<section>
+		<div class="section_wrap_small" id="delete_wrap_section">
+			<div class="word" id="delete_wrap">
+				<span>비밀번호 변경</span>
+			</div>
+			<div class="login_form">
+				<form th:action="@{/user/user_delete_confirm}" name="modify_fw_form" method="post">
+					<div class="input_info">
+	          		 	 <label><b>새 비밀번호  &emsp;&emsp;&emsp;</b><br/>
+	           			 <input type="password" name="new_pw"></label> 
+           			</div>
+				
+					<div class="input_info">
+		           		 <label><b>새 비밀번호 확인  &emsp;&emsp;&emsp;</b> <br/>
+		           		 <input type="password" name="new_pw_check"></label><br>
+					</div>
+					
+					<div>
+						<input type="button" class="submit_btn"  value="비밀번호변경" onclick="modifyFwBtn();">
+						<input type="reset" class="reset_btn" value="초기화">	<br />
+					</div>
+				
+				</form>
+				
+				</div>
+			</div>
+	</section>
+	
+	
+	<footer th:replace="~{/include/header_footer_nav.html::footer}"></footer>
+</body>
+</html>

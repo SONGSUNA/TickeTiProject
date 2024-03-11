@@ -54,7 +54,8 @@ section #section_wrap .word,
 
 /* 양식 내부 버튼 모든 버튼 */
 form input[type="button"],
-input[type="reset"] {
+input[type="reset"],
+inputp .w_modify_btn {
 	background-color: #9AD0C2;
 	border-color: #2D9596;
 	border-radius: 5px;
@@ -65,7 +66,8 @@ input[type="reset"] {
 
 /* 양식 내 하단 submit btn */
 .submit_btn,
-.reset_btn {
+.reset_btn,
+.pw_modify_btn {
 	width: 150px;
 	height: 40px;
 	margin-top: 20px;
@@ -75,7 +77,8 @@ input[type="reset"] {
 /* 양식 내 모든 버튼 호버시 */
 form input[type="button"]:hover,
 input[type="reset"]:hover,
-#check_id_msg:hover {
+#check_id_msg:hover,
+.pw_modify_btn:hover {
 	background-color: #2D9596;
 	border-color: #9AD0C2;
 	color: #F1FADA;
