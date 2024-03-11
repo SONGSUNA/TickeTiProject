@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.office.ticketreserve.productpage.CurrentReserveDto;
+import com.office.ticketreserve.productpage.PerfomanceDto;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -36,9 +37,28 @@ public class HomeDao {
 	    catch (Exception e) {
 	        e.printStackTrace();
 	    }
-	    log.info(rankInfo);
-	    
 		return rankInfo;
+	}
+
+	public List<PerfomanceDto> selectPerfo(String day) {
+		log.info("[HomeDao] selectPerfo() Day : " + day);
+		String sql = "SELECT * "
+				+ "  FROM TBL_PERFOMANCE "
+				+ "  WHERE P_START_DATE = ? "
+				+ "  ORDER BY P_START_DATE";
+        
+		List<PerfomanceDto> newPerfo = new ArrayList<>();
+	    
+	    try {
+	    	RowMapper<PerfomanceDto> rowMapper = 
+					BeanPropertyRowMapper.newInstance(PerfomanceDto.class);
+	    	
+	    	newPerfo = jdbcTemplate.query(sql, rowMapper, day);
+	    } 
+	    catch (Exception e) {
+	        e.printStackTrace();
+	    }
+		return newPerfo;
 	}
 	
 }

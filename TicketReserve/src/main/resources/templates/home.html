@@ -69,49 +69,53 @@
 			<div class="itembody">
 				<h2>WHAT`S HOT</h2>
 				<div class="popularity">
-					<div class="container" th:each="rankOne : ${rankOnePerfos}">
+					<div class="hot_container">
 						<div class="big">
-							<div class="item"><img th:src="@{rankOne.}"></div>
+							<div class="item">
+								<img th:src="${rankOnePerfos.get(0).getP_thum()}">
+								<div class="outside">
+				                	<div class="title" th:text="${rankOnePerfos.get(0).getP_name()}"></div>
+									<div class="detail" th:utext="${rankOnePerfos[0].c_r_period} + '<br/>' + ${rankOnePerfos[0].p_theater}"></div>
+				            	</div>
+							</div>
 						</div>
 						<div class="list">
-							<div class="item"><img th:src="@{/img/home/poster/hot2.jfif}"></div>
-							<div class="item"><img th:src="@{/img/home/poster/hot3.jfif}"></div>
-							<div class="item"><img th:src="@{/img/home/poster/hot4.jfif}"></div>
-							<div class="item"><img th:src="@{/img/home/poster/hot5.jfif}"></div>
-							<div class="item"><img th:src="@{/img/home/poster/hot6.jfif}"></div>
-							<div class="item"><img th:src="@{/img/home/poster/hot7.jfif}"></div>
+							<div th:each="perf,index : ${rankOnePerfos}" th:unless="${index.index == 0}" class="item">
+				            	<div class="inside">
+				                	<div class="title" th:text="${perf.getP_name()}"></div>
+				                	<div class="detail" th:utext="${perf.getC_r_period} + '<br/>' + ${perf.getP_theater()}"></div>
+				            	</div>
+			            		<img th:src="${perf.getP_thum()}">
+			        		</div>
 						</div>
 					</div>
 				</div>
 				<h2>NEW</h2>
 				<div class="new">
 					<div class="container" >
-						<div class="big">
-							<div class="item"><img th:src="@{/img/home/poster/hot1.jfif}"></div>
-						</div>
 						<div class="list">
-							<div class="item"><img th:src="@{/img/home/poster/hot2.jfif}"></div>
-							<div class="item"><img th:src="@{/img/home/poster/hot3.jfif}"></div>
-							<div class="item"><img th:src="@{/img/home/poster/hot4.jfif}"></div>
-							<div class="item"><img th:src="@{/img/home/poster/hot5.jfif}"></div>
-							<div class="item"><img th:src="@{/img/home/poster/hot6.jfif}"></div>
-							<div class="item"><img th:src="@{/img/home/poster/hot7.jfif}"></div>
+							<div th:each="perf,index : ${todayPerfos}" class="item">
+								<img th:src="${perf.getP_thum()}">
+								<div class="outside">
+									<p class="title" th:text="${perf.getP_name()}"></p>
+			                		<p class="detail" th:utext="${perf.getP_start_date}"></p>
+								</div>
+							</div>
+
 						</div>
 					</div>
 				</div>
 				<h2>TICKET OPEN</h2>
 				<div class="tiket_open">
 					<div class="container">
-						<div class="big">
-							<div class="item"><img th:src="@{/img/home/poster/hot1.jfif}"></div>
-						</div>
 						<div class="list">
-							<div class="item"><img th:src="@{/img/home/poster/hot2.jfif}"></div>
-							<div class="item"><img th:src="@{/img/home/poster/hot3.jfif}"></div>
-							<div class="item"><img th:src="@{/img/home/poster/hot4.jfif}"></div>
-							<div class="item"><img th:src="@{/img/home/poster/hot5.jfif}"></div>
-							<div class="item"><img th:src="@{/img/home/poster/hot6.jfif}"></div>
-							<div class="item"><img th:src="@{/img/home/poster/hot7.jfif}"></div>
+							<div th:each="perf,index : ${nextPerfos}" class="item">
+								<img th:src="${perf.getP_thum()}">
+								<div class="outside">
+									<p class="title" th:text="${perf.getP_name()}"></p>
+			                		<p class="detail" th:utext="${perf.getP_start_date}"></p>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
