@@ -44,10 +44,7 @@
 			<div class="create_account_form">
 				
 			<form th:action="@{/user/create_account_confirm}" name="create_account_form" method="post">
-			
-				<input type="hidden" id="csrfToken" th:value="${_csrf.token}"/>
-			
-          		<div class="input_info">
+			<div class="input_info">
           		  <label><b>아이디  &emsp;&emsp;&emsp;</b><br/>
            			<input type="text" name="u_id"></label> 
            			<input type="button" id="checkId" value="ID중복 검사"><br />

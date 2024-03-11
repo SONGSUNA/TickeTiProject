@@ -76,13 +76,11 @@ public class UserDao {
 
 	public UserDto selectUserForLogin(UserDto userDto) {
 		log.info("[UserDao] selectUserForLogin()");
-		log.info(userDto.getU_id() +","+ userDto.getU_pw());
 		
 		String sql = "SELECT * FROM TBL_USER WHERE U_ID = ?";
 		
 		List<UserDto> userDtos = new ArrayList<UserDto>();
         
-		log.info(userDto.getU_id() +","+ userDto.getU_pw());
 		try {
 			
 			RowMapper<UserDto> rowMapper = 
