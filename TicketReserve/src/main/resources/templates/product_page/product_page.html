@@ -12,6 +12,7 @@
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ce4e57aa684855d5a529f9a18d466928"></script>
     <script type="text/javascript" th:src="@{/js/review/review.js}"></script>
     <link th:href="@{/css/review/review.css}" rel="stylesheet">
+    	<link th:href="@{/css/include/footer.css}" rel="stylesheet" />
 </head>
 <body>
     <body th:object="${productDto}">
@@ -262,29 +263,27 @@
         </div>
         
         
-        <div id="user_review" th:if="${reviewDtos != null}">
-            <table th:each="review : ${reviewDtos}">
-                <tr>
-            		<td th:text="${review.u_id}"></td>
-            		<td class="display_score" th:data-score="${review.rv_score}"></td>
-            		<td th:text="${#strings.substring(review.rv_reg_date, 0, 10)}"></td>
-            	</tr>
-				
-				<tr>
-					<td colspan="2" th:text="${review.rv_txt}"></td>  
-					<td th:if="${session.loginedUserDto != null and session.loginedUserDto.u_id.equals(review?.u_id)}">
-					<button>수정</button>
+        <div id="user_review" th:if="${reviewDtos != null}" th:each="review : ${reviewDtos}">
+            <ul class="review_list" >
+            	<li class="review_li1" th:text="${review.u_id}"></li>
+            	<li class="display_score review_li2" th:data-score="${review.rv_score}"></li>
+            	<li th:text="${#strings.substring(review.rv_reg_date, 0, 10)}"></li>
+            	
+            	<li th:if="${session.loginedUserDto != null and session.loginedUserDto.u_id.equals(review?.u_id)}">
+	            	<button>수정</button>
 					<button>삭제</button>
-					</td>
-					<td th:unless="${session.loginedUserDto != null and session.loginedUserDto.u_id.equals(review?.u_id)}">
-					
-					</td>
-				</tr>
-				      				          	
-            </table>
+            	</li>
+            </ul>
+            	
+            <ul>
+            	<li class="review_txt" th:text="${review.rv_txt}"></li>
+            </ul>
+
         </div>
     </div>
 </div>
+<footer th:replace="~{/include/header_footer_nav.html::footer}"></footer>
+
 </body>
 <script th:src="@{/js/product_page/product_page.js}"></script>
 </html> 

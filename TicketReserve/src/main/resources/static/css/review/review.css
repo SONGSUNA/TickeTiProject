@@ -4,7 +4,7 @@ body{
 	background-color:#fff;
 	 font-family: 'LINESeedKR-Rg';
 }
-img {
+.review_title img {
     min-width: 100px;
     max-width: 100px;
     min-height: 120px;
@@ -82,6 +82,16 @@ textarea {
 .rate label:hover ~ input:checked ~ label { color: #f73c32 !important;  } 
 
 
+#user_review_null p {
+	text-align: center;
+	font-size: 30px;
+	margin-top: 90px;
+
+}
+#user_review {
+	width: 1200px;
+	margin: 30px auto;
+}
 
 @font-face {
     font-family: 'LINESeedKR-Th';
