@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.office.ticketreserve.kopisapi.KopisApi;
 import com.office.ticketreserve.kopisapi.TicketDB;
 import com.office.ticketreserve.productpage.CurrentReserveDto;
+import com.office.ticketreserve.productpage.PerfomanceDto;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -35,9 +36,15 @@ public class HomeController  {
 		api.getMusicalInfo(3);		//인자값 1주면 전체 API땡겨옴 2주면 예매현황 땡겨옴 3주면 그냥 넘어감.
 		//tDB.TicketStringFix();
 		
-//		List<CurrentReserveDto> rankOnePerfos = homeService.getRankOnePerfo();
-//		model.addAttribute("rankOnePerfos", rankOnePerfos);
+		List<CurrentReserveDto> rankOnePerfos = homeService.getRankOnePerfo();
+		model.addAttribute("rankOnePerfos", rankOnePerfos);
 		
+		List<PerfomanceDto> todayPerfos = homeService.getTodayPerfo();
+		model.addAttribute("todayPerfos", todayPerfos);
+		
+		List<PerfomanceDto> nextPerfos = homeService.getnextPerfo();
+		model.addAttribute("nextPerfos", nextPerfos);
+		log.info("[HomeController] home() : " + nextPerfos);
 		return nextPage;
 	}
 	
