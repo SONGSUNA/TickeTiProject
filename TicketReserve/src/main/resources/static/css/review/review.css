@@ -81,6 +81,8 @@ textarea {
 .rate input:checked ~ .rate label:hover ~ label,  
 .rate label:hover ~ input:checked ~ label { color: #f73c32 !important;  } 
 
+
+
 @font-face {
     font-family: 'LINESeedKR-Th';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Th.woff2') format('woff2');
