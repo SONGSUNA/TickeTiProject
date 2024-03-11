@@ -72,31 +72,29 @@ public class UserController {
 
 	// 유저 로그인 확인
 	@PostMapping("/user_login_confirm")
-	public String userLoginConfirm(UserDto userDto, HttpSession session, Model model) {
-		log.info("[UserController] userLoginConfirm()");
+	   public String userLoginConfirm(UserDto userDto, HttpSession session, Model model) {
+	      log.info("[UserController] userLoginConfirm()");
 
-		String nextPage = "/home";
+	      Object loginedUserDto = userService.userLoginConfirm(userDto);
 
-		Object loginedUserDto = userService.userLoginConfirm(userDto);
+	      if (loginedUserDto instanceof UserDto) {
 
-		if (loginedUserDto instanceof UserDto) {
+	         session.setAttribute("loginedUserDto", loginedUserDto);
+	         session.setMaxInactiveInterval(60 * 30);
 
-			session.setAttribute("loginedUserDto", loginedUserDto);
-			session.setMaxInactiveInterval(60 * 30);
+	         return "redirect:/";
 
-			return nextPage;
+	      } else if (loginedUserDto instanceof AdminDto) {
 
-		} else if (loginedUserDto instanceof AdminDto) {
+	         session.setAttribute("loginedAdminDto", loginedUserDto);
 
-			session.setAttribute("loginedAdminDto", loginedUserDto);
+	         return "redirect:/admin";
 
-			return "redirect:/admin";
+	      } else
 
-		} else
+	         return "/user/user_login_ng";
 
-			return "/user/user_login_ng";
-
-	}
+	   }
 
 	// 유저 정보수정폼 이동
 	@GetMapping("/user_modify_form")
@@ -106,7 +104,6 @@ public class UserController {
 		String nextPage = "user/user_modify_form";
 
 		UserDto loginedMemberDto = sessionCheck(session);
-		System.out.println("===============>>>>>>"+loginedMemberDto);
 
 		if (loginedMemberDto == null) {
 			return "redirect:/user_login_form";
@@ -141,7 +138,6 @@ public class UserController {
 		log.info("[UserController] userModifyConfirm()");
 
 		String nextPage = "user/user_modify_ok";
-		System.out.println("----->>>>" + userDto);
 		UserDto loginedUserDto = userService.userModifyConfirm(userDto);
 
 		if (loginedUserDto != null) {
