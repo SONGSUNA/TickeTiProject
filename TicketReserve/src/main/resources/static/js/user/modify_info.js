@@ -6,7 +6,11 @@ function modifyFwBtn(){
 	let form = document.modify_fw_form;
 	 let pwRegex = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/;
 	
-	if(form.new_pw.value === '') {
+	if (form.u_pw.value === '') {
+      alert('기존 비밀번호를 입력해주세요.');
+      form.u_pw.focus();
+      
+   } else if (form.new_pw.value === '') {
 		alert('새 비밀번호를 설정해주세요.');
 		form.new_pw.value.focus();
 		
@@ -15,7 +19,7 @@ function modifyFwBtn(){
 		form.new_pw_check.value.focus();
 		
 	} else if(form.new_pw.value  !== form.new_pw_check.value){
-		alert('비밀번호가 일치하지 않습니다.');
+		alert('새로운 비밀번호가 일치하지 않습니다.');
 		form.new_pw.focus();
 		
 	} else if(!pwRegex.test(form.new_pw.value)){

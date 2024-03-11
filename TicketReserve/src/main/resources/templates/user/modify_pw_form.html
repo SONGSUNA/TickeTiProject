@@ -23,6 +23,10 @@
 			</div>
 			<div class="login_form">
 				<form th:action="@{/user/user_modify_fw_confirm}" name="modify_fw_form" method="post">
+				<div class="input_info">
+	          		 	 <label><b>기존 비밀번호  &emsp;&emsp;&emsp;</b><br/>
+	           			 <input type="password" name="u_pw"></label> 
+           			</div>
 					<div class="input_info">
 	          		 	 <label><b>새 비밀번호  &emsp;&emsp;&emsp;</b><br/>
 	           			 <input type="password" name="new_pw"></label> 

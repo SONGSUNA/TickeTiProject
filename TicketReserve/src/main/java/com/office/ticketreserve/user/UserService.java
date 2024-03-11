@@ -123,14 +123,12 @@ public class UserService {
 		log.info("[UserService] userLoginConfirm()");
 		
 		UserDto userDtos = userDao.seletUserFindInfo(userDto.getU_id(), userDto.getU_mail());
-		System.out.println("==========>>>>>>>>>>" + userDtos);
 		
 		int result = 0;
 		
 		if(userDtos != null) {
 			
 			String newPassword = createNewPassword();
-			System.out.println("<<<<=============>>>> "+ newPassword );
 			result = userDao.updatePassword(userDto.getU_id(), newPassword);
 			
 			if (result > 0)

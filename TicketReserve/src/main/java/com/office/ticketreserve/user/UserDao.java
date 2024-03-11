@@ -88,13 +88,11 @@ public class UserDao {
 			userDtos = jdbcTemplate.query(sql, rowMapper, userDto.getU_id());
 			
 			if (userDtos.size() <= 0) {
-				System.out.println("11111111111111111");
 				return null;
 				
 			} else {
 				
 				if (!passwordEncoder.matches(userDto.getU_pw(), userDtos.get(0).getU_pw())) {
-					System.out.println("33333333333333333333333");
 					return null;
 				} 
 			}
@@ -287,9 +285,5 @@ public class UserDao {
 	  
 	  }
 	 
-
-
-
-
 
 }
