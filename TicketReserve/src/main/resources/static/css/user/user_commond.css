@@ -33,6 +33,7 @@ section #section_wrap {
 	width: 860px;
 	height: 820px;
 	margin: 0 auto;
+	padding-top: 150px;
 }
 
 section #section_wrap .word,
@@ -42,7 +43,7 @@ section #section_wrap .word,
 	text-align: center;
 	padding-bottom: 40px;
 	padding-top: 40px;
-	color: #2D9596;
+	color:	#265073;
 
 }
 
@@ -56,12 +57,14 @@ section #section_wrap .word,
 form input[type="button"],
 input[type="reset"],
 inputp .w_modify_btn {
-	background-color: #9AD0C2;
-	border-color: #2D9596;
+	background-color: #265073;;
+	border-color:#F1FADA;
 	border-radius: 5px;
 	text-align: center;
 	font-weight: bold;
-	color: #265073;
+	color: #F1FADA;
+	cursor: pointer;;
+	margin-left: 10px;
 }
 
 /* 양식 내 하단 submit btn */
@@ -72,10 +75,11 @@ inputp .w_modify_btn {
 	height: 40px;
 	margin-top: 20px;
 	margin-right: 20px;
+	cursor: poninter;
 }
 
 /* 양식 내 모든 버튼 호버시 */
-form input[type="button"]:hover,
+/* form input[type="button"]:hover,
 input[type="reset"]:hover,
 #check_id_msg:hover,
 .pw_modify_btn:hover {
@@ -83,7 +87,7 @@ input[type="reset"]:hover,
 	border-color: #9AD0C2;
 	color: #F1FADA;
 	cursor: pointer;
-}
+} */
 
 b {
 	font-size: 1.0em;
@@ -98,7 +102,7 @@ form>div {
 form input[type="text"],
 form input[type="password"],
 form input[type="number"] {
-	border-color: #9AD0C2;
+	border-color: #265073;
 	border-width: 0 0 1px;
 }
 
@@ -115,7 +119,7 @@ form input[type="number"]:focus {
 form input[name="u_mail_pre"],
 form input[name="u_mail_suf"] {
 
-	width: 150px;
+	width: 200px;
 }
 
 /*  비밀번호 찾기 결과 페이지 */
@@ -149,3 +153,6 @@ form[name="modify_form"] {
 	height: 400px;
 	margin: 0 auto;
 }
+/* .small_form_btn {
+	margin-left: 0;
+} */

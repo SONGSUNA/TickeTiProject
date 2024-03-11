@@ -55,20 +55,20 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .input_info:nth-child(9) #address {
-    width: 500px;
+    width: 420px;
 }
 
 #postcode {
-    width: 100px;
+    width: 132px;
 }
 
 #address {
-    width: 380px;
+    width: 430px;
 }
 
 #detailAddress,
 #extraAddress {
-    width: 200px;
+    width: 213px;
 }
 
 .input_info span {
@@ -76,10 +76,13 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .input_info input.u_phone {
-    width: 100px;
+    width: 132px;
 }
 
 section .create_account_form {
     width: 1200px;
     margin-bottom: 30px;
+}
+.button_wrap {
+	margin-left: 25px;
 }

@@ -31,18 +31,19 @@ body {
 }
 
 form div:last-child {
-  border-top: 1px solid #9AD0C2;
+  border-top: 1px solid #265073;
   width: 320px;
   margin-top: 30px;
   padding-top: 15px;
 }
 
 .sub_menu_wrap span {
-  color: #9AD0C2;
+  color: #265073;
 }
 
 .sub_menu_wrap a {
   color: #265073;
+  cursor: poninter;
 }
 
 #login_form {
@@ -60,6 +61,7 @@ form div:last-child {
   width: 0 500px;
   height: 200px;
   padding-top: 80px;
+  color: #265073;
 }
 
 .create_result_ms {
@@ -76,11 +78,16 @@ form div:last-child {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-weight: bold
+  font-weight: bold;
+  color: #265073;
 }
 
 #login_wrap,
 #login_rs_wrap {
   margin-top: 200px;
+}
+
+form > div:nth-child(3) {
+    margin-left: -15px;
 }
 
