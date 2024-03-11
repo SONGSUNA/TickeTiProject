@@ -141,6 +141,7 @@ public class UserController {
 		log.info("[UserController] userModifyConfirm()");
 
 		String nextPage = "user/user_modify_ok";
+		System.out.println("----->>>>" + userDto);
 		UserDto loginedUserDto = userService.userModifyConfirm(userDto);
 
 		if (loginedUserDto != null) {
@@ -284,8 +285,26 @@ public class UserController {
 		UserDto userDtos =sessionCheck(session);
 		
 		if(userDtos == null) {
-			return "user/user_delete_confirm";
+			return "user/user_find_password_ng";
 		} 
 			return nextPage;
+	}
+	
+	//비밀번호 변경 확인
+	@PostMapping("/user_modify_fw_confirm")
+	public String modifyFwConfirm(UserDto userDto,HttpSession session,@RequestParam("new_pw") String newPassword) {
+		log.info("[UserController] modifyFwConfirm()");
+		UserDto userDtos =sessionCheck(session);
+		
+		String nextPage = "user/user_modify_ok";
+		
+		int result = userService.modifyFwConfirm(newPassword,userDtos);
+		
+		if(result <= 0) {
+			nextPage = "user/user_modify_ng";
+		}
+		
+		return nextPage;
+		
 	}
 }
