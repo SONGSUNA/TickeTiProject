@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+	
 	<link rel="icon" type="image/x-icon" th:href="@{/img/icon.png}">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     
@@ -17,7 +18,7 @@
 	<script th:src="@{/OwlCarousel/owl_Carousel_properties.js}" type="text/javascript"></script>
 	
 	<script th:src="@{/js/home/topbar.js}" type="text/javascript"></script>
-
+	<script th:src="@{/js/home/search.js}" type="text/javascript"></script>
 </head>
 <body>
 	<section>
@@ -34,7 +35,7 @@
 						<a th:href="@{/category/exhibition}">전시</a>
 					</div>
 					<div class="search">
-						<input type="text">&nbsp;&nbsp;
+						<input type="text" onkeyup="enterKey();">&nbsp;&nbsp;
 						<a th:href="@{/}"><span class="material-symbols-outlined" style="color:#dadada">search</span></a>&nbsp;&nbsp;&nbsp;&nbsp;
 						<a th:href="@{/}"><span class="material-symbols-outlined" style="color:#dadada">confirmation_number</span></a>&nbsp;&nbsp;
 						<a th:href="@{/user/myPage}"><span class="material-symbols-outlined" style="color:#dadada">account_circle</span></a>&nbsp;&nbsp;
@@ -61,31 +62,35 @@
 			
 			</div>
 			<div class="owl-carousel">
-				<div class="item"><img th:src="@{/img/home/carousel01.png}"></div>
-				<div class="item"><img th:src="@{/img/home/carousel02.png}"></div>
-				<div class="item"><img th:src="@{/img/home/carousel03.png}"></div>
+				<div class="item"><a th:href="@{/product/PF236064}"><img th:src="@{/img/home/carousel01.png}"></a></div>
+				<div class="item"><a th:href="@{/product/PF236126}"><img th:src="@{/img/home/carousel02.png}"></a></div>
+				<div class="item"><a th:href="@{/product/PF236062}"><img th:src="@{/img/home/carousel03.png}"></a></div>
 			</div>
 			
 			<div class="itembody">
 				<h2>WHAT`S HOT</h2>
 				<div class="popularity">
 					<div class="hot_container">
-						<div class="big">
+						<div class="big">							
 							<div class="item">
-								<img th:src="${rankOnePerfos.get(0).getP_thum()}">
-								<div class="outside">
-				                	<div class="title" th:text="${rankOnePerfos.get(0).getP_name()}"></div>
-									<div class="detail" th:utext="${rankOnePerfos[0].c_r_period} + '<br/>' + ${rankOnePerfos[0].p_theater}"></div>
-				            	</div>
+								<a th:href="@{/product/{rankOnePerfos}(rankOnePerfos=${rankOnePerfos[0].getP_id()})}">
+									<img th:src="${rankOnePerfos[0].getP_thum()}">
+									<div class="outside">
+					                	<div class="title" th:text="${rankOnePerfos[0].getP_name()}"></div>
+										<div class="detail" th:utext="${rankOnePerfos[0].c_r_period} + '<br/>' + ${rankOnePerfos[0].p_theater}"></div>
+					            	</div>
+				            	</a>
 							</div>
 						</div>
 						<div class="list">
 							<div th:each="perf,index : ${rankOnePerfos}" th:unless="${index.index == 0}" class="item">
-				            	<div class="inside">
-				                	<div class="title" th:text="${perf.getP_name()}"></div>
-				                	<div class="detail" th:utext="${perf.getC_r_period} + '<br/>' + ${perf.getP_theater()}"></div>
-				            	</div>
-			            		<img th:src="${perf.getP_thum()}">
+								<a th:href="@{/product/{rankOneId}(rankOneId=${perf.getP_id()})}">
+					            	<div class="inside">
+					                	<div class="title" th:text="${perf.getP_name()}"></div>
+					                	<div class="detail" th:utext="${perf.getC_r_period} + '<br/>' + ${perf.getP_theater()}"></div>
+					            	</div>
+				            		<img th:src="${perf.getP_thum()}">
+			            		</a>
 			        		</div>
 						</div>
 					</div>
@@ -95,11 +100,13 @@
 					<div class="container" >
 						<div class="list">
 							<div th:each="perf,index : ${todayPerfos}" class="item">
-								<img th:src="${perf.getP_thum()}">
-								<div class="outside">
-									<p class="title" th:text="${perf.getP_name()}"></p>
-			                		<p class="detail" th:utext="${perf.getP_start_date}"></p>
-								</div>
+								<a th:href="@{/product/{todayPerfos}(todayPerfos=${perf.getP_id()})}">
+									<img th:src="${perf.getP_thum()}">
+									<div class="outside">
+										<p class="title" th:text="${perf.getP_name()}"></p>
+				                		<p class="detail" th:utext="${perf.getP_start_date}"></p>
+									</div>
+								</a>
 							</div>
 
 						</div>
@@ -110,11 +117,13 @@
 					<div class="container">
 						<div class="list">
 							<div th:each="perf,index : ${nextPerfos}" class="item">
-								<img th:src="${perf.getP_thum()}">
-								<div class="outside">
-									<p class="title" th:text="${perf.getP_name()}"></p>
-			                		<p class="detail" th:utext="${perf.getP_start_date}"></p>
-								</div>
+								<a th:href="@{/product/{nextPerfos}(nextPerfos=${perf.getP_id()})}">
+									<img th:src="${perf.getP_thum()}">
+									<div class="outside">
+										<p class="title" th:text="${perf.getP_name()}"></p>
+				                		<p class="detail" th:utext="${perf.getP_start_date}"></p>
+									</div>
+								</a>
 							</div>
 						</div>
 					</div>
