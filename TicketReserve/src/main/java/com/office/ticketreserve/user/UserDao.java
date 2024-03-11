@@ -168,7 +168,6 @@ public class UserDao {
 		String sql =  "UPDATE "
                 + "TBL_USER "
                 + "SET "
-                + "U_PW = ?, "                
                 + "U_NAME = ?, "
                 + "U_MAIL = ?, "
                 + "U_PHONE = ?, "
@@ -182,7 +181,6 @@ public class UserDao {
 	try {
 		
 		result = jdbcTemplate.update(sql,
-										passwordEncoder.encode(userDto.getU_pw()),
 										userDto.getU_name(),
 										userDto.getU_mail(),
 										userDto.getU_phone(),

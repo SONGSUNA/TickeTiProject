@@ -129,6 +129,7 @@ public class UserController {
 		model.addAttribute("endPoneN", endPoneN);
 		model.addAttribute("zipCode", zipCode);
 		model.addAttribute("mainAdr", mainAdr);
+		
 		/* model.addAttribute("referenceAdr", referenceAdr); */
 
 		return nextPage;
@@ -272,5 +273,19 @@ public class UserController {
 		}
 			return null;
 		
+	}
+	
+	//비밀번호 변경
+	@GetMapping("/modify_pw_form")
+	public String modifyFwFrom(HttpSession session) {
+		log.info("[UserController] modifyFwFrom()");
+		
+		String nextPage = "user/modify_pw_form";
+		UserDto userDtos =sessionCheck(session);
+		
+		if(userDtos == null) {
+			return "user/user_delete_confirm";
+		} 
+			return nextPage;
 	}
 }

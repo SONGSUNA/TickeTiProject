@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript" th:src="@{/js/user/user.js}"></script>
+<script type="text/javascript" th:src="@{/js/user/modify_info.js}"></script>
 <script type="text/javascript" th:src="@{/js/config/adress.js}"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
@@ -38,13 +38,13 @@
 				
 				<div class="input_info">
 	           		 <label><b>비밀번호  &emsp;&emsp;&emsp;</b> <br/>
-	           		 <input type="password" name="u_pw" class="modify_pw" id="modify_pw" ></label><br>
+	           		 <input type="password" name="u_pw" class="modify_pw" id="modify_pw" value ="********" readonly disabled></label><br>
 	           		  <span id="m_regexp"></span>
 				</div>
 				
 				<div class="input_info">
 	           		 <label><b>비밀번호 재확인  &emsp;&emsp;&emsp;</b><br/>
-	          		 <input type="password" name="u_pw_confirm" class="modify_pw" id="modify_pw_check" ></label><br/>
+	          		 <input type="password" name="u_pw_confirm" class="modify_pw" id="modify_pw_check" value ="********" readonly disabled></label><br/>
 	          		  <span id="pw_matching"></span><br/>
 				</div>
 				
@@ -89,7 +89,7 @@
 				
 				<div>	
 					 <input type="button" class="submit_btn" value="정보수정" onclick="modifyForm();">
-					 <input type="reset" class="reset_btn" value="초기화">
+					 <input type="button" class="pw_modify_btn" value="비밀번호 변경" onclick="window.location.href='/user/modify_pw_form'">
 				</div>
 			</form>	
 			</div>
