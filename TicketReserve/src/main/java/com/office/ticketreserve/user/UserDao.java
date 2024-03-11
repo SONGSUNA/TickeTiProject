@@ -82,6 +82,7 @@ public class UserDao {
 		
 		List<UserDto> userDtos = new ArrayList<UserDto>();
         
+		log.info(userDto.getU_id() +","+ userDto.getU_pw());
 		try {
 			
 			RowMapper<UserDto> rowMapper = 

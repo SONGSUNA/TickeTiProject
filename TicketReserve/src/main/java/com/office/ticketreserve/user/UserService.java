@@ -211,6 +211,18 @@ public class UserService {
 		   
 		    return userId;
 	}
+	public int modifyFwConfirm(String newPassword, UserDto userDtos) {
+		log.info("[UserService] modifyFwConfirm()");
+		
+		String uid = userDtos.getU_id();
+		int result = -1;
+		result = userDao.updatePassword(uid , newPassword);
+		
+		if(result <= 0) {
+			return result;
+		} 
+			return 1;
+	}
 	
 
 	
