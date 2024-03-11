@@ -201,4 +201,67 @@
 
 	</insert>
 	
+	<update id="updateAdminWitoutPw"
+			parameterType="com.office.ticketreserve.admin.AdminDto">
+			
+		UPDATE 
+			TBL_ADMIN 
+		SET 
+			A_NAME = #{a_name}, 
+			A_MAIL = #{a_mail},
+		 	A_PHONE = #{a_phone}, 
+		 	A_MOD_DATE = SYSTIMESTAMP 
+		 WHERE 
+		 	A_ID = #{a_id}
+	
+	</update>
+	
+	<update id="updateUserWithoutPw"
+			parameterType="com.office.ticketreserve.user.UserDto">
+			
+		UPDATE 
+			TBL_USER 
+		SET 
+			U_NAME = #{u_name}, 
+			U_MAIL = #{u_mail},
+		 	U_PHONE = #{u_phone}, 
+		 	U_ADDRESS = #{u_address}, 
+		 	U_MOD_DATE = SYSTIMESTAMP 
+		 WHERE 
+		 	U_ID = #{u_id}
+	
+	</update>
+	
+	<select id="selectAllPerfomance" 
+			resultType="com.office.ticketreserve.productpage.PerfomanceDto">
+			
+	    SELECT 
+	        * 
+	    FROM 
+	        TBL_PERFOMANCE
+	        
+	</select>
+	
+	<select id="selectAllPerfomanceNoTicket" 
+			resultType="com.office.ticketreserve.productpage.PerfomanceDto">
+			
+	    SELECT 
+	        * 
+	    FROM 
+	        TBL_PERFOMANCE 
+	    WHERE 
+	    	P_TICKET IS NULL 
+	    	OR 
+	    	P_TIME IS NULL
+	        
+	</select>
+	
+	<select id="selectAllPerfomanceByName" 
+			parameterType="String" 
+			resultType="com.office.ticketreserve.productpage.PerfomanceDto">
+			
+	    SELECT * FROM TBL_PERFOMANCE WHERE P_NAME LIKE '%' || #{p_name} || '%'
+	        
+	</select>
+	
 </mapper>

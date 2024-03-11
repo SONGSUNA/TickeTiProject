@@ -24,8 +24,6 @@
 			
 			<div class="perfomance_regist">
 				<form th:action="@{/admin/perfomance_regist_confirm}" name="perfomance_regist_form" method="post" enctype="multipart/form-data">
-					<input type="hidden" id="csrfToken" th:value="${_csrf.token}"/>
-					
 					<div class="scroll">
 						<p>ID</p>
 						<input type="text" name="p_id" placeholder="PF000000">

@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.office.ticketreserve.productpage.PerfomanceDto;
+import com.office.ticketreserve.user.IUserDaoForMybatis;
 import com.office.ticketreserve.user.UserDao;
 import com.office.ticketreserve.user.UserDto;
 
@@ -23,7 +24,7 @@ public class AdminService {
 	PasswordEncoder passwordEncoder;
 	
 	@Autowired
-	UserDao userDao;
+	IUserDaoForMybatis userDao;
 
 	public List<UserDto> getAllUserDto() {
 		log.info("[AdminService] getAllUserDto()");
@@ -51,6 +52,18 @@ public class AdminService {
 			return userDtos;
 	}
 
+	public UserDto selectUserByID(String u_id) {
+		log.info("[AdminService] selectUserByID()");
+		
+		return adminDao.selectUsersById(u_id).get(0);
+	}
+
+	public void userModifyConfirm(UserDto userDto) {
+		log.info("[AdminService] userModifyConfirm()");
+		
+		adminDao.updateUserWithoutPw(userDto);
+	}
+
 	public boolean isAdmin(String adminId) {
 		log.info("[AdminService] isAdmin()");
 		
@@ -58,8 +71,7 @@ public class AdminService {
 		
 		AdminDto adminDto = adminDao.selectAdminById(adminId);
 		if (adminDto != null) return result;
-		
-		return userDao.isUser(adminId);
+		else return false;
 	}
 
 	public int adminRegist(AdminDto adminDto) {
@@ -98,6 +110,18 @@ public class AdminService {
 			return adminDtos;
 	}
 
+	public AdminDto selectAdminById(String a_id) {
+		log.info("[AdminService] selectAdminById()");
+	
+		return adminDao.selectAdminById(a_id);
+	}
+
+	public void adminModifyConfirm(AdminDto adminDto) {
+		log.info("[AdminService] adminModifyConfirm()");
+		
+		adminDao.updateAdminWitoutPw(adminDto);
+	}
+
 	public void adminDeleteConfirm(int a_no) {
 		log.info("[AdminService] getSelectAdminDtos()");
 		
@@ -116,12 +140,30 @@ public class AdminService {
 	}
 
 	public void perfomanceRegistConfirm(PerfomanceDto perfomanceDto) {
-		log.info("[AdminService] isPfId()");
+		log.info("[AdminService] perfomanceRegistConfirm()");
 		
 		if (perfomanceDto.getP_detail_cautions() != null)
 			adminDao.insertPerfomance(perfomanceDto);
 		else
 			adminDao.insertPerfomanceNotDetailCautions(perfomanceDto);
+	}
+
+	public List<PerfomanceDto> getAllPerfomance() {
+		log.info("[AdminService] getAllPerfomance()");
+		
+		return adminDao.selectAllPerfomance();
+	}
+
+	public List<PerfomanceDto> getNoTicketPfs() {
+		log.info("[AdminService] getNoTicketPfs()");
+		
+		return adminDao.selectAllPerfomanceNoTicket();
+	}
+
+	public List<PerfomanceDto> getPerfomanceByName(String p_name) {
+		log.info("[AdminService] getPerfomanceByName()");
+		
+		return adminDao.selectAllPerfomanceByName(p_name);
 	}
 
 }

@@ -37,6 +37,15 @@ public interface AdminDaoForMyBatis {
 	public void insertPerfomance(PerfomanceDto perfomanceDto);
 
 	public void insertPerfomanceNotDetailCautions(PerfomanceDto perfomanceDto);
-	
+
+	public void updateAdminWitoutPw(AdminDto adminDto);
+
+	public void updateUserWithoutPw(UserDto userDto);
+
+	public List<PerfomanceDto> selectAllPerfomance();
+
+	public List<PerfomanceDto> selectAllPerfomanceNoTicket();
+
+	public List<PerfomanceDto> selectAllPerfomanceByName(String p_name);
 	
 }
