@@ -12,14 +12,14 @@ ul{
 }
 
 #title_data {
-    max-width: 1600px;
-    margin: auto;
+    max-width: 1200px;
+    margin:100px auto;
     padding: 20px;
     border-bottom: 1px #242424 solid;
     margin-bottom: 50px;
 }
 #content_container{
-    max-width: 1600px;
+    max-width: 1200px;
     margin: auto;
 }
 #content_data {
@@ -182,10 +182,15 @@ a {
     width: 15px;
     height: 15px;
 }
+#imageContainer img{
+	max-width: 900px;
+	min-width: 900px;
+
+}
 
 .review_notice {
-	width:75%;
-	display:flex;
+	
+	
 	text-align:left;
 	line-height: 25px;
 	margin: 30px auto;
@@ -194,8 +199,13 @@ a {
 	padding: 30px;
 	font-size: 16px;
 }
+.review_notice p {
+	display: inline-block;
+}
 .review_notice button{
-	margin-left: 400px;
+	float: right;
+	width: 120px;
+	height: 50px;
 }
 .review_modal_wrap {
         display: none; /* 기본적으로 모달 창은 보이지 않게 설정 */
@@ -232,4 +242,20 @@ a {
   color: #000;
   text-decoration: none;
   cursor: pointer;
+}
+
+
+#user_review .review_list {
+	width: 1160px;
+    padding: 10px 20px;
+    display: inline-flex;
+    gap: 30px;
+	border-bottom: 1px solid #dadada;
+	background-color: #e9ecef;
+}
+
+.review_txt {
+	float: left;
+	margin: 20px;
+	text-align: left;
 }
