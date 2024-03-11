@@ -37,6 +37,7 @@ public class HomeController  {
 		//tDB.TicketStringFix();
 		
 		List<CurrentReserveDto> rankOnePerfos = homeService.getRankOnePerfo();
+		System.out.println("rankOnePerfos.size(): " + rankOnePerfos.size());
 		model.addAttribute("rankOnePerfos", rankOnePerfos);
 		
 		List<PerfomanceDto> todayPerfos = homeService.getTodayPerfo();
@@ -44,7 +45,6 @@ public class HomeController  {
 		
 		List<PerfomanceDto> nextPerfos = homeService.getnextPerfo();
 		model.addAttribute("nextPerfos", nextPerfos);
-		log.info("[HomeController] home() : " + nextPerfos);
 		return nextPage;
 	}
 	
