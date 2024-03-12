@@ -11,7 +11,12 @@
 		WHERE 
 			U_NO = #{u_no}
 	</delete>
-	
+	<select id="selectUser" parameterType="int">
+		SELECT * FROM 
+			TBL_USER 
+		WHERE
+			U_NO = #{u_no}
+	</select>
 		<!-- <select id="dofindIdFromDB"  parameterType="string" 
 	        resultType="string">
 	        

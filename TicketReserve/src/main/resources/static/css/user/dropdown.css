@@ -8,31 +8,36 @@
 #dropdown_menu {
     display: none;
     position: absolute; 
-    min-width: 120px;
+    min-width: 80px;
     z-index: 1;
     top: 100%; 
     left: 0;
-    border: 2px solod #F1FADA;
+/*     border: 1px solid #000; */
     padding-top: 10px;
+    text-align:center;
+    margin-left: -25px;
+/*     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px; */
 }
 
 #dropdown_wrap:hover #dropdown_menu {
     display: block;
 }
-/* 각가의 하위메뉴 */
+/* 각각의 하위메뉴 */
 #dropdown_menu > div > a{
-	color: #F1FADA;
+	width: 30px;
+	color: #265073;
 	margin-top:3px;
 	font-size:1.2em;
 	min-width: 120px;
-	background-color: #265073;
+	background-color: #F1FADA;
 	padding: 2px;
 	font-weight: bold;
 	transition: color 0.2s; 
 }
 
 #dropdown_menu > div > a:hover {
-    color: #265073; 
-    background-color: #F1FADA;
+    color: #000; 
+    background-color: #fff;
     
 }

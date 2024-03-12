@@ -12,6 +12,7 @@ public interface IUserDaoForMybatis {
 	 * public List<UserDto> selectAllUsers; public static UserDto
 	 * selectAdminById(String u_id_check);
 	 */
+	public UserDto selectUser(int u_no);
 	public int deleteUser(int u_no) ;
 //	public String dofindIdFromDB(String u_name, String u_mail);
 

@@ -122,6 +122,11 @@ form input[name="u_mail_suf"] {
 	width: 200px;
 }
 
+/* 작은폼 메일입력칸*/
+.find_password_form form .input_info .mail_input {
+	width: 150px;
+}
+
 /*  비밀번호 찾기 결과 페이지 */
 .find_pw_rs_msg {
 	text-align: center;
