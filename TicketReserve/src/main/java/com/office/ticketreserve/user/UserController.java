@@ -303,4 +303,16 @@ public class UserController {
 		return nextPage;
 		
 	}
+	@GetMapping("/home")
+	public String myTicketHome(HttpSession session) {
+		log.info("[UserController] myTicketHome()");
+		
+		String nextPage = "user/home";
+		UserDto userDto = sessionCheck(session);
+		
+		if(userDto == null) {
+			return "user/user_login_form";
+		}
+			return nextPage;
+	}
 }

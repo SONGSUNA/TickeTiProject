@@ -49,6 +49,7 @@
 									<a th:href="@{/user/create_account_form}">회원가입</a><br/>
 								</div>
 								<div  th:unless="${session.loginedUserDto == null}">
+									<a th:href="@{/user/home}">나의티켓</a><br/>
 									<a th:href="@{/user/user_modify_form}">정보수정</a><br/>
 									<a th:href="@{/user/user_logout_confirm}">로그아웃</a><br/>
 									<a th:href="@{/user/user_delete_form}">회원탈퇴</a>
