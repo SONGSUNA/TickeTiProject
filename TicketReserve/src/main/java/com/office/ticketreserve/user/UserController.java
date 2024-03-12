@@ -181,14 +181,14 @@ public class UserController {
 	
 	//회원 탈퇴 확인
 	@PostMapping("/user_delete_confirm")
-	public String userDeleteConfirm(HttpSession session) {
+	public String userDeleteConfirm(HttpSession session,UserDto userDto) {
 		log.info("[UserController] userDeleteConfirm()");
-
+		
 		String nextPage = "redirect:/user/user_logout_confirm";
 
 		UserDto loginedUserDto = sessionCheck(session);
 
-		int result = userService.userDeleteConfirm(loginedUserDto.getU_no());
+		int result = userService.userDeleteConfirm(loginedUserDto.getU_no(),userDto);
 		if (result <= 0) {
 			nextPage = "user/user_delete_ng"; //수정하기 
 		}

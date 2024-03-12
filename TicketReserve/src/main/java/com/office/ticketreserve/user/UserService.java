@@ -40,7 +40,8 @@ public class UserService {
 	final static public int INSERT_INFO_FAIL_AT_DATABASE	= 0;
 	final static public int INSERT_INFO_OK_AT_DATABASE		= 1;
 	
-
+	
+	// 회원가입 확인하기
 	public int createAccountConfirm(UserDto userDto) {
 		log.info("createAccountConfirm");
 		
@@ -66,6 +67,8 @@ public class UserService {
 		}
 		
 	}
+	
+	//아이디 중복확인
 	public boolean checkId(String u_id_check) {
 		log.info("[UserService] checkId()");
 		
@@ -76,7 +79,7 @@ public class UserService {
 
 
 
-
+	//유저와 관리자 로그인 확인
 	public Object userLoginConfirm(UserDto userDto) {
 	    log.info("[UserService] userLoginConfirm()");
 	    
@@ -96,9 +99,7 @@ public class UserService {
 	}
 
 
-
-
-
+	// 정보수정 확인
 	public UserDto userModifyConfirm(UserDto userDto) {
 		log.info("[UserService] userModifyConfirm()");
 		
@@ -112,11 +113,27 @@ public class UserService {
 
 	
 	// 회원 탈퇴 확인
-	public int userDeleteConfirm(int u_no) {
+	public int userDeleteConfirm(int u_no,UserDto userDto) {
 		log.info("[UserService] userLoginConfirm()");
+		String u_pw = userDto.getU_pw();
+		int result = -1;
 		
-		return IUserDao.deleteUser(u_no);
+		UserDto userDtos = IUserDao.selectUser(u_no);
+		if(userDtos != null && 
+				passwordEncoder.matches(u_pw, userDtos.getU_pw())) {	//사용자입력값과 DB 비교
+			
+			result = IUserDao.deleteUser(u_no);
+			
+			if(result <= 0) {
+				result = -1;
+			} else {
+				result = 1;
+			}
+		}
+		
+		 return result;
 	}
+	
 	
 	//비밀번호 찾기 확인
 	public int uFindPwConfirm(UserDto userDto) {

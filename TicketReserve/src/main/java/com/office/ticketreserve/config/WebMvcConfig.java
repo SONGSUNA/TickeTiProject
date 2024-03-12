@@ -30,6 +30,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		// 유저 인터셑터
 	    registry.addInterceptor(new UserLoginInterceptor())
 	    		.addPathPatterns("/user/**")
+	    		.excludePathPatterns("/user/home")
 	    		.excludePathPatterns("/user/create_account_form")
 	    		.excludePathPatterns("/user/create_account_confirm")
 	    		.excludePathPatterns("/user/checkId")
