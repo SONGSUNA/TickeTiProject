@@ -3,9 +3,4 @@
     <settings>
         <setting name="callSettersOnNulls" value="true"/>
     </settings>
-    
-    <typeAliases>
-        <typeAlias alias="row_num" type="com.office.ticketreserve.productpage.PerfomanceDto"/>
-        <typeAlias alias="temp" type="com.office.ticketreserve.productpage.PerfomanceDto"/>
-    </typeAliases>
 </configuration>

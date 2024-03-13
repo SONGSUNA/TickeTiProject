@@ -54,22 +54,25 @@ public class HomeController  {
 	
 	@GetMapping("/search")
 	public String search(@RequestParam("search_value") String search,
-						 @RequestParam(defaultValue = "0") int pageNo,
-						 @RequestParam(defaultValue = "3") int pageSize,
-						 Model model) {
-		log.info("[HomeController] search");
-		
-		model.addAttribute("searchValue", search);
-				
-		String nextPage = "/search_page";
-		
-		Page<PerfomanceDto> page = homeService.getSearchResult(search, pageNo, pageSize);
-	    model.addAttribute("searchValue", search);
-	    model.addAttribute("searchPerfos", page.getContent());
-	    model.addAttribute("currentPage", pageNo);
-	    model.addAttribute("totalPages", page.getTotalPages());
-	    
-		return nextPage;
+	                    @RequestParam(defaultValue = "1", name = "pageNo") int pageNo,
+	                    @RequestParam(defaultValue = "3", name = "pageSize") int pageSize,
+	                    Model model) {
+			log.info("[HomeController] search");
+			
+			if(pageNo <= 0) 
+				pageNo =1;
+			
+			String nextPage = "/search_page";
+			
+			Page<PerfomanceDto> page = homeService.getSearchResult(search, pageNo, pageSize);
+			model.addAttribute("searchValue", search);
+			model.addAttribute("searchPerfos", page.getContent());
+			model.addAttribute("currentPage", pageNo);
+			model.addAttribute("totalPages", page.getTotalPages());
+			
+			log.info("[HomeController] search" + page);
+			
+			return nextPage;
 	}
 	
 }

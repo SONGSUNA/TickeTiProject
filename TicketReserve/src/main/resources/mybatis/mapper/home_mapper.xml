@@ -24,16 +24,16 @@
 			P_START_DATE
 	</select>
 	
-	<select id="selectSearch"  parameterType="String" resultType="com.office.ticketreserve.productpage.PerfomanceDto">
+<!-- 	<select id="selectSearch"  parameterType="String" resultType="com.office.ticketreserve.productpage.PerfomanceDto">
 		SELECT 
 			* 
 		FROM 
 			TBL_PERFOMANCE 
 		WHERE 
 			P_NAME LIKE '%' || #{p_name} || '%'
-	</select>
+	</select> -->
 		
-	<!-- <select id="selectSearch" parameterType="map" resultType="temp">
+	<select id="selectSearch" parameterType="java.util.Map" resultType="com.office.ticketreserve.productpage.PerfomanceDto">
 	    SELECT *
 	    FROM (
 	        SELECT ROWNUM row_num, temp.*
@@ -47,11 +47,11 @@
 	    )
 	    WHERE row_num &gt;= #{startRow}
 	</select>
-	
+		
 	<select id="countSearchResults" parameterType="String" resultType="int">
 	    SELECT COUNT(*)
 	    FROM TBL_PERFOMANCE
 	    WHERE P_NAME LIKE '%'||#{p_name}||'%'
-	</select> -->
+	</select>
 
 </mapper>
