@@ -1,11 +1,13 @@
 package com.office.ticketreserve.productpage;
 
+import org.apache.ibatis.type.Alias;
 import org.springframework.stereotype.Repository;
 
 import lombok.Data;
 
 @Data
 @Repository
+@Alias("row_num")
 public class PerfomanceDto {
 	private String  p_id;
     private String  p_name;
