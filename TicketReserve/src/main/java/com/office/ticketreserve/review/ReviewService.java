@@ -21,10 +21,7 @@ public class ReviewService {
 		log.info("reviewWrite");
 		
 		String p_name = reviewDao.getPname(p_id);
-		
-		
-		
-		
+
 		return reviewDao.insertReview(rv_txt,rv_score,p_name,u_id);
 	}
 
@@ -34,19 +31,36 @@ public class ReviewService {
 	public List<ReviewDto> allReviewsForPid(String p_id) {
 		
 		String p_name = reviewDao.getPname(p_id);
-		
-		
-		
-		
+
 		return reviewDao.allSelectReviewByPname(p_name);
 	}
 
 
 
 
+	public ReviewDto reviewModify(int rv_no) {
+		
+		return reviewDao.getReviewByRv_no(rv_no);
+	}
 
-	
-	
+
+
+
+	public int reviewModifyConfirm(String rv_txt, int rv_score, int rv_no) {
+		
+		return reviewDao.updateReviewByRv_no(rv_txt,rv_score,rv_no);
+	}
+
+
+
+
+	public int reviewDeleteConfirm(int rv_no) {
+		
+		return reviewDao.reviewDeleteConfirm(rv_no);
+	}
+
+
+
 
 	
 }

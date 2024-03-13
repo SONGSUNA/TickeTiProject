@@ -7,12 +7,10 @@ document.addEventListener('DOMContentLoaded', function ddd() {
         likes++; // 좋아요 수 증가
         likeCount.textContent = likes; // 화면에 표시
         
-        
-        
+   
         
     });
 });
-
 
 var modal = document.querySelector('.review_modal_wrap');
 var btn = document.querySelector('.open_review_modal');
@@ -28,4 +26,7 @@ var span = document.getElementsByClassName("close")[0];
 
 	span.onclick = function() {
 	  modal.style.display = "none";
+	  $('form').each(function() {
+                this.reset();
+            });
 	}
