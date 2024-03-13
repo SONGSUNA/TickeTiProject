@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" th:src="@{/js/user/user.js}"></script>
+<script type="text/javascript" th:src="@{/js/config/adress.js}"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	
+	<link rel="stylesheet" th:href="@{/css/user/my_ticket_page.css}">
+	<link rel="stylesheet" th:href="@{/css/user/dropdown.css}">
+	<link rel="stylesheet" th:href="@{/css/home.css}">
+	<!-- <link rel="stylesheet" th:href="@{/css/user/user_commond.css}">
+	<link rel="stylesheet" th:href="@{/css/user/create_account_form.css}"> -->
+	<link th:href="@{/css/include/footer.css}" rel="stylesheet" />
+	
+	<link rel="icon" type="image/x-icon" th:href="@{/img/icon.png}">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<body>
+	<header th:replace="~{user/create_account_form.html::u_top_bar1}">
+	</header>
+	
+	<section>
+		
+		
+		<div id="section_wrap">
+			<div class="word">
+				<span>MY TICKET</span>
+			</div>
+		
+			
+		<div class="my_ticket_info_wrap">
+			<div class="my_ticket_page">
+				<div class="mtp_title_wrap"> <!-- my ticket page = mtp  -->
+					<h3>나의 예약 내역</h3>
+				</div>
+				<div class="mtp_content_wrap">
+					<table>
+						<tr>
+							<th>예매일</th>
+							<th>티켓번호</th>
+							<th>공연명</th>
+							<th>좌석번호</th>
+							<th>관람일시</th>
+							<th>수령방법</th>
+							<th>결제상태</th>
+						</tr>
+						
+						<tr>
+							<td>예매일</td>
+							<td>티켓번호</td>
+							<td>공연명</td>
+							<td>좌석번호</td>
+							<td>관람일시</td>
+							<td>수령방법</td>
+							<td>결제상태</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="my_ticket_page">
+				<div class="mtp_title_wrap">
+					<h3>나의 관람 공연</h3>
+				</div>
+				<div class="mtp_content_wrap">
+					<table>
+						<tr>
+							<th>공연명</th>
+							<th>별점</th>
+							<th>관람일</th>
+							<th>나의리뷰</th>
+							
+						</tr>
+						
+						<tr>
+							<td>공연명</td>
+							<td>별점</td>
+							<td>관람일</td>
+							<td>나의리뷰</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		
+		</div>		
+				
+	
+	</section>
+	
+	
+	<footer th:replace="~{/include/header_footer_nav.html::footer}"></footer>
+</body>
+</html>

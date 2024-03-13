@@ -1,0 +1,99 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'LINESeedKR-Th';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Th.woff2') format('woff2');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LINESeedKR-Rg';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Rg.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LINESeedKR-Bd';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+body {
+    font-family: 'LINESeedKR-Rg';
+}
+/* 전체 페이지를 화면 중앙으로 정렬 */
+body {
+/*     display: flex;
+    justify-content: center;
+    align-items: center; */
+    height: 100vh;
+    margin: 0;
+}
+*{
+	color:	#265073;
+}
+/* 섹션을 감싸는 section_wrap의 스타일 */
+#section_wrap {
+    max-width: 800px; /* 최대 너비 */
+    width: 100%;
+    padding: 20px; /* 내부 여백 */
+    box-sizing: border-box; /* 내부 여백을 포함하여 너비 설정 */
+    margin: 0 auto; /* 수평 중앙 정렬 */
+    margin-top: 100px;
+}
+
+#section_wrap .word{
+	font-size: 2.0em;
+	font-weight: bold;
+	text-align: center;
+	padding-bottom: 40px;
+	padding-top: 40px;
+	color:	#265073;
+}
+
+/* 티켓 정보 페이지의 스타일 */
+.my_ticket_page {
+    margin-top: 20px; /* 페이지 간의 여백 */
+}
+
+/* 티켓 정보 제목을 감싸는 mtp_title_wrap의 스타일 */
+.mtp_title_wrap {
+    margin-bottom: 10px; /* 제목과 내용 간의 여백 */
+}
+
+/* 티켓 정보 내용을 감싸는 mtp_content_wrap의 스타일 */
+.mtp_content_wrap {
+    border: 1px solid #ddd; /* 테두리 추가 */
+    border-radius: 5px; /* 테두리 모서리 둥글게 */
+    margin-top: 10px; /* 위쪽 여백 */
+    overflow-x: auto; /* 가로 스크롤바 추가 */
+}
+
+/* 티켓 정보 테이블의 스타일 */
+.mtp_content_wrap table {
+    width: 100%; /* 테이블 전체 너비 사용 */
+    border-collapse: collapse; /* 테이블 셀 경계 합치기 */
+}
+
+/* 티켓 정보 테이블 헤더의 스타일 */
+.mtp_content_wrap th {
+    background-color: #f2f2f2; /* 배경색 지정 */
+    border-bottom: 1px solid #ddd; /* 아래쪽 테두리 추가 */
+    padding: 8px; /* 셀 내부 여백 */
+    text-align: center; /* 가운데 정렬 */
+}
+
+/* 티켓 정보 테이블 데이터의 스타일 */
+.mtp_content_wrap td {
+    border-bottom: 1px solid #ddd; /* 아래쪽 테두리 추가 */
+    padding: 8px; /* 셀 내부 여백 */
+    text-align: center; /* 가운데 정렬 */
+}
+
+/* 티켓 정보 테이블 짝수 행의 스타일 */
+.mtp_content_wrap tr:nth-child(even) {
+    background-color: #f9f9f9; /* 짝수 행 배경색 지정 */
+}

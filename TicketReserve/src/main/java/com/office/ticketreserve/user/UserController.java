@@ -290,24 +290,25 @@ public class UserController {
 	@PostMapping("/user_modify_fw_confirm")
 	public String modifyFwConfirm(UserDto userDto,HttpSession session,@RequestParam("new_pw") String newPassword) {
 		log.info("[UserController] modifyFwConfirm()");
-		UserDto userDtos =sessionCheck(session);
-		
+		UserDto loginedUserDto =sessionCheck(session);
 		String nextPage = "user/user_modify_ok";
 		
-		int result = userService.modifyFwConfirm(newPassword,userDtos);
+		int result = userService.modifyFwConfirm(newPassword,loginedUserDto,userDto);
 		
 		if(result <= 0) {
-			nextPage = "user/user_modify_ng";
+			nextPage = "user/modify_pw_ng";
 		}
 		
 		return nextPage;
 		
 	}
-	@GetMapping("/home")
+	
+	//나의 티켓 화면 이동
+	@GetMapping("/my_ticket_page")
 	public String myTicketHome(HttpSession session) {
 		log.info("[UserController] myTicketHome()");
 		
-		String nextPage = "user/home";
+		String nextPage = "user/my_ticket_page";
 		UserDto userDto = sessionCheck(session);
 		
 		if(userDto == null) {
