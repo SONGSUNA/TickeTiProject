@@ -89,7 +89,7 @@ function adminModify (a_id) {
 	    	}
 	})
 	
-	$('.admin_modify').css('display', 'block');
+	$('.modal_wrap').css('display', 'block');
 	
 }
 
@@ -162,7 +162,7 @@ function modifyConfirm() {
 function modify_close () {
 	console.log("modify_close()");
 	
-	$('.admin_modify').css('display', 'none');
+	$('.modal_wrap').css('display', 'none');
 }
 
 

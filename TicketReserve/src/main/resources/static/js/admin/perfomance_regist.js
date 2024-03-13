@@ -93,7 +93,9 @@ function perfomanceRegist() {
         
     } else if (form.postcode.value === '') {
       	alert('우편번호를 입력해주세요.');
-      	form.postcode.focus();ㅌ
+      	form.postcode.focus();
+      	
+      	
     } else if (form.address.value === '') {
       	alert('주소를 입력해주세요');
       	form.address.focus();

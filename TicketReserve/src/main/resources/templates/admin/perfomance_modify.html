@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title th:replace="~{include/title.html::title}"></title>
+
+<link rel="stylesheet" th:href="@{/css/admin/perfomance_modify.css}">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript" th:src="@{/js/admin/perfomance_modify.js}"></script>
+
+</head>
+<body>
+
+	<div class="container">
+	
+		<div th:replace="~{/admin/side_bar.html::sidebar}"></div>
+		
+		<div class="main">
+			<h1>공연 정보 관리</h1>
+			
+			<div class="list_menu">
+				<div class="all"	onclick="allPerfomance()">		전체 공연 목록</div>
+				<div class="search"	onclick="searchPerfomance()">	공연 검색</div>
+			</div>
+			
+			<div class="all_table">
+				<table>
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>공연명</th>
+							<th>시작 날짜</th>
+							<th>종료 날짜</th>
+							<th>연령 등급</th>
+							<th>시설</th>
+							<th>장르</th>
+							<th>좌석수</th>
+							<th>현재 예약수</th>
+							<th>기획사</th>
+							<th>상세보기/수정</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="perfomance : ${perfomanceDtos}">
+						    <td th:text="${perfomance.p_id}"></td>
+						    <td th:text="${perfomance.p_name}"></td>
+						    <td th:text="${perfomance.p_start_date}"></td>
+						    <td th:text="${perfomance.p_end_date}"></td>
+						    <td th:text="${perfomance.p_theater}"></td>
+						    <td th:text="${perfomance.p_grade}"></td>
+						    <td th:text="${perfomance.p_category}"></td>
+						    <td th:text="${perfomance.p_max_reserve}"></td>
+						    <td th:text="${perfomance.p_now_reserve}"></td>
+						    <td th:text="${perfomance.p_host}"></td>
+						    <td>
+						    	<button th:attr="onclick='modifyForm(\'' + ${perfomance.p_id} + '\')'">수정</button>
+						    </td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<div class="search_table">
+				<div class="search_form">
+					<p>공연명 : </p>
+					<input  type="text"	name="search_p_name">
+					<button onclick="search_pf()">검색</button>
+				</div>	
+			
+				<table>
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>공연명</th>
+							<th>시작 날짜</th>
+							<th>종료 날짜</th>
+							<th>연령 등급</th>
+							<th>시설</th>
+							<th>장르</th>
+							<th>좌석수</th>
+							<th>현재 예약수</th>
+							<th>기획사</th>
+							<th>상세보기/수정</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+					</tbody>
+				</table>
+			</div>
+		</div>
+		
+		<div class="modal_wrap">
+			<div class="perfomance_modify">
+				<div class="close_bar">
+					<button onclick="modify_close()">X</button>
+				</div>
+				
+				<div class="form_wrap">
+					<form th:action="@{/admin/perfomance_modify_confirm}" name="perfomance_modify_form" method="post" enctype="multipart/form-data">
+						<div class="scroll">
+							<input type="hidden" name="p_id">
+						
+							<p>ID</p>
+							<input type="text" name="p_id_show" disabled="disabled" readonly="readonly">
+							<br>
+							<p>공연명</p>
+							<input type="text" name="p_name">
+							<br>
+							<p>공연 시작 날짜</p>
+							<input type="date" name="p_start_date">	
+							<br>
+							<p>공연 종료 날짜</p>
+							<input type="date" name="p_end_date">
+							<br>
+							<p>연령 등급</p>
+							<select name="p_grade">
+								<option value="none">--연령등급 선택--</option>
+								<option value="전체 관람가">전체 관람가</option>
+								<option value="12개월 이상">12개월 이상</option>
+								<option value="24개월 이상">24개월 이상</option>
+								<option value="36개월 이상">36개월 이상</option>
+								<option value="만 7세 이상">만 7세 이상</option>
+								<option value="만 12세 이상">만 12세 이상</option>
+								<option value="만 15세 이상">만 15세 이상</option>
+								<option value="만 19세 이상">만 19세 이상</option>
+							</select>
+							<br>
+							<p>공연 시설명</p>
+							<input type="text" name="p_theater">
+							<br>
+							<p>현재 시설 주소</p>
+							<input type="text" name="current_p_place" disabled="disabled" readonly="readonly">
+							<br>
+							<p>시설 주소 변경</p>
+				            <div class="input_info">
+								 <input type="text" id="postcode" name="postcode" placeholder="우편번호">
+								 <input type="button" id="find_zip_code"onclick="execDaumPostcode()" value="우편번호 찾기"><br>
+								 <input type="text" id="address" name="address" placeholder="주소"><br>
+								 <input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소">
+							     <input type="text" id="extraAddress" name="extraAddress" placeholder="참고항목"><br>
+								 <input type="hidden" name="p_place">
+							</div>
+							<p>주소 위도</p>
+							<input type="number" name="p_latitude">
+							<br>
+							<p>주소 경도</p>
+							<input type="number" name="p_lognitude">
+							<br>
+							<p>썸네일 이미지</p>
+							<input type="file" id="thum_img" name="thum_img">
+							<div class="preview">
+								<img id="thumbPreview" src="#" alt="Thumbnail Preview" style="display: none;"/>
+							</div>
+							<br>
+							<p>카테고리</p>
+							<select name="p_category">
+								<option value="none">--장르 선택--</option>
+								<option value="대중음악">콘서트</option>
+								<option value="뮤지컬">뮤지컬</option>
+								<option value="연극">연극</option>
+								<option value="서양음악(클래식)">서양음악(클래식)</option>
+								<option value="한국음악(국악)">한국음악(국악)</option>
+							</select>
+							<br>
+							<p>좌석 수</p>
+							<input type="number" name="p_max_reserve">
+							<br>
+							<p>관람 시간</p>
+							<input type="text" name="p_running_time" placeholder="0시간 00분">
+							<br>
+							<p>출연진</p>
+							<input type="text" name="p_characters" placeholder="김ㅇㅇ, 박ㅇㅇ, 이ㅇㅇ">
+							<br>
+							<p>상세페이지 이미지</p>
+							<input type="file" id="detail_img" name="detail_img">
+							<div class="preview">
+								<img id="detailImgPreview" src="#" alt="Detail Image Preview" style="display: none;"/>
+							</div>
+							<br>
+							<p>기획사 정보</p>
+							<textarea name="p_agency_info"></textarea>
+							<br>
+							<p>주최</p>
+							<textarea name="p_host"></textarea>
+							<br>
+							<p>상담 번호</p>
+							<textarea name="p_inquiry"></textarea>
+							<br>
+							<p>유의사항</p>
+							<textarea name="p_detail_cautions" placeholder="유의사항이 있을시 입력"></textarea>
+							<br>
+						</div>
+						<input type="button" value="수정"	onclick="perfomanceModify()">
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>

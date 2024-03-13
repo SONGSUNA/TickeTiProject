@@ -2,14 +2,22 @@ package com.office.ticketreserve;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.office.ticketreserve.productpage.CurrentReserveDto;
 import com.office.ticketreserve.productpage.PerfomanceDto;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -17,7 +25,7 @@ import lombok.extern.log4j.Log4j2;
 @Service
 public class HomeService {
 	@Autowired
-	HomeDao homeDao;
+	IHomeDaoForMybatis homeDao;
 	
 	public List<CurrentReserveDto> getRankOnePerfo() {
 		log.info("[HomeService] getRankOnePerfo()");
@@ -84,6 +92,7 @@ public class HomeService {
 	}
 
 	private <T> List<T> ShuffleNumber(List<T> list) {
+		log.info("[HomeService] ShuffleNumber()");
 		List<T> shuffleList = new ArrayList<>();
 	    List<Integer> randIndex = new ArrayList<>();
 		    
@@ -112,6 +121,23 @@ public class HomeService {
 		
 		return shuffleList;
 		
+	}
+
+	public Page<PerfomanceDto> getSearchResult(String search, int pageNo, int pageSize) {
+		log.info("[HomeService] getSearchResult()");
+		
+		int startRow = (pageNo - 1) * pageSize + 1;
+	    int endRow = pageNo * pageSize;
+
+	    Map<String, Object> params = new HashMap<>();
+	    params.put("p_name", search);
+	    params.put("startRow", startRow);
+	    params.put("endRow", endRow);
+
+	    List<PerfomanceDto> results = homeDao.selectSearch(params);
+	    int totalCount = homeDao.countSearchResults(search);
+	    
+	    return new PageImpl<>(results, PageRequest.of(pageNo - 1, pageSize), totalCount);
 	}
 
 	

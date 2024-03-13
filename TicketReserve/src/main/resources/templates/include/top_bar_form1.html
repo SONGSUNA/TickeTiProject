@@ -7,9 +7,9 @@
 	<a th:href="@{/category/exhibition}">전시</a>
 </div>
 <div class="search">
-	<form th:action="@{/search}" name="search_form1" method="get" onsubmit="return validateSearch()">
-		<input type="text" name="search_value" id="search_input">&nbsp;&nbsp;
-		<input type="button" value="search" class="material-symbols-outlined" style="color:#dadada" th:onclick="searchIcon();">&nbsp;&nbsp;&nbsp;&nbsp;
+	<form th:action="@{/search}" name="search_form1" method="get" onsubmit="return validateSearch2();">
+		<input type="text" name="search_value" id="search_input2">&nbsp;&nbsp;
+		<input type="submit" value="search" class="material-symbols-outlined" style="color:#dadada" >&nbsp;&nbsp;&nbsp;&nbsp;
 	</form>
 
 	<a th:href="@{/}"><span class="material-symbols-outlined" style="color:#dadada">confirmation_number</span></a>&nbsp;&nbsp;
@@ -28,4 +28,5 @@
  	</div>
   </div>
  </div>
+</div>
 </div>
