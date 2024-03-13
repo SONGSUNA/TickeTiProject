@@ -23,17 +23,17 @@
 	<section>
 		<div id="section_wrap">
 			<div class="word" id="login_rs_wrap">
-				<span>비밀번호 찾기 </span>
+				<span>비밀번호 변경 실패</span>
 			</div>
 			<div class="login_result_ms">
 				<div>
-					<div class="find_pw_rs_msg" >비밀번호 찾기에 실패하였습니다. <br/>
-					관리자에게 문의하세요. <br />
-					고객센터 : 031-1111-1111 <br />
-					밥스택 bobstack@bob.com</div> <br />
+					<div class="login_rs_message">현재 비밀번호를 잘못입력하였습니다.</div> <br />
+												  관리자에게 문의하세요. <br />
+												  고객센터 : 031-1111-1111 <br />
+												  밥스택 bobstack@bob.com</div> <br />
+						<a th:href="@{/user/user_modify_form}">뒤로가기</a>
+						&emsp;<span>|</span>&emsp;&emsp;
 						<a th:href="@{/}">홈</a>
-						&emsp;&emsp;&emsp;<span>|</span>&emsp;
-						<a th:href="@{/user/user_find_password_form}">비밀번호찾기</a>
 				</div>
 			</div>
 			</div>

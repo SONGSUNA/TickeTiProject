@@ -12,10 +12,11 @@
     z-index: 1;
     top: 100%; 
     left: 0;
-/*     border: 1px solid #000; */
     padding-top: 10px;
     text-align:center;
     margin-left: -25px;
+    background-color: #000;
+/*     border: 1px solid #000; */
 /*     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     padding: 12px 16px; */
 }
@@ -25,19 +26,20 @@
 }
 /* 각각의 하위메뉴 */
 #dropdown_menu > div > a{
-	width: 30px;
-	color: #265073;
+	width: 80px;
+	color: #fff;
 	margin-top:3px;
-	font-size:1.2em;
+	font-size:1.0em;
 	min-width: 120px;
-	background-color: #F1FADA;
 	padding: 2px;
-	font-weight: bold;
-	transition: color 0.2s; 
+/* 	font-weight: bold; */
+	transition: color 0.2s size 0.2s; 
 }
 
 #dropdown_menu > div > a:hover {
-    color: #000; 
-    background-color: #fff;
+    color: #265073; 
+	background-color: #fff; 
+    font-size: 1.2em;
+    font-weight: bold;
     
 }

@@ -146,6 +146,7 @@ public class UserService {
 		if(userDtos != null) {
 			
 			String newPassword = createNewPassword();
+			
 			result = userDao.updatePassword(userDto.getU_id(), newPassword);
 			
 			if (result > 0)
@@ -226,19 +227,27 @@ public class UserService {
 		   
 		    return userId;
 	}
-	public int modifyFwConfirm(String newPassword, UserDto userDtos) {
+	
+	// 비밀번호 변경하기 
+	public int modifyFwConfirm(String newPassword, UserDto loginedUserDto, UserDto userDto) {
 		log.info("[UserService] modifyFwConfirm()");
 		
-		String uid = userDtos.getU_id();
+		int u_no = loginedUserDto.getU_no();
+		String u_id = loginedUserDto.getU_id();
+		String current_pw = userDto.getU_pw();
 		int result = -1;
-		result = userDao.updatePassword(uid , newPassword);
+		UserDto userDtos = IUserDao.selectUser(u_no);
 		
-		if(result <= 0) {
-			return result;
-		} 
-			return 1;
+		if(userDtos != null && 
+				passwordEncoder.matches(current_pw, userDtos.getU_pw())) {	//사용자입력값과 DB 비교
+//			String u_pw = passwordEncoder.encode(newPassword);
+			result = userDao.updatePassword(u_id, newPassword);
+			
+			if(result > 0) {
+				result = 1;
+			} 
+		}
+		return result;
+	
 	}
-	
-
-	
 }
