@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.office.ticketreserve.config.TicketDto;
 import com.office.ticketreserve.productpage.PerfomanceDto;
 import com.office.ticketreserve.user.UserDto;
 import com.office.ticketreserve.user.UserService;
@@ -28,9 +29,6 @@ public class AdminController {
 	
 	@Autowired
 	AdminService adminService;
-	
-	@Autowired
-	UserService userService;
 	
 	@Autowired
 	FileUploadService fileUploadService;
@@ -93,7 +91,7 @@ public class AdminController {
 	public String user_delete_confirm(@RequestParam("u_no") int u_no) {
 		log.info("[AdminController] user_delete_confirm()");
 		
-		userService.userDeleteConfirm(u_no);
+		adminService.userDeleteConfirm(u_no);
 		
 		String nextPage = "redirect:/admin/user_management";
 		
@@ -260,6 +258,75 @@ public class AdminController {
 		List<PerfomanceDto> noTicketPfs = adminService.getPerfomanceByName(p_name);
 		
 		return noTicketPfs.isEmpty() ? null : noTicketPfs;
+	}
+	
+	@GetMapping("/getTicketInfo")
+	@ResponseBody
+	public TicketDto getTicketInfo(@RequestParam("p_id") String p_id, Model model) {
+		log.info("[AdminController] getTicketInfo()");
+
+		return adminService.getTicketInfo(p_id);
+	}
+	
+	@GetMapping("/ticket_modify")
+	public String ticketModify(TicketDto ticketDto) {
+		log.info("[AdminController] logout()");
+		
+		String nextPage = "/admin/ticket_modify_fail";
+		
+		boolean result = adminService.ticketModify(ticketDto);
+		if (!result) return nextPage;
+		
+		result = adminService.performanceModifyByTicket(ticketDto);
+		if (!result) return nextPage;
+		
+		nextPage = "/admin/ticket_modify_success";
+		return nextPage;
+	}
+	
+	@GetMapping("/performance_modify")
+	public String perfomanceModify(Model model) {
+		log.info("[AdminController] admin_delete_confirm()");
+		
+		List<PerfomanceDto> perfomanceDtos = adminService.getAllPerfomance();
+		
+		model.addAttribute("perfomanceDtos", perfomanceDtos);
+		
+		String nextPage = "/admin/perfomance_modify";
+		
+		return nextPage;
+	}
+	
+	@PostMapping("/getPerformancetInfo")
+	@ResponseBody
+	public PerfomanceDto getPerformancetInfo(@RequestParam("p_id") String p_id) {
+		log.info("[AdminController] getPerformancetInfo()");
+		
+		return adminService.getPerfomanceById(p_id);
+	}
+	
+	@PostMapping("/perfomance_modify_confirm")
+	public String perfomanceModifyConfirm(PerfomanceDto perfomanceDto, 
+										@RequestParam("thum_img") MultipartFile thumbImg,
+										@RequestParam("detail_img") MultipartFile detailImg) {
+		
+		String nextPage = "/admin/perfomance_modify_success";
+		
+		if(!thumbImg.getOriginalFilename().equals("")) {
+			String pThumPath = fileUploadService.pThumbImgUpload(thumbImg);
+			perfomanceDto.setP_thum("http://14.42.124.87:8091/perfomanceImg/pThum/" + pThumPath);
+		}
+		
+		if(!detailImg.getOriginalFilename().equals("")) {
+			String pDetailPath = fileUploadService.pDtailImgUpload(detailImg);
+			perfomanceDto.setP_detail_img("[StyUrl{url='[http://14.42.124.87:8091/perfomanceImg/pDetail/" + pDetailPath + "]'}");
+		}
+		
+		int result = adminService.perfomanceModifyConfirm(perfomanceDto);
+		
+		if (result <= 0) nextPage = "/admin/perfomance_modify_fail";
+			
+		return nextPage;
 	}
 	
 	@GetMapping("/logout")

@@ -37,16 +37,16 @@
 					</thead>
 					<tbody>
 						<tr th:each="perfomance : ${perfomanceDtos}">
-					        <td th:text="${perfomance.p_name}"></td>
-					        <td th:text="${perfomance.p_time != null 	? perfomance.p_time : 	'정보없음'}"></td>
-					        <td th:text="${perfomance.p_ticket != null 	? perfomance.p_ticket : '정보없음'}"></td>
-					        <td th:if="${perfomance.p_time != null || perfomance.p_ticket != null}">
-								<button>수정</button>
-					        </td>
-					        <td th:unless="${perfomance.p_time != null || perfomance.p_ticket != null}">
-					        	<button>등록</button>
-					        </td>
-					    </tr>
+						    <td th:text="${perfomance.p_name}"></td>
+						    <td th:text="${perfomance.p_time != null ? perfomance.p_time : '정보없음'}"></td>
+						    <td th:text="${perfomance.p_ticket != null ? perfomance.p_ticket : '정보없음'}"></td>
+							<td th:if="${perfomance.p_time != null || perfomance.p_ticket != null}">
+							    <button th:attr="onclick='ticketModifyForm(\'' + ${perfomance.p_id} + '\',\'' + ${perfomance.p_name} + '\')'">수정</button>
+							</td>
+							<td th:unless="${perfomance.p_time != null || perfomance.p_ticket != null}">
+							    <button th:attr="onclick='ticketModifyForm(\'' + ${perfomance.p_id} + '\',\'' + ${perfomance.p_name} + '\')'">등록</button>
+							</td>
+						</tr>
 					</tbody>
 				</table>
 			</div>
@@ -87,6 +87,71 @@
 					
 					</tbody>
 				</table>
+			</div>
+		</div>
+		
+		<div class="modal_wrap">
+			<div class="ticket_modify">
+				<div class="close_bar">
+					<button onclick="modify_close()">X</button>
+				</div>
+				
+				<div class="form_wrap">
+					<form id="modify_form"  name="modify_form"
+						  action="/admin/ticket_modify"	method="get">
+		          		<input type="hidden" name="p_id" >
+		          		
+		          		<div class="input_info">
+		          		  <b>공연명  &emsp;&emsp;&emsp;</b><br/>
+		           			<label><input type="text" name="p_name" readonly disabled><br>
+						</div>
+						
+						<div class="input_info">
+					         <label><b>티켓 1  &emsp;&emsp;&emsp;</b><br>
+					         <input type="text" name="t_seattype_1" placeholder="O석">
+					         <input type="number" name="t_price_1"	placeholder="000,000원">
+				       </div>
+				       
+						<div class="input_info">
+					         <label><b>티켓 2  &emsp;&emsp;&emsp;</b><br>
+					         <input type="text" name="t_seattype_2">
+					         <input type="number" name="t_price_2">
+				       </div>
+				       
+						<div class="input_info">
+					         <label><b>티켓 3  &emsp;&emsp;&emsp;</b><br>
+					         <input type="text" name="t_seattype_3">
+					         <input type="number" name="t_price_3">
+				       </div>
+				       
+						<div class="input_info">
+					         <label><b>티켓 4  &emsp;&emsp;&emsp;</b><br>
+					         <input type="text" name="t_seattype_4">
+					         <input type="number" name="t_price_4">
+				       </div>
+				       
+						<div class="input_info">
+					         <label><b>티켓 5  &emsp;&emsp;&emsp;</b><br>
+					         <input type="text" name="t_seattype_5">
+					         <input type="number" name="t_price_5">
+				       </div>
+				       
+						<div class="input_info">
+					         <label><b>티켓 6  &emsp;&emsp;&emsp;</b><br>
+					         <input type="text" name="t_seattype_6">
+					         <input type="number" name="t_price_6">
+				       </div>
+				       
+						<div class="input_info">
+					         <label><b>공연 요일 및 시간  &emsp;&emsp;&emsp;</b><br>
+					         <input type="text" name="t_p_date" placeholder="O요일00:00, O요일00:00">
+				       </div>
+				       
+						<div>	
+							 <input type="button" class="submit_btn" value="정보수정" onclick="modifyConfirm();">
+						</div>
+					</form>	
+				</div>
 			</div>
 		</div>
 	</div>
