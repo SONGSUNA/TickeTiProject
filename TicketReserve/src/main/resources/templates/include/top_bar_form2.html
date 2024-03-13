@@ -1,0 +1,17 @@
+<div class="empty"></div>
+<div class="category">
+	<a th:href="@{/category/concert}">콘서트</a>&nbsp;&nbsp;
+	<a th:href="@{/category/musical}">뮤지컬</a>&nbsp;&nbsp;
+	<a th:href="@{/category/theater}">연극</a>&nbsp;&nbsp;
+	<a th:href="@{/category/classic}">클래식</a>&nbsp;&nbsp;
+	<a th:href="@{/category/exhibition}">전시</a>
+</div>
+<div class="search">
+	<form th:action="@{/search}" name="search_form1" method="get" onsubmit="return validateSearch()">
+		<input type="text" name="search_value" id="search_input2">&nbsp;&nbsp;
+		<input type="button" value="search" class="material-symbols-outlined" style="color:#dadada" th:onclick="searchIcon();">&nbsp;&nbsp;&nbsp;&nbsp;
+	</form>
+
+	<a th:href="@{/}"><span class="material-symbols-outlined" style="color:#dadada">confirmation_number</span></a>&nbsp;&nbsp;
+	<a th:href="@{/user/myPage}"><span class="material-symbols-outlined" style="color:#dadada">account_circle</span></a>&nbsp;&nbsp;
+</div>
