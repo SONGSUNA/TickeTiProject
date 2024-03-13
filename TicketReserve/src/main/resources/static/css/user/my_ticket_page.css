@@ -29,7 +29,7 @@ body {
 /*     display: flex;
     justify-content: center;
     align-items: center; */
-    height: 100vh;
+    height: 100%;
     margin: 0;
 }
 *{
@@ -40,6 +40,7 @@ body {
     max-width: 800px; /* 최대 너비 */
     width: 100%;
     padding: 20px; /* 내부 여백 */
+    height: 580px;
     box-sizing: border-box; /* 내부 여백을 포함하여 너비 설정 */
     margin: 0 auto; /* 수평 중앙 정렬 */
     margin-top: 100px;
