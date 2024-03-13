@@ -1,14 +1,25 @@
+<<<<<<< HEAD
+   
+//리뷰 등록================================================
+   
+   document.addEventListener('DOMContentLoaded', function() {
+=======
 	
 //리뷰 등록================================================
 	
 	document.addEventListener('DOMContentLoaded', function() {
+>>>>>>> d912c1112f41fc0fb10c3b75d701ba6388f19238
     var ratings = document.getElementsByName('rv_score');
     var displayRating = document.getElementById('display-rating');
     var reviewInput = document.getElementById('review-input');
     var reviewBtn = document.querySelector('.reviewBtn');
     var reviewModiInput = document.querySelector('.review-input_modi');
 
+<<<<<<< HEAD
+   
+=======
 	
+>>>>>>> d912c1112f41fc0fb10c3b75d701ba6388f19238
     
 
     reviewInput.addEventListener('input', function() {
@@ -16,6 +27,17 @@
         document.getElementById('current-length').innerText = length;
        
     });
+<<<<<<< HEAD
+   reviewModiInput.addEventListener('input', function() {
+        var length = this.value.length;
+        document.querySelector('.current-length').innerText = length;
+    });
+   
+   
+   
+   //리뷰 등록
+   reviewBtn.addEventListener('click', function(event) {
+=======
 	reviewModiInput.addEventListener('input', function() {
         var length = this.value.length;
         document.querySelector('.current-length').innerText = length;
@@ -25,6 +47,7 @@
 	
 	//리뷰 등록
 	reviewBtn.addEventListener('click', function(event) {
+>>>>>>> d912c1112f41fc0fb10c3b75d701ba6388f19238
     event.preventDefault(); // 기본 동작(폼 제출) 방지
 
     var length = reviewInput.value.length;
@@ -50,11 +73,19 @@
         var rv_score = form.querySelector('input[name="rv_score"]:checked').value;
         var rv_txt = form.querySelector('textarea[name="rv_txt"]').value;
         var p_id = form.querySelector('input[name="p_id"]').value;
+<<<<<<< HEAD
+      console.log(rv_score);
+      console.log(rv_txt);
+      console.log(p_id);
+      
+      $.ajax({
+=======
 		console.log(rv_score);
 		console.log(rv_txt);
 		console.log(p_id);
 		
 		$.ajax({
+>>>>>>> d912c1112f41fc0fb10c3b75d701ba6388f19238
         url: '/review/review_write',
         type: 'POST',
         data: {
@@ -63,7 +94,11 @@
             "p_id" : p_id
         },
         success: function(response) {
+<<<<<<< HEAD
+      
+=======
 		
+>>>>>>> d912c1112f41fc0fb10c3b75d701ba6388f19238
             console.log('리뷰 등록 확인 성공:', response);
             
             // 수정 완료 후 모달 창 닫기
@@ -78,6 +113,20 @@
             alert('리뷰등록이 실패하였습니다');
             
         }
+<<<<<<< HEAD
+     });
+    }
+});
+
+
+// 리뷰 리스트=================================================================   
+   
+   // 별점을 표시할 요소 선택
+   var displayScores = document.getElementsByClassName('display_score');
+
+   // 각 별점 요소에 대하여
+   for (var j = 0; j < displayScores.length; j++) {
+=======
 	  });
     }
 });
@@ -90,6 +139,7 @@
 
 	// 각 별점 요소에 대하여
 	for (var j = 0; j < displayScores.length; j++) {
+>>>>>>> d912c1112f41fc0fb10c3b75d701ba6388f19238
     var score = displayScores[j].getAttribute('data-score'); // 데이터 속성에서 별점 값 가져오기
     score = parseInt(score, 10); // 문자열을 숫자로 변환
 
@@ -109,15 +159,61 @@
         star.style.fontSize = '1rem';
 
 
-        displayScores[j].appendChild(star); // 현재 처리 중인 display_score 요소에 별 추가
+        displayScores[j].appendChild(별); // 현재 처리 중인 display_score 요소에 별 추가
     }
+<<<<<<< HEAD
+}      
+=======
 }		
+>>>>>>> d912c1112f41fc0fb10c3b75d701ba6388f19238
 // 별 수정할때===================
 $('input[name="rv_score"]').click(function() {
     console.log('별클릭하기');
     var selectedRating = $(this).val();
     $(this).closest('form').find('input[name="rv_score"][value="' + selectedRating + '"]').prop('checked', true);
 });
+<<<<<<< HEAD
+       
+// 리뷰 수정====================================================
+
+       $('.reviewModifyBtn').click(function () {
+           let rv_no = $(this).siblings('input[name="rv_no"]').val();
+           $('.review_mod_wrap').hide();
+         $('form').each(function() {
+                this.reset();
+            });
+ 
+           $.ajax({
+               url: '/review/review_modify',
+               type: 'POST',
+               data: {"rv_no": rv_no},
+               success: function(response) {
+             $('.review-input_modi').text(response.rv_txt);
+             
+            $('.review_mod_wrap').show();
+            console.log(rv_no);
+             // 별점 설정
+             $('input[name="rv_score"][value="' + response.rv_score + '"]').prop('checked', true);
+   
+             // 리뷰 내용 설정
+               $('.close').click(function() {
+            $('.review_mod_wrap').hide();
+            });
+            
+            $('#rv_no').val(response.rv_no);
+            
+             console.log('리뷰 수정 페이지보기:', response);
+            },
+               error: function(xhr, status, error) {
+                   // 오류가 발생했을 때의 로직을 작성합니다.
+                   // 예: 사용자에게 오류 메시지를 표시합니다.
+                   console.error('리뷰 수정 페이지 실패:', error);
+               }
+           });
+
+   });
+   //리뷰수정컨펌===================================
+=======
     	
 // 리뷰 수정====================================================
 
@@ -158,6 +254,7 @@ $('input[name="rv_score"]').click(function() {
 
 	});
 	//리뷰수정컨펌===================================
+>>>>>>> d912c1112f41fc0fb10c3b75d701ba6388f19238
 $('.reviewModifyConfirmBtn').click(function(event) {
     event.preventDefault();
 
@@ -193,6 +290,32 @@ $('.reviewModifyConfirmBtn').click(function(event) {
 
 
 //리뷰 삭제=================================
+<<<<<<< HEAD
+      $('.reviewDeleteBtn').click(function () {
+           let rv_no = $(this).siblings('input[name="rv_no"]').val();
+           let confirm = window.confirm('리뷰를 삭제하시겠습니까?')
+          let url = document.URL;
+            let p_id = url.split("product/")[1];
+          if(!confirm)return
+           
+           $.ajax({
+               url: '/review/review_delete_confirm',
+               type: 'POST',
+               data: {"rv_no": rv_no,
+                     "p_id" : p_id
+                     },
+               success: function(response) {
+            alert('리뷰가 삭제되었습니다.')
+            window.location.href = '/product/' + p_id;
+            },
+               error: function(xhr, status, error) {
+                  console.log(response);    
+                   console.error('리뷰 삭제실패', error);
+               }
+           });
+
+   });
+=======
 		$('.reviewDeleteBtn').click(function () {
 	        let rv_no = $(this).siblings('input[name="rv_no"]').val();
 	        let confirm = window.confirm('리뷰를 삭제하시겠습니까?')
@@ -217,5 +340,6 @@ $('.reviewModifyConfirmBtn').click(function(event) {
 	        });
 
 	});
+>>>>>>> d912c1112f41fc0fb10c3b75d701ba6388f19238
 });
 
