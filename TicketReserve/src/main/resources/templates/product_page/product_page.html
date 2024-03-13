@@ -1,221 +1,293 @@
-   
-//리뷰 등록================================================
-   
-   document.addEventListener('DOMContentLoaded', function() {
-    var ratings = document.getElementsByName('rv_score');
-    var displayRating = document.getElementById('display-rating');
-    var reviewInput = document.getElementById('review-input');
-    var reviewBtn = document.querySelector('.reviewBtn');
-    var reviewModiInput = document.querySelector('.review-input_modi');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title th:replace="~{/include/title.html::title}"></title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <script th:src="@{/js/ticket_reservation/calender.js}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/product_page/product_page.css}">
+    <link th:href="@{/css/category/category.css}" rel="stylesheet" />
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ce4e57aa684855d5a529f9a18d466928"></script>
+    <script type="text/javascript" th:src="@{/js/review/review.js}"></script>
+    <link th:href="@{/css/review/review.css}" rel="stylesheet">
+       <link th:href="@{/css/include/footer.css}" rel="stylesheet" />
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    <body th:object="${productDto}">
+    <div id="header_top_bar">
+      <div th:replace="~{/home.html::top_bar1}"></div>
+   </div>
+        <div id="title_data">
+            <div class="catergory">
+                <a href="#none"><span class="super_category" th:text="*{p_category}"></span></a> > <a href="#none"><span class="base_category"> 페스티벌(중분류) </span></a>
+            </div>
+            
+            <div class="big_title">
+                <h1 th:text="*{p_name}"></h1>
+            </div>
+            <div id="short_data" >
+                <span class="con_date" th:text="*{p_start_date + ' ~ ' + p_end_date}"></span>&nbsp;|&nbsp;
+                <a href="#map" class="con_location" th:text="*{p_theater}">장소자리!</a>
+            </div>
+        </div>
+<div id="content_container">
+        <div id="content_data">
+            
+            <div class="cd_img">
+                <img th:src="*{p_thum}" alt="">
+                
+                <div class="likes">
+                    ❤
+                    <span id="likeCount" th:text=*{p_like}></span>
+                    
+                    <button id="likeButton">좋아요</button>
+                </div>
+            </div>
+            
+            <div class="cd_info_wrap">
+                <div class="cd_info">
+                    <ul>
+                        <li>등급</li>
+                        <li>관람시간</li>
+                        <li>출연</li>
+                        <li>가격</li>
+                    </ul>
+                    <ul>
+                       <li th:text="*{p_grade}"></li>
+                       <li th:if="*{not #strings.isEmpty(p_running_time)}" th:text="*{p_running_time}"></li>
+                       <li th:unless="*{not #strings.isEmpty(p_running_time)}" th:text="정보없음"></li>
+                       <li th:if="*{not #strings.isEmpty(p_characters)}" th:text="*{p_characters}"></li>
+                       <li th:unless="*{not #strings.isEmpty(p_characters)}" th:text="정보없음"></li>
+                       <li th:text="*{p_ticket}"></li>
+                    </ul>
+                </div>
+                <div class="time_info">
+                    <ul>
+                        <li>공연시간 안내</li>
+                        <li th:text="*{p_detail_cautions}">공연시간 안내 데이터 들어갈 자리</li>
+                        
+                        <li>배송정보</li>
+                        <li>배송정보 데이터 들어갈 자리</li>
+                    </ul>
+                </div>
+            </div>
+        
+        
+    </div>
+    <div id="date_time_choice">
+        <div class="left">
+            <div class="date_time_h3">
+                <h3>
+                    날짜/시간 선택
+                </h3>
+            </div>    
+            <div class="calendar_wrap">
+                <div id="calendar">
+                </div>
+               
+                <div class="calendar_data">
+                    데이터 들어갈 자리
+                </div>
+            </div>
+            
+        </div>
 
-   
+
+        <div class="right">
+            <div class="date_time_h3">
+                <h3>
+                    예매 가능 좌석
+                </h3>
+            </div>
+            
+            <div class="right_data">
+                데이터 들어갈 자리
+                <ul>
+                    <li>가격정보</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="reserveBtn_wrap">
+           <input type="button" value="예매하기">
+    </div>
+
+    <div id="reserve_nav">
+       
+        <div class="more_info"><a href="#imageContainer">상세정보</a></div>
+        <div class="review"><a href="#user_review">관람후기</a></div>
+        <div class="res_can_guide"><a href="#product-info">예매/취소 안내</a></div>
+
+    </div>
+    <div class="more_info_data">
+          <h1 th:if="${productDto.p_detail_cautions != null and productDto.p_detail_cautions != 'X'}" th:text="유의사항">유의사항</h1>
+       <span th:if="${productDto.p_detail_cautions != null and productDto.p_detail_cautions != 'X'}" th:text="*{p_detail_cautions}">유의사항 들어갈 자리</span>
+
+        <h1>공연정보</h1>
+           <div id="imageContainer"></div>
+           <div th:replace="~{/product_page/product_page_js.html}">
+        </div>
+        
+        <h1>기타정보</h1>
+        <span>기타정보 들어갈 자리</span>
+
+        <div class="product-info" id="product-info">
+            <h1>상품정보고시</h1>
+            <table>
+                <!-- 첫번째줄 -->
+                <tr>
+                    <th>주최/기획</th>
+                   <td th:if="${not #strings.isEmpty(productDto.p_host)}" th:text="*{p_host}"></td>
+               <td th:if="${#strings.isEmpty(productDto.p_host) and not #strings.isEmpty(productDto.p_agency_info)}" th:text="*{p_agency_info}"></td>
+               <td th:if="${#strings.isEmpty(productDto.p_host) and #strings.isEmpty(productDto.p_agency_info)}" th:text="정보없음"></td>
+
+                    <th>소비자상담전화</th>
+                    <td th:if="*{not #strings.isEmpty(p_inquiry)}" th:text="*{p_inquiry}"></td>
+                    <td th:unless="*{not #strings.isEmpty(p_inquiry)}" th:text="정보없음"></td>
+                </tr>
+                <!-- 두번째줄 -->
+                <tr>
+                    <th>출연</th>
+                    <td th:if="*{not #strings.isEmpty(p_characters)}" th:text="*{p_characters}"></td>
+                    <td th:unless="*{not #strings.isEmpty(p_characters)}" th:text="정보없음"></td>
+                    <th>관람등급</th>
+                    <td th:text="*{p_grade}">관람등급 데이터 자리</td>
+                </tr>
+                <!-- 세번째줄 -->
+                <tr>
+                    <th>공연시간</th>
+                    <td th:text="*{p_running_time}">공연시간 데이터 자리</td>
+                    <th>공연장소</th>
+                    <td th:text="*{p_theater}">공연장소 데이터 자리</td>
+                </tr>
+                <tr>
+                    <th>취소/환불방법</th>
+                    <td colspan="3">
+                    <p>취소 일자에 따라 아래와 같이 취소수수료가 부과됩니다. 예매일보다 관람일 기준이 우선 적용되오니 유의해주시기 바랍니다.
+                        단, 예매 후 7일 이내라도 취소시점이 공연일로부터 10일 이내라면 그에 해당하는 취소수수료가 부과됩니다.
+                        (단, 상품에 따라 취소 정책이 달라질 수 있고, 각 공연이 공지하는 취소 정책이 우선 적용되므로, 예매 시 참고하시기 바랍니다.)</p>
+                        <table>
+                        <caption></caption>
+                        <colgroup>
+                            <col width="50%">
+                            <col width="50%">
+                        </colgroup>
+                        <tbody>
+                            <tr><th scope="col">취소일</th><th scope="col">취소수수료</th></tr>
+                            <tr><td>예매 후 7일 이내</td><td>없음</td></tr>
+                            <tr><td>예매 후 8일 ~ 관람일 10일 전까지</td><td><span class="rn-red" id="Span1">장당 4,000원</span>(단, 티켓 금액의 10% 이내)</td></tr>
+                            <tr><td>관람일 9일 전 ~ 관람일 7일 전까지</td><td>티켓 금액의 10%</td></tr>
+                            <tr><td>관람일 6일 전 ~ 관람일 3일 전까지</td><td>티켓 금액의 20%</td></tr>
+                            <tr><td>관람일 2일 전 ~ 취소마감일시까지</td><td>티켓 금액의 30%</td></tr>
+                        </tbody>
+                    </table>
+                    예매수수료는 예매 당일 밤 12시 이전 취소 시에만 환불되며, 그 이후 기간에는 환불되지 않습니다.
+                    취소는 직접 취소 또는 고객센터를 통해 취소 가능합니다.
+                    티켓이 배송된 후에는 취소가 불가, 취소마감시간 이전에 밥스택 고객센터로 티켓이 반송되어야 취소 가능합니다.
+                    (취소수수료는 티켓 도착일 기준으로 부과되며, 배송비는 환불되지 않습니다.)
+                    각 상품별로 취소 정책이 다르게 적용될 수 있으니, 각 상품 안내 사항을 확인해주시기 바랍니다.
+                </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="location_info">
+        <div>
+            <h2 th:text="*{p_theater}">공연장소 이름 데이터</h2>
+            <span th:text="*{p_place}">공연장소 주소 데이터</span>
+        </div>
+        <div id="map">
+            <div th:replace="~{/product_page/product_map_js.html}"></div>
+            
+        </div>
+    </div>
     
+    <div id="review_page">
+        <div>
+            <h2>관람후기</h2>
+        </div>
+        <div class="review_notice">
+           <p>매매, 욕설 등 게시판 운영 규정에 위반되는 글은 사전 통보없이 삭제될 수 있습니다.<br>
+         개인정보가 포함된 내용은 삼가 주시기 바라며, 게시물로 인해 발생하는 문제는 작성자 본인에게 책임이 있습니다.</p>
+         <button class="open_review_modal" th:if="${session.loginedUserDto != null}">리뷰등록</button>
+        </div>
+         <div th:replace="~{/review/review_form.html::review_form}"></div>
 
-    reviewInput.addEventListener('input', function() {
-        var length = this.value.length;
-        document.getElementById('current-length').innerText = length;
+         
+               
+        <div id="user_review_null" th:if="${#lists.isEmpty(reviewDtos)}">
+           <p>관람 후기가 없습니다.</p>
+        </div>
+        
        
-    });
-   reviewModiInput.addEventListener('input', function() {
-        var length = this.value.length;
-        document.querySelector('.current-length').innerText = length;
-    });
-   
-   
-   
-   //리뷰 등록
-   reviewBtn.addEventListener('click', function(event) {
-    event.preventDefault(); // 기본 동작(폼 제출) 방지
-
-    var length = reviewInput.value.length;
-    var selectedRating = false;
-
-    // 별점 체크
-    for (var i = 0; i < ratings.length; i++) {
-        if (ratings[i].checked) {
-            selectedRating = true;
-            break;
-        }
-    }
-
-    if (length <= 0 && !selectedRating) {
-        alert('리뷰와 별점을 작성해주세요.');
-    } else if (length <= 0) {
-        alert('리뷰를 작성해주세요.');
-    } else if (!selectedRating) {
-        alert('별점을 선택해주세요.');
-    } else {
-        // Ajax 요청 보내기
-        var form = event.target.closest('form');
-        var rv_score = form.querySelector('input[name="rv_score"]:checked').value;
-        var rv_txt = form.querySelector('textarea[name="rv_txt"]').value;
-        var p_id = form.querySelector('input[name="p_id"]').value;
-      console.log(rv_score);
-      console.log(rv_txt);
-      console.log(p_id);
-      
-      $.ajax({
-        url: '/review/review_write',
-        type: 'POST',
-        data: {
-            "rv_score": rv_score,
-            "rv_txt": rv_txt,
-            "p_id" : p_id
-        },
-        success: function(response) {
-      
-            console.log('리뷰 등록 확인 성공:', response);
+        <div id="user_review" th:if="${reviewDtos != null}" th:each="review, status : ${reviewDtos}">
             
-            // 수정 완료 후 모달 창 닫기
-            $('.review_mod_wrap').hide();
-            alert('리뷰등록이 성공하였습니다');
-            // 상세 페이지로 리다이렉트
-            window.location.href = '/product/' + p_id;
-        },
-        error: function(xhr, status, error) {
-            console.error('리뷰 등록 확인 실패:', error);
-           
-            alert('리뷰등록이 실패하였습니다');
-            
-        }
-     });
-    }
-});
+            <ul class="review_list" th:classappend="'review_item_' + ${status.index}">
+               
+               <li class="review_li1" th:text="${review.u_id}"></li>
+               <li class="display_score review_li2" th:data-score="${review.rv_score}"></li>
+               <li>
+                  <span th:text="${#strings.substring(review.rv_mod_date, 0, 10)}"></span>
+                  <span th:if="${review.rv_mod_date != review.rv_reg_date}">(수정됨)</span>
+              </li>
+               
+               <li th:if="${session.loginedUserDto != null and session.loginedUserDto.u_id.equals(review?.u_id)}">
+                  <input type="hidden" name="rv_no" th:value="${review.rv_no}">
+                  <input type="button" value="수정" class="reviewModifyBtn">
+               <input type="button" value="삭제" class="reviewDeleteBtn">
+               </li>
+               
+            </ul>
+               <div th:replace="~{/review/review_form.html::review_modify_form}"></div>
+            <ul th:classappend="'review_text_' + ${status.index}">
+               <li class="review_txt" th:text="${review.rv_txt}"></li>
+            </ul>
+         
+        </div>
+    </div>
+</div>
 
+<div class="review_mod_wrap" th:fragment="review_modify_form">
+   <div class="review_wrap">
+      <div class="review_title">
+         <img th:src="*{p_thum}">
+         <h3 th:text="*{p_name}"></h3>
+         <span class="close">&times;</span>
+      </div>
+      <p>별점과 이용후기를 작성해주세요.</p>
+      <form method="post" action="/review/review_modify_confirm" name="review_modify_form">
+         <input type="hidden" name="rv_no" id="rv_no">
+         <fieldset class="rate mod_rate">
+             <div id="display-rating"></div>
+             <input type="radio" id="mod_rating5" name="rv_score" value="5"><label class="rating5" for="mod_rating5" title="5점"></label>
+             <input type="radio" id="mod_rating4" name="rv_score" value="4"><label for="mod_rating4" title="4점"></label>
+             <input type="radio" id="mod_rating3" name="rv_score" value="3"><label class="rating3" for="mod_rating3" title="3점"></label>
+             <input type="radio" id="mod_rating2" name="rv_score" value="2"><label for="mod_rating2" title="2점"></label>
+             <input type="radio" id="mod_rating1" name="rv_score" value="1"><label class="rating1" for="mod_rating1" title="1점"></label>      
+         </fieldset>
+         <div>
+            <div>
+                <textarea class="review-input_modi" name="rv_txt" maxlength="1000" placeholder="공연의 관람 후기를 작성해주세요."></textarea>
+            </div>
+            <div class="current-length_wrap">
+                   <span class="current-length">0</span>/500<br>
+                   <input type="hidden" name="p_id" th:value="*{p_id}">
+                   <input class="reviewModifyConfirmBtn" type="submit" value="수정확인">
+            </div>
+         </div>
+      </form>
+      <div>
+         <p style="display: none;">리뷰가 성공적으로 수정되었습니다.</p>
+      </div>
+   </div>
+</div>
+<footer th:replace="~{/include/header_footer_nav.html::footer}"></footer>
 
-// 리뷰 리스트=================================================================   
-   
-   // 별점을 표시할 요소 선택
-   var displayScores = document.getElementsByClassName('display_score');
-
-   // 각 별점 요소에 대하여
-   for (var j = 0; j < displayScores.length; j++) {
-    var score = displayScores[j].getAttribute('data-score'); // 데이터 속성에서 별점 값 가져오기
-    score = parseInt(score, 10); // 문자열을 숫자로 변환
-
-    // 별점에 따른 별 표시
-    for (var i = 1; i <= 5; i++) {
-        var star = document.createElement('span');
-        if (i <= score) {
-            star.className = 'fas fa-star';
-            star.style.color = '#f73c32'; // 별점에 따른 색상
-        } else {
-            star.className = 'far fa-star';
-            star.style.color = '#ddd'; // 기본 색상
-        }
-
-        star.style.fontFamily = 'Font Awesome 5 Free';
-        star.style.fontWeight = '900';
-        star.style.fontSize = '1rem';
-
-
-        displayScores[j].appendChild(별); // 현재 처리 중인 display_score 요소에 별 추가
-    }
-}      
-// 별 수정할때===================
-$('input[name="rv_score"]').click(function() {
-    console.log('별클릭하기');
-    var selectedRating = $(this).val();
-    $(this).closest('form').find('input[name="rv_score"][value="' + selectedRating + '"]').prop('checked', true);
-});
-       
-// 리뷰 수정====================================================
-
-       $('.reviewModifyBtn').click(function () {
-           let rv_no = $(this).siblings('input[name="rv_no"]').val();
-           $('.review_mod_wrap').hide();
-         $('form').each(function() {
-                this.reset();
-            });
- 
-           $.ajax({
-               url: '/review/review_modify',
-               type: 'POST',
-               data: {"rv_no": rv_no},
-               success: function(response) {
-             $('.review-input_modi').text(response.rv_txt);
-             
-            $('.review_mod_wrap').show();
-            console.log(rv_no);
-             // 별점 설정
-             $('input[name="rv_score"][value="' + response.rv_score + '"]').prop('checked', true);
-   
-             // 리뷰 내용 설정
-               $('.close').click(function() {
-            $('.review_mod_wrap').hide();
-            });
-            
-            $('#rv_no').val(response.rv_no);
-            
-             console.log('리뷰 수정 페이지보기:', response);
-            },
-               error: function(xhr, status, error) {
-                   // 오류가 발생했을 때의 로직을 작성합니다.
-                   // 예: 사용자에게 오류 메시지를 표시합니다.
-                   console.error('리뷰 수정 페이지 실패:', error);
-               }
-           });
-
-   });
-   //리뷰수정컨펌===================================
-$('.reviewModifyConfirmBtn').click(function(event) {
-    event.preventDefault();
-
-    var form = $(this).closest('form');
-    var rv_no = form.find('input[name="rv_no"]').val();
-    var rv_score = form.find('input[name="rv_score"]:checked').val();
-    var rv_txt = form.find('.review-input_modi').val();
-    var p_id = form.find('input[name="p_id"]').val();
-
-    $.ajax({
-        url: '/review/review_modify_confirm',
-        type: 'POST',
-        data: {
-            "rv_no": rv_no,
-            "rv_score": rv_score,
-            "rv_txt": rv_txt,
-            "p_id" : p_id
-        },
-        success: function(response) {
-            console.log('리뷰 수정 확인 성공:', response);
-            // 수정 완료 후 모달 창 닫기
-            $('.review_mod_wrap').hide();
-            alert('리뷰수정이 성공하였습니다');
-            // 상세 페이지로 리다이렉트
-            window.location.href = '/product/' + p_id;
-        },
-        error: function(xhr, status, error) {
-            console.error('리뷰 수정 확인 실패:', error);
-            alert('리뷰수정이 실패하였습니다');
-        }
-    });
-});
-
-
-//리뷰 삭제=================================
-      $('.reviewDeleteBtn').click(function () {
-           let rv_no = $(this).siblings('input[name="rv_no"]').val();
-           let confirm = window.confirm('리뷰를 삭제하시겠습니까?')
-          let url = document.URL;
-            let p_id = url.split("product/")[1];
-          if(!confirm)return
-           
-           $.ajax({
-               url: '/review/review_delete_confirm',
-               type: 'POST',
-               data: {"rv_no": rv_no,
-                     "p_id" : p_id
-                     },
-               success: function(response) {
-            alert('리뷰가 삭제되었습니다.')
-            window.location.href = '/product/' + p_id;
-            },
-               error: function(xhr, status, error) {
-                  console.log(response);    
-                   console.error('리뷰 삭제실패', error);
-               }
-           });
-
-   });
-});
-
+</body>
+<script th:src="@{/js/product_page/product_page.js}"></script>
+</html> 
