@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.office.ticketreserve.IHomeDaoForMybatis" >
+
+	<select id="selectRankOnePerfos" resultType="com.office.ticketreserve.productpage.CurrentReserveDto">
+		SELECT 
+			* 
+		FROM 
+			TBL_CURRENT_RESERVE 
+		WHERE 
+			C_R_RANK = 1
+	</select>
+	
+	<select id="selectPerfo" parameterType="String" resultType="com.office.ticketreserve.productpage.PerfomanceDto">
+		SELECT
+			* 
+		FROM 
+			TBL_PERFOMANCE 
+		WHERE 
+			P_START_DATE = #{day}
+		ORDER BY 
+			P_START_DATE
+	</select>
+	
+	<select id="selectSearch"  parameterType="String" resultType="com.office.ticketreserve.productpage.PerfomanceDto">
+		SELECT 
+			* 
+		FROM 
+			TBL_PERFOMANCE 
+		WHERE 
+			P_NAME LIKE '%' || #{p_name} || '%'
+	</select>
+		
+	<!-- <select id="selectSearch" parameterType="map" resultType="temp">
+	    SELECT *
+	    FROM (
+	        SELECT ROWNUM row_num, temp.*
+	        FROM (
+	            SELECT *
+	            FROM TBL_PERFOMANCE
+	            WHERE P_NAME LIKE '%'||#{p_name}||'%'
+	            ORDER BY P_NAME
+	        ) temp
+	        WHERE ROWNUM &lt;= #{endRow}
+	    )
+	    WHERE row_num &gt;= #{startRow}
+	</select>
+	
+	<select id="countSearchResults" parameterType="String" resultType="int">
+	    SELECT COUNT(*)
+	    FROM TBL_PERFOMANCE
+	    WHERE P_NAME LIKE '%'||#{p_name}||'%'
+	</select> -->
+
+</mapper>

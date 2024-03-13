@@ -60,6 +60,27 @@ public class HomeDao {
 	    }
 		return newPerfo;
 	}
+
+	public List<PerfomanceDto> selectSearch(String search) {
+		log.info("[HomeDao] selectPerfo() Day : ");
+		String sql = "SELECT * "
+				+ "  FROM TBL_PERFOMANCE "
+				+ "  WHERE P_START_DATE = ? "
+				+ "  ORDER BY P_START_DATE";
+        
+		List<PerfomanceDto> newPerfo = new ArrayList<>();
+	    
+	    try {
+	    	RowMapper<PerfomanceDto> rowMapper = 
+					BeanPropertyRowMapper.newInstance(PerfomanceDto.class);
+	    	
+	    	newPerfo = jdbcTemplate.query(sql, rowMapper, search);
+	    } 
+	    catch (Exception e) {
+	        e.printStackTrace();
+	    }
+		return newPerfo;
+	}
 	
 }
 

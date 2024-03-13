@@ -8,13 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.office.ticketreserve.kopisapi.KopisApi;
 import com.office.ticketreserve.kopisapi.TicketDB;
 import com.office.ticketreserve.productpage.CurrentReserveDto;
 import com.office.ticketreserve.productpage.PerfomanceDto;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -49,13 +53,22 @@ public class HomeController  {
 	}
 	
 	@GetMapping("/search")
-	public String search(Model model) {
+	public String search(@RequestParam("search_value") String search,
+						 @RequestParam(defaultValue = "0") int pageNo,
+						 @RequestParam(defaultValue = "3") int pageSize,
+						 Model model) {
 		log.info("[HomeController] search");
 		
+		model.addAttribute("searchValue", search);
+				
 		String nextPage = "/search_page";
 		
-		
-		
+		Page<PerfomanceDto> page = homeService.getSearchResult(search, pageNo, pageSize);
+	    model.addAttribute("searchValue", search);
+	    model.addAttribute("searchPerfos", page.getContent());
+	    model.addAttribute("currentPage", pageNo);
+	    model.addAttribute("totalPages", page.getTotalPages());
+	    
 		return nextPage;
 	}
 	
