@@ -124,9 +124,9 @@ public class HomeService {
 	}
 
 	public Page<PerfomanceDto> getSearchResult(String search, int pageNo, int pageSize) {
-		log.info("[HomeService] getSearchResult()");
-		
-		int startRow = (pageNo - 1) * pageSize + 1;
+	    log.info("[HomeService] getSearchResult()");
+	    
+	    int startRow = (pageNo - 1) * pageSize + 1;
 	    int endRow = pageNo * pageSize;
 
 	    Map<String, Object> params = new HashMap<>();
@@ -139,7 +139,6 @@ public class HomeService {
 	    
 	    return new PageImpl<>(results, PageRequest.of(pageNo - 1, pageSize), totalCount);
 	}
-
 	
 }
 

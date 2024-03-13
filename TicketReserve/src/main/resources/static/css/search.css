@@ -237,3 +237,59 @@ div.section_wrap  {
 	width: 300px;
 	font-size: 0.85em;
 }
+
+.page .page_list {
+	display: flex;
+	justify-content: center;
+	list-style-type: none;
+}
+
+
+.page .page_list .left_arrow {
+	margin-right: 40px;
+}
+
+.page .page_list .right_arrow {
+	margin-left: 40px;
+}
+
+.page .page_list .number_list {
+	margin: 0 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

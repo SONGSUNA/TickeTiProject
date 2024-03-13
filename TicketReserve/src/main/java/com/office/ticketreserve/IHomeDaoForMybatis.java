@@ -12,6 +12,6 @@ import com.office.ticketreserve.productpage.PerfomanceDto;
 public interface IHomeDaoForMybatis {
 	public List<CurrentReserveDto> selectRankOnePerfos();
 	public List<PerfomanceDto> selectPerfo(String day);
-	public List<PerfomanceDto> selectSearch(Map<String, Object> params);
+	public List<PerfomanceDto> selectSearch(Map<String, Object> map);
 	public int countSearchResults(String search);
 }

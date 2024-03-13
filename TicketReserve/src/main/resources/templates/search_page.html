@@ -49,6 +49,25 @@
 					<div class="search_palce" th:text="${perf.getP_theater}"></div>
 				</div>
 			</div>
+			
+			<div class="page">
+			    <ul class=page_list>
+			        <!-- 이전 페이지로 이동하는 링크 -->
+			        <li class="left_arrow" th:if="${currentPage > 1}">
+			            <a th:href="@{/search(search_value=${searchValue}, pageNo=1)}">&laquo;</a>
+			        </li>
+			        <!-- 페이지 번호 반복 -->
+			        <li class="number_list" th:each="pageNo : ${#numbers.sequence(1, totalPages)}">
+			            <a th:href="@{/search(search_value=${searchValue}, pageNo=${pageNo})}" th:text="${pageNo}"
+			                th:class="${pageNo == currentPage} ? 'active' : ''"></a>
+			        </li>
+			        <!-- 다음 페이지로 이동하는 링크 -->
+			        <li class="right_arrow" th:if="${currentPage < totalPages}">
+			            <a th:href="@{/search(search_value=${searchValue}, pageNo=${totalPages})}">&raquo;</a>
+			        </li>
+			    </ul>
+			</div>
+			
 		</div>
 	</section>
 
