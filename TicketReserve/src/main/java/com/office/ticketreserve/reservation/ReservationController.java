@@ -1,8 +1,16 @@
 package com.office.ticketreserve.reservation;
 
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.office.ticketreserve.config.TicketDto;
+import com.office.ticketreserve.productpage.PerfomanceDto;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -10,6 +18,9 @@ import lombok.extern.log4j.Log4j2;
 @Controller
 @RequestMapping("ticket_reservation")
 public class ReservationController {
+	
+	@Autowired
+	ReservationService reservationService;
 	
 	@GetMapping({"/", ""})
 	public String step1() {
@@ -45,6 +56,14 @@ public class ReservationController {
 		String nextPage = "ticket_reservation/ticket_reservation_step4";
 		
 		return nextPage;
+	}
+	
+	@GetMapping("/getInfoForReservation")
+	@ResponseBody
+	public Map<String, Object> getInfoForReservation(@RequestParam("p_id") String p_id) {
+		log.info("[ReservationController] getInfoForReservation()");
+
+		return reservationService.getInfoForReservation(p_id);
 	}
 	
 } 

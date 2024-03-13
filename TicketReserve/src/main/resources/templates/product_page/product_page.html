@@ -3,22 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   	<title th:replace="~{/include/title.html::title}"></title>
+      <title th:replace="~{/include/title.html::title}"></title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <script th:src="@{/js/ticket_reservation/calender.js}"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" th:href="@{/css/product_page/product_page.css}">
     <link th:href="@{/css/category/category.css}" rel="stylesheet" />
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ce4e57aa684855d5a529f9a18d466928"></script>
     <script type="text/javascript" th:src="@{/js/review/review.js}"></script>
     <link th:href="@{/css/review/review.css}" rel="stylesheet">
-    	<link th:href="@{/css/include/footer.css}" rel="stylesheet" />
+       <link th:href="@{/css/include/footer.css}" rel="stylesheet" />
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
     <body th:object="${productDto}">
     <div id="header_top_bar">
-		<div th:replace="~{/home.html::top_bar1}"></div>
-	</div>
+      <div th:replace="~{/home.html::top_bar1}"></div>
+   </div>
         <div id="title_data">
             <div class="catergory">
                 <a href="#none"><span class="super_category" th:text="*{p_category}"></span></a> > <a href="#none"><span class="base_category"> 페스티벌(중분류) </span></a>
@@ -55,12 +56,12 @@
                         <li>가격</li>
                     </ul>
                     <ul>
-                    	<li th:text="*{p_grade}"></li>
-                    	<li th:if="*{not #strings.isEmpty(p_running_time)}" th:text="*{p_running_time}"></li>
-                    	<li th:unless="*{not #strings.isEmpty(p_running_time)}" th:text="정보없음"></li>
-                    	<li th:if="*{not #strings.isEmpty(p_characters)}" th:text="*{p_characters}"></li>
-                    	<li th:unless="*{not #strings.isEmpty(p_characters)}" th:text="정보없음"></li>
-                    	<li th:text="*{p_ticket}"></li>
+                       <li th:text="*{p_grade}"></li>
+                       <li th:if="*{not #strings.isEmpty(p_running_time)}" th:text="*{p_running_time}"></li>
+                       <li th:unless="*{not #strings.isEmpty(p_running_time)}" th:text="정보없음"></li>
+                       <li th:if="*{not #strings.isEmpty(p_characters)}" th:text="*{p_characters}"></li>
+                       <li th:unless="*{not #strings.isEmpty(p_characters)}" th:text="정보없음"></li>
+                       <li th:text="*{p_ticket}"></li>
                     </ul>
                 </div>
                 <div class="time_info">
@@ -124,8 +125,8 @@
 
     </div>
     <div class="more_info_data">
-   		 <h1 th:if="${productDto.p_detail_cautions != null and productDto.p_detail_cautions != 'X'}" th:text="유의사항">유의사항</h1>
-		 <span th:if="${productDto.p_detail_cautions != null and productDto.p_detail_cautions != 'X'}" th:text="*{p_detail_cautions}">유의사항 들어갈 자리</span>
+          <h1 th:if="${productDto.p_detail_cautions != null and productDto.p_detail_cautions != 'X'}" th:text="유의사항">유의사항</h1>
+       <span th:if="${productDto.p_detail_cautions != null and productDto.p_detail_cautions != 'X'}" th:text="*{p_detail_cautions}">유의사항 들어갈 자리</span>
 
         <h1>공연정보</h1>
            <div id="imageContainer"></div>
@@ -141,9 +142,9 @@
                 <!-- 첫번째줄 -->
                 <tr>
                     <th>주최/기획</th>
-	                <td th:if="${not #strings.isEmpty(productDto.p_host)}" th:text="*{p_host}"></td>
-					<td th:if="${#strings.isEmpty(productDto.p_host) and not #strings.isEmpty(productDto.p_agency_info)}" th:text="*{p_agency_info}"></td>
-					<td th:if="${#strings.isEmpty(productDto.p_host) and #strings.isEmpty(productDto.p_agency_info)}" th:text="정보없음"></td>
+                   <td th:if="${not #strings.isEmpty(productDto.p_host)}" th:text="*{p_host}"></td>
+               <td th:if="${#strings.isEmpty(productDto.p_host) and not #strings.isEmpty(productDto.p_agency_info)}" th:text="*{p_agency_info}"></td>
+               <td th:if="${#strings.isEmpty(productDto.p_host) and #strings.isEmpty(productDto.p_agency_info)}" th:text="정보없음"></td>
 
                     <th>소비자상담전화</th>
                     <td th:if="*{not #strings.isEmpty(p_inquiry)}" th:text="*{p_inquiry}"></td>
@@ -211,76 +212,79 @@
             <h2>관람후기</h2>
         </div>
         <div class="review_notice">
-        	<p>매매, 욕설 등 게시판 운영 규정에 위반되는 글은 사전 통보없이 삭제될 수 있습니다.<br>
-			개인정보가 포함된 내용은 삼가 주시기 바라며, 게시물로 인해 발생하는 문제는 작성자 본인에게 책임이 있습니다.</p>
-			<button class="open_review_modal" th:if="${session.loginedUserDto != null}">리뷰등록</button>
+           <p>매매, 욕설 등 게시판 운영 규정에 위반되는 글은 사전 통보없이 삭제될 수 있습니다.<br>
+         개인정보가 포함된 내용은 삼가 주시기 바라며, 게시물로 인해 발생하는 문제는 작성자 본인에게 책임이 있습니다.</p>
+         <button class="open_review_modal" th:if="${session.loginedUserDto != null}">리뷰등록</button>
         </div>
-			
-			<div class="review_modal_wrap">
-				<div class="review_wrap">
-				
-					<div class="review_title">
-						<!-- 공연이미지 동글뱅이 조그맣게 -->
-						
-						<img th:src="*{p_thum}">
-						<h3 th:text="*{p_name}"></h3>
-						<span class="close">&times;</span>
-					</div>
-					<p>별점과 이용후기를 작성해주세요.</p>
-					<form method="post" action="/review/review_write" name="review_form">
-					<!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" /> -->
-			<fieldset class="rate">
-			     <div id="display-rating"></div>
-			    <input type="radio" id="rating5" name="rv_score" value="5"><label class="rating5" for="rating5" title="5점"></label>
-			    <input type="radio" id="rating4" name="rv_score" value="4"><label for="rating4" title="4점"></label>
-			    <input type="radio" id="rating3" name="rv_score" value="3"><label class="rating3" for="rating3" title="3점"></label>
-			    <input type="radio" id="rating2" name="rv_score" value="2"><label for="rating2" title="2점"></label>
-			    <input type="radio" id="rating1" name="rv_score" value="1"><label class="rating1" for="rating1" title="1점"></label>
-			   
-			</fieldset>
-			
-				<div>
-					<div>
-					<textarea id="review-input" name="rv_txt" maxlength="1000" placeholder="공연의 관람 후기를 작성해주세요."></textarea>
-					</div>
-					<div class="current-length_wrap">
-			   		 <span id="current-length">0</span>/1000<br>
-			   		 <input type="hidden" name="p_id" th:value="*{p_id}">
-			   		 <input class="reviewBtn" type="submit" value="리뷰등록">
-					</div>
-					
-				</div>
-			</form>
-					
-					
-		</div>
-	</div>
-			
-			
-					
-        <div id="user_review_null" th:if="${#lists.isEmpty(reviewDtos)}">
-        	<p>관람 후기가 없습니다.</p>
-        </div>
-        
-        
-        <div id="user_review" th:if="${reviewDtos != null}" th:each="review : ${reviewDtos}">
-            <ul class="review_list" >
-            	<li class="review_li1" th:text="${review.u_id}"></li>
-            	<li class="display_score review_li2" th:data-score="${review.rv_score}"></li>
-            	<li th:text="${#strings.substring(review.rv_reg_date, 0, 10)}"></li>
-            	
-            	<li th:if="${session.loginedUserDto != null and session.loginedUserDto.u_id.equals(review?.u_id)}">
-	            	<button>수정</button>
-					<button>삭제</button>
-            	</li>
-            </ul>
-            	
-            <ul>
-            	<li class="review_txt" th:text="${review.rv_txt}"></li>
-            </ul>
+         <div th:replace="~{/review/review_form.html::review_form}"></div>
 
+         
+               
+        <div id="user_review_null" th:if="${#lists.isEmpty(reviewDtos)}">
+           <p>관람 후기가 없습니다.</p>
+        </div>
+        
+       
+        <div id="user_review" th:if="${reviewDtos != null}" th:each="review, status : ${reviewDtos}">
+            
+            <ul class="review_list" th:classappend="'review_item_' + ${status.index}">
+               
+               <li class="review_li1" th:text="${review.u_id}"></li>
+               <li class="display_score review_li2" th:data-score="${review.rv_score}"></li>
+               <li>
+                  <span th:text="${#strings.substring(review.rv_mod_date, 0, 10)}"></span>
+                  <span th:if="${review.rv_mod_date != review.rv_reg_date}">(수정됨)</span>
+              </li>
+               
+               <li th:if="${session.loginedUserDto != null and session.loginedUserDto.u_id.equals(review?.u_id)}">
+                  <input type="hidden" name="rv_no" th:value="${review.rv_no}">
+                  <input type="button" value="수정" class="reviewModifyBtn">
+               <input type="button" value="삭제" class="reviewDeleteBtn">
+               </li>
+               
+            </ul>
+               <div th:replace="~{/review/review_form.html::review_modify_form}"></div>
+            <ul th:classappend="'review_text_' + ${status.index}">
+               <li class="review_txt" th:text="${review.rv_txt}"></li>
+            </ul>
+         
         </div>
     </div>
+</div>
+
+<div class="review_mod_wrap" th:fragment="review_modify_form">
+   <div class="review_wrap">
+      <div class="review_title">
+         <img th:src="*{p_thum}">
+         <h3 th:text="*{p_name}"></h3>
+         <span class="close">&times;</span>
+      </div>
+      <p>별점과 이용후기를 작성해주세요.</p>
+      <form method="post" action="/review/review_modify_confirm" name="review_modify_form">
+         <input type="hidden" name="rv_no" id="rv_no">
+         <fieldset class="rate mod_rate">
+             <div id="display-rating"></div>
+             <input type="radio" id="mod_rating5" name="rv_score" value="5"><label class="rating5" for="mod_rating5" title="5점"></label>
+             <input type="radio" id="mod_rating4" name="rv_score" value="4"><label for="mod_rating4" title="4점"></label>
+             <input type="radio" id="mod_rating3" name="rv_score" value="3"><label class="rating3" for="mod_rating3" title="3점"></label>
+             <input type="radio" id="mod_rating2" name="rv_score" value="2"><label for="mod_rating2" title="2점"></label>
+             <input type="radio" id="mod_rating1" name="rv_score" value="1"><label class="rating1" for="mod_rating1" title="1점"></label>      
+         </fieldset>
+         <div>
+            <div>
+                <textarea class="review-input_modi" name="rv_txt" maxlength="1000" placeholder="공연의 관람 후기를 작성해주세요."></textarea>
+            </div>
+            <div class="current-length_wrap">
+                   <span class="current-length">0</span>/500<br>
+                   <input type="hidden" name="p_id" th:value="*{p_id}">
+                   <input class="reviewModifyConfirmBtn" type="submit" value="수정확인">
+            </div>
+         </div>
+      </form>
+      <div>
+         <p style="display: none;">리뷰가 성공적으로 수정되었습니다.</p>
+      </div>
+   </div>
 </div>
 <footer th:replace="~{/include/header_footer_nav.html::footer}"></footer>
 

@@ -65,24 +65,7 @@ window.onload = function() {
             // 선택된 날짜와 요일을 원하는 형식으로 콘솔에 출력
             console.log(`선택된 날짜: ${selectedDate.dataset.date}, 요일: ${selectedDate.dataset.day}`);
             
-            $.ajax({
-			url: '/reservation/getInfoForReservation',
-			type: 'GET',
-			data: {"p_id": p_id},
-			success: function (data) {
-		       	let start_date = data.p_start_date;
-		       	let end_date = data.p_end_date;
-		       	let p_time = data.p_time;
-		       	let ticket = data.ticketDto;
-		       	
-		       	
-			},
-			    error: function (xhr, status, error) {
-			        console.log("AJAX 요청 실패: " + status);
-			        console.log("HTTP 상태 코드: " + xhr.status);
-			        console.log("오류 내용: " + error);
-			    }
-			})
+            
         }
     };
 
