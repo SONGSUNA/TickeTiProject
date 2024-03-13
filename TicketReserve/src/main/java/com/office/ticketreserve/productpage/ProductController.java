@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.office.ticketreserve.review.ReviewDto;
 import com.office.ticketreserve.review.ReviewService;
@@ -38,10 +39,13 @@ public class ProductController {
 		model.addAttribute("productDto", productDto);
 		model.addAttribute("reviewDtos", reviewDtos);
 		
+		
+		
 		String nextPage = "/product_page/product_page";
 		
 		return nextPage;
 	}
+	
 	
 
 }

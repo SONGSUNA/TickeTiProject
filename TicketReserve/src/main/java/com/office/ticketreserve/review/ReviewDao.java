@@ -9,6 +9,8 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
+import lombok.extern.log4j.Log4j2;
+@Log4j2
 @Configuration
 public class ReviewDao {
 	@Autowired
@@ -66,6 +68,50 @@ public class ReviewDao {
 		
 		return reviewDtos;
 	}
-	
+
+	public ReviewDto getReviewByRv_no(int rv_no) {
+		
+		String sql = "SELECT * FROM TBL_REVIEW WHERE RV_NO = ?";
+		ReviewDto reviewDto = null;
+		
+		try {
+			RowMapper<ReviewDto> rowMapper= BeanPropertyRowMapper.newInstance(ReviewDto.class);
+			reviewDto = jdbcTemplate.queryForObject(sql,rowMapper,rv_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return reviewDto;
+	}
+
+	public int updateReviewByRv_no(String rv_txt, int rv_score, int rv_no) {
+		
+		String sql = "UPDATE TBL_REVIEW SET RV_TXT = ?,RV_SCORE = ?,RV_MOD_DATE = CURRENT_TIMESTAMP WHERE RV_NO =?";
+		
+		int result = -1;
+		try {
+			
+			result = jdbcTemplate.update(sql,rv_txt,rv_score,rv_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	public int reviewDeleteConfirm(int rv_no) {
+		log.info("reviewDeleteConfirm");
+		String sql = "DELETE FROM TBL_REVIEW WHERE RV_NO = ?";
+		
+		int result = -1;
+		try {
+			result = jdbcTemplate.update(sql,rv_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
 	
 }
