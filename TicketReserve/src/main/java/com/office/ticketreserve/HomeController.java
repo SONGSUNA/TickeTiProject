@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.office.ticketreserve.kopisapi.KopisApi;
@@ -37,7 +38,6 @@ public class HomeController  {
 		//tDB.TicketStringFix();
 		
 		List<CurrentReserveDto> rankOnePerfos = homeService.getRankOnePerfo();
-		System.out.println("rankOnePerfos.size(): " + rankOnePerfos.size());
 		model.addAttribute("rankOnePerfos", rankOnePerfos);
 		
 		List<PerfomanceDto> todayPerfos = homeService.getTodayPerfo();
@@ -45,6 +45,17 @@ public class HomeController  {
 		
 		List<PerfomanceDto> nextPerfos = homeService.getnextPerfo();
 		model.addAttribute("nextPerfos", nextPerfos);
+		return nextPage;
+	}
+	
+	@GetMapping("/search")
+	public String search(Model model) {
+		log.info("[HomeController] search");
+		
+		String nextPage = "/search_page";
+		
+		
+		
 		return nextPage;
 	}
 	

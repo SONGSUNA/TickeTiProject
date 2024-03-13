@@ -25,41 +25,12 @@
 		<div class="section_wrap">
 			<div class="top_bar" th:fragment="top_bar1">
 				<div class="top_menu_containerfix">
-					<div class="empty">
-					</div>
-					<div class="category">
-						<a th:href="@{/category/concert}">콘서트</a>&nbsp;&nbsp;
-						<a th:href="@{/category/musical}">뮤지컬</a>&nbsp;&nbsp;
-						<a th:href="@{/category/theater}">연극</a>&nbsp;&nbsp;
-						<a th:href="@{/category/classic}">클래식</a>&nbsp;&nbsp;
-						<a th:href="@{/category/exhibition}">전시</a>
-					</div>
-					<div class="search">
-						<input type="text" onkeyup="enterKey();">&nbsp;&nbsp;
-						<a th:href="@{/}"><span class="material-symbols-outlined" style="color:#dadada">search</span></a>&nbsp;&nbsp;&nbsp;&nbsp;
-						<a th:href="@{/}"><span class="material-symbols-outlined" style="color:#dadada">confirmation_number</span></a>&nbsp;&nbsp;
-						<a th:href="@{/user/myPage}"><span class="material-symbols-outlined" style="color:#dadada">account_circle</span></a>&nbsp;&nbsp;
-					</div>
+					<div th:replace="~{/include/top_bar_form2.html}"></div>
 				</div>
 			</div>
-			<div class="top_menu_container" th:fragment="top_bar2" >
-				<div class="empty">
-					
-				</div>
-				<div class="category"  >
-					<a th:href="@{/category/concert}">콘서트</a>&nbsp;&nbsp;
-					<a th:href="@{/category/musical}">뮤지컬</a>&nbsp;&nbsp;
-					<a th:href="@{/category/theater}">연극</a>&nbsp;&nbsp;
-					<a th:href="@{/category/classic}">클래식</a>&nbsp;&nbsp;
-					<a th:href="@{/category/exhibition}">전시</a>
-				</div>
-				<div class="search">
-					<input type="text">&nbsp;&nbsp;
-					<a th:href="@{/}"><span class="material-symbols-outlined" style="color:#dadada">search</span></a>&nbsp;&nbsp;&nbsp;&nbsp;
-					<a th:href="@{/}"><span class="material-symbols-outlined" style="color:#dadada">confirmation_number</span></a>&nbsp;&nbsp;
-					<a th:href="@{/user/myPage}"><span class="material-symbols-outlined" style="color:#dadada">account_circle</span></a>&nbsp;&nbsp;
-				</div>
-			
+			<div class="top_menu_container">
+				<div th:replace="~{/include/top_bar_form1.html}"></div>
+			</div>
 			</div>
 			<div class="owl-carousel">
 				<div class="item"><a th:href="@{/product/PF236064}"><img th:src="@{/img/home/carousel01.png}"></a></div>
