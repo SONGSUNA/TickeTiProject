@@ -264,4 +264,156 @@
 	        
 	</select>
 	
+	<select id="selectTicketByPId" 
+			parameterType="String" 
+			resultType="com.office.ticketreserve.config.TicketDto">
+			
+	    SELECT * FROM TBL_TICKET WHERE P_ID = #{p_id}
+	        
+	</select>
+	
+	<update id="updateTicket" 
+			parameterType="com.office.ticketreserve.config.TicketDto">
+	
+		UPDATE 
+			TBL_TICKET 
+		SET 
+			T_SEATTYPE_1 = #{t_seattype_1}, T_SEATTYPE_2 = #{t_seattype_2}, T_SEATTYPE_3 = #{t_seattype_3}, T_SEATTYPE_4 = #{t_seattype_4}, T_SEATTYPE_5 = #{t_seattype_5}, 
+			T_PRICE_1 = #{t_price_1}, T_PRICE_2 = #{t_price_2}, T_PRICE_3 = #{t_price_3}, T_PRICE_4 = #{t_price_4}, T_PRICE_5 = #{t_price_5}, 
+			T_MOD_DATE = SYSTIMESTAMP 
+		WHERE 
+			P_ID = #{p_id}
+	
+	</update>
+	
+	<update id="updatePerformanceTicket" 
+			parameterType="String">
+	
+		UPDATE 
+			TBL_PERFOMANCE 
+		SET 
+			P_TICKET = #{p_ticket}, 
+			P_TIME = #{p_time}, 
+			P_MOD_DATE = SYSTIMESTAMP 
+		WHERE 
+			P_ID = #{p_id}
+	
+	</update>
+	
+	<update id="updatePfWithoutImg" 
+			parameterType="com.office.ticketreserve.productpage.PerfomanceDto">
+	
+		UPDATE 
+			TBL_PERFOMANCE 
+		SET 
+			P_NAME = #{p_name}, 
+			P_START_DATE = #{p_start_date}, 
+			P_END_DATE = #{p_end_date}, 
+			P_GRADE = #{p_grade}, 
+			P_THEATER = #{p_theater}, 
+			P_PLACE = #{p_place}, 
+			P_LATITUDE = #{p_latitude}, 
+			P_LOGNITUDE = #{p_lognitude}, 
+			P_CATEGORY = #{p_category}, 
+			P_MAX_RESERVE = #{p_max_reserve}, 
+			P_RUNNING_TIME = #{p_running_time}, 
+			P_CHARACTERS = #{p_characters}, 
+			P_DETAIL_CAUTIONS = #{p_detail_cautions}, 
+			P_AGENCY_INFO = #{p_agency_info}, 
+			P_HOST = #{p_host}, 
+			P_INQUIRY = #{p_inquiry}, 
+			P_MOD_DATE = SYSTIMESTAMP 
+		WHERE 
+			P_ID = #{p_id}
+	
+	</update>
+	
+	<update id="updatePfWithThumb" 
+			parameterType="com.office.ticketreserve.productpage.PerfomanceDto">
+	
+		UPDATE 
+			TBL_PERFOMANCE 
+		SET 
+			P_NAME = #{p_name}, 
+			P_START_DATE = #{p_start_date}, 
+			P_END_DATE = #{p_end_date}, 
+			P_GRADE = #{p_grade}, 
+			P_THEATER = #{p_theater}, 
+			P_PLACE = #{p_place}, 
+			P_LATITUDE = #{p_latitude}, 
+			P_LOGNITUDE = #{p_lognitude}, 
+			P_CATEGORY = #{p_category}, 
+			P_MAX_RESERVE = #{p_max_reserve}, 
+			P_RUNNING_TIME = #{p_running_time}, 
+			P_CHARACTERS = #{p_characters}, 
+			P_DETAIL_CAUTIONS = #{p_detail_cautions}, 
+			P_AGENCY_INFO = #{p_agency_info}, 
+			P_HOST = #{p_host}, 
+			P_INQUIRY = #{p_inquiry}, 
+			P_THUM = #{p_thum}, 
+			P_MOD_DATE = SYSTIMESTAMP 
+		WHERE 
+			P_ID = #{p_id}
+	
+	</update>
+	
+	<update id="updatePfWithDetailImg" 
+			parameterType="com.office.ticketreserve.productpage.PerfomanceDto">
+	
+		UPDATE 
+			TBL_PERFOMANCE 
+		SET 
+			P_NAME = #{p_name}, 
+			P_START_DATE = #{p_start_date}, 
+			P_END_DATE = #{p_end_date}, 
+			P_GRADE = #{p_grade}, 
+			P_THEATER = #{p_theater}, 
+			P_PLACE = #{p_place}, 
+			P_LATITUDE = #{p_latitude}, 
+			P_LOGNITUDE = #{p_lognitude}, 
+			P_CATEGORY = #{p_category}, 
+			P_MAX_RESERVE = #{p_max_reserve}, 
+			P_RUNNING_TIME = #{p_running_time}, 
+			P_CHARACTERS = #{p_characters}, 
+			P_DETAIL_CAUTIONS = #{p_detail_cautions}, 
+			P_AGENCY_INFO = #{p_agency_info}, 
+			P_HOST = #{p_host}, 
+			P_INQUIRY = #{p_inquiry}, 
+			P_DETAIL_IMG = #{p_detail_img}, 
+			P_MOD_DATE = SYSTIMESTAMP 
+		WHERE 
+			P_ID = #{p_id}
+	
+	</update>
+	
+	<update id="updatePfWithImg" 
+			parameterType="com.office.ticketreserve.productpage.PerfomanceDto">
+	
+		UPDATE 
+			TBL_PERFOMANCE 
+		SET 
+			P_NAME = #{p_name}, 
+			P_START_DATE = #{p_start_date}, 
+			P_END_DATE = #{p_end_date}, 
+			P_GRADE = #{p_grade}, 
+			P_THEATER = #{p_theater}, 
+			P_PLACE = #{p_place}, 
+			P_LATITUDE = #{p_latitude}, 
+			P_LOGNITUDE = #{p_lognitude}, 
+			P_CATEGORY = #{p_category}, 
+			P_MAX_RESERVE = #{p_max_reserve}, 
+			P_RUNNING_TIME = #{p_running_time}, 
+			P_CHARACTERS = #{p_characters}, 
+			P_DETAIL_CAUTIONS = #{p_detail_cautions}, 
+			P_AGENCY_INFO = #{p_agency_info}, 
+			P_HOST = #{p_host}, 
+			P_INQUIRY = #{p_inquiry}, 
+			P_THUM = #{p_thum}, 
+			P_DETAIL_IMG = #{p_detail_img}, 
+			P_MOD_DATE = SYSTIMESTAMP 
+		WHERE 
+			P_ID = #{p_id}
+	
+	</update>
+	
 </mapper>

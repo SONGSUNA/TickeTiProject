@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.office.ticketreserve.config.TicketDto;
 import com.office.ticketreserve.productpage.PerfomanceDto;
 import com.office.ticketreserve.user.IUserDaoForMybatis;
 import com.office.ticketreserve.user.UserDao;
@@ -62,6 +63,12 @@ public class AdminService {
 		log.info("[AdminService] userModifyConfirm()");
 		
 		adminDao.updateUserWithoutPw(userDto);
+	}
+
+	public void userDeleteConfirm(int u_no) {
+		log.info("[AdminService] userDeleteConfirm()");
+		
+		userDao.deleteUser(u_no);
 	}
 
 	public boolean isAdmin(String adminId) {
@@ -131,12 +138,10 @@ public class AdminService {
 	public boolean isPfId(String id) {
 		log.info("[AdminService] isPfId()");
 		
-		boolean result = true;
-		
 		PerfomanceDto perfomanceDto = adminDao.selectPerfomanceById(id);
-		if (perfomanceDto != null) return result;
+		if (perfomanceDto != null) return true;
 		
-		return userDao.isUser(id);
+		return false;
 	}
 
 	public void perfomanceRegistConfirm(PerfomanceDto perfomanceDto) {
@@ -164,6 +169,111 @@ public class AdminService {
 		log.info("[AdminService] getPerfomanceByName()");
 		
 		return adminDao.selectAllPerfomanceByName(p_name);
+	}
+
+	public TicketDto getTicketInfo(String p_id) {
+		log.info("[AdminService] getTicketInfo()");
+		
+		return adminDao.selectTicketByPId(p_id);
+	}
+
+	public boolean ticketModify(TicketDto ticketDto) {
+		log.info("[AdminService] ticketModify()");
+		
+		ticketDto.setT_p_date("[" + ticketDto.getT_p_date() + "]");
+		
+		int result = adminDao.updateTicket(ticketDto);
+		
+		return result > 0 ? true : false;
+	}
+
+	public boolean performanceModifyByTicket(TicketDto ticketDto) {
+		log.info("[AdminService] performanceModifyByTicket()");
+		
+		String p_ticket = ticketDto.getT_seattype_1() + " " + addCommas(ticketDto.getT_price_1()) + "원";
+		
+		log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>" + ticketDto.getT_seattype_2());
+		
+		if (!ticketDto.getT_seattype_2().equals("null"))
+			p_ticket += ", " + ticketDto.getT_seattype_2() + " " + addCommas(ticketDto.getT_price_2()) + "원";
+		if (!ticketDto.getT_seattype_3().equals("null"))
+			p_ticket += ", " + ticketDto.getT_seattype_3() + " " + addCommas(ticketDto.getT_price_3()) + "원";
+		if (!ticketDto.getT_seattype_4().equals("null"))
+			p_ticket += ", " + ticketDto.getT_seattype_4() + " " + addCommas(ticketDto.getT_price_4()) + "원";
+		if (!ticketDto.getT_seattype_5().equals("null"))
+			p_ticket += ", " + ticketDto.getT_seattype_5() + " " + addCommas(ticketDto.getT_price_5()) + "원";
+		if (!ticketDto.getT_seattype_6().equals("null"))
+			p_ticket += ", " + ticketDto.getT_seattype_6() + " " + addCommas(ticketDto.getT_price_6()) + "원";
+		
+		String p_time = formatString(ticketDto.getT_p_date());
+		
+		return adminDao.updatePerformanceTicket(p_ticket, p_time, ticketDto.getP_id());
+	}
+	
+	 public PerfomanceDto getPerfomanceById(String p_id) {
+		 log.info("[AdminService] getPerfomanceById()");
+		 
+		return adminDao.selectPerfomanceById(p_id);
+	}
+	 
+	public int perfomanceModifyConfirm(PerfomanceDto perfomanceDto) {
+		log.info("[AdminService] perfomanceModifyConfirm()");
+		
+		int result;
+		
+		if (perfomanceDto.getP_thum() == null && 
+			perfomanceDto.getP_detail_img() == null)
+				result = adminDao.updatePfWithoutImg(perfomanceDto);
+		
+		else if (perfomanceDto.getP_detail_img() == null)
+				result = adminDao.updatePfWithThumb(perfomanceDto);
+		
+		else if (perfomanceDto.getP_thum() == null)
+				result = adminDao.updatePfWithDetailImg(perfomanceDto);
+		
+		else
+				result = adminDao.updatePfWithImg(perfomanceDto);
+		
+		return result;
+	}
+	
+	// 유틸 --------------------------------------------------------------------------------------------------------------------------------------
+
+	private String formatString(String input) {
+        String[] elements = input.split(", ");
+        StringBuilder result = new StringBuilder();
+
+        for (String element : elements) {
+            String day = element.replaceAll("[^가-힣]", "");
+            String time = element.replaceAll("[^0-9:]", "");
+
+            if (result.length() > 0) {
+                result.append(", ");
+            }
+
+            result.append(day);
+
+            if (day.equals("토요일") || day.equals("일요일") || day.equals("HOL")) {
+                result.append("(").append(time).append(")");
+            } else {
+                result.append(time);
+            }
+        }
+
+        return result.toString();
+	 }
+	 
+	 
+	private String addCommas(int number) {
+		String str = Integer.toString(number);
+		
+		String result = "";while (str.length() > 3) {
+			result = "," + str.substring(str.length() - 3) + result;
+			str = str.substring(0, str.length() - 3);
+		}
+		result = str + result;
+		
+		return result;
 	}
 
 }

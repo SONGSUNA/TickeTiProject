@@ -3,7 +3,10 @@ package com.office.ticketreserve.admin;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.security.access.method.P;
 
+import com.office.ticketreserve.config.TicketDto;
 import com.office.ticketreserve.productpage.PerfomanceDto;
 import com.office.ticketreserve.user.UserDto;
 
@@ -47,5 +50,21 @@ public interface AdminDaoForMyBatis {
 	public List<PerfomanceDto> selectAllPerfomanceNoTicket();
 
 	public List<PerfomanceDto> selectAllPerfomanceByName(String p_name);
+
+	public TicketDto selectTicketByPId(String p_id);
+
+	public int updateTicket(TicketDto ticketDto);
+
+	public boolean updatePerformanceTicket(@Param("p_ticket") String p_ticket,
+										   @Param("p_time") String p_time, 
+										   @Param("p_id") String p_id);
+
+	public int updatePfWithoutImg(PerfomanceDto perfomanceDto);
+
+	public int updatePfWithThumb(PerfomanceDto perfomanceDto);
+
+	public int updatePfWithDetailImg(PerfomanceDto perfomanceDto);
+
+	public int updatePfWithImg(PerfomanceDto perfomanceDto);
 	
 }

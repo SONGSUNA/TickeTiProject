@@ -104,7 +104,7 @@ function UserModify (u_id) {
 	    	}
 	})
 	
-	$('.user_modify').css('display', 'block');
+	$('.modal_wrap').css('display', 'block');
 	
 }
 
@@ -192,7 +192,11 @@ function modifyConfirm() {
 function modify_close () {
 	console.log("modify_close()");
 	
-	$('.user_modify').css('display', 'none');
+	let $form = $("form[name='modify_form']");
+	
+	$form[0].reset();
+	
+	$('.modal_wrap').css('display', 'none');
 }
 
 
