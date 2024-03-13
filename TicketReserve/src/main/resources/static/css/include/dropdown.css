@@ -20,11 +20,10 @@
     background-color: rgba(0, 0, 0, 0.3);
     border-radius: 5px;
     width: 60px;
-    border: 1px solid #000;
-    
+   
 }
 #dropdown_menu > div {
-    display: flex;
+    display: flex;			/* 여기 수상함. */
     flex-direction: column; 
     align-items: center; 
     text-align: center;
@@ -40,7 +39,6 @@
     margin: 0;
     transition: color 0.2s size 0.2s;
     text-align: center;
-    border: 1px solid #000;
 }
 
 #dropdown_wrap:hover #dropdown_menu {
