@@ -24,6 +24,18 @@
 			U_ID = #{u_id}
 			
 	</select>
+	<select id="getPerfomanceId" parameterType="integer" resultType="String">
+		SELECT P_ID
+			FROM TBL_TICKET
+		WHERE
+			T_NO = #{t_no}
+	</select>
+	<select id="getPerfomanceName" parameterType="String" resultType="String">
+		SELECT P_NAME
+			FROM TBL_PERFOMANCE
+		WHERE
+			P_ID = #{p_id}
+	</select>
 		<!-- <select id="dofindIdFromDB"  parameterType="string" 
 	        resultType="string">
 	        
