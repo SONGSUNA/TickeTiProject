@@ -68,7 +68,7 @@ div.section_wrap .top_bar {
     height: 29px; /* 원하는 높이로 설정 */
 }
 
-.search a {
+.search .img_btn {
 	height: 29px;
 	display: flex;
     align-items: center; /* 수직 가운데 정렬 */
