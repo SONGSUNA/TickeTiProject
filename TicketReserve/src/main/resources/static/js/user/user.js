@@ -78,12 +78,18 @@ $(document).ready(function () {
 	
     $('#checkId').click(function () {
         let userId = $('input[name="u_id"]').val();
+        let idRegex = /^[a-zA-Z0-9]{6,20}$/;
         
         if(userId ===''){
          alert('ID를 입력하세요');
          document.create_account_form.u_id.focus();
-         return;
-      }
+       	  return;
+         
+     	 } else if (!idRegex.test(userId)) {
+	      alert('아이디는 6-20자로 영문자 또는 숫자를 포함해야 합니다.');
+	        document.create_account_form.u_id.focus();
+          	return;
+  		 }
         
         $.ajax({
             url: '/user/checkId',
