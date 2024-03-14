@@ -1,7 +1,9 @@
 package com.office.ticketreserve.reservation;
 
-import lombok.Data;
+import org.springframework.stereotype.Repository;
 
+import lombok.Data;
+@Repository
 @Data
 public class ReservationDto {
 	private int r_no;

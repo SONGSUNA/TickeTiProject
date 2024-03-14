@@ -310,6 +310,9 @@ public class UserController {
 		
 		String nextPage = "user/my_ticket_page";
 		UserDto userDto = sessionCheck(session);
+		String u_id = userDto.getU_id();
+		
+		userService.getMyTicketInfo(u_id);
 		
 		if(userDto == null) {
 			return "user/user_login_form";
