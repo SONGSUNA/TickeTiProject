@@ -1,111 +1,157 @@
 window.onload = function() {
-    let url = document.URL;
-    let p_id = url.split("product/")[1];
-    
-    let start_date;
-    let end_date;
-    let dayAndTime;
-    let ticket;
-    
-    getInfoForReservation(p_id);
-    
-   function getInfoForReservation(p_id) {
-        $.ajax({
-            url: '/reservation/getInfoForReservation',
-            type: 'GET',
-            data: {"p_id": p_id},
-            success: function (data) {
-                // 전역 변수에 값 할당
-                start_date = new Date(data.p_start_date.replace(/\./g, '-'));
-                end_date = new Date(data.p_end_date.replace(/\./g, '-'));
-                dayAndTime = data.ticketDto.t_p_date;
-                ticket = data.ticketDto;
+	const url = document.URL;
+	const p_id = url.split("product/")[1];
 
-                // drawCalendar 함수 호출
-                drawCalendar(date.getMonth(), date.getFullYear());
-            },
-            error: function (xhr, status, error) {
-                console.log("AJAX 요청 실패: " + status);
-                console.log("HTTP 상태 코드: " + xhr.status);
-                console.log("오류 내용: " + error);
-            }
-        });
-    }
+	let start_date, end_date, dayAndTime, max_seat, ticket;
 
-    let date = new Date();
-    let calendar = document.getElementById('calendar');
-    let selectedDate;
+	getInfoForReservation(p_id);
 
-    function drawCalendar(month, year) {
-        let firstDay = (new Date(year, month)).getDay(),
-            monthLength = 32 - new Date(year, month, 32).getDate(),
-            html = '<table>',
-            dayOfWeek;
+	// 공연 정보 불러오기 ==============================================================================================================
+	function getInfoForReservation(productId) {
+		$.ajax({
+			url: '/reservation/getInfoForReservation',
+			type: 'GET',
+			data: { "p_id": productId },
+			success: function(data) {
+				start_date = new Date(data.p_start_date.replace(/\./g, '-'));
+				end_date = new Date(data.p_end_date.replace(/\./g, '-'));
+				dayAndTime = data.ticketDto.t_p_date;
+				max_seat = data.p_max_reserve;
+				ticket = data.ticketDto;
 
-        // 월 표시 추가
-        html += `<tr><th><button id="prevMonth"><img src="../img/ticket_reservation/back_btn.png" alt="이전 달"></button></th><th colspan="5">${year}. ${month + 1}</th><th><button id="nextMonth"><img src="../img/ticket_reservation/next_btn.png" alt="다음 달"></button></th></tr>`;
-        html += '<tr>' + ['일', '월', '화', '수', '목', '금', '토'].map(day => `<td>${day}</td>`).join('') + '</tr><tr>';
+				drawCalendar(new Date().getMonth(), new Date().getFullYear());
+			},
+			error: function(xhr, status, error) {
+				console.log("AJAX 요청 실패: " + status);
+				console.log("HTTP 상태 코드: " + xhr.status);
+				console.log("오류 내용: " + error);
+			}
+		});
+	}
 
-        for (let i = 0; i < firstDay; i++) {
-            html += '<td></td>';
-        }
+	const calendar = document.getElementById('calendar');
+	let selectedDate;
 
-        for (let day = 1; day <= monthLength; day++) {
-            dayOfWeek = (day + firstDay - 1) % 7;
-            if ((day + firstDay - 1) % 7 === 0 && day > 1) html += '</tr><tr>';
-            let fullDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-            let currentDate = new Date(fullDate);
-            
-            // 시작 날짜와 종료 날짜 사이에 있는지 확인
-            if (currentDate >= start_date && currentDate <= end_date) {
-                html += `<td class="within-range" style="background-color: #F1FADA;" data-date="${fullDate}" data-day="${['일', '월', '화', '수', '목', '금', '토'][dayOfWeek]}요일">${day}</td>`;
-            } else {
-                // 범위 밖 날짜의 경우 'outside-range' 클래스 추가
-                html += `<td class="outside-range" data-date="${fullDate}" data-day="${['일', '월', '화', '수', '목', '금', '토'][dayOfWeek]}요일">${day}</td>`;
-            }
-        }
+	// 달력 생성 ==============================================================================================================
+	function drawCalendar(month, year) {
+		const firstDay = (new Date(year, month)).getDay();
+		const monthLength = 32 - new Date(year, month, 32).getDate();
+		let html = '<table>';
 
-        // 빈 칸으로 남은 주 채우기
-        let remainingDays = (7 - (monthLength + firstDay) % 7) % 7;
-        for (let i = 0; i < remainingDays; i++) {
-            html += '<td></td>';
-        }
+		html += `<tr><th><button id="prevMonth"><img src="../img/ticket_reservation/back_btn.png" alt="이전 달"></button></th><th colspan="5">${year}. ${month + 1}</th><th><button id="nextMonth"><img src="../img/ticket_reservation/next_btn.png" alt="다음 달"></button></th></tr>`;
+		html += '<tr>' + ['일', '월', '화', '수', '목', '금', '토'].map(day => `<td>${day}</td>`).join('') + '</tr><tr>';
 
-        html += '</tr></table>';
-        calendar.innerHTML = html;
+		for (let i = 0; i < firstDay; i++) {
+			html += '<td></td>';
+		}
 
-        // 이전/다음 달 버튼 이벤트 리스너
-        document.getElementById('prevMonth').onclick = () => updateCalendar(month - 1, year);
-        document.getElementById('nextMonth').onclick = () => updateCalendar(month + 1, year);
-    }
+		for (let day = 1; day <= monthLength; day++) {
+			const dayOfWeek = (day + firstDay - 1) % 7;
+			if ((day + firstDay - 1) % 7 === 0 && day > 1) html += '</tr><tr>';
+			const fullDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+			const currentDate = new Date(fullDate);
 
-    function updateCalendar(month, year) {
-        if (month < 0) {
-            month = 11;
-            year--;
-        } else if (month > 11) {
-            month = 0;
-            year++;
-        }
-        drawCalendar(month, year);
-    }
+			if (currentDate >= start_date && currentDate <= end_date) {
+				html += `<td class="within-range" data-date="${fullDate}" data-day="${['일', '월', '화', '수', '목', '금', '토'][dayOfWeek]}요일">${day}</td>`;
+			} else {
+				html += `<td class="outside-range" data-date="${fullDate}" data-day="${['일', '월', '화', '수', '목', '금', '토'][dayOfWeek]}요일">${day}</td>`;
+			}
+		}
 
-    calendar.onclick = function(e) {
-        if (e.target.classList.contains('within-range')) {
-            if (selectedDate) {
-                selectedDate.style.backgroundColor = "";
-                selectedDate.style.fontFamily = "";
-            }
-            selectedDate = e.target;
-            selectedDate.style.backgroundColor = "#F1FADA";
-            selectedDate.style.fontFamily = "'LINESeedKR-Bd'";
-            // 선택된 날짜와 요일을 원하는 형식으로 콘솔에 출력
-            console.log(`선택된 날짜: ${selectedDate.dataset.date}, 요일: ${selectedDate.dataset.day}`);
-            
-            let selected_date = new Date(selectedDate.dataset.date);
-            
-        }
-    };
+		const remainingDays = (7 - (monthLength + firstDay) % 7) % 7;
+		for (let i = 0; i < remainingDays; i++) {
+			html += '<td></td>';
+		}
 
-    drawCalendar(date.getMonth(), date.getFullYear());
+		html += '</tr></table>';
+		calendar.innerHTML = html;
+
+		document.getElementById('prevMonth').onclick = () => updateCalendar(month - 1, year);
+		document.getElementById('nextMonth').onclick = () => updateCalendar(month + 1, year);
+	}
+
+	function updateCalendar(month, year) {
+		if (month < 0) {
+			month = 11;
+			year--;
+		} else if (month > 11) {
+			month = 0;
+			year++;
+		}
+		drawCalendar(month, year);
+	}
+
+	// 날짜 클릭 함수 ==============================================================================================================
+	calendar.onclick = function(e) {
+		if (e.target.classList.contains('within-range')) {
+			if (selectedDate) {
+				selectedDate.style.backgroundColor = "";
+				selectedDate.style.fontFamily = "";
+			}
+
+			selectedDate = e.target;
+			selectedDate.style.backgroundColor = "#F1FADA";
+			selectedDate.style.fontFamily = "'LINESeedKR-Bd'";
+
+			console.log(`선택된 날짜: ${selectedDate.dataset.date}, 요일: ${selectedDate.dataset.day}`);
+
+			const selected_date = new Date(selectedDate.dataset.date);
+			const daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
+			const selectedDayOfWeek = daysOfWeek[selected_date.getDay()];
+	
+			$.ajax({
+				url: '/reservation/getReserveCount',
+				type: 'GET',
+				data: { "p_id": productId,
+						"r_date": selectedDate.dataset.date },
+				success: function(data) {
+					
+				},
+				error: function(xhr, status, error) {
+					console.log("AJAX 요청 실패: " + status);
+					console.log("HTTP 상태 코드: " + xhr.status);
+					console.log("오류 내용: " + error);
+				}
+			});
+
+			if (dayAndTime) {
+				const timeSlots = getTimeSlots(dayAndTime, selectedDayOfWeek);
+				const rightDataDiv = document.querySelector('.right_data');
+
+				rightDataDiv.innerHTML = '';
+
+				timeSlots.forEach((time, index) => {
+					const listItem = document.createElement('li');
+					listItem.textContent = `[${index + 1}회] ${time}`;
+					rightDataDiv.appendChild(listItem);
+				});
+			}
+			
+			
+		}
+	};
+
+	// 선택 가능 시간 추가 ==============================================================================================================
+	function getTimeSlots(dayAndTime, selectedDayOfWeek) {
+	    const regex = new RegExp(`${selectedDayOfWeek}요일\\d{2}:\\d{2}`, 'g');
+	    const matches = dayAndTime.replace(/[\[\]]/g, '').match(regex); // 대괄호를 제거한 후 매칭 시도
+	    
+	    // matches 배열 내의 각 시간 문자열을 hh:mm 형식으로 조정
+	    return matches ? matches.map(match => {
+	        let time = match.slice(4); // 기존 코드에서 시간 부분만 추출
+	        let [hours, minutes] = time.split(':'); // 시간과 분을 분리
+	        
+	        // 시간(hours)이 한 자리 숫자일 경우 앞에 0을 붙여줌
+	        if (hours.length === 1) {
+	            hours = '0' + hours;
+	        }
+	        
+	        // 분(minutes)이 한 자리 숫자일 경우 (이 경우는 없겠지만) 앞에 0을 붙여줌
+	        if (minutes.length === 1) {
+	            minutes = '0' + minutes;
+	        }
+	        
+	        return `${hours}:${minutes}`; // 조정된 시간 포맷 반환
+	    }) : [];
+	}
 };

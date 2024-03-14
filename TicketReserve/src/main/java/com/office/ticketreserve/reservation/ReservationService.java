@@ -33,6 +33,7 @@ public class ReservationService {
 		haspMap.put("p_start_date", perfomanceDto.getP_start_date());
 		haspMap.put("p_end_date", perfomanceDto.getP_end_date());
 		haspMap.put("p_time", perfomanceDto.getP_time());
+		haspMap.put("p_max_reserve", perfomanceDto.getP_max_reserve());
 		haspMap.put("ticketDto", ticketDto);
 		
 		return haspMap;
