@@ -62,68 +62,6 @@ div.section_wrap .top_bar {
     font-size: 1.3em;
 }
 
-.search {
-    display: flex;
-    align-items: center; /* 수직 가운데 정렬 */
-    height: 29px; /* 원하는 높이로 설정 */
-}
-
-.search .img_btn {
-	height: 29px;
-	display: flex;
-    align-items: center; /* 수직 가운데 정렬 */
-}
-
-.search form {
-    display: flex;
-    align-items: center; /* 수직 가운데 정렬 */
-}
-
-.search form input{
-    background: rgba(0,0,0,0);
-    border: none;
-    color: #fff;
-}
-
-.search form input[type=text]{
-    background: rgba(0,0,0,0);
-    border-bottom: solid 2px #dadada;
-    
-}
-
-.search #move_form input[type=text]{
-    background: rgba(0,0,0,0);
-    border-bottom: solid 2px #dadada;
-    color: #fff;
-}
-
-.search form input[type=text]:focus{
-	outline:none;
-}
-
-.search form input[type=button]:hover{
-    cursor: pointer;
-}
-
-.search form input,
-.search form span {
-    height: 100%; /* 부모 요소의 높이에 맞게 설정 */
-}
-
-.search form input {
-    padding: 5px; /* 입력란의 여백 설정 */
-}
-
-.search form input {
-    padding: 5px; /* 입력란의 여백 설정 */
-}
-
-.search form span {
-    display: flex;
-    align-items: center; /* 수직 가운데 정렬 */
-    margin-left: 10px; /* 아이콘과 입력란 사이의 간격 조정 */
-    color: #dadada; /* 아이콘 색상 설정 */
-}
 
 .top_menu_container img {
 	width: 20px;
