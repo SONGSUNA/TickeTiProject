@@ -30,9 +30,9 @@
 		WHERE
 			T_NO = #{t_no}
 	</select>
-	<select id="getPerfomanceName" parameterType="String" resultType="String">
-		SELECT P_NAME
-			FROM TBL_PERFOMANCE
+	<select id="getPerfomanceName" parameterType="String" resultType="com.office.ticketreserve.productpage.PerfomanceDto">
+		SELECT * FROM 
+			TBL_PERFOMANCE
 		WHERE
 			P_ID = #{p_id}
 	</select>

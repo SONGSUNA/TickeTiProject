@@ -2,6 +2,8 @@ package com.office.ticketreserve.user;
 
 import java.security.SecureRandom;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -259,17 +261,19 @@ public class UserService {
 	
 	}
 
-	public void getMyTicketInfo(String u_id) {
+	public Map<String, Object> getMyTicketInfo(String u_id) {
 		log.info("[UserService] getMyTicketInfo()");
 		
-		ReservationDto reservationDto = IUserDao.getMyTicketinfo(u_id);
-		System.out.println("---------->" + reservationDto);
-		int t_no = reservationDto.getT_no();
-		System.out.println("---------->" + t_no);
-		String p_id = IUserDao.getPerfomanceId(t_no);
-		System.out.println("---------->>>" + p_id);
-		String p_name = IUserDao.getPerfomanceName(p_id);
-		System.out.println("<<---------->>>" + p_name);
+		Map<String, Object> combinedDto = new HashMap<>();
 		
+		ReservationDto reservationDto = IUserDao.getMyTicketinfo(u_id);
+		int t_no = reservationDto.getT_no(); 
+		String p_id = IUserDao.getPerfomanceId(t_no);
+		PerfomanceDto perfomanceDto = IUserDao.getPerfomanceName(p_id);
+		
+		combinedDto.put("reservationDto", reservationDto);
+		combinedDto.put("perfomanceDto", perfomanceDto);
+		
+		return combinedDto;
 	}
 }

@@ -20,7 +20,7 @@ public interface IUserDaoForMybatis {
 //	public String dofindIdFromDB(String u_name, String u_mail);
 	public ReservationDto getMyTicketinfo(String u_id);
 	public String getPerfomanceId(int t_no);
-	public String getPerfomanceName(String p_id);
+	public PerfomanceDto getPerfomanceName(String p_id);
 
 
 }
