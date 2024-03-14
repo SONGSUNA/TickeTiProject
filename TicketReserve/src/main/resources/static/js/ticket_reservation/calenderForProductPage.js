@@ -102,7 +102,7 @@ window.onload = function() {
 			$.ajax({
 				url: '/reservation/getReserveCount',
 				type: 'GET',
-				data: { "p_id": productId,
+				data: { "p_id": p_id,
 						"r_date": selectedDate.dataset.date },
 				success: function(data) {
 					
@@ -123,6 +123,7 @@ window.onload = function() {
 				timeSlots.forEach((time, index) => {
 					const listItem = document.createElement('li');
 					listItem.textContent = `[${index + 1}회] ${time}`;
+					listItem.classList.add('time-list');
 					rightDataDiv.appendChild(listItem);
 				});
 			}
