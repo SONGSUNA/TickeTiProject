@@ -26,7 +26,7 @@
 			
 			<div class="ranking_and_soon_forthcoming">
 				<div class="ranking">
-					<h3>이번주 랭킹</h3>
+					<h3>예매율 랭킹</h3>
 						<table>
 							<tr class="image-cell">
 								<td>1위</td>
@@ -56,63 +56,40 @@
 						</table>
 				</div>
 				
-				<div class="soon_forthcoming">
-					<h3>개봉예정</h3>
-						<ul id="upcoming">
-						</ul>
-				</div>
-	    </div>
+				  
+	 	   </div>
+	 	   
+	    	<div class="itembody">
+		    <h3>개봉예정</h3>
+			    <div class="container">
+			      <div class="list">
+				      <div class="item" th:each="upcomingDto, status : ${categoryUpcomingDtos}" th:if="${status.index < 6}">
+				        <a th:href="@{/product/{id}(id=${upcomingDto.p_id})}">
+				          <img th:src="${upcomingDto.p_thum}">
+				        </a>
+				      </div>
+				  </div>
+			    </div>
+		 	</div>
 	    
-			<div class="itembody">
-				<h2>What`s HOT</h2>
-				<div class="popularity">
-					
-					
-					<div class="container">
-						
-						<div class="list">
-							<div class="item"><a href="#none"><img th:src="@{/img/home/poster/hot1.jfif}"></a></div>
-							<div class="item"><a href="#none"><img th:src="@{/img/home/poster/hot2.jfif}"></a></div>
-							<div class="item"><a href="#none"><img th:src="@{/img/home/poster/hot3.jfif}"></a></div>
-							<div class="item"><a href="#none"><img th:src="@{/img/home/poster/hot4.jfif}"></a></div>
-							<div class="item"><a href="#none"><img th:src="@{/img/home/poster/hot5.jfif}"></a></div>
-							
-						</div>
-					</div>
-				</div>
-				<h2>New</h2>
-				<div class="new">
-					<div class="container">
-						
-						<div class="list">
-							<div class="item"><a href="#none"><img th:src="@{/img/home/poster/hot1.jfif}"></a></div>
-							<div class="item"><a href="#none"><img th:src="@{/img/home/poster/hot2.jfif}"></a></div>
-							<div class="item"><a href="#none"><img th:src="@{/img/home/poster/hot3.jfif}"></a></div>
-							<div class="item"><a href="#none"><img th:src="@{/img/home/poster/hot4.jfif}"></a></div>
-							<div class="item"><a href="#none"><img th:src="@{/img/home/poster/hot5.jfif}"></a></div>
-
-						</div>
-					</div>
-				</div>
-				<h2>Forthcoming</h2>
-				<div class="forthcoming">
-					<div class="container">
-						
-						<div class="list">
-							<div class="item"><a href="#none"><img th:src="@{/img/home/poster/hot1.jfif}"></a></div>
-							<div class="item"><a href="#none"><img th:src="@{/img/home/poster/hot2.jfif}"></a></div>
-							<div class="item"><a href="#none"><img th:src="@{/img/home/poster/hot3.jfif}"></a></div>
-							<div class="item"><a href="#none"><img th:src="@{/img/home/poster/hot4.jfif}"></a></div>
-							<div class="item"><a href="#none"><img th:src="@{/img/home/poster/hot5.jfif}"></a></div>
-						</div>
-					</div>
-				</div>
-			</div>
+			
 		</div>
-		
+			<div class="itembody">
+				<h2>New</h2>
+				<div class="container">
+			      <div class="list_new">
+				      <div class="item" th:each="newPerfomanceDto, status : ${newPerfomanceDtos}" th:if="${status.index < 5}">
+				        <a th:href="@{/product/{id}(id=${newPerfomanceDto.p_id})}">
+				          <img th:src="${newPerfomanceDto.p_thum}">
+				        </a>
+				      </div>
+				  </div>
+			    </div>
+
+			</div>
 	</section>
 	
-	<script th:replace="~{/category/upcoming_js.html}"></script>
+	
 	<footer th:replace="~{/include/header_footer_nav.html::footer}"></footer>
 </body>
 </html>
