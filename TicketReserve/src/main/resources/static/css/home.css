@@ -51,21 +51,6 @@ div.section_wrap .top_bar {
     padding: 10px 0; /* 위아래 여백 추가 */
 }
 
-
-
-.empty {
-	width: 250px;
-}
-
-
-.category a {
-    margin-right: 10px; /* 요소들 사이의 간격 조정 */
-    color: #fff;
-    font-weight: bold;
-    font-size: 1.3em;
-}
-
-
 .top_menu_container img {
 	width: 20px;
 	height: 20px;
