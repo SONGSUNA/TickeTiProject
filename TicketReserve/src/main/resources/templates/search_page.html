@@ -14,8 +14,6 @@
 	<script th:src="@{/js/home/search.js}" type="text/javascript"></script>
 </head>
 <body>
-	
-
 	<section>
 		<div class="section_wrap">
 			<div class="top_bar" th:fragment="top_bar1">
@@ -37,35 +35,44 @@
 			    </form>
 			</div>
 			
-			
-
 			<div class="search_body">
-				<div class="item" th:each="perf,index : ${searchPerfos}">
-					<div class="search_poster"><a th:href="@{/product/{nextPerfos}(nextPerfos=${perf.getP_id()})}"><img th:src="${perf.getP_thum()}"></a></div>
-					<div class="search_name" th:text="${perf.getP_name()}"></div>
-					<div class="search_date">
-						<span th:text="${perf.getP_start_date}"></span> ~ <span th:text="${perf.getP_end_date}"></span>
-					</div>					
-					<div class="search_palce" th:text="${perf.getP_theater}"></div>
+				<div th:if="${totalPages == 0}">
+					<div class="nothing">
+						검색결과 없음.
+					</div>
+				</div>
+				<div th:unless="${totalPages == 0}">
+					<div class="item" th:each="perf,index : ${searchPerfos}">
+						<div class="search_poster"><a th:href="@{/product/{nextPerfos}(nextPerfos=${perf.getP_id()})}"><img th:src="${perf.getP_thum()}"></a></div>
+						<div class="search_name" th:text="${perf.getP_name()}"></div>
+						<div class="search_date">
+							<span th:text="${perf.getP_start_date}"></span> ~ <span th:text="${perf.getP_end_date}"></span>
+						</div>					
+						<div class="search_palce" th:text="${perf.getP_theater}"></div>
+					</div>
 				</div>
 			</div>
 			
 			<div class="page">
-			    <ul class=page_list>
-			        <!-- 이전 페이지로 이동하는 링크 -->
-			        <li class="left_arrow" th:if="${currentPage > 1}">
-			            <a th:href="@{/search(search_value=${searchValue}, pageNo=1)}">&laquo;</a>
-			        </li>
-			        <!-- 페이지 번호 반복 -->
-			        <li class="number_list" th:each="pageNo : ${#numbers.sequence(1, totalPages)}">
-			            <a th:href="@{/search(search_value=${searchValue}, pageNo=${pageNo})}" th:text="${pageNo}"
-			                th:class="${pageNo == currentPage} ? 'active' : ''"></a>
-			        </li>
-			        <!-- 다음 페이지로 이동하는 링크 -->
-			        <li class="right_arrow" th:if="${currentPage < totalPages}">
-			            <a th:href="@{/search(search_value=${searchValue}, pageNo=${totalPages})}">&raquo;</a>
-			        </li>
-			    </ul>
+				<div th:if="${totalPages == 0}"></div>
+				
+				<div th:unless="${totalPages == 0}">
+				    <ul class=page_list>
+				        <!-- 이전 페이지로 이동하는 링크 -->
+				        <li class="left_arrow" th:if="${currentPage > 1}">
+				            <a th:href="@{/search(search_value=${searchValue}, pageNo=1)}">&laquo;</a>
+				        </li>
+				        <!-- 페이지 번호 반복 -->
+				        <li class="number_list" th:each="pageNo : ${#numbers.sequence(1, totalPages)}">
+				            <a th:href="@{/search(search_value=${searchValue}, pageNo=${pageNo})}" th:text="${pageNo}"
+				                th:class="${pageNo == currentPage} ? 'active' : ''"></a>
+				        </li>
+				        <!-- 다음 페이지로 이동하는 링크 -->
+				        <li class="right_arrow" th:if="${currentPage < totalPages}">
+				            <a th:href="@{/search(search_value=${searchValue}, pageNo=${totalPages})}">&raquo;</a>
+				        </li>
+				    </ul>
+			    </div>
 			</div>
 			
 		</div>

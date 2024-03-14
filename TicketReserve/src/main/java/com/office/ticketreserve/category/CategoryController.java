@@ -63,11 +63,11 @@ public class CategoryController {
 		return nextPage;
 	
 	}
-	@GetMapping("/exhibition")
+	@GetMapping("/koreanMusic")
 	public String goExhibition() {
-		log.info("goExhibitionPage");
+		log.info("gokoreanMusicPage");
 		
-		String nextPage = "/category/exhibition_page";
+		String nextPage = "/category/korean_music_page";
 		
 		return nextPage;
 	

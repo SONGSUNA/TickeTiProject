@@ -71,6 +71,10 @@ public class HomeController  {
 			model.addAttribute("totalPages", page.getTotalPages());
 			
 			log.info("[HomeController] search" + page);
+			log.info("[HomeController] search" + page.getNumber());
+			log.info("[HomeController] search" + page.getTotalPages());
+			
+			
 			
 			return nextPage;
 	}
