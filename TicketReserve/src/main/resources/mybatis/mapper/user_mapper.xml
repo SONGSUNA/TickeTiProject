@@ -17,6 +17,13 @@
 		WHERE
 			U_NO = #{u_no}
 	</select>
+	<select id="getMyTicketinfo" parameterType="String" resultType="com.office.ticketreserve.reservation.ReservationDto">
+		SELECT * FROM
+			TBL_RESERVE
+		WHERE
+			U_ID = #{u_id}
+			
+	</select>
 		<!-- <select id="dofindIdFromDB"  parameterType="string" 
 	        resultType="string">
 	        
