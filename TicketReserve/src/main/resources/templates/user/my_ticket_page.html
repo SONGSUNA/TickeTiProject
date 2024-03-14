@@ -40,6 +40,7 @@
 						<tr>
 							<th>예매일</th>
 							<th>티켓번호</th>
+							<th>썸네일</th>
 							<th>공연명</th>
 							<th>좌석번호</th>
 							<th>관람일시</th>
@@ -48,13 +49,14 @@
 						</tr>
 						
 						<tr>
-							<td>예매일</td>
-							<td>티켓번호</td>
-							<td>공연명</td>
-							<td>좌석번호</td>
-							<td>관람일시</td>
-							<td>수령방법</td>
-							<td>결제상태</td>
+							<td th:text="${combinedDto.reservationDto.r_reg_date}"></td>
+							<td th:text="${combinedDto.reservationDto.t_no}">티켓번호</td>
+							<td ><img th:src="${combinedDto.perfomanceDto.p_thum}"></td>
+							<td th:text="${combinedDto.perfomanceDto.p_name}">공연명</td>
+							<td th:text="${combinedDto.reservationDto.t_seat}">좌석번호</td>
+							<td th:text="${#strings.substringBefore(combinedDto.reservationDto.r_date, ' ') + ' ' + combinedDto.reservationDto.r_time}">관람일시</td>
+							<td th:text="${combinedDto.reservationDto.r_take_ticket}">수령방법</td>
+							<td th:text="${combinedDto.reservationDto.r_payment_state}">결제상태</td>
 						</tr>
 					</table>
 				</div>

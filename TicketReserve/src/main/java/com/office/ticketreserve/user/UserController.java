@@ -1,5 +1,7 @@
 package com.office.ticketreserve.user;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -305,18 +307,17 @@ public class UserController {
 	
 	//나의 티켓 화면 이동
 	@GetMapping("/my_ticket_page")
-	public String myTicketHome(HttpSession session) {
+	public String myTicketHome(HttpSession session, Model model) {
 		log.info("[UserController] myTicketHome()");
 		
 		String nextPage = "user/my_ticket_page";
 		UserDto userDto = sessionCheck(session);
 		String u_id = userDto.getU_id();
 		
-		userService.getMyTicketInfo(u_id);
-		
-		if(userDto == null) {
-			return "user/user_login_form";
-		}
-			return nextPage;
+		 Map<String, Object> combinedDto = userService.getMyTicketInfo(u_id);
+		System.out.println("---------->>>>>"+ combinedDto);
+		 model.addAttribute("combinedDto", combinedDto);
+		 
+		return nextPage;
 	}
 }
