@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 
 import com.office.ticketreserve.admin.AdminDaoForMyBatis;
 import com.office.ticketreserve.admin.AdminDto;
+import com.office.ticketreserve.productpage.PerfomanceDto;
 import com.office.ticketreserve.reservation.ReservationDto;
 
 import jakarta.mail.internet.MimeMessage;
@@ -38,6 +39,9 @@ public class UserService {
 	
 	@Autowired
 	ReservationDto reservationDto;
+	
+	@Autowired
+	PerfomanceDto perfomanceDto;
 	
 	final static public int ID_ALREADY_EXIST				= -2;
 	final static public int DATABASE_COMMUNICATION_TROUBLE	= -1;
@@ -260,6 +264,12 @@ public class UserService {
 		
 		ReservationDto reservationDto = IUserDao.getMyTicketinfo(u_id);
 		System.out.println("---------->" + reservationDto);
+		int t_no = reservationDto.getT_no();
+		System.out.println("---------->" + t_no);
+		String p_id = IUserDao.getPerfomanceId(t_no);
+		System.out.println("---------->>>" + p_id);
+		String p_name = IUserDao.getPerfomanceName(p_id);
+		System.out.println("<<---------->>>" + p_name);
 		
 	}
 }

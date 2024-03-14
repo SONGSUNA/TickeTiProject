@@ -2,6 +2,7 @@ function createAccountForm() {
    console.log('createAccountForm()  clicked!!!');
    
    let form = document.create_account_form;
+   let idRegex = /^[a-zA-Z0-9]{6,20}$/;
    let u_mail = form.u_mail_pre.value + "@" + form.u_mail_suf.value;
    let u_sc_num = form.u_sc_num_pre.value + "-" + form.u_sc_num_suf.value;
    let u_address = form.postcode.value +"/"+ form.address.value + "/" 
@@ -20,6 +21,10 @@ function createAccountForm() {
       alert('아이디를 입력해주세요.');
       form.u_id.focus();
       
+    } else if (!idRegex.test(form.u_id.value)) {
+      alert('아이디는 6-20자로 영문자 또는 숫자를 포함해야 합니다.');
+      form.u_id.focus();
+         
    } else if (form.u_pw.value === '') {
       alert('비밀번호를 입력해주세요.');
       form.u_pw.focus();

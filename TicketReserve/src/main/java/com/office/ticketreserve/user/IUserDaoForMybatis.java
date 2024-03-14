@@ -2,6 +2,7 @@ package com.office.ticketreserve.user;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.office.ticketreserve.productpage.PerfomanceDto;
 import com.office.ticketreserve.reservation.ReservationDto;
 
 @Mapper
@@ -18,6 +19,8 @@ public interface IUserDaoForMybatis {
 	public int deleteUser(int u_no) ;
 //	public String dofindIdFromDB(String u_name, String u_mail);
 	public ReservationDto getMyTicketinfo(String u_id);
+	public String getPerfomanceId(int t_no);
+	public String getPerfomanceName(String p_id);
 
 
 }
