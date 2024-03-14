@@ -4,11 +4,14 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
@@ -63,4 +66,16 @@ public class ReservationController {
 		return reservationService.getInfoForReservation(p_id);
 	}
 	
+	@PostMapping
+	@ResponseBody
+	public boolean saveDateTime(@RequestParam("date") String date,
+								@RequestParam("itme") String time,
+								Model model) {
+		log.info("[ReservationController] saveDateTime()");
+		
+		model.addAttribute("reservationDate", date);
+		model.addAttribute("reservationTime", time);
+		
+		return true;
+	}
 } 

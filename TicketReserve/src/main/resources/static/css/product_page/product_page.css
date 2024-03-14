@@ -1,27 +1,27 @@
 body {
-    
+
     margin: 0;
     padding: 0;
 
 }
 
-a{
+a {
     text-decoration: none;
 }
 
-ul{
+ul {
     list-style: none;
 }
 
 #title_data {
     max-width: 1200px;
-    margin:100px auto;
+    margin: 100px auto;
     padding: 20px;
     border-bottom: 1px #242424 solid;
     margin-bottom: 50px;
 }
 
-#content_container{
+#content_container {
     max-width: 1200px;
     margin: auto;
 }
@@ -33,28 +33,28 @@ ul{
     gap: 60px;
 }
 
-.cd_img{
+.cd_img {
     border-bottom: #dadada solid 1px;
-    
+
 }
 
 a {
-	text-decoration: none;
-	color: #242424;
+    text-decoration: none;
+    color: #242424;
 }
 
-.likes{
+.likes {
     margin: 20px;
 }
 
 .cd_info,
-.time_info{
+.time_info {
     width: 700px;
     border-bottom: 1px solid #242424;
 }
 
-.cd_info{
-	display:flex;
+.cd_info {
+    display: flex;
 }
 
 #content_data .cd_img img {
@@ -65,14 +65,14 @@ a {
 }
 
 #content_data .cd_info_wrap .cd_info li {
-   margin-bottom: 50px;
+    margin-bottom: 50px;
 }
 
-.time_info li{
+.time_info li {
     margin-bottom: 20px;
 }
 
-#date_time_choice{
+#date_time_choice {
     max-width: 1600;
     max-width: 1600px;
     margin: auto;
@@ -81,40 +81,47 @@ a {
 }
 
 #date_time_choice .left,
-#date_time_choice .right{
+#date_time_choice .right {
     width: 800px;
     padding: 50px;
     border: #dadada solid 1px;
 }
 
-#date_time_choice .date_time_h3{
+#date_time_choice .date_time_h3 {
     border-bottom: 2px #242424 solid;
 }
 
-#date_time_choice #calendar table{
+#date_time_choice #calendar table {
     width: 350px;
     text-align: center;
     padding: 30px;
     border-right: #dadada 1px solid;
 }
 
-#date_time_choice .calendar_wrap{
+#date_time_choice .calendar_wrap {
     display: flex;
 }
 
-#date_time_choice .calendar_data{
+#date_time_choice .calendar_data {
     padding: 30px;
 }
 
 .outside-range {
-    background-color: #f0f0f0; /* 예시 색상 */
-    color: #ccc; /* 예시 색상 */
+    background-color: #f0f0f0;
+    /* 예시 색상 */
+    color: #ccc;
+    /* 예시 색상 */
 }
 
-#dateDisplay
- {
-    border-bottom: 1px solid black;  /* 밑줄 추가 */
-    padding-bottom: 10px;  /* 밑에 여백 추가 */
+.right_data li:hover {
+    cursor: pointer;
+}
+
+#dateDisplay {
+    border-bottom: 1px solid black;
+    /* 밑줄 추가 */
+    padding-bottom: 10px;
+    /* 밑에 여백 추가 */
     font-size: 30px;
 }
 
@@ -123,20 +130,20 @@ a {
     margin-bottom: 10px;
 }
 
-.right .right_data{
+.right .right_data {
     margin: 30px;
     width: 600px;
     height: 300px;
     border: #dadada 1px solid;
 }
 
-#reserveBtn_wrap{
+#reserveBtn_wrap {
     height: 60px;
     margin: 30px auto;
     text-align: center;
 }
 
-#reserveBtn_wrap input{
+#reserveBtn_wrap input {
     height: 80px;
     width: 200px;
     background-color: rgba(239, 235, 8, 0.677);
@@ -149,7 +156,7 @@ a {
 
 #reserve_nav {
     display: flex;
-    
+
     font-size: 30px;
     border-bottom: 2px solid #242424;
     margin-top: 90px;
@@ -161,11 +168,13 @@ a {
     width: 300px;
     text-align: center;
 }
-.more_info_data{
+
+.more_info_data {
     margin-top: 100px;
     text-align: center;
     border-bottom: #242424 1px solid;
 }
+
 .product-info {
     max-width: 600px;
     margin: 20px auto;
@@ -178,7 +187,8 @@ a {
     margin-bottom: 20px;
 }
 
-.product-info th, td {
+.product-info th,
+td {
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
@@ -199,97 +209,110 @@ a {
     height: 600px;
     border: 1px solid #242424;
 }
-#review_page{
+
+#review_page {
     margin-top: 90px;
     text-align: center;
 }
 
-#prevMonth, #nextMonth {
+#prevMonth,
+#nextMonth {
     border: none;
     background: none;
 }
 
-#prevMonth img, #nextMonth img {
+#prevMonth img,
+#nextMonth img {
     width: 15px;
     height: 15px;
 }
-#imageContainer img{
-	max-width: 900px;
-	min-width: 900px;
+
+#imageContainer img {
+    max-width: 900px;
+    min-width: 900px;
 
 }
 
 .review_notice {
-	
-	
-	text-align:left;
-	line-height: 25px;
-	margin: 30px auto;
-	background-color: rgba(255,0,0,0.2);
-	height: 50px;
-	padding: 30px;
-	font-size: 16px;
+
+
+    text-align: left;
+    line-height: 25px;
+    margin: 30px auto;
+    background-color: rgba(255, 0, 0, 0.2);
+    height: 50px;
+    padding: 30px;
+    font-size: 16px;
 }
 
 .review_notice p {
-	display: inline-block;
+    display: inline-block;
 }
 
-.review_notice button{
-	float: right;
-	width: 120px;
-	height: 50px;
+.review_notice button {
+    float: right;
+    width: 120px;
+    height: 50px;
 }
+
 .review_modal_wrap,
 .review_mod_wrap {
-        display: none; /* 기본적으로 모달 창은 보이지 않게 설정 */
-        position: fixed; /* 모달 창을 고정 위치로 설정 */
-        z-index: 1; /* 모든 다른 요소 위에 위치하도록 설정 */
-        left: 0;
-        top: 0;
-        width: 100%; /* 전체 너비 */
-        height: 100%; /* 전체 높이 */
-        /* overflow: auto; 스크롤 가능하게 설정 */
-        background-color: rgba(0,0,0,0.4); /* 배경색을 검정으로 설정하고 투명도를 조절 */
-    }
+    display: none;
+    /* 기본적으로 모달 창은 보이지 않게 설정 */
+    position: fixed;
+    /* 모달 창을 고정 위치로 설정 */
+    z-index: 1;
+    /* 모든 다른 요소 위에 위치하도록 설정 */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* 전체 너비 */
+    height: 100%;
+    /* 전체 높이 */
+    /* overflow: auto; 스크롤 가능하게 설정 */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* 배경색을 검정으로 설정하고 투명도를 조절 */
+}
 
 .review_wrap {
-        background-color: #fefefe;
-        margin: 15% auto; /* 모달 창을 중앙에 위치시킴 */
-        padding: 20px 20px 10px 20px;
-        border: 1px solid #888;
-        width: 700px;
-        height: 480px; /* 모달 창의 너비 */
-    }
-    
+    background-color: #fefefe;
+    margin: 15% auto;
+    /* 모달 창을 중앙에 위치시킴 */
+    padding: 20px 20px 10px 20px;
+    border: 1px solid #888;
+    width: 700px;
+    height: 480px;
+    /* 모달 창의 너비 */
+}
+
 .close {
-  margin-bottom:30px;
-  color: #000;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  
+    margin-bottom: 30px;
+    color: #000;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+
 }
 
 .close:hover,
 .close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 
 #user_review .review_list {
-	width: 1160px;
+    width: 1160px;
     padding: 10px 20px;
     display: inline-flex;
     gap: 30px;
-	border-bottom: 1px solid #dadada;
-	background-color: #e9ecef;
+    border-bottom: 1px solid #dadada;
+    background-color: #e9ecef;
 }
 
 .review_txt {
-	float: left;
-	margin: 20px;
-	text-align: left;
+    float: left;
+    margin: 20px;
+    text-align: left;
 }
