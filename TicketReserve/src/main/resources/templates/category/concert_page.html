@@ -21,7 +21,7 @@
 	<div id="header_top_bar">
 	<div th:replace="~{/home.html::top_bar1}"></div>
 	</div>
-	<section>
+	<section th:object="${categoryDtos}">
 		<div class="section_wrap">
 			
 			<div class="ranking_and_soon_forthcoming">
@@ -30,28 +30,28 @@
 						<table>
 							<tr class="image-cell">
 								<td>1위</td>
-								<td><a href="#none"><img th:src="@{/img/home/poster/hot1.jfif}"></a></td>
-								<td><a href="#none"><span th:text="@{/img/home/poster/hot1.jfif}">랭킹1위 제목</span></a></td>
+								<td><a th:href="@{/product/{id}(id=${rankingDtos.get(0).p_id})}"><img th:src="${rankingDtos.get(0).p_thum}"></a></td>
+								<td><a th:href="@{/product/{id}(id=${rankingDtos.get(0).p_id})}"><span th:text="${rankingDtos.get(0).p_name}">랭킹1위 제목</span></a></td>
 							</tr>
 							<tr class="image-cell">
 								<td>2위</td>
-								<td><a href="#none"><img th:src="@{/img/home/poster/hot1.jfif}"></a></td>
-								<td><a href="#none"><span>랭킹2위 제목</span></a></td>
+								<td><a th:href="@{/product/{id}(id=${rankingDtos.get(1).p_id})}"><img th:src="${rankingDtos.get(1).p_thum}"></a></td>
+								<td><a th:href="@{/product/{id}(id=${rankingDtos.get(1).p_id})}"><span th:text="${rankingDtos.get(1).p_name}">랭킹2위 제목</span></a></td>
 							</tr>
 							<tr class="image-cell">
 								<td>3위</td>
-								<td><a href="#none"><img th:src="@{/img/home/poster/hot1.jfif}"></a></td>
-								<td><a href="#none"><span>랭킹3위 제목</span></a></td>
+								<td><a th:href="@{/product/{id}(id=${rankingDtos.get(2).p_id})}"><img th:src="${rankingDtos.get(2).p_thum}"></a></td>
+								<td><a th:href="@{/product/{id}(id=${rankingDtos.get(2).p_id})}"><span th:text="${rankingDtos.get(2).p_name}">랭킹3위 제목</span></a></td>
 							</tr>
 							<tr class="image-cell">
 								<td>4위</td>
-								<td><a href="#none"><img th:src="@{/img/home/poster/hot1.jfif}"></a></td>
-								<td><a href="#none"><span>랭킹4위 제목</span></a></td>
+								<td><a th:href="@{/product/{id}(id=${rankingDtos.get(3).p_id})}"><img th:src="${rankingDtos.get(3).p_thum}"></a></td>
+								<td><a th:href="@{/product/{id}(id=${rankingDtos.get(3).p_id})}"><span th:text="${rankingDtos.get(3).p_name}">랭킹4위 제목</span></a></td>
 							</tr>
 							<tr class="image-cell">
 								<td>5위</td>
-								<td><a href="#none"><img th:src="@{/img/home/poster/hot1.jfif}"></a></td>
-								<td><a href="#none"><span>랭킹5위 제목</span></a></td>
+								<td><a th:href="@{/product/{id}(id=${rankingDtos.get(4).p_id})}"><img th:src="${rankingDtos.get(4).p_thum}"></a></td>
+								<td><a th:href="@{/product/{id}(id=${rankingDtos.get(4).p_id})}"><span th:text="${rankingDtos.get(4).p_name}">랭킹5위 제목</span></a></td>
 							</tr>
 						</table>
 				</div>
@@ -90,11 +90,7 @@
 							<div class="item"><a href="#none"><img th:src="@{/img/home/poster/hot3.jfif}"></a></div>
 							<div class="item"><a href="#none"><img th:src="@{/img/home/poster/hot4.jfif}"></a></div>
 							<div class="item"><a href="#none"><img th:src="@{/img/home/poster/hot5.jfif}"></a></div>
-							<!-- <div class="item"><img th:src="@{/img/home/poster/hot6.jfif}"></div>
-							<div class="item"><img th:src="@{/img/home/poster/hot7.jfif}"></div>
-							<div class="item"><img th:src="@{/img/home/poster/hot1.jfif}"></div>
-							<div class="item"><img th:src="@{/img/home/poster/hot2.jfif}"></div>
-							<div class="item"><img th:src="@{/img/home/poster/hot3.jfif}"></div> -->
+
 						</div>
 					</div>
 				</div>
@@ -108,13 +104,10 @@
 							<div class="item"><a href="#none"><img th:src="@{/img/home/poster/hot3.jfif}"></a></div>
 							<div class="item"><a href="#none"><img th:src="@{/img/home/poster/hot4.jfif}"></a></div>
 							<div class="item"><a href="#none"><img th:src="@{/img/home/poster/hot5.jfif}"></a></div>
-							<!-- <div class="item"><img th:src="@{/img/home/poster/hot6.jfif}"></div>
-							<div class="item"><img th:src="@{/img/home/poster/hot7.jfif}"></div> -->
 						</div>
 					</div>
-				
+				</div>
 			</div>
-		</div>
 		</div>
 		
 	</section>
