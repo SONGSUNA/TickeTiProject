@@ -27,11 +27,18 @@ public class CategoryController {
 		
 		String nextPage = "category/concert_page";
 		
-		List<PerfomanceDto> categoryDtos = categoryService.goConcert();
+		List<PerfomanceDto> categoryDtos = categoryService.goCategory(CategoryConstants.CONCERT);
 		model.addAttribute("categoryDtos", categoryDtos);
-		String categoryNameForRanking = categoryDtos.get(0).getP_category();
-		List<CurrentReserveDto> rankingDtos = categoryService.getRanking(categoryNameForRanking);
+		
+		String categoryName = categoryDtos.get(0).getP_category();
+		List<CurrentReserveDto> rankingDtos = categoryService.getRanking(categoryName);
 		model.addAttribute("rankingDtos",rankingDtos);
+		
+		List<PerfomanceDto> upcomingDtos = categoryService.getUpcoming(categoryName);		
+		model.addAttribute("categoryUpcomingDtos",upcomingDtos);
+		
+		List<PerfomanceDto> newPerfomanceDtos = categoryService.getNewPerfomance(categoryName);		
+		model.addAttribute("newPerfomanceDtos",newPerfomanceDtos);
 		
 		return nextPage;
 	
@@ -55,11 +62,23 @@ public class CategoryController {
 	
 	}
 	@GetMapping("/classic")
-	public String goClassic() {
+	public String goClassic(Model model) {
 		log.info("goClassicPage");
 		
 		String nextPage = "/category/classic_page";
 		
+		List<PerfomanceDto> categoryDtos = categoryService.goCategory(CategoryConstants.CLASSIC);
+		model.addAttribute("categoryDtos", categoryDtos);
+		
+		String categoryName = categoryDtos.get(0).getP_category();
+		List<CurrentReserveDto> rankingDtos = categoryService.getRanking(categoryName);
+		model.addAttribute("rankingDtos",rankingDtos);
+		
+		List<PerfomanceDto> UpcomingDtos = categoryService.getUpcoming(categoryName);		
+		model.addAttribute("categoryUpcomingDtos",UpcomingDtos);
+		
+		List<PerfomanceDto> newPerfomanceDtos = categoryService.getNewPerfomance(categoryName);		
+		model.addAttribute("newPerfomanceDtos",newPerfomanceDtos);
 		return nextPage;
 	
 	}

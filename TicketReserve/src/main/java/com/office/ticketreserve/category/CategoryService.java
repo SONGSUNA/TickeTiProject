@@ -16,16 +16,27 @@ public class CategoryService {
 	@Autowired
 	CategoryDao categoryDao;
 	
-	public List<PerfomanceDto> goConcert() {
-		
-		
-		
-		return categoryDao.selectConcert();
-	}
 
-	public List<CurrentReserveDto> getRanking(String categoryNameForRanking) {
+	//카테고리 페이지 이동
+	public List<PerfomanceDto> goCategory(String category) {
+		log.info("goCategory");
 		
-		return categoryDao.selectRanking(categoryNameForRanking);
+		return categoryDao.selectConcert(category);
+	}
+	//랭킹가져오기
+	public List<CurrentReserveDto> getRanking(String categoryName) {
+		log.info("getRanking");
+		return categoryDao.selectRanking(categoryName);
+	}
+	//개봉예정작
+	public List<PerfomanceDto> getUpcoming(String categoryName) {
+		log.info("getUpcoming");
+		
+		return categoryDao.selectUpcoming(categoryName);
+	}
+	public List<PerfomanceDto> getNewPerfomance(String categoryName) {
+		log.info("getNewPerfomance");
+		return categoryDao.selectNewPerfomance(categoryName);
 	}
 
 }
