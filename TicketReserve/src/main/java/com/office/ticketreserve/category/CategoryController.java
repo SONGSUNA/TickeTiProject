@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.office.ticketreserve.productpage.CurrentReserveDto;
 import com.office.ticketreserve.productpage.PerfomanceDto;
 
 import lombok.extern.log4j.Log4j2;
@@ -28,7 +29,9 @@ public class CategoryController {
 		
 		List<PerfomanceDto> categoryDtos = categoryService.goConcert();
 		model.addAttribute("categoryDtos", categoryDtos);
-		
+		String categoryNameForRanking = categoryDtos.get(0).getP_category();
+		List<CurrentReserveDto> rankingDtos = categoryService.getRanking(categoryNameForRanking);
+		model.addAttribute("rankingDtos",rankingDtos);
 		
 		return nextPage;
 	
