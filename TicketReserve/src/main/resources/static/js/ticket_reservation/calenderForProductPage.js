@@ -1,38 +1,40 @@
+let selectedDate;
+let selectedTimeInfo;
+
 window.onload = function() {
-	const url = document.URL;
-	const p_id = url.split("product/")[1];
+    const url = document.URL;
+    const p_id = url.split("product/")[1];
 
-	let start_date, end_date, dayAndTime, max_seat, ticket;
+    let start_date, end_date, dayAndTime, max_seat, ticket;
 
-	getInfoForReservation(p_id);
+    getInfoForReservation(p_id);
 
-	// 공연 정보 불러오기 ==============================================================================================================
-	function getInfoForReservation(productId) {
-		$.ajax({
-			url: '/reservation/getInfoForReservation',
-			type: 'GET',
-			data: { "p_id": productId },
-			success: function(data) {
-				start_date = new Date(data.p_start_date.replace(/\./g, '-'));
-				end_date = new Date(data.p_end_date.replace(/\./g, '-'));
-				dayAndTime = data.ticketDto.t_p_date;
-				max_seat = data.p_max_reserve;
-				ticket = data.ticketDto;
+    // 공연 정보 불러오기 ==============================================================================================================
+    function getInfoForReservation(productId) {
+        $.ajax({
+            url: '/reservation/getInfoForReservation',
+            type: 'GET',
+            data: { "p_id": productId },
+            success: function(data) {
+                start_date = new Date(data.p_start_date.replace(/\./g, '-'));
+                end_date = new Date(data.p_end_date.replace(/\./g, '-'));
+                dayAndTime = data.ticketDto.t_p_date;
+                max_seat = data.p_max_reserve;
+                ticket = data.ticketDto;
 
-				drawCalendar(new Date().getMonth(), new Date().getFullYear());
-			},
-			error: function(xhr, status, error) {
-				console.log("AJAX 요청 실패: " + status);
-				console.log("HTTP 상태 코드: " + xhr.status);
-				console.log("오류 내용: " + error);
-			}
-		});
-	}
+                drawCalendar(new Date().getMonth(), new Date().getFullYear());
+            },
+            error: function(xhr, status, error) {
+                console.log("AJAX 요청 실패: " + status);
+                console.log("HTTP 상태 코드: " + xhr.status);
+                console.log("오류 내용: " + error);
+            }
+        });
+    }
 
-	const calendar = document.getElementById('calendar');
-	let selectedDate;
+    const calendar = document.getElementById('calendar');
 
-	// 달력 생성 ==============================================================================================================
+    // 달력 생성 ==============================================================================================================
 	function drawCalendar(month, year) {
 		const firstDay = (new Date(year, month)).getDay();
 		const monthLength = 32 - new Date(year, month, 32).getDate();
@@ -81,58 +83,65 @@ window.onload = function() {
 		drawCalendar(month, year);
 	}
 
-	// 날짜 클릭 함수 ==============================================================================================================
-	calendar.onclick = function(e) {
-		if (e.target.classList.contains('within-range')) {
-			if (selectedDate) {
-				selectedDate.style.backgroundColor = "";
-				selectedDate.style.fontFamily = "";
-			}
+    // 날짜 클릭 함수 ==============================================================================================================
+    calendar.onclick = function(e) {
+        if (e.target.classList.contains('within-range')) {
+            if (selectedDate) {
+                selectedDate.style.backgroundColor = "";
+                selectedDate.style.fontFamily = "";
+            }
 
-			selectedDate = e.target;
-			selectedDate.style.backgroundColor = "#F1FADA";
-			selectedDate.style.fontFamily = "'LINESeedKR-Bd'";
+            selectedDate = e.target;
+            selectedDate.style.backgroundColor = "#F1FADA";
+            selectedDate.style.fontFamily = "'LINESeedKR-Bd'";
 
-			console.log(`선택된 날짜: ${selectedDate.dataset.date}, 요일: ${selectedDate.dataset.day}`);
+            console.log(`선택된 날짜: ${selectedDate.dataset.date}, 요일: ${selectedDate.dataset.day}`);
 
-			const selected_date = new Date(selectedDate.dataset.date);
-			const daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
-			const selectedDayOfWeek = daysOfWeek[selected_date.getDay()];
-	
-			$.ajax({
-				url: '/reservation/getReserveCount',
-				type: 'GET',
-				data: { "p_id": p_id,
-						"r_date": selectedDate.dataset.date },
-				success: function(data) {
-					
-				},
-				error: function(xhr, status, error) {
-					console.log("AJAX 요청 실패: " + status);
-					console.log("HTTP 상태 코드: " + xhr.status);
-					console.log("오류 내용: " + error);
-				}
-			});
+            const selected_date = new Date(selectedDate.dataset.date);
+            const daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
+            const selectedDayOfWeek = daysOfWeek[selected_date.getDay()];
 
-			if (dayAndTime) {
-				const timeSlots = getTimeSlots(dayAndTime, selectedDayOfWeek);
-				const rightDataDiv = document.querySelector('.right_data');
+            $.ajax({
+                url: '/reservation/getReserveCount',
+                type: 'GET',
+                data: { "p_id": p_id,
+                        "r_date": selectedDate.dataset.date },
+                success: function(data) {
+                    
+                },
+                error: function(xhr, status, error) {
+                    console.log("AJAX 요청 실패: " + status);
+                    console.log("HTTP 상태 코드: " + xhr.status);
+                    console.log("오류 내용: " + error);
+                }
+            });
 
-				rightDataDiv.innerHTML = '';
+            if (dayAndTime) {
+                const timeSlots = getTimeSlots(dayAndTime, selectedDayOfWeek);
+                const rightDataDiv = document.querySelector('.right_data');
 
-				timeSlots.forEach((time, index) => {
-					const listItem = document.createElement('li');
-					listItem.textContent = `[${index + 1}회] ${time}`;
-					listItem.classList.add('time-list');
-					rightDataDiv.appendChild(listItem);
-				});
-			}
-			
-			
-		}
-	};
+                rightDataDiv.innerHTML = '';
 
-	// 선택 가능 시간 추가 ==============================================================================================================
+                timeSlots.forEach((time, index) => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `[${index + 1}회] ${time}`;
+                    rightDataDiv.appendChild(listItem);
+
+                    listItem.onclick = function() { // 클릭 이벤트 리스너 추가
+                        // 모든 li 태그의 배경색을 초기화
+                        document.querySelectorAll('.right_data li').forEach(li => {
+                            li.style.backgroundColor = ""; // 배경색을 초기 상태로
+                        });
+                        // 클릭된 li 태그의 배경색 변경
+                        this.style.backgroundColor = "#F1FADA";
+                        selectedTimeInfo = this.textContent; // 선택된 시간 정보 저장
+                    };
+                });
+            }
+        }
+    };
+
+    // 선택 가능 시간 추가 ==============================================================================================================
 	function getTimeSlots(dayAndTime, selectedDayOfWeek) {
 	    const regex = new RegExp(`${selectedDayOfWeek}요일\\d{2}:\\d{2}`, 'g');
 	    const matches = dayAndTime.replace(/[\[\]]/g, '').match(regex); // 대괄호를 제거한 후 매칭 시도
@@ -156,3 +165,27 @@ window.onload = function() {
 	    }) : [];
 	}
 };
+
+// 예매하기 버튼 클릭 =========================================================================================================================
+function doReserve() {
+    if (!selectedDate || !selectedTimeInfo) {
+        alert("날짜와 시간을 선택해주세요.");
+        return;
+    }
+
+    $.ajax({
+        url: '/reservation/saveDateTime',
+        type: 'POST',
+        data: {
+            date: selectedDate.dataset.date,
+            time: selectedTimeInfo
+        },
+        success: function(response) {
+            console.log('success.');
+            window.open("/reservation", "_blank", "width=860, height=570");
+        },
+        error: function(xhr, status, error) {
+            console.log('서버 요청 중 오류가 발생했습니다.');
+        }
+    });
+}
