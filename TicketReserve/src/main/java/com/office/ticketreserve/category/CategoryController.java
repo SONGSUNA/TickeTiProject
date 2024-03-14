@@ -44,19 +44,45 @@ public class CategoryController {
 	
 	}
 	@GetMapping("/musical")
-	public String goMusical() {
+	public String goMusical(Model model) {
 		log.info("goMusicalPage");
 		
 		String nextPage = "/category/musical_page";
+		
+		List<PerfomanceDto> categoryDtos = categoryService.goCategory(CategoryConstants.MUSICAL);
+		model.addAttribute("categoryDtos", categoryDtos);
+		
+		String categoryName = categoryDtos.get(0).getP_category();
+		List<CurrentReserveDto> rankingDtos = categoryService.getRanking(categoryName);
+		model.addAttribute("rankingDtos",rankingDtos);
+		
+		List<PerfomanceDto> upcomingDtos = categoryService.getUpcoming(categoryName);		
+		model.addAttribute("categoryUpcomingDtos",upcomingDtos);
+		
+		List<PerfomanceDto> newPerfomanceDtos = categoryService.getNewPerfomance(categoryName);		
+		model.addAttribute("newPerfomanceDtos",newPerfomanceDtos);
 		
 		return nextPage;
 	
 	}
 	@GetMapping("/theater")
-	public String goTheater() {
+	public String goTheater(Model model) {
 		log.info("goTheaterPage");
 		
 		String nextPage = "/category/theater_page";
+		
+		List<PerfomanceDto> categoryDtos = categoryService.goCategory(CategoryConstants.THEATER);
+		model.addAttribute("categoryDtos", categoryDtos);
+		
+		String categoryName = categoryDtos.get(0).getP_category();
+		List<CurrentReserveDto> rankingDtos = categoryService.getRanking(categoryName);
+		model.addAttribute("rankingDtos",rankingDtos);
+		
+		List<PerfomanceDto> upcomingDtos = categoryService.getUpcoming(categoryName);		
+		model.addAttribute("categoryUpcomingDtos",upcomingDtos);
+		
+		List<PerfomanceDto> newPerfomanceDtos = categoryService.getNewPerfomance(categoryName);		
+		model.addAttribute("newPerfomanceDtos",newPerfomanceDtos);
 		
 		return nextPage;
 	
@@ -79,14 +105,28 @@ public class CategoryController {
 		
 		List<PerfomanceDto> newPerfomanceDtos = categoryService.getNewPerfomance(categoryName);		
 		model.addAttribute("newPerfomanceDtos",newPerfomanceDtos);
+		
 		return nextPage;
 	
 	}
 	@GetMapping("/koreanMusic")
-	public String goExhibition() {
+	public String goExhibition(Model model) {
 		log.info("gokoreanMusicPage");
 		
 		String nextPage = "/category/korean_music_page";
+		
+		List<PerfomanceDto> categoryDtos = categoryService.goCategory(CategoryConstants.KOREAN_MUSIC);
+		model.addAttribute("categoryDtos", categoryDtos);
+		
+		String categoryName = categoryDtos.get(0).getP_category();
+		List<CurrentReserveDto> rankingDtos = categoryService.getRanking(categoryName);
+		model.addAttribute("rankingDtos",rankingDtos);
+		
+		List<PerfomanceDto> UpcomingDtos = categoryService.getUpcoming(categoryName);		
+		model.addAttribute("categoryUpcomingDtos",UpcomingDtos);
+		
+		List<PerfomanceDto> newPerfomanceDtos = categoryService.getNewPerfomance(categoryName);		
+		model.addAttribute("newPerfomanceDtos",newPerfomanceDtos);
 		
 		return nextPage;
 	

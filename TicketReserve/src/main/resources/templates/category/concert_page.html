@@ -1,95 +1,63 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-<title th:replace="~{/include/title.html::title}"></title>
-<link th:href="@{/css/category/category.css}" rel="stylesheet" />
-<link th:href="@{/css/include/footer.css}" rel="stylesheet" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script type="text/javascript" th:src="@{/js/category/category.js}" ></script>
-<script type="text/javascript" th:src="@{/js/category/upcoming_js.html::upcoming}" ></script>
-
-
-
-   
- 
-
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <title th:replace="~{/include/title.html::title}"></title>
+  <link th:href="@{/css/category/category.css}" rel="stylesheet" />
+  <link th:href="@{/css/include/footer.css}" rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script type="text/javascript" th:src="@{/js/category/category.js}"></script>
+  <script type="text/javascript" th:src="@{/js/category/upcoming_js.html::upcoming}"></script>
 </head>
 <body>
-
-	<div id="header_top_bar">
-	<div th:replace="~{/home.html::top_bar1}"></div>
-	</div>
-	<section th:object="${categoryDtos}">
-		<div class="section_wrap">
-			
-			<div class="ranking_and_soon_forthcoming">
-				<div class="ranking">
-					<h3>예매율 랭킹</h3>
-						<table>
-							<tr class="image-cell">
-								<td>1위</td>
-								<td><a th:href="@{/product/{id}(id=${rankingDtos.get(0).p_id})}"><img th:src="${rankingDtos.get(0).p_thum}"></a></td>
-								<td><a th:href="@{/product/{id}(id=${rankingDtos.get(0).p_id})}"><span th:text="${rankingDtos.get(0).p_name}">랭킹1위 제목</span></a></td>
-							</tr>
-							<tr class="image-cell">
-								<td>2위</td>
-								<td><a th:href="@{/product/{id}(id=${rankingDtos.get(1).p_id})}"><img th:src="${rankingDtos.get(1).p_thum}"></a></td>
-								<td><a th:href="@{/product/{id}(id=${rankingDtos.get(1).p_id})}"><span th:text="${rankingDtos.get(1).p_name}">랭킹2위 제목</span></a></td>
-							</tr>
-							<tr class="image-cell">
-								<td>3위</td>
-								<td><a th:href="@{/product/{id}(id=${rankingDtos.get(2).p_id})}"><img th:src="${rankingDtos.get(2).p_thum}"></a></td>
-								<td><a th:href="@{/product/{id}(id=${rankingDtos.get(2).p_id})}"><span th:text="${rankingDtos.get(2).p_name}">랭킹3위 제목</span></a></td>
-							</tr>
-							<tr class="image-cell">
-								<td>4위</td>
-								<td><a th:href="@{/product/{id}(id=${rankingDtos.get(3).p_id})}"><img th:src="${rankingDtos.get(3).p_thum}"></a></td>
-								<td><a th:href="@{/product/{id}(id=${rankingDtos.get(3).p_id})}"><span th:text="${rankingDtos.get(3).p_name}">랭킹4위 제목</span></a></td>
-							</tr>
-							<tr class="image-cell">
-								<td>5위</td>
-								<td><a th:href="@{/product/{id}(id=${rankingDtos.get(4).p_id})}"><img th:src="${rankingDtos.get(4).p_thum}"></a></td>
-								<td><a th:href="@{/product/{id}(id=${rankingDtos.get(4).p_id})}"><span th:text="${rankingDtos.get(4).p_name}">랭킹5위 제목</span></a></td>
-							</tr>
-						</table>
-				</div>
-				
-				  
-	 	   </div>
-	 	   
-	    	<div class="itembody">
-		    <h3>개봉예정</h3>
-			    <div class="container">
-			      <div class="list">
-				      <div class="item" th:each="upcomingDto, status : ${categoryUpcomingDtos}" th:if="${status.index < 6}">
-				        <a th:href="@{/product/{id}(id=${upcomingDto.p_id})}">
-				          <img th:src="${upcomingDto.p_thum}">
-				        </a>
-				      </div>
-				  </div>
-			    </div>
-		 	</div>
-	    
-			
-		</div>
-			<div class="itembody">
-				<h2>New</h2>
-				<div class="container">
-			      <div class="list_new">
-				      <div class="item" th:each="newPerfomanceDto, status : ${newPerfomanceDtos}" th:if="${status.index < 5}">
-				        <a th:href="@{/product/{id}(id=${newPerfomanceDto.p_id})}">
-				          <img th:src="${newPerfomanceDto.p_thum}">
-				        </a>
-				      </div>
-				  </div>
-			    </div>
-
-			</div>
-	</section>
-	
-	
-	<footer th:replace="~{/include/header_footer_nav.html::footer}"></footer>
+  <div id="header_top_bar">
+    <div th:replace="~{/home.html::top_bar1}"></div>
+  </div>
+  <section th:object="${categoryDtos}">
+     <div class="section_wrap">
+      <div class="ranking_and_soon_forthcoming">
+        <div class="ranking">
+          <h3>예매율 랭킹</h3>
+          <ul>
+            <li th:each="rankingDto, status : ${rankingDtos}" th:if="${status.index < 5}">
+              <span th:text="${status.index + 1} + '위'"></span>
+              <a th:href="@{/product/{id}(id=${rankingDto.p_id})}">
+                <img th:src="${rankingDto.p_thum}">
+              </a>
+              <a th:href="@{/product/{id}(id=${rankingDto.p_id})}">
+                <span th:text="${rankingDto.p_name}"></span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="itembody">
+        <h3>개봉예정</h3>
+        <div class="container">
+          <div class="list">
+            <div class="item" th:each="upcomingDto, status : ${categoryUpcomingDtos}" th:if="${status.index < 6}">
+              <a th:href="@{/product/{id}(id=${upcomingDto.p_id})}">
+                <img th:src="${upcomingDto.p_thum}">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="itembody">
+      <h2>New</h2>
+      <div class="container">
+        <div class="list_new">
+          <div class="item" th:each="newPerfomanceDto, status : ${newPerfomanceDtos}" th:if="${status.index < 5}">
+            <a th:href="@{/product/{id}(id=${newPerfomanceDto.p_id})}">
+              <img th:src="${newPerfomanceDto.p_thum}">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer th:replace="~{/include/header_footer_nav.html::footer}"></footer>
 </body>
 </html>

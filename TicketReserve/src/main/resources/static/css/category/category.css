@@ -67,6 +67,8 @@ div.section_wrap .top_menu_container{
 }
 
 h2{
+	margin-top: -125px;
+	text-align: center;
 	font-size: 3em;
 	padding: 50px;
 }
@@ -76,7 +78,7 @@ div.section_wrap  {
 	margin: 0 auto;
 	display: flex;
 	width: 100%;
-	gap: 0100px;
+	gap: 31px;
 }
 
 div.itembody {
@@ -104,7 +106,8 @@ div.section_wrap .container{
 }
 .ranking_and_soon_forthcoming {
 	/* width: 1600px; */
-	margin: 100px;
+	margin-left: 190px;
+	margin-top: 97px;
 }
 
 .soon_forthcoming ul div img {
@@ -120,13 +123,7 @@ margin: 100px 0 100px 60px;
 	
 width: 30%;
 }
-.section_wrap .ranking table {
-	border:1px solid #dadada;
-	width:400px;
-	height: 600px;
-    border-collapse: collapse;
-	
-}
+
 .ranking h3,
 .soon_forthcoming h3,
 .itembody h3{
@@ -135,25 +132,61 @@ width: 30%;
 
 .ranking table tr td{
 	border-bottom: 1px solid #dadada;
-	height: 80px;
+	height: 145px;
+	width: 0px;
+	text-align: center;
 }
-.ranking table tr img {
-	width: 60px;
-	height: 80px;
 
-}
+
 .container .list_new{
 	display: flex;
-	justify-content: space-around;
-	gap: 30px;
-	flex-wrap: wrap; 
+	justify-content: center;
+	gap: 50px;
+	flex-wrap: wrap;
 	border: 1px solid #dadada;
-	width: 85%;
-	
+	width: 73%;
+	margin: 0 auto;
+	padding: 30px;
 }
+
 .list_new div img{
 	width: 235px;
 	height: 330px;
 }
 
+.ranking ul {
+  list-style: none;
+  padding: 0;
+  border: 1px solid #dadada;
+  width:500px;
+}
 
+.ranking ul li {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #dadada;
+}
+
+.ranking ul li:last-child {
+  border-bottom: none;
+}
+/*순위부분  */
+.ranking ul li > span {
+  margin-right: 10px;
+  font-weight: bold;
+  width:35px;
+}
+
+.ranking ul li img {
+  width: 80px;
+  height: 105px;
+  margin-right: 10px;
+}
+.ranking ul li a:last-child {
+	width:345px;
+}
+
+.ranking ul li a:last-child {
+  flex-grow: 1;
+}
