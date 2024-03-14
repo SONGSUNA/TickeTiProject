@@ -73,9 +73,6 @@ public class HomeController  {
 			log.info("[HomeController] search" + page);
 			log.info("[HomeController] search" + page.getNumber());
 			log.info("[HomeController] search" + page.getTotalPages());
-			
-			
-			
 			return nextPage;
 	}
 	
