@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title th:replace="~{/include/title.html::title}"></title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <script th:src="@{/js/ticket_reservation/calender.js}"></script>
+    <script th:src="@{/js/ticket_reservation/calenderForProductPage.js}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" th:href="@{/css/product_page/product_page.css}">
     <link th:href="@{/css/category/category.css}" rel="stylesheet" />
@@ -22,7 +22,7 @@
    </div>
         <div id="title_data">
             <div class="catergory">
-                <a href="#none"><span class="super_category" th:text="*{p_category}"></span></a> > <a href="#none"><span class="base_category"> 페스티벌(중분류) </span></a>
+                <a href="#none"><span class="super_category" th:text="*{p_category}"></span></a> > <a href="#none"><span class="base_category"></span></a>
             </div>
             
             <div class="big_title">
@@ -89,7 +89,7 @@
                 </div>
                
                 <div class="calendar_data">
-                    데이터 들어갈 자리
+                    
                 </div>
             </div>
             
@@ -104,7 +104,6 @@
             </div>
             
             <div class="right_data">
-                데이터 들어갈 자리
                 <ul>
                     <li>가격정보</li>
                 </ul>

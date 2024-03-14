@@ -9,14 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.office.ticketreserve.config.TicketDto;
-import com.office.ticketreserve.productpage.PerfomanceDto;
-
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 @Controller
-@RequestMapping("ticket_reservation")
+@RequestMapping("/reservation")
 public class ReservationController {
 	
 	@Autowired
