@@ -9,36 +9,29 @@
 }
 /* 드롭다운 하위 메뉴 wrap */
 #dropdown_menu {
-  /*   display: none; */
+  	display: none;
     position: absolute; 
     min-width: 10px;
     z-index: 1;
     top: 100%; 
-    padding: 1px;
+    padding-top: 13px;
+    padding-bottom:5px;
     text-align: center;
-    margin-left: -20px;
-    background-color: rgba(0, 0, 0, 0.3);
+    margin-left: -37px;
+    background-color: rgba(0, 0, 0, 0.7);
     border-radius: 5px;
-    width: 60px;
-   
-}
-#dropdown_menu > div {
-    display: flex;			/* 여기 수상함. */
-    flex-direction: column; 
-    align-items: center; 
-    text-align: center;
-    width: 120px; /* 메뉴 너비에 맞게 설정하세요 */
-
+    width: 100px;
+ 
 }
 
 #dropdown_menu > div > a {
     width: 100%; /* 메뉴 전체 너비를 사용하도록 설정합니다 */
     color: #fff;
-    font-size: 1.0em;
-    padding: 2px;
-    margin: 0;
+    font-size: 1.1em;
     transition: color 0.2s size 0.2s;
     text-align: center;
+    margin-top: 5px;
+    margin-bottom: 10px;
 }
 
 #dropdown_wrap:hover #dropdown_menu {
@@ -47,8 +40,18 @@
 
 #dropdown_menu > div > a:hover {
     color: #265073; 
-	background-color: #fff; 
-    font-size: 1.1em;
+	background-color: rgba(255,255,255,0.7); 
+    font-size: 1.2em;
     font-weight: bold;
-    
-}
+ }
+ 
+ .drop_content {
+ 	width: 100%
+ }
+ 
+ #dropdown_menu > .drop_content  {
+ 	display: flex;
+  	flex-direction: column;
+  	justify-content: space-around;
+  	gap: 1px;
+ } 

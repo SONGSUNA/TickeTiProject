@@ -19,14 +19,14 @@
 	<div id="dropdown_wrap">
 		<a th:href="@{/user/myPage}" class="img_btn"><span class="material-symbols-outlined" style="color:#dadada">account_circle</span></a>&nbsp;&nbsp;
 		<div id="dropdown_menu">	
-		 	<div th:if="${session.loginedUserDto == null}">
-				<a th:href="@{/user/user_login_form}">로그인</a><br/>
-				<a th:href="@{/user/create_account_form}">회원가입</a><br/>
+		 	<div th:if="${session.loginedUserDto == null}" class="drop_content">
+				<a th:href="@{/user/user_login_form}">로그인</a>
+				<a th:href="@{/user/create_account_form}">회원가입</a>
 			</div>
-			<div  th:unless="${session.loginedUserDto == null}">
-				<a th:href="@{/user/my_ticket_page}">나의티켓</a><br/>
-				<a th:href="@{/user/user_modify_form}">정보수정</a><br/>
-				<a th:href="@{/user/user_logout_confirm}">로그아웃</a><br/>
+			<div  th:unless="${session.loginedUserDto == null}" class="drop_content">
+				<a th:href="@{/user/my_ticket_page}">나의티켓</a>
+				<a th:href="@{/user/user_modify_form}">정보수정</a>
+				<a th:href="@{/user/user_logout_confirm}">로그아웃</a>
 				<a th:href="@{/user/user_delete_form}">회원탈퇴</a>
 		 	</div>
 	  	</div>
