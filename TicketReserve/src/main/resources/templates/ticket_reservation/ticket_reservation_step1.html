@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <title>티켓 예매</title>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
 <link rel="stylesheet" th:href="@{/css/ticket_reservation/ticket_reservation._step1.css}">
 <script th:src="@{/js/ticket_reservation/calender.js}"></script>
 
@@ -26,7 +28,7 @@
                     <div class="step4">
                         <span>결제</span>
                     </div>
-                    <p>로고로고</p>
+                    <img th:src="@{/img/include/logo-white.png}">
                 </div>
 
                 <div class="reservation">
@@ -36,8 +38,8 @@
                         <div class="time_seat_select">
                             <div class="time">
                                 <span>선택 가능 회차</span>
-                                <div>
-                                    <li>[1회] 18시 00분</li>
+                                <div class="time_select">
+                                
                                 </div>
                             </div>
     
@@ -79,7 +81,7 @@
 
            <div class="reservation_info">
                 <div class="performance">
-                    <img th:src="@{/img/ticket_reservation/thum.jpg}">
+                    <img src="">
                     <div class="performance_info">
                         <p class="name">2024 KIM MYUNGSOO BIRTHDAY PARTY</p>
                         <p class="date">2024.03.10~2024.03.10</p>
@@ -89,13 +91,11 @@
                 
                 <div class="select_show">
                     <p>선택 내역</p>
-                    <span>날짜</span> 2024년.03.10 (월)
-                    <br>
-                    <span>시간</span> [1회] 18시 00분
-                    <br>
+				    <span>날짜</span> <span id="selected-date"></span>
+				    <br>
+				    <span>시간</span> <span id="selected-time"></span>
+				    <br>
                     <span>매수</span>
-                    <br>
-                    <span>좌석</span> R등급
                 </div>
 
                 <div class="money">

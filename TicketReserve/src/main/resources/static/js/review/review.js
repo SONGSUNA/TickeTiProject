@@ -107,7 +107,7 @@
         star.style.fontWeight = '900';
         star.style.fontSize = '1rem';
 
-        displayScores[j].appendChild(별); // 현재 처리 중인 display_score 요소에 별 추가
+        displayScores[j].appendChild(star); // 현재 처리 중인 display_score 요소에 별 추가
     }
 }      
 // 별 수정할때===================

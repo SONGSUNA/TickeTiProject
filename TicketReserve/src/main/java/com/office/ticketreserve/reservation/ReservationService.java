@@ -30,6 +30,7 @@ public class ReservationService {
 		
 		HashMap<String, Object> haspMap = new HashMap<>();
 		
+		haspMap.put("perfomanceDto", perfomanceDto);
 		haspMap.put("p_start_date", perfomanceDto.getP_start_date());
 		haspMap.put("p_end_date", perfomanceDto.getP_end_date());
 		haspMap.put("p_time", perfomanceDto.getP_time());

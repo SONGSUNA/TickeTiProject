@@ -1,9 +1,10 @@
+const url = document.URL;
+const p_id = url.split("product/")[1];
+
 let selectedDate;
 let selectedTimeInfo;
 
 window.onload = function() {
-    const url = document.URL;
-    const p_id = url.split("product/")[1];
 
     let start_date, end_date, dayAndTime, max_seat, ticket;
 
@@ -101,20 +102,6 @@ window.onload = function() {
             const daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
             const selectedDayOfWeek = daysOfWeek[selected_date.getDay()];
 
-            $.ajax({
-                url: '/reservation/getReserveCount',
-                type: 'GET',
-                data: { "p_id": p_id,
-                        "r_date": selectedDate.dataset.date },
-                success: function(data) {
-                    
-                },
-                error: function(xhr, status, error) {
-                    console.log("AJAX 요청 실패: " + status);
-                    console.log("HTTP 상태 코드: " + xhr.status);
-                    console.log("오류 내용: " + error);
-                }
-            });
 
             if (dayAndTime) {
                 const timeSlots = getTimeSlots(dayAndTime, selectedDayOfWeek);
@@ -178,11 +165,12 @@ function doReserve() {
         type: 'POST',
         data: {
             date: selectedDate.dataset.date,
-            time: selectedTimeInfo
+            time: selectedTimeInfo,
+            "p_id": p_id
         },
         success: function(response) {
-            console.log('success.');
-            window.open("/reservation", "_blank", "width=860, height=570");
+            console.log(response);
+            window.location.href = "/reservation/step1";
         },
         error: function(xhr, status, error) {
             console.log('서버 요청 중 오류가 발생했습니다.');

@@ -1,5 +1,6 @@
 package com.office.ticketreserve.reservation;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,8 @@ public class ReservationController {
 	@Autowired
 	ReservationService reservationService;
 	
-	@GetMapping({"/", ""})
-	public String step1() {
+	@GetMapping({"/step1"})
+	public String step1(HttpSession session, Model model) {
 		log.info("[ReservationController] step1()");
 		
 		String nextPage = "ticket_reservation/ticket_reservation_step1";
@@ -66,16 +67,35 @@ public class ReservationController {
 		return reservationService.getInfoForReservation(p_id);
 	}
 	
-	@PostMapping
+	@PostMapping("/saveDateTime")
 	@ResponseBody
-	public boolean saveDateTime(@RequestParam("date") String date,
-								@RequestParam("itme") String time,
-								Model model) {
+	public String saveDateTime(@RequestParam("date") String date,
+								@RequestParam("time") String time,
+								@RequestParam("p_id") String p_id,
+								HttpSession session) {
 		log.info("[ReservationController] saveDateTime()");
 		
-		model.addAttribute("reservationDate", date);
-		model.addAttribute("reservationTime", time);
-		
-		return true;
+		session.setAttribute("selectedDate", date);
+	    session.setAttribute("selectedTime", time);
+	    session.setAttribute("p_id", p_id);
+	    
+	    return "success";
 	}
+	
+	@GetMapping("/getDateTime")
+	@ResponseBody
+	public HashMap<String, Object> getMethodName(HttpSession session) {
+		
+		String selectedDate = (String) session.getAttribute("selectedDate");
+		String selectedTime = (String) session.getAttribute("selectedTime");
+		String p_id = (String) session.getAttribute("p_id");
+		
+		HashMap<String, Object> hashMap = new HashMap<>();
+		hashMap.put("selectedDate", selectedDate);
+		hashMap.put("selectedTime", selectedTime);
+		hashMap.put("p_id", p_id);
+		
+		return hashMap;
+	}
+	
 } 
