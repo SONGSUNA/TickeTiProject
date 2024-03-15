@@ -280,12 +280,30 @@
 		SET 
 			T_SEATTYPE_1 = #{t_seattype_1}, T_SEATTYPE_2 = #{t_seattype_2}, T_SEATTYPE_3 = #{t_seattype_3}, T_SEATTYPE_4 = #{t_seattype_4}, T_SEATTYPE_5 = #{t_seattype_5}, 
 			T_PRICE_1 = #{t_price_1}, T_PRICE_2 = #{t_price_2}, T_PRICE_3 = #{t_price_3}, T_PRICE_4 = #{t_price_4}, T_PRICE_5 = #{t_price_5}, 
+			T_P_DATE = #{t_p_date}, 
 			T_MOD_DATE = SYSTIMESTAMP 
 		WHERE 
 			P_ID = #{p_id}
 	
 	</update>
 	
+	<insert id="insertTicket" parameterType="com.office.ticketreserve.config.TicketDto">
+	    INSERT INTO TBL_TICKET (
+	        T_NO, P_ID, 
+	        T_SEATTYPE_1, T_SEATTYPE_2, T_SEATTYPE_3, T_SEATTYPE_4, T_SEATTYPE_5, T_SEATTYPE_6,
+	        T_PRICE_1, T_PRICE_2, T_PRICE_3, T_PRICE_4, T_PRICE_5, T_PRICE_6,
+	        T_P_DATE, T_REG_DATE, T_MOD_DATE
+	    )
+	    VALUES (
+	        TICKET_SEQ.NEXTVAL,
+	        #{p_id},
+	        #{t_seattype_1}, #{t_seattype_2}, #{t_seattype_3}, #{t_seattype_4}, #{t_seattype_5}, #{t_seattype_6},
+	        #{t_price_1}, #{t_price_2}, #{t_price_3}, #{t_price_4}, #{t_price_5}, #{t_price_6},
+	        #{t_p_date},
+	        SYSTIMESTAMP, SYSTIMESTAMP
+	    )
+	</insert>
+		
 	<update id="updatePerformanceTicket" 
 			parameterType="String">
 	

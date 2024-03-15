@@ -67,6 +67,12 @@ body {
     font-size: 1.2em;
 }
 
+.step img {
+	width: 180px;
+	height: 45px;
+	margin-left: 18px;
+}
+
 /* reservation ------------------------------------------------------------------------- */
 .reservation {
     width:  610px;
@@ -134,30 +140,56 @@ body {
     font-size: .9em;
 }
 
-.reservation_select     .time   > div,
-.reservation_select     .seat   > div {
+.selected {
+    background-color: #F1FADA;
+}
+
+.reservation_select     .time   > div {
     border: 1px solid #dadada;
     width: 220px;
-    height: 85px;
     box-sizing: border-box;
     padding: 10px;
     margin-bottom: 20px;
     font-size: .9em;
 }
 
-.reservation_select     ul {
+.reservation_select     .seat   > div {
+    border: 1px solid #dadada;
+    width: 220px;
+    box-sizing: border-box;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: .9em;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.time_select     ul {
     padding: 0;
     display: flex;
     margin: 0;
-    margin-bottom: 5px;
     background-color: #f3f3f3;
 }
 
-.reservation_select     li {
+.time_select     li {
     list-style: none;
     margin-right: 5px;
     background-color: #f3f3f3;
     margin-bottom: 3px;
+}
+
+.seat     ul {
+    padding: 0;
+    display: flex;
+    margin: 0;
+    align-items: center;
+}
+
+
+.seat     li {
+    list-style: none;
+    margin-right: 5px;
 }
 
 .notice {
@@ -179,7 +211,7 @@ body {
 }
 
 .outside-range {
-	background: #f3f3f3;
+	background: #dadada;
 }
 
 /* reservation info -------------------------------------------------------------------- */
@@ -221,7 +253,7 @@ body {
     margin-top: 10px;
     color: #fff;
 }
-
+ 
 .reservation_info   .performance    .performance_info   p.date1 {
     display: inline-block;
     font-family: 'LINESeedKR-Th';

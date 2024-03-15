@@ -55,6 +55,8 @@ public interface AdminDaoForMyBatis {
 	public TicketDto selectTicketByPId(String p_id);
 
 	public int updateTicket(TicketDto ticketDto);
+	
+	public int insertTicket(TicketDto ticketDto);
 
 	public boolean updatePerformanceTicket(@Param("p_ticket") String p_ticket,
 										   @Param("p_time") String p_time, 

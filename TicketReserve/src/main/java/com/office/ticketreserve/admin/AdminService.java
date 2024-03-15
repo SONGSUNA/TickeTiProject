@@ -153,6 +153,9 @@ public class AdminService {
 	public void perfomanceRegistConfirm(PerfomanceDto perfomanceDto) {
 		log.info("[AdminService] perfomanceRegistConfirm()");
 		
+		perfomanceDto.setP_start_date(perfomanceDto.getP_start_date().replaceAll("-", "."));
+		perfomanceDto.setP_end_date(perfomanceDto.getP_end_date().replaceAll("-", "."));
+		
 		if (perfomanceDto.getP_detail_cautions() != null)
 			adminDao.insertPerfomance(perfomanceDto);
 		else
@@ -193,6 +196,15 @@ public class AdminService {
 		return result > 0 ? true : false;
 	}
 
+	public boolean ticketRegist(TicketDto ticketDto) {
+		log.info("[AdminService] ticketRegist()");
+		
+		ticketDto.setT_p_date("[" + ticketDto.getT_p_date() + "]");
+		
+		int result = adminDao.insertTicket(ticketDto);
+		
+		return result > 0 ? true : false;
+	}
 	public boolean performanceModifyByTicket(TicketDto ticketDto) {
 		log.info("[AdminService] performanceModifyByTicket()");
 		
@@ -226,6 +238,9 @@ public class AdminService {
 		log.info("[AdminService] perfomanceModifyConfirm()");
 		
 		int result;
+		
+		perfomanceDto.setP_start_date(perfomanceDto.getP_start_date().replaceAll("-", "."));
+		perfomanceDto.setP_end_date(perfomanceDto.getP_end_date().replaceAll("-", "."));
 		
 		if (perfomanceDto.getP_thum() == null && 
 			perfomanceDto.getP_detail_img() == null)
