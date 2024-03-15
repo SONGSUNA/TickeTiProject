@@ -1,6 +1,5 @@
 package com.office.ticketreserve.admin;
 
-import java.io.Console;
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.office.ticketreserve.config.TicketDto;
 import com.office.ticketreserve.productpage.PerfomanceDto;
 import com.office.ticketreserve.user.UserDto;
-import com.office.ticketreserve.user.UserService;
 import com.office.ticketreserve.util.FileUploadService;
 
 import jakarta.servlet.http.HttpSession;
@@ -363,7 +361,7 @@ public class AdminController {
 	    
 	    Map<String, AdminChartDto> admChartDto = adminService.salesStateSearch(stDate, edDate);
 	    
-	    return admChartDto;
+	    return admChartDto.isEmpty()? null : admChartDto;
 	}
 	
 	@GetMapping("/logout")
