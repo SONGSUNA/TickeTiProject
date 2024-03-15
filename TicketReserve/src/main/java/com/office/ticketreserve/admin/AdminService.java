@@ -258,7 +258,7 @@ public class AdminService {
 		return result;
 	}
 	
-	public List<AdminChartDto> salesStateSearch(String stDate, String edDate) {
+	public Map<String, AdminChartDto> salesStateSearch(String stDate, String edDate) {
 		log.info("[AdminController] salesStateSearch()");
 		
 		List<ReservationDto> rsvDto = adminDao.selectRsvInfo(stDate, edDate);
@@ -274,22 +274,17 @@ public class AdminService {
 			dto.setR_price(rsvDto.get(i).getR_price());
 			dto.setP_category(perfoDto.getP_category());
 			dto.setR_reg_date(rsvDto.get(i).getR_reg_date());
-			
-			
-			
 			searchResult.add(dto);
-			
-			
 		}
 		
 		Map<String, AdminChartDto> salesByDate = new HashMap<>();
-		Map<String, List<Integer>> salesInfotoDays = new HashMap<>();
 		for(int i = 0; i<searchResult.size(); i++) {
 			String date = searchResult.get(i).getR_reg_date();
 			
 			if(!salesByDate.containsKey(date)) {
-				adminChartDto.setR_reg_date(date);
-				salesByDate.put(date, adminChartDto);
+				AdminChartDto dto= new AdminChartDto();
+				dto.setR_reg_date(date);
+				salesByDate.put(date, dto);
 			}
 			
 			salesByDate.get(date).setDaySales(salesByDate.get(date).getDaySales() + searchResult.get(i).getR_price());
@@ -313,10 +308,9 @@ public class AdminService {
 				default:
 					break;
 			}
-			
 		}		
 		log.info("[AdminController] salesStateSearch()" + salesByDate);
-		return null;
+		return salesByDate;
 	}
 	
 	// 유틸 --------------------------------------------------------------------------------------------------------------------------------------

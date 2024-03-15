@@ -2,6 +2,7 @@ package com.office.ticketreserve.admin;
 
 import java.io.Console;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -356,11 +357,11 @@ public class AdminController {
 	
 	@GetMapping("/sales_state_search")
 	@ResponseBody
-	public List<AdminChartDto> salesStateSearch(@RequestParam("stDate") String stDate,
+	public Map<String, AdminChartDto> salesStateSearch(@RequestParam("stDate") String stDate,
 												@RequestParam("edDate") String edDate) {
 	    log.info("[AdminController] salesStateSearch()");
 	    
-	    List<AdminChartDto> admChartDto = adminService.salesStateSearch(stDate, edDate);
+	    Map<String, AdminChartDto> admChartDto = adminService.salesStateSearch(stDate, edDate);
 	    
 	    return admChartDto;
 	}
