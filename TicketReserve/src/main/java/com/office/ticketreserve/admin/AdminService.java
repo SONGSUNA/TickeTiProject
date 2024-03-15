@@ -2,8 +2,10 @@ package com.office.ticketreserve.admin;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -263,20 +265,9 @@ public class AdminService {
 		
 		List<ReservationDto> rsvDto = adminDao.selectRsvInfo(stDate, edDate);
 		List<AdminChartDto> searchResult = new ArrayList<>();
-		log.info("[AdminController] salesStateSearch()" + rsvDto.size());
-		for(int i = 0; i<rsvDto.size(); i++) {
-			
-			int tNo = rsvDto.get(i).getT_no();
-			String pId = adminDao.selectTicket(tNo).getP_id();			
-			PerfomanceDto perfoDto = adminDao.selectPerfomanceById(pId);
-			
-			AdminChartDto dto= new AdminChartDto();
-			dto.setR_price(rsvDto.get(i).getR_price());
-			dto.setP_category(perfoDto.getP_category());
-			dto.setR_reg_date(rsvDto.get(i).getR_reg_date());
-			searchResult.add(dto);
-		}
-		
+
+		searchResult = returnAdminChartDtos(rsvDto);
+					
 		Map<String, AdminChartDto> salesByDate = new HashMap<>();
 		for(int i = 0; i<searchResult.size(); i++) {
 			String date = searchResult.get(i).getR_reg_date();
@@ -305,14 +296,40 @@ public class AdminService {
 				case "한국음악(국악)":
 					salesByDate.get(date).setKoreanMusicSales(salesByDate.get(date).getKoreanMusicSales() + searchResult.get(i).getR_price());
 					break;
-				default:
-					break;
 			}
-		}		
-		log.info("[AdminController] salesStateSearch()" + salesByDate);
-		return salesByDate;
+		}
+		
+		Map<String, AdminChartDto> sortedSalesByDate = salesByDate.entrySet().stream()
+	            .sorted(Map.Entry.comparingByKey())
+	            .collect(Collectors.toMap(
+	                    Map.Entry::getKey,
+	                    Map.Entry::getValue,
+	                    (oldValue, newValue) -> oldValue,
+	                    LinkedHashMap::new
+	            ));
+		
+		return sortedSalesByDate;
 	}
 	
+	private List<AdminChartDto> returnAdminChartDtos(List<ReservationDto> rsvDto) {
+		
+		List<AdminChartDto> searchResult = new ArrayList<>();
+		
+		for(int i = 0; i<rsvDto.size(); i++) {
+			int tNo = rsvDto.get(i).getT_no();
+			String pId = adminDao.selectTicket(tNo).getP_id();			
+			PerfomanceDto perfoDto = adminDao.selectPerfomanceById(pId);
+			
+			AdminChartDto dto= new AdminChartDto();
+			dto.setR_price(rsvDto.get(i).getR_price());
+			dto.setP_category(perfoDto.getP_category());
+			dto.setR_reg_date(rsvDto.get(i).getR_reg_date());
+
+			searchResult.add(dto);
+		}
+		return searchResult;
+	}
+
 	// 유틸 --------------------------------------------------------------------------------------------------------------------------------------
 
 	private String formatString(String input) {
