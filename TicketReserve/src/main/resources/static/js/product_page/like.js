@@ -7,9 +7,10 @@ function clickLike(button) {
 
   if (!userId) {
     alert('로그인이 필요합니다.');
+    window.location.href = '/user/login';
     return;
   }
-
+	
   $.ajax({
     url: '/product/like',
     type: 'POST',
@@ -22,11 +23,13 @@ function clickLike(button) {
         if (isLiked) {
           likeIcon.classList.remove('fas');
           likeIcon.classList.add('far');
+          likeIcon.classList.remove('bounce');
           likeCount.textContent = parseInt(likeCount.textContent) - 1;
           button.setAttribute('data-is-liked', 'false');
         } else {
           likeIcon.classList.remove('far');
           likeIcon.classList.add('fas');
+          likeIcon.classList.add('bounce');
           likeCount.textContent = parseInt(likeCount.textContent) + 1;
           button.setAttribute('data-is-liked', 'true');
         }
@@ -38,4 +41,6 @@ function clickLike(button) {
       alert('서버 오류가 발생했습니다.');
     }
   });
+  
+  
 }

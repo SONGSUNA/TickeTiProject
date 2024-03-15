@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.office.ticketreserve.productpage.IProductDaoForMyBatis" >
+
+	<select id="selectProduct" parameterType="String" resultType="com.office.ticketreserve.productpage.PerfomanceDto">
+	    SELECT 
+	        * 
+	    FROM 
+	        TBL_PERFOMANCE 
+	    WHERE 
+	        P_ID = #{p_id}
+	</select>
+	
+	<insert id="insertLike" parameterType="map">
+		INSERT INTO
+			TBL_LIKE
+			(L_NO,P_ID,U_ID,L_TIME) 
+		VALUES(
+			LIKE_SEQ.NEXTVAL,
+			#{p_id},
+			#{u_id},
+			CURRENT_TIMESTAMP)	
+	</insert>
+
+	<update id="updateLike" parameterType="String">
+		UPDATE 
+			TBL_PERFOMANCE 
+		SET 
+			P_LIKE = P_LIKE + 1 
+		WHERE 
+			P_ID = #{p_id}		
+	</update>
+	
+	<select id="selectIsLiked" parameterType="map" resultType="boolean">
+        SELECT 
+        	COUNT(*)
+        FROM 
+        	TBL_LIKE
+        WHERE 
+        	P_ID = #{p_id}
+        AND 
+        	U_ID = #{u_id}
+    </select>
+    
+    
+    <delete id="deleteLike" parameterType="map">
+        DELETE FROM 
+        	TBL_LIKE
+        WHERE 
+        	P_ID = #{p_id}
+        AND 
+        	U_ID = #{u_id}
+    </delete>
+	
+	<update id="updateUnlike" parameterType="string">
+        UPDATE 
+        	TBL_PERFOMANCE
+        SET 
+        	P_LIKE = P_LIKE - 1
+        WHERE 
+        	P_ID = #{p_id}
+    </update>
+    
+</mapper>

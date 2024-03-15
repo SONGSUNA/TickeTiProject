@@ -111,4 +111,21 @@ textarea {
     font-weight: 700;
     font-style: normal;
 }
+/* 리뷰평균별 */
 
+#reviewAvgStar {
+	display: inline-block;
+	font-size: 30px;
+	color: #f73c32;
+	margin-right: 10px;
+}
+
+.reviewAvg {
+	display: flex;
+	margin: 20px;
+	align-items: center;
+}
+
+.avgStarValue {
+	font-size: 25px;
+}

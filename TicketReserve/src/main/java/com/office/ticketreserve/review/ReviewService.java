@@ -12,7 +12,7 @@ import lombok.extern.log4j.Log4j2;
 public class ReviewService {
 	
 	@Autowired
-	ReviewDao reviewDao;
+	IReviewDao reviewDao;
 	
 
 
@@ -57,6 +57,18 @@ public class ReviewService {
 	public int reviewDeleteConfirm(int rv_no) {
 		
 		return reviewDao.reviewDeleteConfirm(rv_no);
+	}
+
+
+
+
+	public Double starAvg(String p_id) {
+		
+		String p_name = reviewDao.getPname(p_id);
+		
+		Double result = reviewDao.getAllStarValue(p_name);	
+		
+		return result != null ? result : 0.0;
 	}
 
 

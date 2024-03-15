@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.office.ticketreserve.review.IReviewDao" >
+
+	<insert id="insertReview" parameterType="map">
+	    INSERT INTO 
+	    	TBL_REVIEW(RV_NO,U_ID,P_NAME,RV_SCORE,RV_TXT,RV_REPORT,RV_REG_DATE,RV_MOD_DATE) 
+    	VALUES(
+    		REVIEW_SEQ.NEXTVAL,
+    		#{u_id},
+    		#{p_name},
+    		#{rv_score},
+    		#{rv_txt},
+    		0,
+    		CURRENT_TIMESTAMP,
+    		CURRENT_TIMESTAMP)
+	</insert>
+	
+	<select id="getPname" parameterType="String" resultType="String">
+		SELECT 
+			P_NAME 
+		FROM 
+			TBL_PERFOMANCE 
+		WHERE 
+			P_ID = #{p_id}
+	</select>
+
+	<select id="allSelectReviewByPname" parameterType="String" resultType="com.office.ticketreserve.review.ReviewDto">
+        SELECT 
+        	* 
+       	FROM 
+       		TBL_REVIEW 
+   		WHERE 
+   			P_NAME = #{p_name}
+    </select>
+    
+    <select id="getReviewByRv_no" parameterType="Integer" resultType="com.office.ticketreserve.review.ReviewDto">
+        SELECT 
+        	* 
+       	FROM 
+       		TBL_REVIEW 
+   		WHERE 
+   			RV_NO = #{rv_no}
+    </select>
+    
+    <update id="updateReviewByRv_no" parameterType="map" >
+        UPDATE 
+        	TBL_REVIEW 
+       	SET 
+       		RV_TXT = #{rv_txt},
+       		RV_SCORE = #{rv_score},
+       		RV_MOD_DATE = CURRENT_TIMESTAMP  
+  		WHERE 
+  			RV_NO = #{rv_no}
+    </update>
+	
+	<delete id="reviewDeleteConfirm" parameterType="Integer">
+        DELETE FROM 
+       		TBL_REVIEW 
+       	WHERE 
+       		RV_NO = #{rv_no}
+    </delete>
+    
+    <select id="getAllStarValue" parameterType="String" resultType="Double">
+		SELECT 
+			ROUND(AVG(RV_SCORE),1) 
+		FROM 
+			TBL_REVIEW 
+		WHERE 
+			P_NAME = #{p_name}
+    </select>
+    
+</mapper>
