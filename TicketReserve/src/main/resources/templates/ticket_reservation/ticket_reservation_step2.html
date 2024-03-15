@@ -6,7 +6,9 @@
 
 <link rel="stylesheet" th:href="@{/css/ticket_reservation/ticket_reservation._step2.css}">
 
-<script th:src="@{/js/ticket_reservation/seat.js}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script th:src="@{/js/ticket_reservation/ticket_reservation_step2.js}"></script>
 
 </head>
 <body>
@@ -35,16 +37,16 @@
                         <div class="stage">STAGE</div>
                         <div class="seating-area">
                             <div class="stage_section" id="section-A">
-                                <div class="section-title">A구역</div>
+                                <div class="section-title"></div>
                                 <div class="seats"></div>
                             </div>
                             <div class="section-row"> 
                                 <div class="stage_section" id="section-B">
-                                    <div class="section-title">B구역</div>
+                                    <div class="section-title"></div>
                                     <div class="seats"></div>
                                 </div>
                                 <div class="stage_section" id="section-C">
-                                    <div class="section-title">C구역</div>
+                                    <div class="section-title"></div>
                                     <div class="seats"></div>
                                 </div>
                             </div>
@@ -64,7 +66,43 @@
                 </div>
                 
                 <div class="select_show">
-                    <p>선택한 좌석 :</p>
+                    <p>선택한 좌석</p>
+                </div>
+                
+                <div class="money">
+                    <p>결제 정보</p>
+                    <div class="line">
+                        <span class="label">티켓금액</span> 
+                        <span class="value">0</span>
+                    </div>
+                    <div class="line">
+                        <span class="label">예매수수료</span>
+                        <span class="value">0</span>
+                    </div>
+                    <div class="line">
+                        <span class="label">배송료</span>
+                        <span class="value">0</span>
+                    </div>
+                    <div class="line">
+                        <span class="label">총 금액(+)</span>
+                        <span class="value">0</span>
+                    </div>
+                    <div class="line">
+                        <span class="label">할인금액</span>
+                        <span class="value">0</span>
+                    </div>
+                    <div class="line">
+                        <span class="label">할인쿠폰</span>
+                        <span class="value">0</span>
+                    </div>
+                    <div class="line">
+                        <span class="label">총 할인금액(-)</span>
+                        <span class="value">0</span>
+                    </div>
+                    <div class="line">
+                        <span class="label">최종 결제 금액</span>
+                        <span class="value">0</span>
+                    </div>
                 </div>
 
                 <a class="pre_button" th:href="@{/reservation/step1}">
