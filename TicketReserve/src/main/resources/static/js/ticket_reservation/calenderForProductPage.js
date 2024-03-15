@@ -175,7 +175,7 @@ function doReserve() {
         },
         success: function(response) {
             console.log(response);
-            window.location.href = "/reservation/step1";
+            window.open("/reservation/step1", "_blank", "width=855, height=565");
         },
         error: function(xhr, status, error) {
             console.log('서버 요청 중 오류가 발생했습니다.');

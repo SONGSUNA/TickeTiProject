@@ -7,7 +7,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <link rel="stylesheet" th:href="@{/css/ticket_reservation/ticket_reservation._step1.css}">
-<script th:src="@{/js/ticket_reservation/calender.js}"></script>
+<script th:src="@{/js/ticket_reservation/ticket_reservation_step1.js}"></script>
 
 </head>
 <body>
@@ -85,15 +85,13 @@
 				    <span>날짜</span> <span id="selected-date"></span>
 				    <br>
 				    <span>시간</span> <span id="selected-time"></span>
-				    <br>
-                    <span>매수</span>
                 </div>
 
                 <div class="money">
                     <p>결제 정보</p>
                     <div class="line">
                         <span class="label">티켓금액</span> 
-                        <span class="value"> 120,000</span>
+                        <span class="value">0</span>
                     </div>
                     <div class="line">
                         <span class="label">예매수수료</span>
@@ -105,7 +103,7 @@
                     </div>
                     <div class="line">
                         <span class="label">총 금액(+)</span>
-                        <span class="value">120,000</span>
+                        <span class="value">0</span>
                     </div>
                     <div class="line">
                         <span class="label">할인금액</span>
@@ -121,7 +119,7 @@
                     </div>
                     <div class="line">
                         <span class="label">최종 결제 금액</span>
-                        <span class="value">120,000</span>
+                        <span class="value">0</span>
                     </div>
                 </div>
 
