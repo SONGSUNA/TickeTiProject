@@ -67,6 +67,14 @@ body {
     font-size: 1.2em;
 }
 
+
+.step img {
+	width: 180px;
+	height: 45px;
+	margin-left: 18px;
+}
+
+
 /* reservation ------------------------------------------------------------------------- */
 .reservation {
     width:  610px;

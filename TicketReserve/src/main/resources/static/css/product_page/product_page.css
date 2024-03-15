@@ -113,6 +113,10 @@ a {
     /* 예시 색상 */
 }
 
+.no-reservation-info {
+	margin-top: 20px;
+}
+
 .right_data li:hover {
     cursor: pointer;
 }
@@ -132,6 +136,8 @@ a {
 
 .right .right_data {
     margin: 30px;
+    padding: 20px;
+    box-sizing: border-box;
     width: 600px;
     height: 300px;
     border: #dadada 1px solid;

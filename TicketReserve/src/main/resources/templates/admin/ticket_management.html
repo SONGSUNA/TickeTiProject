@@ -154,6 +154,71 @@
 				</div>
 			</div>
 		</div>
+		
+		<div class="regist_modal_wrap">
+			<div class="regist_modify">
+				<div class="close_bar">
+					<button onclick="regist_close()">X</button>
+				</div>
+				
+				<div class="form_wrap">
+					<form id="regist_form"  name="regist_form"
+						  action="/admin/ticket_regist"	method="get">
+		          		<input type="hidden" name="p_id" >
+		          		
+		          		<div class="input_info">
+		          		  <b>공연명  &emsp;&emsp;&emsp;</b><br/>
+		           			<label><input type="text" name="p_name" readonly disabled><br>
+						</div>
+						
+						<div class="input_info">
+					         <label><b>티켓 1  &emsp;&emsp;&emsp;</b><br>
+					         <input type="text" name="t_seattype_1" placeholder="O석">
+					         <input type="number" name="t_price_1"	placeholder="000,000원">
+				       </div>
+				       
+						<div class="input_info">
+					         <label><b>티켓 2  &emsp;&emsp;&emsp;</b><br>
+					         <input type="text" name="t_seattype_2">
+					         <input type="number" name="t_price_2">
+				       </div>
+				       
+						<div class="input_info">
+					         <label><b>티켓 3  &emsp;&emsp;&emsp;</b><br>
+					         <input type="text" name="t_seattype_3">
+					         <input type="number" name="t_price_3">
+				       </div>
+				       
+						<div class="input_info">
+					         <label><b>티켓 4  &emsp;&emsp;&emsp;</b><br>
+					         <input type="text" name="t_seattype_4">
+					         <input type="number" name="t_price_4">
+				       </div>
+				       
+						<div class="input_info">
+					         <label><b>티켓 5  &emsp;&emsp;&emsp;</b><br>
+					         <input type="text" name="t_seattype_5">
+					         <input type="number" name="t_price_5">
+				       </div>
+				       
+						<div class="input_info">
+					         <label><b>티켓 6  &emsp;&emsp;&emsp;</b><br>
+					         <input type="text" name="t_seattype_6">
+					         <input type="number" name="t_price_6">
+				       </div>
+				       
+						<div class="input_info">
+					         <label><b>공연 요일 및 시간  &emsp;&emsp;&emsp;</b><br>
+					         <input type="text" name="t_p_date" placeholder="O요일00:00, O요일00:00">
+				       </div>
+				       
+						<div>	
+							 <input type="button" class="submit_btn" value="정보수정" onclick="registConfirm();">
+						</div>
+					</form>	
+				</div>
+			</div>
+		</div>
 	</div>
 	
 </body>
