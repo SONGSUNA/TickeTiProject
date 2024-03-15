@@ -1,0 +1,21 @@
+
+.like-button {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.like-button i {
+  font-size: 45px;
+  color: #f00;
+  margin-right: 10px;
+}
+.like_count {
+	font-size: 25px;
+}
+
+.like-button i.fas {
+  color: #ff0000;
+}
