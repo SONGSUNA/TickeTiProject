@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.office.ticketreserve.config.TicketDto;
 import com.office.ticketreserve.productpage.PerfomanceDto;
+import com.office.ticketreserve.review.ReviewDto;
 import com.office.ticketreserve.user.UserDto;
 import com.office.ticketreserve.util.FileUploadService;
 
@@ -364,6 +365,19 @@ public class AdminController {
 	    return admChartDto.isEmpty()? null : admChartDto;
 	}
 	
+	@GetMapping("/review_management")
+	public String reviewManagement(Model model) {
+		log.info("[AdminController] reviewManagement()");
+		
+		String nextPage = "admin/review_management";
+		
+		List<ReviewDto> allreviews = adminService.getAllReviews();
+		
+		model.addAttribute("allreviews",allreviews);
+		
+		return nextPage;
+	}
+	
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		log.info("[AdminController] logout()");
@@ -375,4 +389,5 @@ public class AdminController {
 		return nextPage;
 	}
 	
-} 
+	
+}

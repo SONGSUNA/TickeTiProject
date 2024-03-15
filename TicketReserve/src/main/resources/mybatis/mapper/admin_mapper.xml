@@ -442,10 +442,17 @@
 													   AND TO_DATE(#{edDate})
 	</select>
 	
-		<select id="selectTicket" 
+	<select id="selectTicket" 
 			parameterType="int" 
 			resultType="com.office.ticketreserve.config.TicketDto">
 			
 			SELECT * FROM TBL_TICKET WHERE T_NO = #{t_no}
 	</select>
+	
+	<select id="selectAllReviews"
+			resultType="com.office.ticketreserve.review.ReviewDto">
+	
+			SELECT * FROM TBL_REVIEW ORDER BY RV_REG_DATE DESC
+	</select>
+	
 </mapper>

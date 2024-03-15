@@ -9,6 +9,7 @@ import org.springframework.security.access.method.P;
 import com.office.ticketreserve.config.TicketDto;
 import com.office.ticketreserve.productpage.PerfomanceDto;
 import com.office.ticketreserve.reservation.ReservationDto;
+import com.office.ticketreserve.review.ReviewDto;
 import com.office.ticketreserve.user.UserDto;
 
 @Mapper
@@ -74,5 +75,7 @@ public interface AdminDaoForMyBatis {
 											@Param("edDate") String edDate);
 
 	public TicketDto selectTicket(int t_no);
+
+	public List<ReviewDto> selectAllReviews();
 	
 }
