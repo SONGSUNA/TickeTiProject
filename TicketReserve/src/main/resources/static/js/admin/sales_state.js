@@ -29,7 +29,7 @@ $(document).ready(function () {
 		            
 		            keys.forEach(function(key) {
 		                let value = data[key];
-		                labels.push(key); // 날짜를 라벨로 사용
+		                labels.push(key.substring(0, key.indexOf(' '))); // 날짜를 라벨로 사용
 		                daySalesValues.push(value.daySales); // 각 날짜의 daySales 값을 배열에 추가
 		            });
 		            
@@ -47,23 +47,42 @@ $(document).ready(function () {
 
 function drawChart(labels, daySalesValues) {
     var ctx = document.getElementById('myChart').getContext('2d');
+
+    var backgroundColor = [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)'
+    ];
+
+    var borderColor = [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+    ];
+
+    var bgColors = [];
+    var bdColors = [];
+
+    for (var i = 0; i < daySalesValues.length; i++) {
+        bgColors.push(backgroundColor[i % backgroundColor.length]);
+        bdColors.push(borderColor[i % borderColor.length]);
+    }
+
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: labels, // X 축 라벨
+            labels: labels,
             datasets: [{
                 label: 'Day Sales',
-                data: daySalesValues, // Y 축 데이터
-                backgroundColor: [
-					'rgba(255, 99, 132, 0.2)',
-					'rgba(54, 162, 235, 0.2)',
-					'rgba(255, 206, 86, 0.2)',
-					'rgba(75, 192, 192, 0.2)'], 
-                borderColor: [
-					'rgba(255, 99, 132, 1)',
-					'rgba(54, 162, 235, 1)',
-					'rgba(255, 206, 86, 1)',
-					'rgba(75, 192, 192, 1)'], // 차트 선 색상
+                data: daySalesValues,
+                backgroundColor: bgColors,
+                borderColor: bdColors,
                 borderWidth: 0.5
             }]
         },
