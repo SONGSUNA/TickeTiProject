@@ -329,6 +329,26 @@ public class AdminController {
 		return nextPage;
 	}
 	
+	@GetMapping("/sales_state")
+	public String postSalesState() {
+	    log.info("[AdminController] postSalesState()");
+	    
+	    String nextPage = "admin/sales_state";
+	    
+	    return nextPage;
+	}
+	
+	@GetMapping("/sales_state_search")
+	@ResponseBody
+	public List<AdminChartDto> salesStateSearch(@RequestParam("stDate") String stDate,
+												@RequestParam("edDate") String edDate) {
+	    log.info("[AdminController] salesStateSearch()");
+	    
+	    List<AdminChartDto> admChartDto = adminService.salesStateSearch(stDate, edDate);
+	    
+	    return admChartDto;
+	}
+	
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		log.info("[AdminController] logout()");
