@@ -50,11 +50,16 @@ public class ProductController {
 	@RequestMapping("/product/{p_id}")
 	public String productPage(@PathVariable("p_id") String p_id, Model model, HttpSession session) {
 	    log.info("productPage()");
+	    
 	    PerfomanceDto productDto = productService.productPage(p_id);
 	    List<ReviewDto> reviewDtos = reviewService.allReviewsForPid(p_id);
 
 	    UserDto loginedUserDto = (UserDto) session.getAttribute("loginedUserDto");
+	    
+	    double starAvg = reviewService.starAvg(p_id);
+	    
 	    boolean isLiked = false;
+	    
 	    if (loginedUserDto != null) {
 	        isLiked = productService.isLiked(p_id, loginedUserDto.getU_id());
 	    }
@@ -63,7 +68,9 @@ public class ProductController {
 	    model.addAttribute("reviewDtos", reviewDtos);
 	    model.addAttribute("isLiked", isLiked);
 	    model.addAttribute("isLogined", loginedUserDto != null);
-
+	    model.addAttribute("starAvg", starAvg);
+	    
+	    
 	    String nextPage = "/product_page/product_page_test";
 	    return nextPage;
 	}

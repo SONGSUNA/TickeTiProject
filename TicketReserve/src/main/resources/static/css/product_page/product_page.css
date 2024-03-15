@@ -322,3 +322,9 @@ td {
     margin: 20px;
     text-align: left;
 }
+
+.likeAndStar {
+	display: flex;
+	gap: 175px;
+	
+}
