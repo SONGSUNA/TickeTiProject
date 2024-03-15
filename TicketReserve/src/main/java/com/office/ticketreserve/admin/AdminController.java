@@ -270,11 +270,27 @@ public class AdminController {
 	
 	@GetMapping("/ticket_modify")
 	public String ticketModify(TicketDto ticketDto) {
-		log.info("[AdminController] logout()");
+		log.info("[AdminController] ticketModify()");
 		
 		String nextPage = "/admin/ticket_modify_fail";
 		
 		boolean result = adminService.ticketModify(ticketDto);
+		if (!result) return nextPage;
+		
+		result = adminService.performanceModifyByTicket(ticketDto);
+		if (!result) return nextPage;
+		
+		nextPage = "/admin/ticket_modify_success";
+		return nextPage;
+	}
+	
+	@GetMapping("/ticket_regist")
+	public String ticketRegist(TicketDto ticketDto) {
+		log.info("[AdminController] ticketRegist()");
+		
+		String nextPage = "/admin/ticket_modify_fail";
+		
+		boolean result = adminService.ticketRegist(ticketDto);
 		if (!result) return nextPage;
 		
 		result = adminService.performanceModifyByTicket(ticketDto);

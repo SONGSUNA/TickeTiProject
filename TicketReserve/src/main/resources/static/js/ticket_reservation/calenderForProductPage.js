@@ -11,27 +11,32 @@ window.onload = function() {
     getInfoForReservation(p_id);
 
     // 공연 정보 불러오기 ==============================================================================================================
-    function getInfoForReservation(productId) {
-        $.ajax({
-            url: '/reservation/getInfoForReservation',
-            type: 'GET',
-            data: { "p_id": productId },
-            success: function(data) {
-                start_date = new Date(data.p_start_date.replace(/\./g, '-'));
-                end_date = new Date(data.p_end_date.replace(/\./g, '-'));
-                dayAndTime = data.ticketDto.t_p_date;
-                max_seat = data.p_max_reserve;
-                ticket = data.ticketDto;
-
-                drawCalendar(new Date().getMonth(), new Date().getFullYear());
-            },
-            error: function(xhr, status, error) {
-                console.log("AJAX 요청 실패: " + status);
-                console.log("HTTP 상태 코드: " + xhr.status);
-                console.log("오류 내용: " + error);
-            }
-        });
-    }
+	function getInfoForReservation(productId) {
+	    $.ajax({
+	        url: '/reservation/getInfoForReservation',
+	        type: 'GET',
+	        data: { "p_id": productId },
+	        success: function(data) {
+	            start_date = new Date(data.p_start_date.replace(/\./g, '-'));
+	            end_date = new Date(data.p_end_date.replace(/\./g, '-'));
+	            max_seat = data.p_max_reserve;
+	            ticket = data.ticketDto;
+	
+	            if (data.ticketDto && data.ticketDto.t_p_date) {
+	                dayAndTime = data.ticketDto.t_p_date;
+	                drawCalendar(new Date().getMonth(), new Date().getFullYear());
+	            } else {
+	                calendar.innerHTML = "<div class='no-reservation-info'>예약 가능 정보가 곧 추가될 예정입니다.</div>";
+	                $('.right_data').html("<div class='no-reservation-info'>예약 가능 정보가 곧 추가될 예정입니다.</div>");
+	            }
+	        },
+	        error: function(xhr, status, error) {
+	            console.log("AJAX 요청 실패: " + status);
+	            console.log("HTTP 상태 코드: " + xhr.status);
+	            console.log("오류 내용: " + error);
+	        }
+	    });
+	}
 
     const calendar = document.getElementById('calendar');
 

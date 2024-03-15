@@ -107,7 +107,8 @@ body {
   	overflow-y: scroll;
 } 
 
-.ticket_modify {
+.ticket_modify,
+.regist_modify {
 	display: block;
 	width: 600px;
  	position: fixed;
@@ -118,22 +119,26 @@ body {
     border: 1px solid #000;
 }
 
-.ticket_modify  .close_bar {
+.ticket_modify  .close_bar,
+.regist_modify  .close_bar {
   	background-color: #265073;
     text-align: right;
     padding: 3px 10px;
 }
 
-.ticket_modify  .close_bar  button {
+.ticket_modify  .close_bar  button,
+.regist_modify  .close_bar  button {
   background-color: #fff;
   border: none;
 }
 
-.ticket_modify	.form_wrap {
+.ticket_modify	.form_wrap,
+.regist_modify	.form_wrap {
 	padding: 20px 10px;
 }
 
-.modal_wrap {
+.modal_wrap,
+.regist_modal_wrap {
 	position: fixed;
 	top: 0; left: 0;
 	background-color: rgba(0, 0, 0, .1);
