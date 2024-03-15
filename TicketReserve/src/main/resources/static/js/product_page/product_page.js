@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function ddd() {
+/*document.addEventListener('DOMContentLoaded', function ddd() {
     var likeButton = document.getElementById('likeButton');
     var likeCount = document.getElementById('likeCount');
     var likes = 0; // 초기 좋아요 수
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function ddd() {
    
         
     });
-});
+});*/
 
 var modal = document.querySelector('.review_modal_wrap');
 var btn = document.querySelector('.open_review_modal');
