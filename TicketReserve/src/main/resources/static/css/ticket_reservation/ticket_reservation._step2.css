@@ -19,6 +19,7 @@
           
 body {
     font-family: 'LINESeedKR-Rg';
+    overflow: hidden;
 }
 
 .section_wrap {
@@ -67,7 +68,6 @@ body {
     font-size: 1.2em;
 }
 
-
 .step img {
 	width: 180px;
 	height: 45px;
@@ -97,13 +97,15 @@ body {
     margin: 20px auto;
   }
   
-  .seating-area {
+.seating-area {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 610px;
-    height: 480px;
+    max-height: 480px; /* 최대 높이로 변경 */
+    overflow-y: auto; /* 스크롤 추가 */
 }
+
 
 .section-row {
     display: flex;
@@ -123,17 +125,20 @@ body {
     margin-right: 30px;
 }
   
-  .section-title {
+.section-title {
     background-color: #ddd;
     padding: 5px;
     margin-bottom: 5px;
-  }
+    width: auto; /* 너비 자동 조절 */
+    margin-top: 10px;
+    text-align: center; /* 구역 이름 가운데 정렬 */
+}
   
 .seats {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     gap: 5px;
-    width: 100%;
+    width: 50%;
     height: 50%; 
 }
   
@@ -179,11 +184,11 @@ body {
     height: 110px;
     background-color: #265073;
     display: flex;
-}
+} 
 
 .reservation_info   .performance    .performance_info {
     background-color: #265073;
-    font-size: .7em;
+    font-size: .8em;
     word-break: break-all;
     color: #fff;
 }
@@ -191,18 +196,27 @@ body {
 .reservation_info   .performance    .performance_info   p.name {
     display: inline-block;
     font-family: 'LINESeedKR-Bd';
-    height: 40px;
+    height: 35px;
     overflow: hidden;
     margin: 0;
     margin-top: 10px;
     color: #fff;
 }
-
-.reservation_info   .performance    .performance_info   p.date {
+ 
+.reservation_info   .performance    .performance_info   p.date1 {
     display: inline-block;
     font-family: 'LINESeedKR-Th';
-    font-size: .8;
-    height: 20px;
+    height: 15px;
+    overflow: hidden;
+    margin: 0;
+    letter-spacing: 0px;
+    color: #fff;
+}
+
+.reservation_info   .performance    .performance_info   p.date2 {
+    display: inline-block;
+    font-family: 'LINESeedKR-Th';
+    height: 15px;
     overflow: hidden;
     margin: 0;
     letter-spacing: 0px;
@@ -213,7 +227,7 @@ body {
     display: inline-block;
     font-family: 'LINESeedKR-Th';
     font-size: .8;
-    height: 20px;
+    height: 15px;
     overflow: hidden;
     margin: 0;
     letter-spacing: 0px;
@@ -229,8 +243,8 @@ body {
 
 .reservation_info   .select_show {
     width: 200px;
-    height: 330px;
-    padding: 15px 10px;
+    height: 80px;
+    padding: 12px 10px;
     box-sizing: border-box;
 }
 
@@ -239,11 +253,63 @@ body {
     font-family: 'LINESeedKR-Bd';
     color: #242424;
     margin-bottom: 5px;
+    font-size: .9em;
 }
 
 .reservation_info   .select_show    li {
     list-style: none;
     font-size: .9em;
+}
+
+.reservation_info   .money {
+    width: 200px;
+    height: 250px;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: .8em;
+    color: #4b4b4b;
+    line-height: 20px;
+    text-align: left;
+}
+
+.reservation_info   .money    p {
+    margin: 0;
+    font-family: 'LINESeedKR-Bd';
+    font-size: 1.2em;
+    color: #242424;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.reservation_info   .money  >   div {
+    border: none;
+}
+
+.reservation_info   .money  .line {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.reservation_info   .money  .line:nth-child(4),
+.reservation_info   .money  .line:nth-child(8) {
+    font-family: 'LINESeedKR-Bd';
+    border-bottom: 1px dashed  #dadada;
+    margin-bottom: 5px;
+}
+
+.reservation_info   .money  .line:nth-child(9) {
+    font-family: 'LINESeedKR-Bd';
+}
+
+.reservation_info   .money  .label {
+    color: #4b4b4b;
+    margin-right: 8px;
+    text-align: left;
+}
+
+.reservation_info   .money  .value {
+    text-align: right;
 }
 
 .reservation_info   .pre_button {

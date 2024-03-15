@@ -82,33 +82,35 @@ window.onload = function() {
                 $('.tiket_price').html(tiket_html);
                 
                 if (dayAndTime) {
-	                const daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
-	                const selectedDateObj = new Date(selectedDate);
-	                const selectedDayOfWeek = daysOfWeek[selectedDateObj.getDay()];
-	                
-	                const timeSlots = getTimeSlots(dayAndTime, selectedDayOfWeek);
-	                const rightDataDiv = document.querySelector('.time_select');
-	
-	                rightDataDiv.innerHTML = '';
-	
-	                timeSlots.forEach((time, index) => {
-	                    const listItem = document.createElement('li');
-	                    listItem.textContent = `[${index + 1}회] ${time}`;
-	                    if (selectedTimeInfo === listItem.textContent) {
-	                        listItem.classList.add('selected');
-	                    }
-	                    rightDataDiv.appendChild(listItem);
-	                });
-	
-	                if (selectedTimeInfo) {
-	                    const selectedTimeMatch = selectedTimeInfo.match(/\d{2}:\d{2}/);
-	                    if (selectedTimeMatch) {
-	                        const selectedTime = selectedTimeMatch[0];
-	                        updateSelectedInfo(selectedDate, selectedTime);
-	                    }
-	                }
-	            }
-	        },
+                    const daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
+                    const selectedDateObj = new Date(selectedDate);
+                    const selectedDayOfWeek = daysOfWeek[selectedDateObj.getDay()];
+                    
+                    const timeSlots = getTimeSlots(dayAndTime, selectedDayOfWeek);
+                    const rightDataDiv = document.querySelector('.time_select');
+    
+                    rightDataDiv.innerHTML = '';
+    
+                    timeSlots.forEach((time, index) => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = `[${index + 1}회] ${time}`;
+                        if (selectedTimeInfo === listItem.textContent) {
+                            listItem.classList.add('selected');
+                            listItem.style.backgroundColor = "#265073";
+                            listItem.style.color = "#fff";
+                        }
+                        rightDataDiv.appendChild(listItem);
+                    });
+    
+                    if (selectedTimeInfo) {
+                        const selectedTimeMatch = selectedTimeInfo.match(/\d{2}:\d{2}/);
+                        if (selectedTimeMatch) {
+                            const selectedTime = selectedTimeMatch[0];
+                            updateSelectedInfo(selectedDate, selectedTime);
+                        }
+                    }
+                }
+            },
             error: function(xhr, status, error) {
                 console.log("AJAX 요청 실패: " + status);
                 console.log("HTTP 상태 코드: " + xhr.status);
@@ -142,8 +144,10 @@ window.onload = function() {
                 let className = "within-range";
                 if (fullDate === selectedDate) {
                     className += " selected";
+                    html += `<td class="${className}" data-date="${fullDate}" data-day="${['일', '월', '화', '수', '목', '금', '토'][dayOfWeek]}요일" style="background-color: #F1FADA; font-family: 'LINESeedKR-Bd';">${day}</td>`;
+                } else {
+                    html += `<td class="${className}" data-date="${fullDate}" data-day="${['일', '월', '화', '수', '목', '금', '토'][dayOfWeek]}요일">${day}</td>`;
                 }
-                html += `<td class="${className}" data-date="${fullDate}" data-day="${['일', '월', '화', '수', '목', '금', '토'][dayOfWeek]}요일">${day}</td>`;
             } else {
                 html += `<td class="outside-range" data-date="${fullDate}" data-day="${['일', '월', '화', '수', '목', '금', '토'][dayOfWeek]}요일">${day}</td>`;
             }
@@ -175,15 +179,17 @@ window.onload = function() {
     // 날짜 클릭 함수 ==============================================================================================================
     calendar.onclick = function(e) {
         // 이전에 선택된 날짜의 스타일 초기화
-        if (selectedDate && selectedDate.style) {
-            selectedDate.style.backgroundColor = "";
-            selectedDate.style.fontFamily = "";
+        const prevSelectedDate = calendar.querySelector('.selected');
+        if (prevSelectedDate) {
+            prevSelectedDate.classList.remove('selected');
+            prevSelectedDate.style.backgroundColor = "";
+            prevSelectedDate.style.fontFamily = "";
         }
 
         // 'within-range' 클래스를 가진 요소에만 이벤트 적용
         if (e.target.classList.contains('within-range')) {
             selectedDate = e.target;
-            // 여기서 selectedDate는 undefined가 아니며, style 속성에 접근 가능합니다.
+            selectedDate.classList.add('selected');
             selectedDate.style.backgroundColor = "#F1FADA";
             selectedDate.style.fontFamily = "'LINESeedKR-Bd'";
 
@@ -204,31 +210,32 @@ window.onload = function() {
                     listItem.textContent = `[${index + 1}회] ${time}`;
                     rightDataDiv.appendChild(listItem);
 
-                     listItem.onclick = function() {
-				        document.querySelectorAll('.time_select li').forEach(li => {
-				            li.style.backgroundColor = "";
-				            li.style.color = "#242424";
-				            li.className = 'time_list_' + index;
-				        });
-				        this.style.backgroundColor = "#265073";
-				        this.style.color = "#fff";
-				        selectedTimeInfo = this.textContent;
-				        
-				        const selectedTimeMatch = this.textContent.match(/\d{2}:\d{2}/);
-				        if (selectedTimeMatch) {
-				            const selectedTime = selectedTimeMatch[0];
-				            updateSelectedInfo(selectedDate.dataset.date, selectedTime);
-				        }
+                    listItem.onclick = function() {
+                        document.querySelectorAll('.time_select li').forEach(li => {
+                            li.classList.remove('selected');
+                            li.style.backgroundColor = "";
+                            li.style.color = "#242424";
+                        });
+                        this.classList.add('selected');
+                        this.style.backgroundColor = "#265073";
+                        this.style.color = "#fff";
+                        selectedTimeInfo = this.textContent;
+
+                        const selectedTimeMatch = this.textContent.match(/\d{2}:\d{2}/);
+                        if (selectedTimeMatch) {
+                            const selectedTime = selectedTimeMatch[0];
+                            updateSelectedInfo(selectedDate.dataset.date, selectedTime);
+                        }
                     };
                 });
             }
         }
     };
 
-	function updateSelectedInfo(date, time) {
-	    document.getElementById('selected-date').textContent = date;
-	    document.getElementById('selected-time').textContent = time;
-	}
+    function updateSelectedInfo(date, time) {
+        document.getElementById('selected-date').textContent = date;
+        document.getElementById('selected-time').textContent = time;
+    }
 
     // 선택 가능 시간 추가 ==============================================================================================================
     function getTimeSlots(dayAndTime, selectedDayOfWeek) {
@@ -256,5 +263,5 @@ window.onload = function() {
 };
 
 function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");	
 }

@@ -113,5 +113,20 @@ public class ReviewDao {
 		return result;
 	}
 
+	public double getAllStarValue(String p_name) {
+		
+		String sql = "SELECT ROUND(AVG(RV_SCORE),1) FROM TBL_REVIEW WHERE P_NAME = ?";
+		
+		Double allStarAvg = null;
+		
+		try {
+			allStarAvg = jdbcTemplate.queryForObject(sql,Double.class,p_name);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return allStarAvg !=null ? allStarAvg : 0.0;
+	}
+
 	
 }

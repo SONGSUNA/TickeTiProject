@@ -14,7 +14,7 @@ import lombok.extern.log4j.Log4j2;
 public class CategoryService {
 	
 	@Autowired
-	CategoryDao categoryDao;
+	ICategoryDaoForMyBatis categoryDao;
 	
 
 	//카테고리 페이지 이동
