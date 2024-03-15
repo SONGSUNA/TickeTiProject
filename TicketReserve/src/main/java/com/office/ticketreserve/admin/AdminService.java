@@ -1,6 +1,9 @@
 package com.office.ticketreserve.admin;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -8,8 +11,8 @@ import org.springframework.stereotype.Service;
 
 import com.office.ticketreserve.config.TicketDto;
 import com.office.ticketreserve.productpage.PerfomanceDto;
+import com.office.ticketreserve.reservation.ReservationDto;
 import com.office.ticketreserve.user.IUserDaoForMybatis;
-import com.office.ticketreserve.user.UserDao;
 import com.office.ticketreserve.user.UserDto;
 
 import lombok.extern.log4j.Log4j2;
@@ -26,6 +29,9 @@ public class AdminService {
 	
 	@Autowired
 	IUserDaoForMybatis userDao;
+	
+	@Autowired
+	AdminChartDto adminChartDto;
 
 	public List<UserDto> getAllUserDto() {
 		log.info("[AdminService] getAllUserDto()");
@@ -252,6 +258,67 @@ public class AdminService {
 		return result;
 	}
 	
+	public List<AdminChartDto> salesStateSearch(String stDate, String edDate) {
+		log.info("[AdminController] salesStateSearch()");
+		
+		List<ReservationDto> rsvDto = adminDao.selectRsvInfo(stDate, edDate);
+		List<AdminChartDto> searchResult = new ArrayList<>();
+		log.info("[AdminController] salesStateSearch()" + rsvDto.size());
+		for(int i = 0; i<rsvDto.size(); i++) {
+			
+			int tNo = rsvDto.get(i).getT_no();
+			String pId = adminDao.selectTicket(tNo).getP_id();			
+			PerfomanceDto perfoDto = adminDao.selectPerfomanceById(pId);
+			
+			AdminChartDto dto= new AdminChartDto();
+			dto.setR_price(rsvDto.get(i).getR_price());
+			dto.setP_category(perfoDto.getP_category());
+			dto.setR_reg_date(rsvDto.get(i).getR_reg_date());
+			
+			
+			
+			searchResult.add(dto);
+			
+			
+		}
+		
+		Map<String, AdminChartDto> salesByDate = new HashMap<>();
+		Map<String, List<Integer>> salesInfotoDays = new HashMap<>();
+		for(int i = 0; i<searchResult.size(); i++) {
+			String date = searchResult.get(i).getR_reg_date();
+			
+			if(!salesByDate.containsKey(date)) {
+				adminChartDto.setR_reg_date(date);
+				salesByDate.put(date, adminChartDto);
+			}
+			
+			salesByDate.get(date).setDaySales(salesByDate.get(date).getDaySales() + searchResult.get(i).getR_price());
+			
+			switch (searchResult.get(i).getP_category()) {
+				case "대중음악":
+					salesByDate.get(date).setConcertSales(salesByDate.get(date).getConcertSales() + searchResult.get(i).getR_price());
+					break;
+				case "연극":
+					salesByDate.get(date).setTheaterSales(salesByDate.get(date).getTheaterSales() + searchResult.get(i).getR_price());
+					break;
+				case "서양음악(클래식)":
+					salesByDate.get(date).setClassicSales(salesByDate.get(date).getClassicSales() + searchResult.get(i).getR_price());
+					break;
+				case "뮤지컬":
+					salesByDate.get(date).setMusicalSales(salesByDate.get(date).getMusicalSales() + searchResult.get(i).getR_price());
+					break;
+				case "한국음악(국악)":
+					salesByDate.get(date).setKoreanMusicSales(salesByDate.get(date).getKoreanMusicSales() + searchResult.get(i).getR_price());
+					break;
+				default:
+					break;
+			}
+			
+		}		
+		log.info("[AdminController] salesStateSearch()" + salesByDate);
+		return null;
+	}
+	
 	// 유틸 --------------------------------------------------------------------------------------------------------------------------------------
 
 	private String formatString(String input) {
@@ -290,6 +357,8 @@ public class AdminService {
 		
 		return result;
 	}
+
+
 
 }
 

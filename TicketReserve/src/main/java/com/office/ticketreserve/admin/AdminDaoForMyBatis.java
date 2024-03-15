@@ -8,6 +8,7 @@ import org.springframework.security.access.method.P;
 
 import com.office.ticketreserve.config.TicketDto;
 import com.office.ticketreserve.productpage.PerfomanceDto;
+import com.office.ticketreserve.reservation.ReservationDto;
 import com.office.ticketreserve.user.UserDto;
 
 @Mapper
@@ -68,5 +69,10 @@ public interface AdminDaoForMyBatis {
 	public int updatePfWithDetailImg(PerfomanceDto perfomanceDto);
 
 	public int updatePfWithImg(PerfomanceDto perfomanceDto);
+
+	public List<ReservationDto> selectRsvInfo(@Param("stDate") String stDate, 
+											@Param("edDate") String edDate);
+
+	public TicketDto selectTicket(int t_no);
 	
 }

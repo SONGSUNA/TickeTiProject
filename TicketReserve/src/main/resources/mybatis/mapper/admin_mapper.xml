@@ -434,4 +434,18 @@
 	
 	</update>
 	
+	<select id="selectRsvInfo" 
+			parameterType="map" 
+			resultType="com.office.ticketreserve.reservation.ReservationDto">
+			
+			SELECT * FROM TBL_RESERVE WHERE R_REG_DATE BETWEEN TO_DATE(#{stDate})
+													   AND TO_DATE(#{edDate})
+	</select>
+	
+		<select id="selectTicket" 
+			parameterType="int" 
+			resultType="com.office.ticketreserve.config.TicketDto">
+			
+			SELECT * FROM TBL_TICKET WHERE T_NO = #{t_no}
+	</select>
 </mapper>

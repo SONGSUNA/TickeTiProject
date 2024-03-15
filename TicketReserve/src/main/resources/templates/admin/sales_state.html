@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title th:replace="~{/include/title.html::title}"></title>
+
+<link rel="stylesheet" th:href="@{/css/admin/sales_state.css}">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript" th:src="@{/js/admin/sales_state.js}"></script>
+
+
+
+</head>
+<body>
+
+	<div class="container">
+		<div th:replace="~{/admin/side_bar.html::sidebar}"></div>
+		
+		<div class="main">
+			<form th:action="@{/admin/sales_state_search}" name="sales_state_search" method="get" class="search_form">
+				<span>검색 시작일 : <input type="date" name="stDate"> ~ 검색 종료일 : <input type="date" name="edDate"></span>
+				<span>
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="checkbox" value="concert"><label for="concert">콘서트</label>
+					<input type="checkbox" value="musical"><label for="musical">뮤지컬</label>
+					<input type="checkbox" value="theater"><label for="theater">연극</label>
+					<input type="checkbox" value="classic"><label for="classic">클래식</label>
+					<input type="checkbox" value="koreanMusic"><label for="koreanMusic">국악</label>
+				</span>
+				<input type="button" value="검색" id="sales_state_search_btn">
+			</form>
+			<div class="search_result">
+				<div class="progress-bar">           
+				   <div class="progress"> </div>
+				</div>
+			
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>
