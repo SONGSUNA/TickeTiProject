@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.office.ticketreserve.config.TicketDto;
 import com.office.ticketreserve.productpage.PerfomanceDto;
 import com.office.ticketreserve.reservation.ReservationDto;
+import com.office.ticketreserve.review.ReviewDto;
 import com.office.ticketreserve.user.IUserDaoForMybatis;
 import com.office.ticketreserve.user.UserDto;
 
@@ -367,6 +368,12 @@ public class AdminService {
 		result = str + result;
 		
 		return result;
+	}
+// 리뷰관리----------------------------------------------------------------------------
+	public List<ReviewDto> getAllReviews() {
+		
+		
+		return adminDao.selectAllReviews();
 	}
 
 

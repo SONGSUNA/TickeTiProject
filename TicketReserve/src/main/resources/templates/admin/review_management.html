@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title th:replace="~{/include/title.html::title}"></title>
+
+<link rel="stylesheet" th:href="@{/css/admin/user_management.css}">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript" th:src="@{/js/admin/user_management.js}"></script>
+
+</head>
+<body>
+
+	<div class="container">
+		<div th:replace="~{/admin/side_bar.html::sidebar}"></div>
+		
+		<div class="main">
+			<h1>리뷰 관리</h1>
+			
+			<div class="review_search">
+				<form th:action="@{/admin/review_search}" name="review_search_form" method="post">
+					<span>아이디</span>
+					<input type="text" name="review_u_id">
+					<span>공연이름</span>
+					<input type="text" name="review_p_name">
+					<input type="button" value="검색" 	id="user_search_btn">
+				</form> 
+			</div>
+			
+			<div class="review_manage_table">
+				<table>
+					<thead>
+						<tr>
+							<th>리뷰No</th>
+							<th>아이디</th>
+							<th>공연이름</th>
+							<th>리뷰별점</th>
+							<th>리뷰내용</th>
+							<th>리뷰작성일</th>
+							<th>최근수정일</th>
+							<th>삭제</th>
+						</tr>
+					</thead>
+					<tbody>
+					    <tr th:each="review : ${allreviews}">
+					        <td th:text="${review.rv_no}"></td>
+					        <td th:text="${review.u_id}"></td>
+					        <td th:text="${review.p_name}"></td>
+					        <td th:text="${review.rv_score}"></td>
+					        <td th:text="${review.rv_txt}"></td>
+					        <td th:text="${review.rv_reg_date}"></td>
+					        <td th:text="${review.rv_mod_date}"></td>
+					        <td>
+					            <button th:attr="onclick='UserDelete(\'' + ${review.rv_no} + '\''">삭제</button>
+					        </td>
+					    </tr>
+					</tbody>
+				</table>
+			</div>
+			
+			
+	</div>
+	
+</body>
+</html>

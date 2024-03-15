@@ -28,16 +28,16 @@ public class ProductService {
 		return productDao.selectIsLiked(p_id, u_id);
 	}
 	
-	
-	
 	public int toggleLike(String p_id, String u_id) {
 	    
 		boolean isLiked = productDao.selectIsLiked(p_id, u_id);
 		
 	    if (isLiked) {
-	        return productDao.deleteLike(p_id, u_id);
+	    		   productDao.updateUnlike(p_id);
+	    	return productDao.deleteLike(p_id, u_id);
 	    } else {
-	        return productDao.insertLike(p_id, u_id);
+	    		   productDao.updateLike(p_id);
+	    	return productDao.insertLike(p_id, u_id);
 	    }
 	}
 }

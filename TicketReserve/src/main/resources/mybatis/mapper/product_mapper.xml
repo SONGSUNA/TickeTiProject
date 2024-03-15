@@ -44,7 +44,6 @@
         	U_ID = #{u_id}
     </select>
     
-    
     <delete id="deleteLike" parameterType="map">
         DELETE FROM 
         	TBL_LIKE
