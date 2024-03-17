@@ -49,8 +49,8 @@
 						</tr>
 						
 						 <tr th:each="index : ${#numbers.sequence(0, ((#arrays.length(combinedDto['r_reg_dateColection'])) - 1))}">
-            
-				            <td th:text="${combinedDto['r_reg_dateColection'][index]}"></td>
+            					
+				            <td th:text="${#strings.substringBefore(combinedDto['r_reg_dateColection'][index], ' ')}"></td>
 				            <td th:text="${combinedDto['myPIdsList'][index]}">티켓번호</td>
 				            <td><img th:src="${combinedDto['p_thumColectiion'][index]}" width="100"></td>
 				            <td th:text="${combinedDto['p_nameColection'][index]}">공연명</td>
