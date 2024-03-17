@@ -194,4 +194,4 @@ window.onload = function() {
    ];
    const reservedSeats = [10, 20, 30, 40, 50];
    createSeat(totalSeats, seatGrades, reservedSeats);
-}
+} 
