@@ -449,10 +449,22 @@
 			SELECT * FROM TBL_TICKET WHERE T_NO = #{t_no}
 	</select>
 	
-	<select id="selectAllReviews"
-			resultType="com.office.ticketreserve.review.ReviewDto">
+	<delete id="deleteReviewByRv_no"
+			parameterType="int">
+			
+			DELETE FROM TBL_REVIEW WHERE RV_NO = #{rv_no}
+	</delete>
 	
-			SELECT * FROM TBL_REVIEW ORDER BY RV_REG_DATE DESC
+	<select id="selectReviewBySearch" parameterType="map" resultType="com.office.ticketreserve.review.ReviewDto">
+	  SELECT * FROM TBL_REVIEW
+	  <where>
+		  <if test="u_id != null and u_id != ''">
+		    AND U_ID LIKE '%' || #{u_id} || '%'
+		  </if>
+		  <if test="p_name != null and p_name != ''">
+		    AND P_NAME LIKE '%' || #{p_name} || '%'
+		  </if>
+	  </where>
 	</select>
 	
 </mapper>

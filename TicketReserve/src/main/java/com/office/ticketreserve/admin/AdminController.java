@@ -367,15 +367,36 @@ public class AdminController {
 	
 	@GetMapping("/review_management")
 	public String reviewManagement(Model model) {
-		log.info("[AdminController] reviewManagement()");
+	    log.info("[AdminController] reviewManagement()");
+	   
+	    List<ReviewDto> searchReviewDto = adminService.searchReview(null, null);
+	    
+	    model.addAttribute("searchReviewDto", searchReviewDto);
+	    
+	    return "admin/review_management";
+	}
+
+	@ResponseBody
+	@PostMapping("/review_delete")
+	public int reviewDelete(@RequestParam("rv_no") int rv_no) {
+	    
+		log.info("[AdminController] reviewDelete()");
+	    
+		int result = -1;
+	   
+		result = adminService.adminReviewDelete(rv_no);
+	    
+		return result;
+	}
+
+	@ResponseBody
+	@GetMapping("/review_search")
+	public List<ReviewDto> reviewSearch(@RequestParam(value = "review_u_id", required = false) String u_id,
+	                                     @RequestParam(value = "review_p_name", required = false) String p_name) {
+	   
+		List<ReviewDto> searchReviewDto = adminService.searchReview(u_id, p_name);
 		
-		String nextPage = "admin/review_management";
-		
-		List<ReviewDto> allreviews = adminService.getAllReviews();
-		
-		model.addAttribute("allreviews",allreviews);
-		
-		return nextPage;
+		return searchReviewDto.isEmpty() ? null : searchReviewDto;
 	}
 	
 	@GetMapping("/logout")
