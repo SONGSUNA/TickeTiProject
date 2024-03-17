@@ -4,6 +4,12 @@
 
 <mapper namespace="com.office.ticketreserve.reservation.ReservationDao" >
 
-
+	<select id="selectReservation"
+			parameterType="String"
+			resultType="com.office.ticketreserve.reservation.ReservationDto">
+			
+	SELECT * FROM TBL_RESERVE WHERE R_DATE = #{selectedDate}
+		
+	</select>
 
 </mapper>
