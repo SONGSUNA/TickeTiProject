@@ -21,7 +21,7 @@ public class ReservationService {
 	
 	@Autowired
 	AdminDaoForMyBatis adminDao;
-
+	
 	public Map<String, Object> getInfoForReservation(String p_id) {
 		log.info("[ReservationService] getInfoForReservation()");
 		
