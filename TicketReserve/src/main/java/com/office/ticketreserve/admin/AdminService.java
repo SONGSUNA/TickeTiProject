@@ -376,6 +376,11 @@ public class AdminService {
 		return adminDao.selectAllReviews();
 	}
 
+	public int adminReviewDelete(int rv_no) {
+		
+		return adminDao.deleteReviewByRv_no(rv_no);
+	}
+
 
 
 }

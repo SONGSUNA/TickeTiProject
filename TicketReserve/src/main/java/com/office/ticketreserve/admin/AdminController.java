@@ -377,6 +377,16 @@ public class AdminController {
 		
 		return nextPage;
 	}
+	@ResponseBody
+	@PostMapping("/review_delete")
+	public int reviewDelete(@RequestParam("rv_no") int rv_no) {
+		log.info("[AdminController] reviewDelete()");
+		
+		int result = -1;
+		result = adminService.adminReviewDelete(rv_no);
+		
+		return result;
+	}
 	
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {

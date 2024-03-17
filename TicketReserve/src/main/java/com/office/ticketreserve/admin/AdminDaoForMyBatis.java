@@ -77,5 +77,7 @@ public interface AdminDaoForMyBatis {
 	public TicketDto selectTicket(int t_no);
 
 	public List<ReviewDto> selectAllReviews();
+
+	public int deleteReviewByRv_no(int rv_no);
 	
 }

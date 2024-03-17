@@ -454,5 +454,10 @@
 	
 			SELECT * FROM TBL_REVIEW ORDER BY RV_REG_DATE DESC
 	</select>
+	<delete id="deleteReviewByRv_no"
+			parameterType="int">
+			
+			DELETE FROM TBL_REVIEW WHERE RV_NO = #{rv_no}
+	</delete>
 	
 </mapper>

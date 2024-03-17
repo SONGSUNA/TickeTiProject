@@ -5,10 +5,10 @@
 
 <title th:replace="~{/include/title.html::title}"></title>
 
-<link rel="stylesheet" th:href="@{/css/admin/user_management.css}">
+<link rel="stylesheet" th:href="@{/css/admin/review_management.css}">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script type="text/javascript" th:src="@{/js/admin/user_management.js}"></script>
+<script type="text/javascript" th:src="@{/js/admin/review_management.js}"></script>
 
 </head>
 <body>
@@ -25,7 +25,7 @@
 					<input type="text" name="review_u_id">
 					<span>공연이름</span>
 					<input type="text" name="review_p_name">
-					<input type="button" value="검색" 	id="user_search_btn">
+					<input type="button" value="검색" 	id="review_search_btn">
 				</form> 
 			</div>
 			
@@ -44,7 +44,7 @@
 						</tr>
 					</thead>
 					<tbody>
-					    <tr th:each="review : ${allreviews}">
+					    <tr th:each="review : ${allreviews}" th:attr="data-review-no=${review.rv_no}">
 					        <td th:text="${review.rv_no}"></td>
 					        <td th:text="${review.u_id}"></td>
 					        <td th:text="${review.p_name}"></td>
@@ -53,7 +53,7 @@
 					        <td th:text="${review.rv_reg_date}"></td>
 					        <td th:text="${review.rv_mod_date}"></td>
 					        <td>
-					            <button th:attr="onclick='UserDelete(\'' + ${review.rv_no} + '\''">삭제</button>
+					            <button th:attr="onclick='reviewDelete(\'' + ${review.rv_no} + '\')'">삭제</button>
 					        </td>
 					    </tr>
 					</tbody>
