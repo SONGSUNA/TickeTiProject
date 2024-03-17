@@ -56,7 +56,18 @@ window.onload = function() {
    
    function createSeat(totalSeats, seatGrades, reservedSeats) {
      const seatingArea = document.querySelector('.seating-area');
+     const selectedSeatsContainer = document.querySelector('.select_show');
      seatingArea.innerHTML = '';
+     selectedSeatsContainer.innerHTML = '<p>선택한 좌석</p>';
+   
+     const isGeneralAdmission = seatGrades.some(grade => grade[0] === '전석' || grade[0] === '전석무료');
+     if (totalSeats > 500 || (isGeneralAdmission && totalSeats > 0)) {
+       seatingArea.textContent = "지정 좌석 예매를 지원하지 않는 공연입니다.";
+       const messageElement = document.createElement('div');
+       messageElement.textContent = "지정 좌석 예매를 지원하지 않는 공연입니다.";
+       selectedSeatsContainer.appendChild(messageElement);
+       return;
+     }
    
      let seatNumber = 1;
    
@@ -76,7 +87,7 @@ window.onload = function() {
          seat.classList.add('reserved');
          seat.style.backgroundColor = '#dadada';
          seat.addEventListener('click', () => {
-           alert('이미 예매 완료된 좌석입니다.');
+           alert('이미 선택된 좌석입니다.');
          });
        } else {
          seat.addEventListener('click', () => {
@@ -141,7 +152,6 @@ window.onload = function() {
        }
      });
    
-     const selectedSeatsContainer = document.querySelector('.select_show');
      let selectedSeatsCount = 0;
      const maxSelectedSeats = 2;
      let totalPrice = 0;
@@ -183,9 +193,9 @@ window.onload = function() {
      }
    }
    
-   const totalSeats = 570;
+   const totalSeats = 100;
    const seatGrades = [
-     ['S석', 'S', 30000],
+     ['전석', 'S', 30000],
      ['A석', 'A', 20000],
      ['B석', 'B', 15000],
      ['C석', 'C', 10000],
@@ -194,4 +204,4 @@ window.onload = function() {
    ];
    const reservedSeats = [10, 20, 30, 40, 50];
    createSeat(totalSeats, seatGrades, reservedSeats);
-} 
+}
