@@ -294,10 +294,8 @@ public class UserService {
 		 for (String tNo :ticketNumbers) { 
 			 
 			List<String> myPIds = IUserDao.getPerfomanceId(tNo); 
-			 System.out.println("myPIds---->>"+ myPIds);
-			 myPIdsList.addAll(myPIds);
+				myPIdsList.addAll(myPIds);
 			 }
-		 System.out.println("myPIdsList====>>" + myPIdsList);
 		 
 		 //perfomanceDto 얻어오기
 		 List<PerfomanceDto> myPerfomanceDto = new ArrayList<>();
@@ -311,7 +309,7 @@ public class UserService {
 				 p_thumColectiion.add(perfomanceDto.getP_thum());
 			 }
 		 }
-		System.out.println("myPerfomanceDto===>>>>>"+myPerfomanceDto);
+		
 		combinedInfo.put("r_reg_dateColection", r_reg_dateColection);
 		combinedInfo.put("t_seatColection", t_seatColection);
 		combinedInfo.put("r_dateColection", r_dateColection);

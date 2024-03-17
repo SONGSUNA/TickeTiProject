@@ -315,7 +315,6 @@ public class UserController {
 		String u_id = userDto.getU_id();
 		
 		 Map<String, Object> combinedDto = userService.getMyTicketInfo(u_id);
-		System.out.println("combinedDto---------->>>>>"+ combinedDto);
 		
 		 model.addAttribute("combinedDto", combinedDto);
 		 
