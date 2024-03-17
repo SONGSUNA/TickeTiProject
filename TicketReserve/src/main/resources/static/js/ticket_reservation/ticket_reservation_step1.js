@@ -37,12 +37,13 @@ window.onload = function() {
         $.ajax({
             url: '/reservation/getInfoForReservation',
             type: 'GET',
-            data: { "p_id": productId },
+            data: { "p_id": productId,
+            		"selectedDate": selectedDate },
             success: function(data) {
                 start_date = new Date(data.p_start_date.replace(/\./g, '-'));
                 end_date = new Date(data.p_end_date.replace(/\./g, '-'));
                 dayAndTime = data.ticketDto.t_p_date;
-                max_seat = data.p_max_reserve;
+                max_seat = data.perfomanceDto.p_max_reserve;
                 ticket = data.ticketDto;
                 
                 $('.performance img').attr("src", data.perfomanceDto.p_thum);
@@ -53,8 +54,12 @@ window.onload = function() {
                 html += "<p class='location'>" + data.perfomanceDto.p_theater + "</p>";
                 $('.performance_info').html(html);
 
-                drawCalendar(new Date().getMonth(), new Date().getFullYear());
-                
+                const selectedDateObj = new Date(selectedDate);
+                const selectedMonth = selectedDateObj.getMonth();
+                const selectedYear = selectedDateObj.getFullYear();
+
+                drawCalendar(selectedMonth, selectedYear);
+
                 let tiket_html = "<ul> <li>" + ticket.t_seattype_1 + "</li>";
                 tiket_html += "<li>" + numberWithCommas(ticket.t_price_1) + "원 </li> </ul>";
                 
@@ -83,14 +88,13 @@ window.onload = function() {
                 
                 if (dayAndTime) {
                     const daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
-                    const selectedDateObj = new Date(selectedDate);
                     const selectedDayOfWeek = daysOfWeek[selectedDateObj.getDay()];
-                    
+
                     const timeSlots = getTimeSlots(dayAndTime, selectedDayOfWeek);
                     const rightDataDiv = document.querySelector('.time_select');
-    
+
                     rightDataDiv.innerHTML = '';
-    
+
                     timeSlots.forEach((time, index) => {
                         const listItem = document.createElement('li');
                         listItem.textContent = `[${index + 1}회] ${time}`;
@@ -100,8 +104,27 @@ window.onload = function() {
                             listItem.style.color = "#fff";
                         }
                         rightDataDiv.appendChild(listItem);
+
+                        // 여기서 클릭 이벤트 핸들러를 추가합니다.
+                        listItem.addEventListener('click', function() {
+                            document.querySelectorAll('.time_select li').forEach(li => {
+                                li.classList.remove('selected');
+                                li.style.backgroundColor = "";
+                                li.style.color = "#242424";
+                            });
+                            this.classList.add('selected');
+                            this.style.backgroundColor = "#265073";
+                            this.style.color = "#fff";
+                            selectedTimeInfo = this.textContent;
+
+                            const selectedTimeMatch = this.textContent.match(/\d{2}:\d{2}/);
+                            if (selectedTimeMatch) {
+                                const selectedTime = selectedTimeMatch[0];
+                                updateSelectedInfo(selectedDate, selectedTime);
+                            }
+                        });
                     });
-    
+
                     if (selectedTimeInfo) {
                         const selectedTimeMatch = selectedTimeInfo.match(/\d{2}:\d{2}/);
                         if (selectedTimeMatch) {
