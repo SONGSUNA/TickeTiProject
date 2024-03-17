@@ -1,8 +1,10 @@
 package com.office.ticketreserve.user;
 
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -264,16 +266,62 @@ public class UserService {
 	public Map<String, Object> getMyTicketInfo(String u_id) {
 		log.info("[UserService] getMyTicketInfo()");
 		
-		Map<String, Object> combinedDto = new HashMap<>();
+		Map<String, Object> combinedInfo = new HashMap<>();
+		List<ReservationDto> myReservationDto  = new ArrayList<>();
 		
-		ReservationDto reservationDto = IUserDao.getMyTicketinfo(u_id);
-		int t_no = reservationDto.getT_no(); 
-		String p_id = IUserDao.getPerfomanceId(t_no);
-		PerfomanceDto perfomanceDto = IUserDao.getPerfomanceName(p_id);
+		myReservationDto = IUserDao.getMyTicketinfo(u_id);
 		
-		combinedDto.put("reservationDto", reservationDto);
-		combinedDto.put("perfomanceDto", perfomanceDto);
+		// t_no 뽑아내기
+		List<String> r_reg_dateColection = new ArrayList<>();
+		List<String> t_seatColection = new ArrayList<>();
+		List<String> r_dateColection = new ArrayList<>();
+		List<String> r_timeColection = new ArrayList<>();
+		List<String> r_take_ticketColection = new ArrayList<>();
+		List<String> r_payment_stateColection = new ArrayList<>();
+		List<String> ticketNumbers = new ArrayList<>();
+		for(ReservationDto reservationDto : myReservationDto) {
+			ticketNumbers.add(Integer.toString(reservationDto.getT_no()));
+			r_reg_dateColection.add(reservationDto.getR_reg_date()); 
+			t_seatColection.add(reservationDto.getT_seat());
+			r_dateColection.add(reservationDto.getR_date());
+			r_timeColection.add(reservationDto.getR_time());
+			r_take_ticketColection.add(Integer.toString(reservationDto.getR_take_ticket()));
+			r_payment_stateColection.add(Integer.toString(reservationDto.getR_payment_state()));
+		}
 		
-		return combinedDto;
+		//p_id 얻어오기
+		List<String> myPIdsList = new ArrayList<>();
+		 for (String tNo :ticketNumbers) { 
+			 
+			List<String> myPIds = IUserDao.getPerfomanceId(tNo); 
+			 System.out.println("myPIds---->>"+ myPIds);
+			 myPIdsList.addAll(myPIds);
+			 }
+		 System.out.println("myPIdsList====>>" + myPIdsList);
+		 
+		 //perfomanceDto 얻어오기
+		 List<PerfomanceDto> myPerfomanceDto = new ArrayList<>();
+		 List<String> p_nameColection = new ArrayList<>();
+		 List<String> p_thumColectiion = new ArrayList<>();
+		 for(String p_id : myPIdsList) {
+			 
+			 myPerfomanceDto = IUserDao.getPerfomaceInfo(p_id);
+			 for(PerfomanceDto perfomanceDto : myPerfomanceDto) {
+				 p_nameColection.add(perfomanceDto.getP_name());
+				 p_thumColectiion.add(perfomanceDto.getP_thum());
+			 }
+		 }
+		System.out.println("myPerfomanceDto===>>>>>"+myPerfomanceDto);
+		combinedInfo.put("r_reg_dateColection", r_reg_dateColection);
+		combinedInfo.put("t_seatColection", t_seatColection);
+		combinedInfo.put("r_dateColection", r_dateColection);
+		combinedInfo.put("r_timeColection", r_timeColection);
+		combinedInfo.put("r_take_ticketColection", r_take_ticketColection);
+		combinedInfo.put("r_payment_stateColection", r_payment_stateColection);
+		combinedInfo.put("p_nameColection", p_nameColection);
+		combinedInfo.put("p_thumColectiion", p_thumColectiion);
+		combinedInfo.put("myPIdsList", myPIdsList);
+		
+		return combinedInfo;
 	}
 }

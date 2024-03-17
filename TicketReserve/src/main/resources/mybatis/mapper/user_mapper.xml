@@ -24,13 +24,13 @@
 			U_ID = #{u_id}
 			
 	</select>
-	<select id="getPerfomanceId" parameterType="integer" resultType="String">
+	<select id="getPerfomanceId"  parameterType="String" resultType="java.lang.String">
 		SELECT P_ID
 			FROM TBL_TICKET
 		WHERE
 			T_NO = #{t_no}
 	</select>
-	<select id="getPerfomanceName" parameterType="String" resultType="com.office.ticketreserve.productpage.PerfomanceDto">
+	<select id="getPerfomaceInfo" parameterType="String" resultType="com.office.ticketreserve.productpage.PerfomanceDto">
 		SELECT * FROM 
 			TBL_PERFOMANCE
 		WHERE
@@ -47,4 +47,13 @@
 	    
 	    
 	</select> -->
+	<!-- <select id="getPerfomanceId" parameterType="java.util.List" resultType="java.lang.String">
+    SELECT P_ID
+    FROM TBL_TICKET
+    WHERE T_NO IN
+    <foreach item="t_no" index="index" collection="list" open="(" separator="," close=")">
+        #{t_no}
+    </foreach> 
+    
+</select>-->
 </mapper>
