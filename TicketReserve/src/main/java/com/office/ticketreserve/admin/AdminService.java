@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.office.ticketreserve.config.TicketDto;
 import com.office.ticketreserve.productpage.PerfomanceDto;
@@ -370,15 +371,16 @@ public class AdminService {
 		return result;
 	}
 // 리뷰관리----------------------------------------------------------------------------
-	public List<ReviewDto> getAllReviews() {
-		
-		
-		return adminDao.selectAllReviews();
-	}
 
 	public int adminReviewDelete(int rv_no) {
 		
 		return adminDao.deleteReviewByRv_no(rv_no);
+	}
+
+	
+	public List<ReviewDto> searchReview(String u_id, String p_name) {
+	   
+		return adminDao.selectReviewBySearch(u_id, p_name);
 	}
 
 
