@@ -193,15 +193,12 @@ window.onload = function() {
      }
    }
    
-   const totalSeats = 100;
+   const totalSeats = 300;
    const seatGrades = [
-     ['전석', 'S', 30000],
+     ['S석', 'S', 30000],
      ['A석', 'A', 20000],
-     ['B석', 'B', 15000],
-     ['C석', 'C', 10000],
-     ['D석', 'D', 8000],
-     ['E석', 'E', 5000]
+     ['B석', 'B', 15000]
    ];
-   const reservedSeats = [10, 20, 30, 40, 50];
+   const reservedSeats = [1, 2, 5, 6, 7,10, 20, 30, 40, 50, 51, 55, 56, 90, 91];
    createSeat(totalSeats, seatGrades, reservedSeats);
 }
