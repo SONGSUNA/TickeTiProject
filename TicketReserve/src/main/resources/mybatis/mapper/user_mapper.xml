@@ -22,6 +22,8 @@
 			TBL_RESERVE
 		WHERE
 			U_ID = #{u_id}
+		ORDER BY
+			R_REG_DATE	DESC
 			
 	</select>
 	<select id="getPerfomanceId"  parameterType="String" resultType="java.lang.String">

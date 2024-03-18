@@ -63,8 +63,7 @@ inputp .w_modify_btn {
 	text-align: center;
 	font-weight: bold;
 	color: #F1FADA;
-	cursor: pointer;;
-	margin-left: 10px;
+	cursor: pointer;
 }
 
 /* 양식 내 하단 submit btn */
