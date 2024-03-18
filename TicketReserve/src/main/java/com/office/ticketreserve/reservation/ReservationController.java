@@ -107,7 +107,7 @@ public class ReservationController {
 										 @RequestParam("selectedTimeInfo") String selectedTimeInfo) {
 		log.info("[ReservationController] getReserveSeat()");
 		
-		return reservationService.getReserveSeat(t_no, selectedDate, selectedTimeInfo);
+		return reservationService.getReserveSeat(t_no, selectedDate, selectedTimeInfo); 
 	}
 	
 	
