@@ -79,7 +79,6 @@
 				<div class="mtp_content_wrap">
 					<table>
 							<tr>
-								<th>후기번호</th>
 								<th>공연명</th>
 								<th>별점</th>
 								<th>나의리뷰</th>
@@ -88,7 +87,6 @@
 							</tr>
 							<th:block th:if="${combinedforReview != null and !#lists.isEmpty(combinedforReview['rv_reg_date_colection'])}">
 								<tr th:each="index : ${#numbers.sequence(0, #arrays.length(combinedforReview['rv_reg_date_colection']) - 1)}">
-									<td th:text="${combinedforReview['rv_no_colection'][index]}">후기번호</td>
 									<td th:text="${combinedforReview['p_name_colection'][index]}">공연명</td>
 									<td th:text="${combinedforReview['rv_score_colection'][index]}">별점</td>
 									<td th:text="${combinedforReview['rv_txt_colection'][index]}">나의리뷰</td>
@@ -101,7 +99,7 @@
 							</th:block>
 						 <th:block th:if="${combinedforReview == null or #lists.isEmpty(combinedforReview['rv_reg_date_colection'])}">
 	          				<tr>
-				                <td colspan="6" th:text="${noReviewMessage}"></td>
+				                <td colspan="5" th:text="${noReviewMessage}"></td>
 				            </tr>
 			       		 </th:block>
 					</table>
