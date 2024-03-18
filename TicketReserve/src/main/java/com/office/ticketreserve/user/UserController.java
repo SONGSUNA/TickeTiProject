@@ -257,7 +257,8 @@ public class UserController {
 		if(userDtos == null) {
 			return nextPage;
 		}
-			return userModifyForm(model, session);
+			return myTicketHome(session,model);
+					/*userModifyForm(model, session);*/
 		
 	}
 	
@@ -315,9 +316,11 @@ public class UserController {
 		String u_id = userDto.getU_id();
 		
 		 Map<String, Object> combinedDto = userService.getMyTicketInfo(u_id);
-		
-		 model.addAttribute("combinedDto", combinedDto);
-		 
+		 if (combinedDto != null && !combinedDto.isEmpty()) {
+			 model.addAttribute("combinedDto", combinedDto);
+		 } else {
+			 model.addAttribute("noTicketsMessage", "예매 내역이 없습니다.");
+		 }
 		return nextPage;
 	}
 }
