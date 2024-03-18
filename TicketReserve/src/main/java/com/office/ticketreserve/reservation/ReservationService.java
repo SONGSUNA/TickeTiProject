@@ -1,6 +1,8 @@
 package com.office.ticketreserve.reservation;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,4 +42,45 @@ public class ReservationService {
 		return haspMap;
 	}
 
+	
+	public List<Integer> getReserveSeat(String t_no, String date, String time) {
+		log.info("[ReservationService] getReserveSeat()");
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("t_no", t_no);
+		map.put("date", date);
+		map.put("time", convertTimeFormat(time));
+		
+		List<ReservationDto> reservationDtos = reservationDao.selectReservation(map);
+		
+		List<Integer> reserveSeats = new ArrayList<>();
+		
+		for (ReservationDto reservationDto : reservationDtos) {
+	        String seatString = reservationDto.getT_seat();
+	        int seatNumber = Integer.parseInt(seatString);
+	        reserveSeats.add(seatNumber);
+	    }
+		
+		return reserveSeats.isEmpty() ? null : reserveSeats;
+	}
+	
+	// util ========================================================================================
+	public static String convertTimeFormat(String time) {
+		String numberOnly = time.replaceAll("[^0-9]", "");
+		
+		int length = numberOnly.length();
+		
+		String formattedTime;
+		if (length >= 4) {
+			formattedTime = numberOnly.substring(length - 4, length - 2) + ":" + numberOnly.substring(length - 2) + ":00";
+		} else if (length >= 2) {
+			formattedTime = "00:" + numberOnly.substring(length - 2) + ":00";
+		} else {
+			formattedTime = "00:00:00";
+		}
+		
+		return formattedTime;
+	}
 }
+	
+

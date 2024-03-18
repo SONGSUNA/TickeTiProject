@@ -4,12 +4,15 @@
 
 <mapper namespace="com.office.ticketreserve.reservation.ReservationDao" >
 
-	<select id="selectReservation"
-			parameterType="String"
-			resultType="com.office.ticketreserve.reservation.ReservationDto">
-			
-	SELECT * FROM TBL_RESERVE WHERE R_DATE = #{selectedDate}
-		
+	<select id="selectReservation" parameterType="map" resultType="com.office.ticketreserve.reservation.ReservationDto">
+	
+	    SELECT * FROM TBL_RESERVE
+	    <where>
+	        T_NO = #{t_no}
+	        AND TRUNC(R_DATE) = TO_DATE(#{date}, 'YYYY-MM-DD')
+	        AND R_TIME = #{time}
+	    </where>
+	    
 	</select>
 
 </mapper>

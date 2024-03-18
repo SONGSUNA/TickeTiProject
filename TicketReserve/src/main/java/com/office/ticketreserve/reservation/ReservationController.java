@@ -1,6 +1,7 @@
 package com.office.ticketreserve.reservation;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,7 +85,8 @@ public class ReservationController {
 	
 	@GetMapping("/getDateTime")
 	@ResponseBody
-	public HashMap<String, Object> getMethodName(HttpSession session) {
+	public HashMap<String, Object> getDateTime(HttpSession session) {
+		log.info("[ReservationController] getDateTime()");
 		
 		String selectedDate = (String) session.getAttribute("selectedDate");
 		String selectedTime = (String) session.getAttribute("selectedTime");
@@ -97,5 +99,16 @@ public class ReservationController {
 		
 		return hashMap;
 	}
+	
+	@GetMapping("/getReserveSeat")
+	@ResponseBody
+	public List<Integer> getReserveSeat(@RequestParam("t_no") String t_no,
+										 @RequestParam("selectedDate") String selectedDate,
+										 @RequestParam("selectedTimeInfo") String selectedTimeInfo) {
+		log.info("[ReservationController] getReserveSeat()");
+		
+		return reservationService.getReserveSeat(t_no, selectedDate, selectedTimeInfo); 
+	}
+	
 	
 } 
