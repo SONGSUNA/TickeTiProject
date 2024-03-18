@@ -47,7 +47,7 @@
 							<th>수령방법</th>
 							<th>결제상태</th>
 						</tr>
-						
+						<th:block th:if="${combinedDto != null and not #lists.isEmpty(combinedDto['r_reg_dateColection'])}">
 						 <tr th:each="index : ${#numbers.sequence(0, ((#arrays.length(combinedDto['r_reg_dateColection'])) - 1))}">
             					
 				            <td th:text="${#strings.substringBefore(combinedDto['r_reg_dateColection'][index], ' ')}"></td>
@@ -63,6 +63,12 @@
 				            <td th:text="${combinedDto['r_take_ticketColection'][index]}">수령방법</td>
 				            <td th:text="${combinedDto['r_payment_stateColection'][index]}">결제상태</td>
 				        </tr>
+				        </th:block>
+				         <th:block th:if="${combinedDto == null or #lists.isEmpty(combinedDto['r_reg_dateColection'])}">
+          				<tr>
+			                <td colspan="8">예매 내역이 없습니다.</td>
+			            </tr>
+			        </th:block>
 					</table>
 				</div>
 			</div>

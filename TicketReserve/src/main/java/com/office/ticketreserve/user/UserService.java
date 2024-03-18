@@ -262,7 +262,7 @@ public class UserService {
 		return result;
 	
 	}
-
+	// 나의 예매 내역
 	public Map<String, Object> getMyTicketInfo(String u_id) {
 		log.info("[UserService] getMyTicketInfo()");
 		
@@ -270,7 +270,7 @@ public class UserService {
 		List<ReservationDto> myReservationDto  = new ArrayList<>();
 		
 		myReservationDto = IUserDao.getMyTicketinfo(u_id);
-		
+		 if (myReservationDto != null && !myReservationDto.isEmpty()) {
 		// t_no 뽑아내기
 		List<String> r_reg_dateColection = new ArrayList<>();
 		List<String> t_seatColection = new ArrayList<>();
@@ -309,7 +309,7 @@ public class UserService {
 				 p_thumColectiion.add(perfomanceDto.getP_thum());
 			 }
 		 }
-		
+		 
 		combinedInfo.put("r_reg_dateColection", r_reg_dateColection);
 		combinedInfo.put("t_seatColection", t_seatColection);
 		combinedInfo.put("r_dateColection", r_dateColection);
@@ -320,6 +320,7 @@ public class UserService {
 		combinedInfo.put("p_thumColectiion", p_thumColectiion);
 		combinedInfo.put("myPIdsList", myPIdsList);
 		
+		}
 		return combinedInfo;
 	}
 }
