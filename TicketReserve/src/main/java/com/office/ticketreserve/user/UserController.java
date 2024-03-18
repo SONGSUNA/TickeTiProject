@@ -257,7 +257,8 @@ public class UserController {
 		if(userDtos == null) {
 			return nextPage;
 		}
-			return userModifyForm(model, session);
+			return myTicketHome(session,model);
+					/*userModifyForm(model, session);*/
 		
 	}
 	
@@ -308,16 +309,29 @@ public class UserController {
 	//나의 티켓 화면 이동
 	@GetMapping("/my_ticket_page")
 	public String myTicketHome(HttpSession session, Model model) {
-		log.info("[UserController] myTicketHome()");
-		
-		String nextPage = "user/my_ticket_page";
-		UserDto userDto = sessionCheck(session);
-		String u_id = userDto.getU_id();
-		
-		 Map<String, Object> combinedDto = userService.getMyTicketInfo(u_id);
-		
-		 model.addAttribute("combinedDto", combinedDto);
-		 
-		return nextPage;
+	    log.info("[UserController] myTicketHome()");
+	    
+	    String nextPage = "user/my_ticket_page";
+	    UserDto userDto = sessionCheck(session);
+	    String u_id = userDto.getU_id();
+	    
+	    Map<String, Object> combinedDto = userService.getMyTicketInfo(u_id);
+	    
+	    if (!combinedDto.isEmpty()) {
+	        model.addAttribute("combinedDto", combinedDto);
+	        
+	    } else {
+	        model.addAttribute("noTicketsMessage", "예매 내역이 없습니다.");
+	    }
+	    
+	    Map<String, Object> combinedforReview = userService.getMyReview(u_id);
+	    if (!combinedforReview.isEmpty() && combinedforReview != null) {
+	    	model.addAttribute("combinedforReview", combinedforReview);
+	    	
+	    } else {
+	        model.addAttribute("noReviewMessage", "리뷰 내역이 없습니다.");
+	    }
+	    
+	    return nextPage;
 	}
 }

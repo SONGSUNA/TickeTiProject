@@ -19,6 +19,7 @@ import com.office.ticketreserve.admin.AdminDaoForMyBatis;
 import com.office.ticketreserve.admin.AdminDto;
 import com.office.ticketreserve.productpage.PerfomanceDto;
 import com.office.ticketreserve.reservation.ReservationDto;
+import com.office.ticketreserve.review.ReviewDto;
 
 import jakarta.mail.internet.MimeMessage;
 import lombok.extern.log4j.Log4j2;
@@ -262,7 +263,8 @@ public class UserService {
 		return result;
 	
 	}
-
+	
+	// 나의 예매 내역
 	public Map<String, Object> getMyTicketInfo(String u_id) {
 		log.info("[UserService] getMyTicketInfo()");
 		
@@ -270,8 +272,8 @@ public class UserService {
 		List<ReservationDto> myReservationDto  = new ArrayList<>();
 		
 		myReservationDto = IUserDao.getMyTicketinfo(u_id);
-		
-		// t_no 뽑아내기
+		 if (myReservationDto != null && !myReservationDto.isEmpty()) {
+		// t_no , view에서 보여줄 내역 다 뽑아내기
 		List<String> r_reg_dateColection = new ArrayList<>();
 		List<String> t_seatColection = new ArrayList<>();
 		List<String> r_dateColection = new ArrayList<>();
@@ -279,14 +281,42 @@ public class UserService {
 		List<String> r_take_ticketColection = new ArrayList<>();
 		List<String> r_payment_stateColection = new ArrayList<>();
 		List<String> ticketNumbers = new ArrayList<>();
+		int r_take_ticket_result = 0;
+		int r_payment_result = 0;
 		for(ReservationDto reservationDto : myReservationDto) {
+			
 			ticketNumbers.add(Integer.toString(reservationDto.getT_no()));
 			r_reg_dateColection.add(reservationDto.getR_reg_date()); 
 			t_seatColection.add(reservationDto.getT_seat());
 			r_dateColection.add(reservationDto.getR_date());
 			r_timeColection.add(reservationDto.getR_time());
-			r_take_ticketColection.add(Integer.toString(reservationDto.getR_take_ticket()));
-			r_payment_stateColection.add(Integer.toString(reservationDto.getR_payment_state()));
+			r_take_ticket_result = reservationDto.getR_take_ticket(); 
+			
+			if(r_take_ticket_result == 0) {
+				r_take_ticketColection.add("현장수령");
+				
+			} else if(r_take_ticket_result == 1) {
+				r_take_ticketColection.add("이메일 발송");
+				
+			} else if(r_take_ticket_result == 2) {
+				r_take_ticketColection.add("문자 발송");
+				
+			} else {
+				r_take_ticketColection.add("오류");
+				
+			}
+			
+			r_payment_result = reservationDto.getR_payment_state();
+			if(r_payment_result == 0) {
+				r_payment_stateColection.add("입금대기");
+				
+			} else if(r_payment_result == 1) {
+				r_payment_stateColection.add("입금완료");
+				
+			} else {
+				r_payment_stateColection.add("오류");
+				
+			}
 		}
 		
 		//p_id 얻어오기
@@ -309,7 +339,7 @@ public class UserService {
 				 p_thumColectiion.add(perfomanceDto.getP_thum());
 			 }
 		 }
-		
+		 
 		combinedInfo.put("r_reg_dateColection", r_reg_dateColection);
 		combinedInfo.put("t_seatColection", t_seatColection);
 		combinedInfo.put("r_dateColection", r_dateColection);
@@ -320,6 +350,41 @@ public class UserService {
 		combinedInfo.put("p_thumColectiion", p_thumColectiion);
 		combinedInfo.put("myPIdsList", myPIdsList);
 		
+		}
 		return combinedInfo;
+	}
+	
+	// 나의 리뷰내역 가져오기
+	public Map<String, Object> getMyReview(String u_id) {
+		log.info("[UserService] getMyReview()");
+		
+		Map<String, Object> combinedRvInfo = new HashMap<>();
+		List<ReviewDto> rvInfo = IUserDao.getMyReviewInfo(u_id);
+		
+		List<String>p_nameColection = new ArrayList<>();
+		List<String>rv_txtColection = new ArrayList<>();
+		List<String>rv_scoreColection = new ArrayList<>();
+		List<String>rv_reg_dateColection = new ArrayList<>();
+		for(ReviewDto rv_infomation : rvInfo) {
+			
+			 if (rv_infomation.getRv_txt() == null && rv_infomation.getRv_txt().isEmpty()) {
+				 // 후기가 없는 경우 
+			        return null;
+			        
+			    }else {
+			    	p_nameColection.add(rv_infomation.getP_name());
+					rv_txtColection.add(rv_infomation.getRv_txt());
+					rv_scoreColection.add(Integer.toString(rv_infomation.getRv_score()));
+					rv_reg_dateColection.add(rv_infomation.getRv_reg_date());
+			    }
+			 
+			
+			combinedRvInfo.put("p_nameColection", p_nameColection);
+			combinedRvInfo.put("rv_txtColection", rv_txtColection);
+			combinedRvInfo.put("rv_scoreColection", rv_scoreColection);
+			combinedRvInfo.put("rv_reg_dateColection", rv_reg_dateColection);
+		}
+		
+		return combinedRvInfo;
 	}
 }

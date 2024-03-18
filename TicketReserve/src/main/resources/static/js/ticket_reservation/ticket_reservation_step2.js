@@ -1,14 +1,11 @@
 let p_id;
+let t_no;
 let selectedDate;
 let selectedTimeInfo;
 
 let totalSeats;
-let seatGrades = [
-   ['S석', 'S', 30000],
-   ['A석', 'A', 20000],
-   ['B석', 'B', 15000]
-];
-let reservedSeats = [1, 2, 5, 6, 7,10, 20, 30, 40, 50, 51, 55, 56, 90, 91];
+let seatGrades = [];
+let reservedSeats = [];
 
 window.onload = function() {
    // p_id, 선택 날짜 시간 불러오기
@@ -45,6 +42,7 @@ window.onload = function() {
                totalSeats = data.perfomanceDto.p_max_reserve;
                
                let ticket = data.ticketDto;
+               t_no = ticket.t_no;
                let ticketList = [];
                
                let ticket1 = [ticket.t_seattype_1, ticket.t_seattype_1.replace("석", ""), ticket.t_price_1];
@@ -80,10 +78,40 @@ window.onload = function() {
                html += "<p class='location'>" + data.perfomanceDto.p_theater + "</p>";
                $('.performance_info').html(html);
 
-               createSeat(totalSeats, seatGrades, reservedSeats);
+			   getReserveSeat();
+           },
+           error: function(xhr, status, error) {
+               console.log("AJAX 요청 실패: " + status);
+               console.log("HTTP 상태 코드: " + xhr.status);
+               console.log("오류 내용: " + error);
            }
        });
    }
+   // 예약 좌석 불러오기 ======================================================================
+   function getReserveSeat() {
+       $.ajax({
+           url: '/reservation/getReserveSeat',
+           type: 'GET',
+           data: { "t_no": t_no,
+           		   "selectedDate": selectedDate,
+           		   "selectedTimeInfo": selectedTimeInfo },
+           success: function(data) {
+			   if (!data) {
+				   console.log("reserve null")
+				   reservedSeats = [];
+			   }
+			   else {
+				   reservedSeats = data;
+				   createSeat(totalSeats, seatGrades, reservedSeats);
+			   }
+		   },
+           error: function(xhr, status, error) {
+               console.log("AJAX 요청 실패: " + status);
+               console.log("HTTP 상태 코드: " + xhr.status);
+               console.log("오류 내용: " + error);
+           }
+       })
+   };
 
    // getDateTime 함수 호출
    getDateTime();
@@ -190,17 +218,24 @@ window.onload = function() {
      const maxSelectedSeats = 2;
      let totalPrice = 0;
    
-     function addSelectedSeat(seatInfo, seatPrice) {
-       if (selectedSeatsCount < maxSelectedSeats) {
-         const seatItem = document.createElement('div');
-         seatItem.textContent = seatInfo;
-         selectedSeatsContainer.appendChild(seatItem);
-         selectedSeatsCount++;
-         totalPrice += seatPrice;
-       } else {
-         alert('최대 2개의 좌석만 선택할 수 있습니다.');
-       }
-     }
+	function addSelectedSeat(seatInfo, seatPrice) {
+	  if (selectedSeatsCount < maxSelectedSeats) {
+	    const seatItem = document.createElement('div');
+	    seatItem.textContent = seatInfo;
+	    
+	    const [seatGrade, seatNumberText] = seatInfo.split(' ');
+	    const seatNumber = seatNumberText.replace('번 좌석', '');
+	    const className = `seat-${seatGrade}-${seatNumber}`;
+	    
+	    seatItem.classList.add(className);
+	    
+	    selectedSeatsContainer.appendChild(seatItem);
+	    selectedSeatsCount++;
+	    totalPrice += seatPrice;
+	  } else {
+	    alert('최대 2개의 좌석만 선택할 수 있습니다.');
+	  }
+	}
    
      function removeSelectedSeat(seatInfo, seatPrice) {
        const seatItems = selectedSeatsContainer.querySelectorAll('div');
@@ -214,16 +249,40 @@ window.onload = function() {
      }
    
      function updatePaymentInfo() {
-       const ticketPriceElement = document.querySelector('.money .value:nth-child(2)');
-       const totalPriceElement = document.querySelector('.money .value:last-child');
+       const plus_value = document.querySelector('.money .plus_value');
+       const plus_total = document.querySelector('.money .minus_value');
+       const total_value = document.querySelector('.money .total_value');
    
        // 금액에 ,를 삽입하는 함수
        function formatCurrency(amount) {
          return amount.toLocaleString('ko-KR');
        }
    
-       ticketPriceElement.textContent = formatCurrency(totalPrice) + ' 원';
-       totalPriceElement.textContent = formatCurrency(totalPrice) + ' 원';
+       plus_value.textContent = formatCurrency(totalPrice) + ' 원';
+       plus_total.textContent = formatCurrency(totalPrice) + ' 원';
+       total_value.textContent = formatCurrency(totalPrice) + ' 원';
      }
+     
+     // next btn =======================================================================================================
+     const nextButton = document.querySelector('.next_button');
+		nextButton.addEventListener('click', () => {
+		  const selectedSeats = [];
+		  
+		  const seatItems = selectedSeatsContainer.querySelectorAll('div');
+		  seatItems.forEach((item) => {
+		    const className = item.classList[0];
+		    const seatNumber = className.split('-')[2].replace('번', '');
+		    selectedSeats.push(seatNumber);
+		  });
+		  
+		  if (selectedSeats.length === 0) {
+		    alert("좌석을 선택해주세요.");
+		    return;
+		  }
+		  
+		  const selectedSeatsString = selectedSeats.join(',');
+		  
+		  location.href = "/reservation/step3?totalPrice=" + totalPrice + "&selectedSeats=" + selectedSeatsString;
+		});
    }
 }
