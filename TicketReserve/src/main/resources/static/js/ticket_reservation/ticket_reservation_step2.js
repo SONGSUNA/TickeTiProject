@@ -40,6 +40,8 @@ window.onload = function() {
            data: { "p_id": productId },
            success: function(data) {
                totalSeats = data.perfomanceDto.p_max_reserve;
+               if (totalSeats > 9999)
+               		totalSeats = 9999;
                
                let ticket = data.ticketDto;
                t_no = ticket.t_no;
@@ -48,27 +50,27 @@ window.onload = function() {
                let ticket1 = [ticket.t_seattype_1, ticket.t_seattype_1.replace("석", ""), ticket.t_price_1];
                ticketList.push(ticket1)
                if (ticket.t_seattype_2 != 'null') {
-				   let ticket2 = [ticket.t_seattype_2, ticket.t_seattype_2.replace("석", ""), ticket.t_price_2];
-				   ticketList.push(ticket2)
-			   }
+                   let ticket2 = [ticket.t_seattype_2, ticket.t_seattype_2.replace("석", ""), ticket.t_price_2];
+                   ticketList.push(ticket2)
+               }
                if (ticket.t_seattype_3 != 'null') {
-				   let ticket3 = [ticket.t_seattype_3, ticket.t_seattype_3.replace("석", ""), ticket.t_price_3];
-				   ticketList.push(ticket3)
-			   }
+                   let ticket3 = [ticket.t_seattype_3, ticket.t_seattype_3.replace("석", ""), ticket.t_price_3];
+                   ticketList.push(ticket3)
+               }
                if (ticket.t_seattype_4 != 'null') {
-				   let ticket4 = [ticket.t_seattype_4, ticket.t_seattype_4.replace("석", ""), ticket.t_price_4];
-				   ticketList.push(ticket4)
-			   }
+                   let ticket4 = [ticket.t_seattype_4, ticket.t_seattype_4.replace("석", ""), ticket.t_price_4];
+                   ticketList.push(ticket4)
+               }
                if (ticket.t_seattype_5 != 'null') {
-				   let ticket5 = [ticket.t_seattype_5, ticket.t_seattype_5.replace("석", ""), ticket.t_price_5];
-				   ticketList.push(ticket5)
-			   }
+                   let ticket5 = [ticket.t_seattype_5, ticket.t_seattype_5.replace("석", ""), ticket.t_price_5];
+                   ticketList.push(ticket5)
+               }
                if (ticket.t_seattype_6 != 'null') {
-				   let ticket6 = [ticket.t_seattype_6, ticket.t_seattype_6.replace("석", ""), ticket.t_price_6];
-				   ticketList.push(ticket6)
-			   }
-			   
-			   seatGrades = ticketList;
+                   let ticket6 = [ticket.t_seattype_6, ticket.t_seattype_6.replace("석", ""), ticket.t_price_6];
+                   ticketList.push(ticket6)
+               }
+               
+               seatGrades = ticketList;
            
                $('.performance img').attr("src", data.perfomanceDto.p_thum);
 
@@ -78,7 +80,7 @@ window.onload = function() {
                html += "<p class='location'>" + data.perfomanceDto.p_theater + "</p>";
                $('.performance_info').html(html);
 
-			   getReserveSeat();
+               getReserveSeat();
            },
            error: function(xhr, status, error) {
                console.log("AJAX 요청 실패: " + status);
@@ -93,18 +95,19 @@ window.onload = function() {
            url: '/reservation/getReserveSeat',
            type: 'GET',
            data: { "t_no": t_no,
-           		   "selectedDate": selectedDate,
-           		   "selectedTimeInfo": selectedTimeInfo },
+                   "selectedDate": selectedDate,
+                   "selectedTimeInfo": selectedTimeInfo },
            success: function(data) {
-			   if (!data) {
-				   console.log("reserve null")
-				   reservedSeats = [];
-			   }
-			   else {
-				   reservedSeats = data;
-				   createSeat(totalSeats, seatGrades, reservedSeats);
-			   }
-		   },
+               if (!data) {
+                   console.log("reserve null")
+                   reservedSeats = [];
+               }
+               else {
+                   reservedSeats = data;
+               }
+               
+               createSeat(totalSeats, seatGrades, reservedSeats);
+           },
            error: function(xhr, status, error) {
                console.log("AJAX 요청 실패: " + status);
                console.log("HTTP 상태 코드: " + xhr.status);
@@ -121,15 +124,6 @@ window.onload = function() {
      const selectedSeatsContainer = document.querySelector('.select_show');
      seatingArea.innerHTML = '';
      selectedSeatsContainer.innerHTML = '<p>선택한 좌석</p>';
-   
-     const isGeneralAdmission = seatGrades.some(grade => grade[0] === '전석' || grade[0] === '전석무료');
-     if (totalSeats > 10000 || (isGeneralAdmission && totalSeats > 0)) {
-       seatingArea.textContent = "지정 좌석 예매를 지원하지 않는 공연입니다.";
-       const messageElement = document.createElement('div');
-       messageElement.textContent = "지정 좌석 예매를 지원하지 않는 공연입니다.";
-       selectedSeatsContainer.appendChild(messageElement);
-       return;
-     }
    
      let seatNumber = 1;
    
@@ -197,8 +191,12 @@ window.onload = function() {
      const remainingSeats = totalSeats % totalGrades;
    
      seatGrades.forEach(([seatName, seatCode, seatPrice], index) => {
-       const sectionTitle = createSectionTitle(seatName);
-       seatingArea.appendChild(sectionTitle);
+       const isGeneralAdmission = seatName === '전석' || seatName === '전석무료';
+       
+       if (!isGeneralAdmission) {
+         const sectionTitle = createSectionTitle(seatName);
+         seatingArea.appendChild(sectionTitle);
+       }
    
        const seatsContainer = createSeatsContainer();
        seatingArea.appendChild(seatsContainer);
@@ -228,6 +226,8 @@ window.onload = function() {
 	    const className = `seat-${seatGrade}-${seatNumber}`;
 	    
 	    seatItem.classList.add(className);
+	    seatItem.dataset.seatGrade = seatGrade; // 좌석 등급을 dataset에 추가
+	    seatItem.dataset.seatNumber = seatNumber; // 좌석 번호를 dataset에 추가
 	    
 	    selectedSeatsContainer.appendChild(seatItem);
 	    selectedSeatsCount++;
@@ -264,25 +264,27 @@ window.onload = function() {
      }
      
      // next btn =======================================================================================================
-     const nextButton = document.querySelector('.next_button');
+		const nextButton = document.querySelector('.next_button');
 		nextButton.addEventListener('click', () => {
 		  const selectedSeats = [];
-		  
+		
 		  const seatItems = selectedSeatsContainer.querySelectorAll('div');
 		  seatItems.forEach((item) => {
-		    const className = item.classList[0];
-		    const seatNumber = className.split('-')[2].replace('번', '');
-		    selectedSeats.push(seatNumber);
+		    const seatGrade = item.dataset.seatGrade; // 좌석 등급 가져오기
+		    const seatNumber = item.dataset.seatNumber; // 좌석 번호 가져오기
+		    const seatInfo = `${seatGrade}/${seatNumber}`; // 좌석 등급과 번호 조합
+		    selectedSeats.push(seatInfo);
 		  });
-		  
+		
 		  if (selectedSeats.length === 0) {
 		    alert("좌석을 선택해주세요.");
 		    return;
 		  }
-		  
+		
 		  const selectedSeatsString = selectedSeats.join(',');
-		  
-		  location.href = "/reservation/step3?totalPrice=" + totalPrice + "&selectedSeats=" + selectedSeatsString;
+		
+		  let href = "/reservation/step3?totalPrice=" + totalPrice + "&selectedSeats=" + selectedSeatsString;
+		  location.href = "/reservation/step3?totalPrice=" + totalPrice + "&selectedSeats=" + selectedSeatsString + "&href=" + href;
 		});
    }
 }

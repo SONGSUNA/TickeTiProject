@@ -306,7 +306,7 @@ body {
     margin-top: 5px;
 }
 
-.reservation_info   .money  .line:nth-child(4),
+.reservation_info   .money  .line:nth-child(5),
 .reservation_info   .money  .line:nth-child(8) {
     font-family: 'LINESeedKR-Bd';
     border-bottom: 1px dashed  #dadada;
@@ -355,6 +355,10 @@ body {
     color: #242424;
     border: none;
     border-radius: 3px;
+    
+    &:hover {
+    	cursor: pointer;
+    }
 }
 
 

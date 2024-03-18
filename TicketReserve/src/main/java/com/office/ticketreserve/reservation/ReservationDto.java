@@ -18,4 +18,5 @@ public class ReservationDto {
 	private String t_seat;
 	private String r_reg_date;
 	private String r_mod_date;
+	private String r_discount;
 }
