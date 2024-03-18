@@ -274,80 +274,80 @@ public class UserService {
 		myReservationDto = IUserDao.getMyTicketinfo(u_id);
 		 if (myReservationDto != null && !myReservationDto.isEmpty()) {
 		// t_no , view에서 보여줄 내역 다 뽑아내기
-		List<String> r_reg_dateColection = new ArrayList<>();
-		List<String> t_seatColection = new ArrayList<>();
-		List<String> r_dateColection = new ArrayList<>();
-		List<String> r_timeColection = new ArrayList<>();
-		List<String> r_take_ticketColection = new ArrayList<>();
-		List<String> r_payment_stateColection = new ArrayList<>();
-		List<String> ticketNumbers = new ArrayList<>();
+		List<String> r_reg_date_colection = new ArrayList<>();
+		List<String> t_seat_colection = new ArrayList<>();
+		List<String> r_date_colection = new ArrayList<>();
+		List<String> r_time_colection = new ArrayList<>();
+		List<String> r_take_ticket_colection = new ArrayList<>();
+		List<String> r_payment_state_colection = new ArrayList<>();
+		List<String> ticket_numbers = new ArrayList<>();
 		int r_take_ticket_result = 0;
 		int r_payment_result = 0;
 		for(ReservationDto reservationDto : myReservationDto) {
 			
-			ticketNumbers.add(Integer.toString(reservationDto.getT_no()));
-			r_reg_dateColection.add(reservationDto.getR_reg_date()); 
-			t_seatColection.add(reservationDto.getT_seat());
-			r_dateColection.add(reservationDto.getR_date());
-			r_timeColection.add(reservationDto.getR_time());
+			ticket_numbers.add(Integer.toString(reservationDto.getT_no()));
+			r_reg_date_colection.add(reservationDto.getR_reg_date()); 
+			t_seat_colection.add(reservationDto.getT_seat());
+			r_date_colection.add(reservationDto.getR_date());
+			r_time_colection.add(reservationDto.getR_time());
 			r_take_ticket_result = reservationDto.getR_take_ticket(); 
 			
 			if(r_take_ticket_result == 0) {
-				r_take_ticketColection.add("현장수령");
+				r_take_ticket_colection.add("현장 수령");
 				
 			} else if(r_take_ticket_result == 1) {
-				r_take_ticketColection.add("이메일 발송");
+				r_take_ticket_colection.add("이메일 발송");
 				
 			} else if(r_take_ticket_result == 2) {
-				r_take_ticketColection.add("문자 발송");
+				r_take_ticket_colection.add("문자 발송");
 				
 			} else {
-				r_take_ticketColection.add("오류");
+				r_take_ticket_colection.add("오류");
 				
 			}
 			
 			r_payment_result = reservationDto.getR_payment_state();
 			if(r_payment_result == 0) {
-				r_payment_stateColection.add("입금대기");
+				r_payment_state_colection.add("입금 대기");
 				
 			} else if(r_payment_result == 1) {
-				r_payment_stateColection.add("입금완료");
+				r_payment_state_colection.add("입금 완료");
 				
 			} else {
-				r_payment_stateColection.add("오류");
+				r_payment_state_colection.add("오류");
 				
 			}
 		}
 		
 		//p_id 얻어오기
 		List<String> myPIdsList = new ArrayList<>();
-		 for (String tNo :ticketNumbers) { 
+		 for (String tNo :ticket_numbers) { 
 			 
 			List<String> myPIds = IUserDao.getPerfomanceId(tNo); 
 				myPIdsList.addAll(myPIds);
 			 }
 		 
 		 //perfomanceDto 얻어오기
-		 List<PerfomanceDto> myPerfomanceDto = new ArrayList<>();
-		 List<String> p_nameColection = new ArrayList<>();
-		 List<String> p_thumColectiion = new ArrayList<>();
+		 List<PerfomanceDto> my_perfomance_Dto = new ArrayList<>();
+		 List<String> p_name_colection = new ArrayList<>();
+		 List<String> p_thum_colectiion = new ArrayList<>();
 		 for(String p_id : myPIdsList) {
 			 
-			 myPerfomanceDto = IUserDao.getPerfomaceInfo(p_id);
-			 for(PerfomanceDto perfomanceDto : myPerfomanceDto) {
-				 p_nameColection.add(perfomanceDto.getP_name());
-				 p_thumColectiion.add(perfomanceDto.getP_thum());
+			 my_perfomance_Dto = IUserDao.getPerfomaceInfo(p_id);
+			 for(PerfomanceDto perfomanceDto : my_perfomance_Dto) {
+				 p_name_colection.add(perfomanceDto.getP_name());
+				 p_thum_colectiion.add(perfomanceDto.getP_thum());
 			 }
 		 }
 		 
-		combinedInfo.put("r_reg_dateColection", r_reg_dateColection);
-		combinedInfo.put("t_seatColection", t_seatColection);
-		combinedInfo.put("r_dateColection", r_dateColection);
-		combinedInfo.put("r_timeColection", r_timeColection);
-		combinedInfo.put("r_take_ticketColection", r_take_ticketColection);
-		combinedInfo.put("r_payment_stateColection", r_payment_stateColection);
-		combinedInfo.put("p_nameColection", p_nameColection);
-		combinedInfo.put("p_thumColectiion", p_thumColectiion);
+		combinedInfo.put("r_reg_date_colection", r_reg_date_colection);
+		combinedInfo.put("t_seat_colection", t_seat_colection);
+		combinedInfo.put("r_date_colection", r_date_colection);
+		combinedInfo.put("r_time_colection", r_time_colection);
+		combinedInfo.put("r_take_ticket_colection", r_take_ticket_colection);
+		combinedInfo.put("r_payment_state_colection", r_payment_state_colection);
+		combinedInfo.put("p_name_colection", p_name_colection);
+		combinedInfo.put("p_thum_colectiion", p_thum_colectiion);
 		combinedInfo.put("myPIdsList", myPIdsList);
 		
 		}
@@ -361,10 +361,11 @@ public class UserService {
 		Map<String, Object> combinedRvInfo = new HashMap<>();
 		List<ReviewDto> rvInfo = IUserDao.getMyReviewInfo(u_id);
 		
-		List<String>p_nameColection = new ArrayList<>();
-		List<String>rv_txtColection = new ArrayList<>();
-		List<String>rv_scoreColection = new ArrayList<>();
-		List<String>rv_reg_dateColection = new ArrayList<>();
+		List<String>rv_no_colection = new ArrayList<>();
+		List<String>p_name_colection = new ArrayList<>();
+		List<String>rv_txt_colection = new ArrayList<>();
+		List<String>rv_score_colection = new ArrayList<>();
+		List<String>rv_reg_date_colection = new ArrayList<>();
 		for(ReviewDto rv_infomation : rvInfo) {
 			
 			 if (rv_infomation.getRv_txt() == null && rv_infomation.getRv_txt().isEmpty()) {
@@ -372,17 +373,19 @@ public class UserService {
 			        return null;
 			        
 			    }else {
-			    	p_nameColection.add(rv_infomation.getP_name());
-					rv_txtColection.add(rv_infomation.getRv_txt());
-					rv_scoreColection.add(Integer.toString(rv_infomation.getRv_score()));
-					rv_reg_dateColection.add(rv_infomation.getRv_reg_date());
+			    	rv_no_colection.add(Integer.toString(rv_infomation.getRv_no()));
+			    	p_name_colection.add(rv_infomation.getP_name());
+					rv_txt_colection.add(rv_infomation.getRv_txt());
+					rv_score_colection.add(Integer.toString(rv_infomation.getRv_score()));
+					rv_reg_date_colection.add(rv_infomation.getRv_reg_date());
 			    }
 			 
 			
-			combinedRvInfo.put("p_nameColection", p_nameColection);
-			combinedRvInfo.put("rv_txtColection", rv_txtColection);
-			combinedRvInfo.put("rv_scoreColection", rv_scoreColection);
-			combinedRvInfo.put("rv_reg_dateColection", rv_reg_dateColection);
+			combinedRvInfo.put("rv_no_colection", rv_no_colection);
+			combinedRvInfo.put("p_name_colection", p_name_colection);
+			combinedRvInfo.put("rv_txt_colection", rv_txt_colection);
+			combinedRvInfo.put("rv_score_colection", rv_score_colection);
+			combinedRvInfo.put("rv_reg_date_colection", rv_reg_date_colection);
 		}
 		
 		return combinedRvInfo;

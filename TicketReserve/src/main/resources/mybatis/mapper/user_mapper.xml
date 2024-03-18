@@ -40,6 +40,7 @@
 	</select>
 	<select id="getMyReviewInfo"  parameterType="String" resultType="com.office.ticketreserve.review.ReviewDto">
 		SELECT 
+			RV_NO , 
 			P_NAME , 
 			RV_SCORE , 
 			RV_TXT , 

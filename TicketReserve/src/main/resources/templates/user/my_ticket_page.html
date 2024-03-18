@@ -47,24 +47,24 @@
 							<th>수령방법</th>
 							<th>결제상태</th>
 						</tr>
-						<th:block th:if="${combinedDto != null and not #lists.isEmpty(combinedDto['r_reg_dateColection'])}">
-						 <tr th:each="index : ${#numbers.sequence(0, ((#arrays.length(combinedDto['r_reg_dateColection'])) - 1))}">
+						<th:block th:if="${combinedDto != null and not #lists.isEmpty(combinedDto['r_reg_date_colection'])}">
+						 <tr th:each="index : ${#numbers.sequence(0, ((#arrays.length(combinedDto['r_reg_date_colection'])) - 1))}">
             					
-				            <td th:text="${#strings.substringBefore(combinedDto['r_reg_dateColection'][index], ' ')}"></td>
+				            <td th:text="${#strings.substringBefore(combinedDto['r_reg_date_colection'][index], ' ')}"></td>
 				            <td th:text="${combinedDto['myPIdsList'][index]}">티켓번호</td>
 				            <td>
 					            <a th:href="@{/product/{id}(id=${combinedDto[myPIdsList][index]})}">
-					           	 <img th:src="${combinedDto['p_thumColectiion'][index]}" width="100">
+					           	 <img th:src="${combinedDto['p_thum_colectiion'][index]}" >
 					            </a>
 				            </td>
-				            <td th:text="${combinedDto['p_nameColection'][index]}">공연명</td>
-				            <td th:text="${combinedDto['t_seatColection'][index]}">좌석번호</td>
-				            <td th:text="${#strings.substringBefore(combinedDto['r_dateColection'][index], ' ')} + ' ' + ${combinedDto['r_timeColection'][index]}">관람일시</td>
-				            <td th:text="${combinedDto['r_take_ticketColection'][index]}">수령방법</td>
-				            <td th:text="${combinedDto['r_payment_stateColection'][index]}">결제상태</td>
+				            <td th:text="${combinedDto['p_name_colection'][index]}">공연명</td>
+				            <td th:text="${combinedDto['t_seat_colection'][index]}">좌석번호</td>
+				            <td th:text="${#strings.substringBefore(combinedDto['r_date_colection'][index], ' ')} + ' ' + ${combinedDto['r_time_colection'][index]}">관람일시</td>
+				            <td th:text="${combinedDto['r_take_ticket_colection'][index]}">수령방법</td>
+				            <td th:text="${combinedDto['r_payment_state_colection'][index]}">결제상태</td>
 				        </tr>
 				        </th:block>
-				         <th:block th:if="${combinedDto == null or #lists.isEmpty(combinedDto['r_reg_dateColection'])}">
+				         <th:block th:if="${combinedDto == null or #lists.isEmpty(combinedDto['r_reg_date_colection'])}">
           				<tr>
 			                <td colspan="8" th:text="${noTicketsMessage}"></td>
 			            </tr>
@@ -79,27 +79,29 @@
 				<div class="mtp_content_wrap">
 					<table>
 							<tr>
+								<th>후기번호</th>
 								<th>공연명</th>
 								<th>별점</th>
 								<th>나의리뷰</th>
 								<th></th>
 								<th>작성일</th>
 							</tr>
-							<th:block th:if="${combinedforReview != null and !#lists.isEmpty(combinedforReview['rv_reg_dateColection'])}">
-								<tr th:each="index : ${#numbers.sequence(0, #arrays.length(combinedforReview['rv_reg_dateColection']) - 1)}">
-									<td th:text="${combinedforReview['p_nameColection'][index]}">공연명</td>
-									<td th:text="${combinedforReview['rv_scoreColection'][index]}">별점</td>
-									<td th:text="${combinedforReview['rv_txtColection'][index]}">나의리뷰</td>
+							<th:block th:if="${combinedforReview != null and !#lists.isEmpty(combinedforReview['rv_reg_date_colection'])}">
+								<tr th:each="index : ${#numbers.sequence(0, #arrays.length(combinedforReview['rv_reg_date_colection']) - 1)}">
+									<td th:text="${combinedforReview['rv_no_colection'][index]}">후기번호</td>
+									<td th:text="${combinedforReview['p_name_colection'][index]}">공연명</td>
+									<td th:text="${combinedforReview['rv_score_colection'][index]}">별점</td>
+									<td th:text="${combinedforReview['rv_txt_colection'][index]}">나의리뷰</td>
 									<td>
 									<input type="button" value="수정" />
 									<input type="button" value="삭제" />
 									</td>
-									<td th:text="${#strings.substringBefore(combinedforReview['rv_reg_dateColection'][index], '.')}">작성일</td>
+									<td th:text="${#strings.substringBefore(combinedforReview['rv_reg_date_colection'][index], '.')}">작성일</td>
 								</tr>
 							</th:block>
-						 <th:block th:if="${combinedforReview == null or #lists.isEmpty(combinedforReview['rv_reg_dateColection'])}">
+						 <th:block th:if="${combinedforReview == null or #lists.isEmpty(combinedforReview['rv_reg_date_colection'])}">
 	          				<tr>
-				                <td colspan="4" th:text="${noReviewMessage}"></td>
+				                <td colspan="6" th:text="${noReviewMessage}"></td>
 				            </tr>
 			       		 </th:block>
 					</table>
