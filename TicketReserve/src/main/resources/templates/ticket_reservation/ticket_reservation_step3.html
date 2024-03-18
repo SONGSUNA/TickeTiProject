@@ -6,6 +6,10 @@
 
 <link rel="stylesheet" th:href="@{/css/ticket_reservation/ticket_reservation._step3.css}">
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script th:src="@{/js/ticket_reservation/ticket_reservation_step3.js}"></script>
+
 </head>
 <body>
 
@@ -29,7 +33,38 @@
                 </div>
 
                 <div class="reservation">
-
+					<div class="discount">
+						<p>우대 할인 항목 선택</p>
+						<form name="discount_form">
+							<input type="checkbox" name="pnm" value="pnm"> 국가유공자
+							<br>
+							<input type="checkbox" name="student" value="student"> 학생 할인
+							<br>
+							<input type="checkbox" name="disabled" value="disabled"> 장애인
+							<br>
+							<input type="checkbox" name="older" value="older"> 65세 이상
+						</form>
+						
+						<div class="discount_info">
+							※ 우대 할인의 경우 현장수령만 가능하며, 증빙서류 미지참 시 차액 지불하셔야 합니다.
+						</div>
+					</div>
+					
+					<div class="take">
+						<form name="take_form">
+							<p>수령 방법 선택</p>
+							<input type="radio" name="take_method" value="willCall"> 현장 수령
+							<br>
+							<input type="radio" name="take_method" value="mail"> 이메일 수령
+							<br>
+							<input type="radio" name="take_method" value="phone"> 문자 수령
+							<br>
+							<p>비상 연락망</p>
+							<input type="number" name="phone1"> -
+							<input type="number" name="phone2"> -
+							<input type="number" name="phone3">
+						</form>
+					</div>
                 </div>
            </div>
 
@@ -44,16 +79,52 @@
                 </div>
                 
                 <div class="select_show">
-
+                    <p>선택한 좌석</p>
+                </div>
+                
+                <div class="money">
+                    <p>결제 정보</p>
+                    <div class="line">
+                        <input name="label" 		value="티켓금액"	readonly="readonly"	disabled="disabled">
+                        <input name="ticket_price"  value="0원"			readonly="readonly"	disabled="disabled">
+                    </div>
+                    <div class="line">
+                        <input name="label" 		value="예매수수료"	readonly="readonly"	disabled="disabled">
+                        <input name="charge_price"  value="0원"			readonly="readonly"	disabled="disabled">
+                    </div>
+                    <div class="line">
+                        <input name="label" 		 value="배송료"		readonly="readonly"	disabled="disabled">
+                        <input name="delivery_value" value="0원"		readonly="readonly"	disabled="disabled">
+                    </div>
+                    <div class="line">
+                        <input name="label_bd" 	 	value="총 금액(+)"	readonly="readonly"	disabled="disabled">
+                        <input name="plus_total" 	value="0원"			readonly="readonly"	disabled="disabled">
+                    </div>
+                    <div class="line">
+                        <input name="label" 		 value="할인금액"	readonly="readonly"	disabled="disabled">
+                        <input name="discount_price" value="0원"		readonly="readonly"	disabled="disabled">
+                    </div>
+                    <div class="line">
+                        <input name="label" 		value="할인쿠폰"	readonly="readonly"	disabled="disabled">
+                        <input name="couporn_price" value="0원"			readonly="readonly"	disabled="disabled">
+                    </div>
+                    <div class="line">
+                        <input name="label_bd" 		value="총 할인금액(-)"	readonly="readonly"	disabled="disabled">
+                        <input name="minus_total"   value="0원"				readonly="readonly"	disabled="disabled">
+                    </div>
+                    <div class="line">
+                        <input name="label_bd" 		value="최종 결제 금액"	readonly="readonly"	disabled="disabled">
+                        <input name="total_value" 	value="0원"				readonly="readonly"	disabled="disabled">
+                    </div>
                 </div>
 
-                <a class="pre_button" th:href="@{/reservation/step2}">
+                <button class="pre_button">
                     이전 단계
-                </a>
+                </button>
 
-                <a class="next_button" th:href="@{/reservation/step4}">
+                <button class="next_button">
                     다음 단계
-                </a>
+                </button>
            </div>
         </div>
     </section>
