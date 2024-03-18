@@ -17,12 +17,17 @@ public class ReviewService {
 
 
 
-	public int reviewWrite(String rv_txt, int rv_score, String p_id, String u_id) {
+	public ReviewDto reviewWrite(String rv_txt, int rv_score, String p_id, String u_id) {
 		log.info("reviewWrite");
 		
 		String p_name = reviewDao.getPname(p_id);
 
-		return reviewDao.insertReview(rv_txt,rv_score,p_name,u_id);
+		int result = reviewDao.insertReview(rv_txt,rv_score,p_name,u_id);
+		
+		if (result > 0) {
+			return reviewDao.getReviewsByUser(u_id, p_id);
+		}
+		return null;
 	}
 
 
@@ -46,9 +51,11 @@ public class ReviewService {
 
 
 
-	public int reviewModifyConfirm(String rv_txt, int rv_score, int rv_no) {
-		
-		return reviewDao.updateReviewByRv_no(rv_txt,rv_score,rv_no);
+	public ReviewDto reviewModifyConfirm(String rv_txt, int rv_score, int rv_no) {
+	    
+		reviewDao.updateReviewByRv_no(rv_txt, rv_score, rv_no);
+	  
+	    return reviewDao.getReviewByRv_no(rv_no);
 	}
 
 
@@ -73,6 +80,16 @@ public class ReviewService {
 
 
 
+
+	public ReviewDto reviewModifyRefresh(int rv_no) {
+		
+		return reviewDao.getReviewByRv_no(rv_no);
+	}
+
+	public boolean hasUserReviewedPerformance(String u_id, String p_id) {
+	    return reviewDao.countReviewsByUser(u_id, p_id) > 0;
+	}
+	
 
 	
 }
