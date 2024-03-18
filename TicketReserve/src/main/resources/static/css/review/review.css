@@ -41,6 +41,17 @@ body{
 ul {
     list-style: none;
 }
+
+.review_li1{
+	width:120px;
+}
+.review_li2{
+	width:100px;
+}
+#review_list_title{
+	text-align: center;
+	margin-top: 150px;
+}
 textarea {
 	
 	max-width: 700px;

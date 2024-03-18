@@ -28,5 +28,7 @@ public interface IReviewDao {
 
 	public Double getAllStarValue(String p_name);
 
-	
+	public int countReviewsByUser(@Param("u_id") String u_id, @Param("p_id") String p_id);
+
+	public ReviewDto getReviewsByUser(@Param("u_id") String u_id, @Param("p_id") String p_id);
 }

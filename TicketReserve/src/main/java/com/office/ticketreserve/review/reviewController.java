@@ -27,18 +27,24 @@ public class reviewController {
 
 	@ResponseBody
 	@PostMapping("/review_write")
-	public int reviewWrite(@RequestParam("rv_txt") String rv_txt, @RequestParam("rv_score") int rv_score,@RequestParam("p_id") String p_id,HttpSession session) {
+	public ReviewDto reviewWrite(@RequestParam("rv_txt") String rv_txt, @RequestParam("rv_score") int rv_score,@RequestParam("p_id") String p_id,HttpSession session) {
 		log.info("review_write");
 		UserDto loginedUserDto=(UserDto) session.getAttribute("loginedUserDto");
 		
 		String u_id = loginedUserDto.getU_id();
-		
 
-		int result = reviewService.reviewWrite(rv_txt,rv_score,p_id,u_id);
-		
-
-		return result;
+		return reviewService.reviewWrite(rv_txt,rv_score,p_id,u_id);
 	}
+	
+	@ResponseBody
+	@GetMapping("/check_user_review")
+	public boolean checkUserReview(@RequestParam("u_id") String u_id, @RequestParam("p_id") String p_id) {
+		
+		boolean hasReview = reviewService.hasUserReviewedPerformance(u_id, p_id);
+		
+		return hasReview;
+	}
+	
 	
 	@ResponseBody
 	@PostMapping("/review_modify")
@@ -53,17 +59,19 @@ public class reviewController {
 	
 	@PostMapping("/review_modify_confirm")
 	@ResponseBody
-	public String reviewModifyConfirm(@RequestParam("rv_txt") String rv_txt,
+	public ReviewDto reviewModifyConfirm(@RequestParam("rv_txt") String rv_txt,
 	                                  @RequestParam("rv_score") int rv_score,
 	                                  @RequestParam("rv_no") int rv_no,
 	                                  @RequestParam("p_id") String p_id) {
 	    log.info("review_modify_confirm");
-	    int result = reviewService.reviewModifyConfirm(rv_txt, rv_score, rv_no);
+	    ReviewDto reviewDto = reviewService.reviewModifyConfirm(rv_txt, rv_score, rv_no);
 	    
+	    log.info(reviewDto);
 	    
-	    return result > 0 ? "success" : "fail";
+	    return reviewDto != null ? reviewDto : null;
 	}
 	
+
 	@ResponseBody
 	@PostMapping("/review_delete_confirm")
 	public int reviewDeleteConfirm(@RequestParam("rv_no") int rv_no) {

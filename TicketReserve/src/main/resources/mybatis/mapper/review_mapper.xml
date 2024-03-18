@@ -33,7 +33,8 @@
        	FROM 
        		TBL_REVIEW 
    		WHERE 
-   			P_NAME = #{p_name}
+   			P_NAME = #{p_name} 
+   		ORDER BY RV_NO DESC
     </select>
     
     <select id="getReviewByRv_no" parameterType="Integer" resultType="com.office.ticketreserve.review.ReviewDto">
@@ -72,4 +73,26 @@
 			P_NAME = #{p_name}
     </select>
     
+    <select id="countReviewsByUser" resultType="int">
+   		SELECT 
+    		COUNT(*)
+    	FROM 
+    		TBL_REVIEW
+   		WHERE 
+   			U_ID = #{u_id} 
+		AND 
+			P_NAME = (SELECT P_NAME FROM TBL_PERFOMANCE WHERE P_ID = #{p_id})
+	</select>
+
+	<select id="getReviewsByUser" resultType="com.office.ticketreserve.review.ReviewDto">
+   		SELECT 
+    		*
+    	FROM 
+    		TBL_REVIEW
+   		WHERE 
+   			U_ID = #{u_id} 
+		AND 
+			P_NAME = (SELECT P_NAME FROM TBL_PERFOMANCE WHERE P_ID = #{p_id})
+	</select>
+	
 </mapper>
