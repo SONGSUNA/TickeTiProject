@@ -273,7 +273,7 @@ public class UserService {
 		
 		myReservationDto = IUserDao.getMyTicketinfo(u_id);
 		 if (myReservationDto != null && !myReservationDto.isEmpty()) {
-		// t_no 뽑아내기
+		// t_no , view에서 보여줄 내역 다 뽑아내기
 		List<String> r_reg_dateColection = new ArrayList<>();
 		List<String> t_seatColection = new ArrayList<>();
 		List<String> r_dateColection = new ArrayList<>();
@@ -281,14 +281,42 @@ public class UserService {
 		List<String> r_take_ticketColection = new ArrayList<>();
 		List<String> r_payment_stateColection = new ArrayList<>();
 		List<String> ticketNumbers = new ArrayList<>();
+		int r_take_ticket_result = 0;
+		int r_payment_result = 0;
 		for(ReservationDto reservationDto : myReservationDto) {
+			
 			ticketNumbers.add(Integer.toString(reservationDto.getT_no()));
 			r_reg_dateColection.add(reservationDto.getR_reg_date()); 
 			t_seatColection.add(reservationDto.getT_seat());
 			r_dateColection.add(reservationDto.getR_date());
 			r_timeColection.add(reservationDto.getR_time());
-			r_take_ticketColection.add(Integer.toString(reservationDto.getR_take_ticket()));
-			r_payment_stateColection.add(Integer.toString(reservationDto.getR_payment_state()));
+			r_take_ticket_result = reservationDto.getR_take_ticket(); 
+			
+			if(r_take_ticket_result == 0) {
+				r_take_ticketColection.add("현장수령");
+				
+			} else if(r_take_ticket_result == 1) {
+				r_take_ticketColection.add("이메일 발송");
+				
+			} else if(r_take_ticket_result == 2) {
+				r_take_ticketColection.add("문자 발송");
+				
+			} else {
+				r_take_ticketColection.add("오류");
+				
+			}
+			
+			r_payment_result = reservationDto.getR_payment_state();
+			if(r_payment_result == 0) {
+				r_payment_stateColection.add("입금대기");
+				
+			} else if(r_payment_result == 1) {
+				r_payment_stateColection.add("입금완료");
+				
+			} else {
+				r_payment_stateColection.add("오류");
+				
+			}
 		}
 		
 		//p_id 얻어오기
