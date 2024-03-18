@@ -19,6 +19,7 @@ import com.office.ticketreserve.admin.AdminDaoForMyBatis;
 import com.office.ticketreserve.admin.AdminDto;
 import com.office.ticketreserve.productpage.PerfomanceDto;
 import com.office.ticketreserve.reservation.ReservationDto;
+import com.office.ticketreserve.review.ReviewDto;
 
 import jakarta.mail.internet.MimeMessage;
 import lombok.extern.log4j.Log4j2;
@@ -262,6 +263,7 @@ public class UserService {
 		return result;
 	
 	}
+	
 	// 나의 예매 내역
 	public Map<String, Object> getMyTicketInfo(String u_id) {
 		log.info("[UserService] getMyTicketInfo()");
@@ -322,5 +324,39 @@ public class UserService {
 		
 		}
 		return combinedInfo;
+	}
+	
+	// 나의 리뷰내역 가져오기
+	public Map<String, Object> getMyReview(String u_id) {
+		log.info("[UserService] getMyReview()");
+		
+		Map<String, Object> combinedRvInfo = new HashMap<>();
+		List<ReviewDto> rvInfo = IUserDao.getMyReviewInfo(u_id);
+		
+		List<String>p_nameColection = new ArrayList<>();
+		List<String>rv_txtColection = new ArrayList<>();
+		List<String>rv_scoreColection = new ArrayList<>();
+		List<String>rv_reg_dateColection = new ArrayList<>();
+		for(ReviewDto rv_infomation : rvInfo) {
+			
+			 if (rv_infomation.getRv_txt() == null && rv_infomation.getRv_txt().isEmpty()) {
+				 // 후기가 없는 경우 
+			        return null;
+			        
+			    }else {
+			    	p_nameColection.add(rv_infomation.getP_name());
+					rv_txtColection.add(rv_infomation.getRv_txt());
+					rv_scoreColection.add(Integer.toString(rv_infomation.getRv_score()));
+					rv_reg_dateColection.add(rv_infomation.getRv_reg_date());
+			    }
+			 
+			
+			combinedRvInfo.put("p_nameColection", p_nameColection);
+			combinedRvInfo.put("rv_txtColection", rv_txtColection);
+			combinedRvInfo.put("rv_scoreColection", rv_scoreColection);
+			combinedRvInfo.put("rv_reg_dateColection", rv_reg_dateColection);
+		}
+		
+		return combinedRvInfo;
 	}
 }

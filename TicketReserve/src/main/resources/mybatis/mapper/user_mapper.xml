@@ -38,24 +38,16 @@
 		WHERE
 			P_ID = #{p_id}
 	</select>
-		<!-- <select id="dofindIdFromDB"  parameterType="string" 
-	        resultType="string">
-	        
-	    SELECT u_id
-	 	FROM TBL_USER
-	    WHERE U_NAME = #{u_name} 
-	    AND 
-	    U_MAIL = #{u_mail}
-	    
-	    
-	</select> -->
-	<!-- <select id="getPerfomanceId" parameterType="java.util.List" resultType="java.lang.String">
-    SELECT P_ID
-    FROM TBL_TICKET
-    WHERE T_NO IN
-    <foreach item="t_no" index="index" collection="list" open="(" separator="," close=")">
-        #{t_no}
-    </foreach> 
-    
-</select>-->
+	<select id="getMyReviewInfo"  parameterType="String" resultType="com.office.ticketreserve.review.ReviewDto">
+		SELECT 
+			P_NAME , 
+			RV_SCORE , 
+			RV_TXT , 
+			RV_REG_DATE 
+		FROM
+			TBL_REVIEW
+		WHERE
+			U_ID = #{u_id}
+	</select>
+	
 </mapper>
