@@ -321,11 +321,9 @@ public class UserController {
 	        
 	    } else {
 	        model.addAttribute("noTicketsMessage", "예매 내역이 없습니다.");
-	        System.out.println("combinedDto ==>>>>>" +combinedDto );
 	    }
 	    
 	    Map<String, Object> combinedforReview = userService.getMyReview(u_id);
-	    System.out.println("combinedforReview ==>>>>>" + combinedforReview);
 	    if (combinedforReview != null) { // null 체크 추가
 	        if (!combinedforReview.isEmpty()) {
 	            model.addAttribute("combinedforReview", combinedforReview);
