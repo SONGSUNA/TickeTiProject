@@ -171,7 +171,19 @@ public class AdminService {
 		
 		return adminDao.selectAllPerfomance();
 	}
+	//페이지네이션 테스트===================
+	public List<PerfomanceDto> getPerfomanceByPage(int page, int size) {
+	    log.info("[AdminService] getPerfomanceByPage()");
+	    int offset = (page - 1) * size;
+	    return adminDao.selectPerfomanceByPage(offset, size);
+	}
 
+	public int getPerfomanceCount() {
+	    log.info("[AdminService] getPerfomanceCount()");
+	    return adminDao.selectPerfomanceCount();
+	}
+	//페이지네이션 테스트===================
+	
 	public List<PerfomanceDto> getNoTicketPfs() {
 		log.info("[AdminService] getNoTicketPfs()");
 		

@@ -60,6 +60,17 @@
 						</tr>
 					</tbody>
 				</table>
+				<div class="pagination">
+				    <a th:href="@{/admin/performance_modify(page=${((currentPage - 1) / 10) * 10})}" th:if="${currentPage > 10}">이전</a>
+				    
+				    <th:block th:with="startPage=${((currentPage - 1) / 10) * 10 + 1}, endPage=${startPage + 9}">
+				        <span th:each="page : ${#numbers.sequence(startPage, endPage < totalPages ? endPage : totalPages)}">
+				            <a th:href="@{/admin/performance_modify(page=${page})}" th:text="${page}" th:classappend="${page == currentPage ? 'active' : ''}"></a>
+				        </span>
+				    </th:block>
+				    
+				    <a th:href="@{/admin/performance_modify(page=${((currentPage - 1) / 10 + 1) * 10 + 1})}" th:if="${currentPage < totalPages - 9}">다음</a>
+				</div>
 			</div>
 			
 			<div class="search_table">
@@ -91,6 +102,8 @@
 				</table>
 			</div>
 		</div>
+		
+		
 		
 		<div class="modal_wrap">
 			<div class="perfomance_modify">

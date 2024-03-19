@@ -299,18 +299,23 @@ public class AdminController {
 		nextPage = "/admin/ticket_modify_success";
 		return nextPage;
 	}
-	
+	//페이지네이션 테스트===================
 	@GetMapping("/performance_modify")
-	public String perfomanceModify(Model model) {
-		log.info("[AdminController] admin_delete_confirm()");
-		
-		List<PerfomanceDto> perfomanceDtos = adminService.getAllPerfomance();
-		
-		model.addAttribute("perfomanceDtos", perfomanceDtos);
-		
-		String nextPage = "/admin/perfomance_modify";
-		
-		return nextPage;
+	public String perfomanceModify(@RequestParam(value = "page", defaultValue = "1") int page,
+									@RequestParam(value = "size", defaultValue = "10") int size,
+	                               Model model) {
+	    log.info("[AdminController] admin_delete_confirm()");
+
+	    List<PerfomanceDto> perfomanceDtos = adminService.getPerfomanceByPage(page, size);
+	    int totalCount = adminService.getPerfomanceCount();
+	    int totalPages = (int) Math.ceil((double) totalCount / size);
+
+	    model.addAttribute("perfomanceDtos", perfomanceDtos);
+	    model.addAttribute("currentPage", page);
+	    model.addAttribute("totalPages", totalPages);
+
+	    String nextPage = "/admin/perfomance_modify";
+	    return nextPage;
 	}
 	
 	@PostMapping("/getPerformancetInfo")

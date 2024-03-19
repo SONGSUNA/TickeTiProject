@@ -16,3 +16,16 @@ var span = document.getElementsByClassName("close")[0];
                 this.reset();
             });
 	}
+	
+document.addEventListener('DOMContentLoaded', function() {
+    // URL에서 앵커 태그 추출
+    var hash = window.location.hash;
+
+    if (hash === '#review') {
+        // 후기 부분으로 스크롤
+        var reviewSection = document.getElementById('review_list_title');
+        if (reviewSection) {
+            reviewSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+});
