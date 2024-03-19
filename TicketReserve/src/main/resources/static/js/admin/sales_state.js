@@ -112,61 +112,75 @@ function drawChart(labels, daySalesValues, daySalesConcert, daySalesMusical, day
     // 각 장르별 매출 데이터셋 추가
     if (daySalesConcert.length > 0) {
         datasets.push({
-            label: 'Concert',
+            label: '콘서트',
             data: daySalesConcert,
             backgroundColor: backgroundColor[0],
             borderColor: borderColor[0],
-            borderWidth: 0.5
+            borderWidth: 0.5,
+            stack: 'combined'
         });
     }
 
     if (daySalesMusical.length > 0) {
         datasets.push({
-            label: 'Musical',
+            label: '뮤지컬',
             data: daySalesMusical,
             backgroundColor: backgroundColor[1],
             borderColor: borderColor[1],
-            borderWidth: 0.5
+            borderWidth: 0.5,
+            stack: 'combined'
         });
     }
     
     if (daySalesTheater.length > 0) {
         datasets.push({
-            label: 'Theater',
+            label: '연극',
             data: daySalesTheater,
             backgroundColor: backgroundColor[2],
             borderColor: borderColor[2],
-            borderWidth: 0.5
+            borderWidth: 0.5,
+            stack: 'combined'
         });
     }
     
     if (daySalesClassic.length > 0) {
         datasets.push({
-            label: 'Classic',
+            label: '클래식',
             data: daySalesClassic,
             backgroundColor: backgroundColor[3],
             borderColor: borderColor[3],
-            borderWidth: 0.5
+            borderWidth: 0.5,
+            stack: 'combined'
         });
     }
     
     if (daySalesKoreanMusic.length > 0) {
         datasets.push({
-            label: 'KoreanMusic',
+            label: '국악',
             data: daySalesKoreanMusic,
             backgroundColor: backgroundColor[4],
             borderColor: borderColor[4],
-            borderWidth: 0.5
+            borderWidth: 0.5 ,
+            stack: 'combined'
         });
     }
     
     // 전체 매출에서 각 장르별 매출 데이터를 뺀 값을 데이터셋으로 추가
-    datasets.push({
-        label: 'Total Sales',
-        data: totalMinusGenres,
-        backgroundColor: 'rgba(128, 128, 128, 0.2)', // 회색 배경색
-        borderColor: 'rgba(128, 128, 128, 1)', // 회색 테두리색
-        borderWidth: 0.5
+	datasets.push({
+        label: '하루 매출',
+        data: totalMinusGenres, // 그래프 값은 totalMinusGenres
+        backgroundColor: 'rgba(128, 128, 128, 0.2)',
+        borderColor: 'rgba(128, 128, 128, 1)',
+        borderWidth: 0.5,
+        stack: 'combined',
+        datalabels: {
+            display: 'auto',
+            formatter: function(value, context) {
+                return daySalesValues[context.dataIndex].toLocaleString();
+            },
+            align: 'top',
+            anchor: 'end'
+        }
     });
     
     myChart = new Chart(ctx, {
@@ -186,7 +200,28 @@ function drawChart(labels, daySalesValues, daySalesConcert, daySalesMusical, day
                         beginAtZero: true
                     }
                 }]
+            },
+            plugins: {
+                datalabels: {
+                    color: 'black',
+                    anchor: 'center',
+                    align: 'center',
+                    formatter: Math.round
+                }
+            }, 
+            plugins: {
+                datalabels: {
+                    formatter: function(value, context) {
+                        return value.toLocaleString(); // 세자리 마다 쉼표(,) 추가
+                    }
+                }
+            },
+            title: {
+                display: true,
+                text: '단위: 원', // 그래프 우측 상단에 "단위: 원" 텍스트 추가
+                position: 'topRight'
             }
-        }
+        },
+        plugins: [ChartDataLabels]
     });
 }
