@@ -256,7 +256,7 @@
 	               <li th:if="${session.loginedUserDto != null and session.loginedUserDto.u_id.equals(review?.u_id)}">
 	                  <input type="hidden" name="rv_no" th:value="${review.rv_no}">
 	                  <input type="button" value="수정" class="reviewModifyBtn">
-	               <input type="button" value="삭제" class="reviewDeleteBtn">
+	               	  <input type="button" value="삭제" class="reviewDeleteBtn">
 	               </li>
 	               
 	            </ul>
