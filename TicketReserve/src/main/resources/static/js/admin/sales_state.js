@@ -41,15 +41,19 @@ $(document).ready(function () {
 		                let value = data[key];
 		                labels.push(key.substring(0, key.indexOf(' ')));
 		                daySalesValues.push(value.daySales);
-		                if(concert !=="")
+		                if(concert !=="" && value.concertSales !== 0)
     		                daySalesConcert.push(value.concertSales);
-		                if(musical !=="")
+    		                
+		                if(musical !=="" && value.musicalSales !== 0)
 		                	daySalesMusical.push(value.musicalSales);
-		                if(theater !=="")
+		                	
+		                if(theater !=="" && value.theaterSales !== 0)
 		                	daySalesTheater.push(value.theaterSales);
-		                if(classic !=="")
+		                	
+		                if(classic !=="" && value.classicSales !== 0)
 		                	daySalesClassic.push(value.classicSales);
-	                	if(koreanMusic !=="")
+		                	
+	                	if(koreanMusic !=="" && value.koreanMusicSales !== 0)
 		               		daySalesKoreanMusic.push(value.koreanMusicSales);
 		                
 		            });
@@ -67,12 +71,12 @@ $(document).ready(function () {
 });
 
 function drawChart(labels, daySalesValues, daySalesConcert, daySalesMusical, daySalesTheater, daySalesClassic, daySalesKoreanMusic) {
-    var ctx = document.getElementById('myChart').getContext('2d');
+    let ctx = document.getElementById('myChart').getContext('2d');
     
     if(myChart)
     	myChart.destroy();
 
-    var backgroundColor = [
+    let backgroundColor = [
         'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',
         'rgba(255, 206, 86, 0.2)',
@@ -80,7 +84,7 @@ function drawChart(labels, daySalesValues, daySalesConcert, daySalesMusical, day
         'rgba(153, 102, 255, 0.2)'
     ];
 
-    var borderColor = [
+    let borderColor = [
         'rgba(255, 99, 132, 1)',
         'rgba(54, 162, 235, 1)',
         'rgba(255, 206, 86, 1)',
@@ -88,7 +92,7 @@ function drawChart(labels, daySalesValues, daySalesConcert, daySalesMusical, day
         'rgba(153, 102, 255, 1)'
     ];
     
-    var datasets = [];
+    let datasets = [];
 
     // 전체 매출에서 각 장르별 매출 데이터를 뺀 값을 계산
     let totalMinusGenres = daySalesValues.slice();
@@ -168,7 +172,7 @@ function drawChart(labels, daySalesValues, daySalesConcert, daySalesMusical, day
     // 전체 매출에서 각 장르별 매출 데이터를 뺀 값을 데이터셋으로 추가
 	datasets.push({
         label: '하루 매출',
-        data: totalMinusGenres, // 그래프 값은 totalMinusGenres
+        data: totalMinusGenres,
         backgroundColor: 'rgba(128, 128, 128, 0.2)',
         borderColor: 'rgba(128, 128, 128, 1)',
         borderWidth: 0.5,
