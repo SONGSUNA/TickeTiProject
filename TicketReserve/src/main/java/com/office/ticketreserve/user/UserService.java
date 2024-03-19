@@ -273,6 +273,7 @@ public class UserService {
 		
 		myReservationDto = IUserDao.getMyTicketinfo(u_id);
 		 if (myReservationDto != null && !myReservationDto.isEmpty()) {
+			 
 		// t_no , view에서 보여줄 내역 다 뽑아내기
 		List<String> r_reg_date_colection = new ArrayList<>();
 		List<String> t_seat_colection = new ArrayList<>();
@@ -283,6 +284,7 @@ public class UserService {
 		List<String> ticket_numbers = new ArrayList<>();
 		int r_take_ticket_result = 0;
 		int r_payment_result = 0;
+		
 		for(ReservationDto reservationDto : myReservationDto) {
 			
 			ticket_numbers.add(Integer.toString(reservationDto.getT_no()));
@@ -351,19 +353,7 @@ public class UserService {
 		combinedInfo.put("myPIdsList", myPIdsList);
 		combinedInfo.put("ticket_numbers", ticket_numbers);
 		
-		} else {
-	        // 예약 내역이 없을 경우 빈 리스트로 초기화
-	        combinedInfo.put("r_reg_date_colection", new ArrayList<>());
-	        combinedInfo.put("t_seat_colection", new ArrayList<>());
-	        combinedInfo.put("r_date_colection", new ArrayList<>());
-	        combinedInfo.put("r_time_colection", new ArrayList<>());
-	        combinedInfo.put("r_take_ticket_colection", new ArrayList<>());
-	        combinedInfo.put("r_payment_state_colection", new ArrayList<>());
-	        combinedInfo.put("p_name_colection", new ArrayList<>());
-	        combinedInfo.put("p_thum_colectiion", new ArrayList<>());
-	        combinedInfo.put("myPIdsList", new ArrayList<>());
-	        combinedInfo.put("ticket_numbers", new ArrayList<>());
-	    }
+		}
 		return combinedInfo;
 	}
 	
@@ -373,6 +363,8 @@ public class UserService {
 		
 		Map<String, Object> combinedRvInfo = new HashMap<>();
 		List<ReviewDto> rvInfo = IUserDao.getMyReviewInfo(u_id);
+		
+		if (rvInfo != null && !rvInfo.isEmpty()) {
 		
 		List<String>rv_no_colection = new ArrayList<>();
 		List<String>p_name_colection = new ArrayList<>();
@@ -393,7 +385,7 @@ public class UserService {
 					rv_reg_date_colection.add(rv_infomation.getRv_reg_date());
 			    }
 			 
-			
+		}
 			combinedRvInfo.put("rv_no_colection", rv_no_colection);
 			combinedRvInfo.put("p_name_colection", p_name_colection);
 			combinedRvInfo.put("rv_txt_colection", rv_txt_colection);
