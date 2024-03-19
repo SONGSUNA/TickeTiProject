@@ -456,7 +456,9 @@
 	</delete>
 	
 	<select id="selectReviewBySearch" parameterType="map" resultType="com.office.ticketreserve.review.ReviewDto">
+	 
 	  SELECT * FROM TBL_REVIEW
+	  
 	  <where>
 		  <if test="u_id != null and u_id != ''">
 		    AND U_ID LIKE '%' || #{u_id} || '%'
@@ -465,6 +467,28 @@
 		    AND P_NAME LIKE '%' || #{p_name} || '%'
 		  </if>
 	  </where>
+	  
 	</select>
+	
+	<select id="selectPerfomanceByPage" resultType="com.office.ticketreserve.productpage.PerfomanceDto">
+        
+        SELECT *
+        FROM (
+            SELECT ROWNUM AS rn, p.*
+            FROM (
+                SELECT *
+                FROM TBL_PERFOMANCE
+                ORDER BY p_id DESC
+            ) p
+            WHERE ROWNUM &lt;= #{offset} + #{size}
+        )
+        WHERE rn &gt; #{offset}
+    </select>
+
+    <select id="selectPerfomanceCount" resultType="int">
+        SELECT COUNT(*)
+        FROM TBL_PERFOMANCE
+    </select>
+	
 	
 </mapper>
