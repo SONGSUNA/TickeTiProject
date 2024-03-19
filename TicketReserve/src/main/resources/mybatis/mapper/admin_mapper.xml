@@ -438,7 +438,7 @@
 			parameterType="map" 
 			resultType="com.office.ticketreserve.reservation.ReservationDto">
 			
-			SELECT * FROM TBL_RESERVE WHERE R_REG_DATE BETWEEN TO_DATE(#{stDate})
+			SELECT * FROM TBL_RESERVE2 WHERE R_REG_DATE BETWEEN TO_DATE(#{stDate})
 													   AND TO_DATE(#{edDate})
 	</select>
 	
