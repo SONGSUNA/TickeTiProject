@@ -78,16 +78,6 @@ inputp .w_modify_btn {
 	cursor: poninter;
 }
 
-/* 양식 내 모든 버튼 호버시 */
-/* form input[type="button"]:hover,
-input[type="reset"]:hover,
-#check_id_msg:hover,
-.pw_modify_btn:hover {
-	background-color: #2D9596;
-	border-color: #9AD0C2;
-	color: #F1FADA;
-	cursor: pointer;
-} */
 
 b {
 	font-size: 1.0em;
@@ -111,10 +101,7 @@ form input[type="password"]:focus,
 form input[type="number"]:focus {
 	outline: none;
 }
-
-/* .all_user_form_wrap {
-	margin-bottom: 120px;
-} */
+y
 
 form input[name="u_mail_pre"],
 form input[name="u_mail_suf"] {
@@ -158,6 +145,3 @@ form[name="modify_form"] {
 	height: 400px;
 	margin: 0 auto;
 }
-/* .small_form_btn {
-	margin-left: 0;
-} */
