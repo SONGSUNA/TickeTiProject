@@ -174,11 +174,11 @@ function doReserve() {
             "p_id": p_id
         },
         success: function(response) {
-            console.log(response);
+            if(response == "logout") {
+				alert("예매를 위해 로그인이 필요합니다.");
+				return;
+			}
             window.open("/reservation/step1", "_blank", "width=855, height=565");
-        },
-        error: function(xhr, status, error) {
-            console.log('서버 요청 중 오류가 발생했습니다.');
         }
     });
 }

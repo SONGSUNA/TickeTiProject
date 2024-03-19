@@ -66,6 +66,7 @@ window.onload = function() {
 			  	totalPrice = formatNumber(data.totalPrice);
 			  	selectedSeats = data.selectedSeats;
 			  	u_id = data.u_id;
+				t_no = data.t_no;			  	
 			  	
 			  	const selectShow = document.querySelector('.select_show');
 			  	const seatItem = document.createElement('div');
@@ -97,7 +98,6 @@ window.onload = function() {
            }
        })
    };
-   
 
    // getDateTime 함수 호출
    getDateTime();
@@ -236,11 +236,11 @@ window.onload = function() {
 	    if (selectedSeats[1] != null) {
 			r_price = r_price / 2;
 		}
-	    let tiketInfos = [];
 	
-	    let tiketInfo1 = {
+	    let tiketInfo = {
 	        "u_id": u_id,
 	        "r_sub_phone": r_sub_phone,
+	        "t_no": t_no,
 	        "r_date": selectedDate,
 	        "r_time": r_time,
 	        "r_take_ticket": r_take_ticket,
@@ -249,30 +249,31 @@ window.onload = function() {
 	        "r_discount": getSelectedDiscounts()
 	    };
 	
-	    tiketInfos.push(tiketInfo1);
-	
 	    if (selectedSeats[1] != null) {
-	        let tiketInfo2 = {
-	            "u_id": u_id,
-	            "r_sub_phone": r_sub_phone,
-	            "r_date": selectedDate,
-	            "r_time": r_time,
-	            "r_take_ticket": r_take_ticket,
-	            "r_price": total_value.value,
-	            "t_seat": selectedSeats[1].match(/\d+/)[0],
-	            "r_discount": getSelectedDiscounts()
-	        };
-	
-	        tiketInfos.push(tiketInfo2);
+	        tiketInfo = {
+		        "u_id": u_id,
+		        "r_sub_phone": r_sub_phone,
+		        "t_no": t_no,
+		        "r_date": selectedDate,
+		        "r_time": r_time,
+		        "r_take_ticket": r_take_ticket,
+		        "r_price": r_price,
+		        "t_seat": selectedSeats[0].match(/\d+/)[0],
+		        "t_seat2": selectedSeats[1].match(/\d+/)[0],
+		        "r_discount": getSelectedDiscounts()
+		    };	
 	    }
 	
 	    $.ajax({
 	        url: '/reservation/setTikietInfo',
 	        type: 'POST',
 	        contentType: 'application/json',
-	        data: JSON.stringify(tiketInfos),
+	        data: JSON.stringify(tiketInfo),
 	        success: function(data) {
-	            console.log("**");
+	            console.log(data);
+	            let discount = parseInt(discount_price.value.replace("원", "").replace(",", ""));
+	            const step3 = window.location.href;
+	            location.href = "/reservation/step4?discount=" + discount + "&step3=" + encodeURIComponent(step3);
 	        },
 	        error: function(xhr, status, error) {
 	            console.log("AJAX 요청 실패: " + status);
@@ -281,24 +282,31 @@ window.onload = function() {
 	        }
 	    });
 	});
-	
+
+			
 	function getSelectedDiscounts() {
 	  const discounts = [];
 	
 	  if (pnm.checked) {
-	    discounts.push("pnm");
+	    discounts.push("국가유공자");
 	  }
 	  if (student.checked) {
-	    discounts.push("student");
+	    discounts.push("학생");
 	  }
 	  if (disabled.checked) {
-	    discounts.push("disabled");
+	    discounts.push("장애인");
 	  }
 	  if (older.checked) {
-	    discounts.push("older");
+	    discounts.push("65세");
+	  }
+	  
+	  if (discounts.length === 0) {
+	    discounts.push("우대 할인 없음");
 	  }
 	
-	  return discounts;
+	  const discountString = discounts.join(",");
+
+  	  return discountString;
 	}
 
 	

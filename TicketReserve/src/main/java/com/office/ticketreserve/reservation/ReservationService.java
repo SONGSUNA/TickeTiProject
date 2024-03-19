@@ -64,6 +64,20 @@ public class ReservationService {
 		return reserveSeats.isEmpty() ? null : reserveSeats;
 	}
 	
+	public int reserveConfirm(Map<String, Object> hashMap) {
+		log.info("[ReservationService] reserveConfirm()");
+		
+		log.info(hashMap.get("r_discount"));
+		
+		int result = reservationDao.insertReservationSeat1(hashMap);
+		
+		if (hashMap.get("t_seat2") != null)
+			result = reservationDao.insertReservationSeat2(hashMap);
+		
+		return result;
+	}
+
+
 	// util ========================================================================================
 	public static String convertTimeFormat(String time) {
 		String numberOnly = time.replaceAll("[^0-9]", "");

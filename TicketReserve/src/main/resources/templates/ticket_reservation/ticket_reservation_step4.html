@@ -6,13 +6,9 @@
 
 <link rel="stylesheet" th:href="@{/css/ticket_reservation/ticket_reservation._step4.css}">
 
-<script th:inline="javascript">
-    /*<![CDATA[*/
-    window.selectedDateFromServer = /*[[${selectedDate}]]*/ null;
-    window.selectedTimeFromServer = /*[[${selectedTime}]]*/ null;
-    window.p_id = /*[[${p_id}]]*/ null;
-    /*]]>*/
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script th:src="@{/js/ticket_reservation/ticket_reservation_step4.js}"></script>
 
 </head>
 <body>
@@ -37,7 +33,24 @@
                 </div>
 
                 <div class="reservation">
-
+					<div class="pay_method">
+						<p> 결제 방법 선택 </p>
+						<img id="payment_kakao" th:src="@{/img/ticket_reservation/kakaopay.svg}" >
+						<img id="payment_payco" th:src="@{/img/ticket_reservation/payco.png}" onclick="payco()">
+					</div>
+					
+					<div class="pay_info">
+						<p>결제 유의 사항</p>
+						<ul>
+					        <li>결제 전 상품명, 가격, 할인 정보 등을 반드시 확인해 주시기 바랍니다.</li>
+					        <li>결제는 카카오페이, 은행 송금 등 선택하신 결제 방법에 따라 진행됩니다.</li>
+					        <li>은행 송금 시, 입금자명이 예약자명과 동일해야 처리가 가능합니다.</li>
+					        <li>결제 과정에서 문제가 발생한 경우, 고객센터나 문의하기 페이지를 통해 즉시 연락주시기 바랍니다.</li>
+					        <li>결제 후에는 결제 취소 및 환불 정책을 확인하시기 바랍니다.</li>
+					        <li>보안을 위해 개인 정보 및 결제 정보 입력 시에는 공공 와이파이 등 불안전한 네트워크 사용을 피해 주시기 바랍니다.</li>
+					        <li>결제 진행 시, 결제 수단 별로 제공되는 할인 혜택이 다를 수 있으니 이점 유의하여 선택해 주시기 바랍니다.</li>
+					    </ul>
+					</div>
                 </div>
            </div>
 
@@ -52,19 +65,63 @@
                 </div>
                 
                 <div class="select_show">
-
+                    <p>선택한 좌석</p>
+                </div>
+                
+                <div class="money">
+                    <p>결제 정보</p>
+                    <div class="line">
+                        <input name="label" 		value="티켓금액"	readonly="readonly"	disabled="disabled">
+                        <input name="ticket_price"  value="0원"			readonly="readonly"	disabled="disabled">
+                    </div>
+                    <div class="line">
+                        <input name="label" 		value="예매수수료"	readonly="readonly"	disabled="disabled">
+                        <input name="charge_price"  value="0원"			readonly="readonly"	disabled="disabled">
+                    </div>
+                    <div class="line">
+                        <input name="label" 		 value="배송료"		readonly="readonly"	disabled="disabled">
+                        <input name="delivery_value" value="0원"		readonly="readonly"	disabled="disabled">
+                    </div>
+                    <div class="line">
+                        <input name="label_bd" 	 	value="총 금액(+)"	readonly="readonly"	disabled="disabled">
+                        <input name="plus_total" 	value="0원"			readonly="readonly"	disabled="disabled">
+                    </div>
+                    <div class="line">
+                        <input name="label" 		 value="할인금액"	readonly="readonly"	disabled="disabled">
+                        <input name="discount_price" value="0원"		readonly="readonly"	disabled="disabled">
+                    </div>
+                    <div class="line">
+                        <input name="label" 		value="할인쿠폰"	readonly="readonly"	disabled="disabled">
+                        <input name="couporn_price" value="0원"			readonly="readonly"	disabled="disabled">
+                    </div>
+                    <div class="line">
+                        <input name="label_bd" 		value="총 할인금액(-)"	readonly="readonly"	disabled="disabled">
+                        <input name="minus_total"   value="0원"				readonly="readonly"	disabled="disabled">
+                    </div>
+                    <div class="line">
+                        <input name="label_bd" 		value="최종 결제 금액"	readonly="readonly"	disabled="disabled">
+                        <input name="total_value" 	value="0원"				readonly="readonly"	disabled="disabled">
+                    </div>
                 </div>
 
-                <a class="pre_button" th:href="@{/reservation/step3}">
+                <button class="pre_button">
                     이전 단계
-                </a>
+                </button>
 
-                <a class="next_button" href="#none">
-                    결제하기
-                </a>
+                <button class="next_button">
+                    예매 취소
+                </button>
            </div>
         </div>
     </section>
 
 </body>
+
+<!-- 포트원 결제 -->
+    <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+    <script th:src="@{/js/ticket_reservation/payment_kakao.js}"></script>
+    <script th:src="@{/js/ticket_reservation/payment_payco.js}"></script>
+<!-- 포트원 결제 -->
+
 </html>

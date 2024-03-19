@@ -4,7 +4,9 @@
 
 <mapper namespace="com.office.ticketreserve.reservation.ReservationDao" >
 
-	<select id="selectReservation" parameterType="map" resultType="com.office.ticketreserve.reservation.ReservationDto">
+	<select id="selectReservation" 
+			parameterType="map" 
+			resultType="com.office.ticketreserve.reservation.ReservationDto">
 	
 	    SELECT * FROM TBL_RESERVE
 	    <where>
@@ -14,5 +16,23 @@
 	    </where>
 	    
 	</select>
+	
+	<insert id="insertReservationSeat1"
+			parameterType="map" >
+		INSERT INTO 
+			TBL_RESERVE
+				(R_NO, U_ID, R_SUB_PHONE, T_NO, R_DATE, R_TIME, R_TAKE_TICKET, R_PRICE, R_PAYMENT_STATE, T_SEAT, R_REG_DATE, R_MOD_DATE, R_DISCOUNT) 
+		VALUES
+			(RESERVE_SEQ.NEXTVAL, #{u_id}, #{r_sub_phone}, #{t_no}, #{r_date}, #{r_time}, #{r_take_ticket}, #{r_price}, 1, #{t_seat}, SYSTIMESTAMP, SYSTIMESTAMP, #{r_discount})
+	</insert>
+	
+	<insert id="insertReservationSeat2"
+			parameterType="map" >
+		INSERT INTO 
+			TBL_RESERVE
+				(R_NO, U_ID, R_SUB_PHONE, T_NO, R_DATE, R_TIME, R_TAKE_TICKET, R_PRICE, R_PAYMENT_STATE, T_SEAT, R_REG_DATE, R_MOD_DATE, R_DISCOUNT) 
+		VALUES
+			(RESERVE_SEQ.NEXTVAL, #{u_id}, #{r_sub_phone}, #{t_no}, #{r_date}, #{r_time}, #{r_take_ticket}, #{r_price}, 1, #{t_seat2}, SYSTIMESTAMP, SYSTIMESTAMP, #{r_discount})
+	</insert>
 
 </mapper>

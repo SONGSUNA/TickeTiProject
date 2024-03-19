@@ -10,4 +10,8 @@ public interface ReservationDao {
 
 	List<ReservationDto> selectReservation(Map<String, Object> dateTime);
 
+	int insertReservationSeat1(Map<String, Object> hashMap);
+
+	int insertReservationSeat2(Map<String, Object> hashMap);
+
 }
