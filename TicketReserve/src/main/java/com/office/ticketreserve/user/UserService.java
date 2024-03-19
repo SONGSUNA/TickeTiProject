@@ -368,6 +368,9 @@ public class UserService {
 		List<String>rv_txt_colection = new ArrayList<>();
 		List<String>rv_score_colection = new ArrayList<>();
 		List<String>rv_reg_date_colection = new ArrayList<>();
+		List<String>p_names = new ArrayList<>();
+		List<String>p_ids = new ArrayList<>();
+		
 		for(ReviewDto rv_infomation : rvInfo) {
 			
 			 if (rv_infomation.getRv_txt() == null && rv_infomation.getRv_txt().isEmpty()) {
@@ -375,6 +378,12 @@ public class UserService {
 			        return null;
 			        
 			    }else {
+			    	p_names.add(rv_infomation.getP_name());
+			    	
+			    	for(String p_name :p_names) {
+			    		
+			    		p_ids.add(IUserDao.getPId(p_name));
+			    	}
 			    	rv_no_colection.add(Integer.toString(rv_infomation.getRv_no()));
 			    	p_name_colection.add(rv_infomation.getP_name());
 					rv_txt_colection.add(rv_infomation.getRv_txt());
@@ -388,6 +397,7 @@ public class UserService {
 			combinedRvInfo.put("rv_txt_colection", rv_txt_colection);
 			combinedRvInfo.put("rv_score_colection", rv_score_colection);
 			combinedRvInfo.put("rv_reg_date_colection", rv_reg_date_colection);
+			combinedRvInfo.put("p_ids", p_ids);
 		}
 		
 		return combinedRvInfo;

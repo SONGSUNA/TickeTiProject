@@ -23,7 +23,8 @@ public interface IUserDaoForMybatis {
 	public List<String>  getPerfomanceId(String tNo);
 	public List<PerfomanceDto> getPerfomaceInfo(String p_id);
 	//리뷰 가져오기
-	public List<ReviewDto> getMyReviewInfo(String u_id);	
+	public List<ReviewDto> getMyReviewInfo(String u_id);
+	public String getPId(String p_name);	
 
 
 }
