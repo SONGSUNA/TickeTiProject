@@ -51,14 +51,14 @@
 						 <tr th:each="index : ${#numbers.sequence(0, ((#arrays.length(combinedDto['r_reg_date_colection'])) - 1))}">
             					
 				            <td th:text="${#strings.substringBefore(combinedDto['r_reg_date_colection'][index], ' ')}"></td>
-				            <td th:text="${combinedDto['myPIdsList'][index]}">티켓번호</td>
+				            <td th:text="${combinedDto['ticket_numbers'][index]}">티켓번호</td>
 				            <td>
-					            <a th:href="@{/product/{id}(id=${combinedDto[myPIdsList][index]})}">
+					            <a th:href="@{/product/{id}(id=${combinedDto['myPIdsList'][index]})}">
 					           	 <img th:src="${combinedDto['p_thum_colectiion'][index]}" >
 					            </a>
 				            </td>
 				            <td >
-				            	 <a th:href="@{/product/{id}(id=${combinedDto[myPIdsList][index]})}">
+				            	 <a th:href="@{/product/{id}(id=${combinedDto['myPIdsList'][index]})}">
 					           		 <span th:text="${combinedDto['p_name_colection'][index]}" ></span>
 					            </a>
 					        </td>
@@ -95,7 +95,7 @@
 									<td th:text="${combinedforReview['p_name_colection'][index]}">공연명</td>
 									<td th:text="${combinedforReview['rv_score_colection'][index]}">별점</td>
 									<td>
-										<a th:href="@{'/product/' + ${combinedDto.myPIdsList[index]}}+'#review'">
+										<a th:href="@{'/product/' + ${combinedDto['myPIdsList'][index]}}+'#review'">
 											<span  th:text="${combinedforReview['rv_txt_colection'][index]}"></span>
 										</a>
 									</td>
