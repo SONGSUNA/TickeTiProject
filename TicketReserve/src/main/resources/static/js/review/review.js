@@ -89,9 +89,11 @@ document.addEventListener('DOMContentLoaded', function() {
         form.find('textarea[name="rv_txt"]').val('');
 
         displayReviewRatings();
-
+	
         // 리뷰 등록 모달 닫기
         $('.review_modal_wrap').hide();
+        //평균별점 업데이트
+        updateAvgStar();
         alert('리뷰등록이 성공하였습니다');
       },
       error: function(xhr, status, error) {
@@ -234,7 +236,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // 리뷰 수정 폼 닫기
         $(".review_mod_wrap").hide();
-
+		//평균별점 업데이트
+		updateAvgStar();
         alert('리뷰수정이 성공하였습니다');
       },
       error: function(xhr, status, error) {
@@ -263,6 +266,8 @@ document.addEventListener('DOMContentLoaded', function() {
       },
       success: function(response) {
         alert('리뷰가 삭제되었습니다.');
+        //평균별점 업데이트
+        updateAvgStar();
         $("div[data-review-no='" + rv_no + "']").remove();
       },
       error: function(xhr, status, error) {
@@ -271,4 +276,27 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
+  function updateAvgStar() {
+  var url = document.URL;
+  var p_id = url.split("product/")[1];
+
+  $.ajax({
+    url: '/product/avg_star',
+    type: 'GET',
+    data: { "p_id": p_id },
+    success: function(response) {
+      // 기존 평균 별점 요소 제거
+      $('.avgStarValue').empty();
+      
+      // 새로운 평균 별점 값으로 요소 생성하여 추가
+      var avgStarValue = document.createElement('span');
+      avgStarValue.className = 'avgStarValue';
+      avgStarValue.textContent = response.toFixed(1); // 소수점 한 자리까지 표시
+      $('.reviewAvg').append(avgStarValue);
+    },
+    error: function(xhr, status, error) {
+      console.error('평균 별점 업데이트 실패:', error);
+    }
+  });
+}
 });
