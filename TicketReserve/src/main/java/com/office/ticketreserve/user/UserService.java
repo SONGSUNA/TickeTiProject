@@ -175,17 +175,15 @@ public class UserService {
 	//비밀번호 찾기 메일 전송하기
 	private void sendNewPasswordByMail(String toMailAddr , String newPassword) {
 		log.info("[UserService] sendNewPasswordByMail()");
-		
 		MimeMessagePreparator mimeMessagePreparator = new MimeMessagePreparator() {
 			
 			@Override
 			public void prepare(MimeMessage mimeMessage) throws Exception {
 				
 				MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true, "utf-8");
-				mimeMessageHelper.setTo("snsong91@gmail.com");
+				mimeMessageHelper.setTo(toMailAddr);
 				mimeMessageHelper.setSubject("[TikeTi] 새 비밀번호 안내입니다.");
-				String emailBody = "새 비밀번호: " + newPassword + "<br><br>"
-                        + "<p style='color:red;'>로그인 후 보안을 위해 비밀번호를 변경해주세요.</p>";
+				String emailBody = "새 비밀번호: " + newPassword +  "로그인 후 보안을 위해 비밀번호를 변경해주세요.";
 				mimeMessageHelper.setText(emailBody, false);
 			}
 		};
