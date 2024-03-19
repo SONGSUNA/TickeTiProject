@@ -362,6 +362,8 @@ public class AdminController {
 	    
 	    Map<String, AdminChartDto> admChartDto = adminService.salesStateSearch(stDate, edDate);
 	    
+	    log.info("[AdminController] salesStateSearch()" + admChartDto);
+	    
 	    return admChartDto.isEmpty()? null : admChartDto;
 	}
 	
