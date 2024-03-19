@@ -349,8 +349,21 @@ public class UserService {
 		combinedInfo.put("p_name_colection", p_name_colection);
 		combinedInfo.put("p_thum_colectiion", p_thum_colectiion);
 		combinedInfo.put("myPIdsList", myPIdsList);
+		combinedInfo.put("ticket_numbers", ticket_numbers);
 		
-		}
+		} else {
+	        // 예약 내역이 없을 경우 빈 리스트로 초기화
+	        combinedInfo.put("r_reg_date_colection", new ArrayList<>());
+	        combinedInfo.put("t_seat_colection", new ArrayList<>());
+	        combinedInfo.put("r_date_colection", new ArrayList<>());
+	        combinedInfo.put("r_time_colection", new ArrayList<>());
+	        combinedInfo.put("r_take_ticket_colection", new ArrayList<>());
+	        combinedInfo.put("r_payment_state_colection", new ArrayList<>());
+	        combinedInfo.put("p_name_colection", new ArrayList<>());
+	        combinedInfo.put("p_thum_colectiion", new ArrayList<>());
+	        combinedInfo.put("myPIdsList", new ArrayList<>());
+	        combinedInfo.put("ticket_numbers", new ArrayList<>());
+	    }
 		return combinedInfo;
 	}
 	
