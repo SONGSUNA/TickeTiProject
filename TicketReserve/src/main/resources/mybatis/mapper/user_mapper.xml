@@ -52,5 +52,13 @@
 		ORDER BY
 			RV_REG_DATE	DESC
 	</select>
+	<select id="getPId" parameterType="String" resultType="java.lang.String">
+    	SELECT
+    		 P_ID
+    	FROM 
+    		TBL_PERFOMANCE
+    	WHERE 
+    		P_NAME = #{p_name}
+</select>
 	
 </mapper>
