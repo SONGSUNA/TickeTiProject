@@ -1,32 +1,26 @@
 @font-face {
-    font-family: 'LINESeedKR-Th';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Th.woff2') format('woff2');
-    font-weight: 100;
-    font-style: normal;
+  font-family: 'LINESeedKR-Th';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Th.woff2') format('woff2');
+  font-weight: 100;
+  font-style: normal;
 }
+
 @font-face {
-    font-family: 'LINESeedKR-Rg';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Rg.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-}
- @font-face {
-    font-family: 'LINESeedKR-Bd';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-}
-          
-body {
-    font-family: 'LINESeedKR-Rg';
+  font-family: 'LINESeedKR-Rg';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Rg.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
 }
 
-a {
-	text-decoration: none;
-	color: #fff;
+@font-face {
+  font-family: 'LINESeedKR-Bd';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
 }
 
 body {
+  font-family: 'LINESeedKR-Rg';
   margin: 0;
   padding: 0;
   display: flex;
@@ -54,20 +48,124 @@ body {
   border-bottom: 1px solid rgba(255, 255, 255, .2);
 }
 
-
-
 .sidebar li.logout {
-	position: absolute;
-  	bottom: 10px;
-  	width: 250px;
-    box-sizing: border-box;
-    border-top: 1px solid rgba(255, 255, 255, .2);
-} 
-
-.sidebar li	a {
-	display: inline-block;
-	width: 100%;
+  position: absolute;
+  bottom: 10px;
+  width: 250px;
+  box-sizing: border-box;
+  border-top: 1px solid rgba(255, 255, 255, .2);
 }
+
+.sidebar li a {
+  display: inline-block;
+  width: 100%;
+  color: #fff;
+  text-decoration: none;
+}
+
 .sidebar li.review_management {
   background-color: #2D9596;
+}
+
+.main {
+  flex: 1;
+  padding: 20px;
+}
+
+h1 {
+  margin-top: 0;
+}
+
+.review_search {
+  margin-bottom: 20px;
+}
+
+.review_search form {
+  display: flex;
+  align-items: center;
+}
+
+.review_search span {
+  margin-right: 10px;
+}
+
+.review_search input[type="text"] {
+  padding: 5px;
+  margin-right: 10px;
+}
+
+.review_manage_table {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+tr:nth-child(2n) {
+  background-color: #f9f9f9;
+}
+
+td {
+  vertical-align: middle;
+}
+
+td button {
+  padding: 5px 10px;
+  border: none;
+  background-color: #265073;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+td button:hover {
+  background-color: #cc0000;
+}
+
+th:nth-child(1),
+td:nth-child(1) {
+  width: 80px;
+}
+
+th:nth-child(2),
+td:nth-child(2),
+th:nth-child(3),
+td:nth-child(3) {
+  width: 150px;
+}
+
+th:nth-child(4),
+td:nth-child(4) {
+  width: 100px;
+}
+
+th:nth-child(5),
+td:nth-child(5) {
+  width: 300px;
+}
+
+th:nth-child(6),
+td:nth-child(6),
+th:nth-child(7),
+td:nth-child(7) {
+  width: 120px;
+}
+
+th:nth-child(8),
+td:nth-child(8) {
+  width: 80px;
 }

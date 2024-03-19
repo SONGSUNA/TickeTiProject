@@ -1,32 +1,26 @@
 @font-face {
-    font-family: 'LINESeedKR-Th';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Th.woff2') format('woff2');
-    font-weight: 100;
-    font-style: normal;
+  font-family: 'LINESeedKR-Th';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Th.woff2') format('woff2');
+  font-weight: 100;
+  font-style: normal;
 }
+
 @font-face {
-    font-family: 'LINESeedKR-Rg';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Rg.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-}
- @font-face {
-    font-family: 'LINESeedKR-Bd';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-}
-          
-body {
-    font-family: 'LINESeedKR-Rg';
+  font-family: 'LINESeedKR-Rg';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Rg.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
 }
 
-a {
-	text-decoration: none;
-	color: #fff;
+@font-face {
+  font-family: 'LINESeedKR-Bd';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
 }
 
 body {
+  font-family: 'LINESeedKR-Rg';
   margin: 0;
   padding: 0;
   display: flex;
@@ -59,90 +53,204 @@ body {
 }
 
 .sidebar li.logout {
-	position: absolute;
-  	bottom: 10px;
-  	width: 250px;
-    box-sizing: border-box;
-    border-top: 1px solid rgba(255, 255, 255, .2);
-} 
+  position: absolute;
+  bottom: 10px;
+  width: 250px;
+  box-sizing: border-box;
+  border-top: 1px solid rgba(255, 255, 255, .2);
+}
 
-.sidebar li	a {
-	display: inline-block;
-	width: 100%;
+.sidebar li a {
+  display: inline-block;
+  width: 100%;
+  color: #fff;
+  text-decoration: none;
+}
+
+.main {
+  flex: 1;
+  padding: 20px;
+}
+
+h1 {
+  margin-top: 0;
 }
 
 .list_menu {
-	display: flex;
-} 
-
-.list_menu	div {
-	margin-right: 15px;
-	border: 1px solid #dadada;
-	width: 120px;
-	
-	&:hover {
-      cursor: pointer;
-  }
+  display: flex;
+  margin-bottom: 20px;
 }
 
-.list_menu	.all {
-	background-color: #265073;
-	color: #fff;
+.list_menu div {
+  margin-right: 15px;
+  border: 1px solid #dadada;
+  width: 120px;
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
 }
 
-.all_table {
-	height: 700px;
-  	overflow-y: scroll;
+.list_menu .all {
+  background-color: #265073;
+  color: #fff;
 }
 
-.yet_table {
-	display: none;
-	height: 700px;
-  	overflow-y: scroll;
-}
-
+.all_table,
+.yet_table,
 .search_table {
-	display: none;
-	height: 700px;
-  	overflow-y: scroll;
-} 
-
-.ticket_modify,
-.regist_modify {
-	display: block;
-	width: 600px;
- 	position: fixed;
-  	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-  	background-color: #fff;
-    border: 1px solid #000;
+  height: 500px;
+  overflow-y: auto;
+  margin-bottom: 20px;
 }
 
-.ticket_modify  .close_bar,
-.regist_modify  .close_bar {
-  	background-color: #265073;
-    text-align: right;
-    padding: 3px 10px;
+.yet_table,
+.search_table {
+  display: none;
 }
 
-.ticket_modify  .close_bar  button,
-.regist_modify  .close_bar  button {
-  background-color: #fff;
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+td button {
+  padding: 5px 10px;
   border: none;
+  background-color: #265073;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
 }
 
-.ticket_modify	.form_wrap,
-.regist_modify	.form_wrap {
-	padding: 20px 10px;
+td button:hover {
+  background-color: #1c3d5a;
+}
+tr:nth-child(2n) {
+  background-color: #f9f9f9;
+}
+.search_form {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.search_form p {
+  margin-right: 10px;
+}
+
+.search_form input[type="text"] {
+  padding: 5px;
+  margin-right: 10px;
+}
+
+.search_form button {
+  padding: 5px 10px;
+  border: none;
+  background-color: #265073;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.search_form button:hover {
+  background-color: #1c3d5a;
 }
 
 .modal_wrap,
 .regist_modal_wrap {
-	position: fixed;
-	top: 0; left: 0;
-	background-color: rgba(0, 0, 0, .1);
-	width: 100%;
-	height: 100%;
-	display: none;
-} 
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+#modify_form,
+#regist_form{
+	margin:0 auto;
+}
+.ticket_modify,
+.regist_modify {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+  margin:200px auto;
+}
+
+.close_bar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.close_bar button {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.form_wrap {
+  display: grid;
+  gap: 10px;
+}
+
+.input_info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.input_info b {
+  width: 150px;
+  margin-right: 10px;
+}
+
+.input_info input[type="text"],
+.input_info input[type="number"] {
+  padding: 5px;
+  margin-left: 10px;
+}
+
+.input_info input[name="p_name"] {
+  width: 328px;
+  margin-left: -105px;
+}
+
+.submit_btn {
+  padding: 10px;
+  border: none;
+  background-color: #265073;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.submit_btn:hover {
+  background-color: #1c3d5a;
+}
+
+.button_wrap {
+	text-align: center;
+}
