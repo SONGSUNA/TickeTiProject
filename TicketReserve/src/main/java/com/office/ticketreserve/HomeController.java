@@ -55,7 +55,7 @@ public class HomeController  {
 	@GetMapping("/search")
 	public String search(@RequestParam("search_value") String search,
 	                    @RequestParam(defaultValue = "1", name = "pageNo") int pageNo,
-	                    @RequestParam(defaultValue = "3", name = "pageSize") int pageSize,
+	                    @RequestParam(defaultValue = "10", name = "pageSize") int pageSize,
 	                    Model model) {
 			log.info("[HomeController] search");
 			

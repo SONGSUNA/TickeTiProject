@@ -176,7 +176,7 @@ function drawChart(labels, daySalesValues, daySalesConcert, daySalesMusical, day
         datalabels: {
             display: 'auto',
             formatter: function(value, context) {
-                return daySalesValues[context.dataIndex].toLocaleString();
+                return daySalesValues[context.dataIndex].toLocaleString()  + '원';
             },
             align: 'top',
             anchor: 'end'
@@ -212,14 +212,9 @@ function drawChart(labels, daySalesValues, daySalesConcert, daySalesMusical, day
             plugins: {
                 datalabels: {
                     formatter: function(value, context) {
-                        return value.toLocaleString(); // 세자리 마다 쉼표(,) 추가
+                        return value.toLocaleString() + '원'; // 세자리 마다 쉼표(,) 추가
                     }
                 }
-            },
-            title: {
-                display: true,
-                text: '단위: 원', // 그래프 우측 상단에 "단위: 원" 텍스트 추가
-                position: 'topRight'
             }
         },
         plugins: [ChartDataLabels]
