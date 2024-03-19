@@ -53,14 +53,14 @@
 				            <td th:text="${#strings.substringBefore(combinedDto['r_reg_date_colection'][index], ' ')}"></td>
 				            <td th:text="${combinedDto['ticket_numbers'][index]}">티켓번호</td>
 				            <td>
-					           <!--  <a th:href="@{/product/{id}(id=${combinedDto['myPIdsList'][index]})}"> -->
+					            <a th:href="@{/product/{id}(id=${combinedDto['myPIdsList'][index]})}">
 					           	 <img th:src="${combinedDto['p_thum_colectiion'][index]}" >
-					           <!--  </a> -->
+					            </a>
 				            </td>
 				            <td >
-				            	<!--  <a th:href="@{/product/{id}(id=${combinedDto['myPIdsList'][index]})}"> -->
+				            	 <a th:href="@{/product/{id}(id=${combinedDto['myPIdsList'][index]})}">
 					           		 <span th:text="${combinedDto['p_name_colection'][index]}" ></span>
-					           <!--  </a> -->
+					            </a>
 					        </td>
 				            <td th:text="${combinedDto['t_seat_colection'][index]}">좌석번호</td>
 				            <td th:text="${#strings.substringBefore(combinedDto['r_date_colection'][index], ' ')} + '  ' + ${combinedDto['r_time_colection'][index]}">관람일시</td>

@@ -316,18 +316,22 @@ public class UserController {
 	    String u_id = userDto.getU_id();
 	    
 	    Map<String, Object> combinedDto = userService.getMyTicketInfo(u_id);
-	    
-	    if (!combinedDto.isEmpty()) {
+	    if (combinedDto != null && !combinedDto.isEmpty()) {
 	        model.addAttribute("combinedDto", combinedDto);
 	        
 	    } else {
 	        model.addAttribute("noTicketsMessage", "예매 내역이 없습니다.");
+	        System.out.println("combinedDto ==>>>>>" +combinedDto );
 	    }
 	    
 	    Map<String, Object> combinedforReview = userService.getMyReview(u_id);
-	    if (!combinedforReview.isEmpty() && combinedforReview != null) {
-	    	model.addAttribute("combinedforReview", combinedforReview);
-	    	
+	    System.out.println("combinedforReview ==>>>>>" + combinedforReview);
+	    if (combinedforReview != null) { // null 체크 추가
+	        if (!combinedforReview.isEmpty()) {
+	            model.addAttribute("combinedforReview", combinedforReview);
+	        } else {
+	            model.addAttribute("noReviewMessage", "리뷰 내역이 없습니다.");
+	        }
 	    } else {
 	        model.addAttribute("noReviewMessage", "리뷰 내역이 없습니다.");
 	    }

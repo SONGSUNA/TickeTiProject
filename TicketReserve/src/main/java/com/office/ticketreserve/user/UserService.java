@@ -272,6 +272,7 @@ public class UserService {
 		List<ReservationDto> myReservationDto  = new ArrayList<>();
 		
 		myReservationDto = IUserDao.getMyTicketinfo(u_id);
+		System.out.println("myReservationDto===>" + myReservationDto);
 		 if (myReservationDto != null && !myReservationDto.isEmpty()) {
 			 
 		// t_no , view에서 보여줄 내역 다 뽑아내기
@@ -286,7 +287,6 @@ public class UserService {
 		int r_payment_result = 0;
 		
 		for(ReservationDto reservationDto : myReservationDto) {
-			
 			ticket_numbers.add(Integer.toString(reservationDto.getT_no()));
 			r_reg_date_colection.add(reservationDto.getR_reg_date()); 
 			t_seat_colection.add(reservationDto.getT_seat());
@@ -363,6 +363,7 @@ public class UserService {
 		
 		Map<String, Object> combinedRvInfo = new HashMap<>();
 		List<ReviewDto> rvInfo = IUserDao.getMyReviewInfo(u_id);
+		System.out.println("rvInfo ========>>"+rvInfo );
 		
 		if (rvInfo != null && !rvInfo.isEmpty()) {
 		
