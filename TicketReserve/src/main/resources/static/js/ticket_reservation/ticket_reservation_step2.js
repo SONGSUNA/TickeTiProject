@@ -282,9 +282,8 @@ window.onload = function() {
 		  }
 		
 		  const selectedSeatsString = selectedSeats.join(',');
-		
-		  let href = "/reservation/step3?totalPrice=" + totalPrice + "&selectedSeats=" + selectedSeatsString;
-		  location.href = "/reservation/step3?totalPrice=" + totalPrice + "&selectedSeats=" + selectedSeatsString + "&href=" + href;
+
+		  location.href = "/reservation/step3?totalPrice=" + totalPrice + "&selectedSeats=" + selectedSeatsString;
 		});
    }
 }

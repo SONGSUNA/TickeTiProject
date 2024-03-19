@@ -49,8 +49,7 @@ public class ReservationController {
 	@GetMapping({"/step3"})
 	public String step3(HttpSession session,
 						@RequestParam("totalPrice") int totalPrice,
-						@RequestParam("selectedSeats") String selectedSeats,
-						@RequestParam("href") String href) {
+						@RequestParam("selectedSeats") String selectedSeats) {
 		log.info("[ReservationController] step3()");
 		
 		String nextPage = "ticket_reservation/ticket_reservation_step3";
@@ -60,15 +59,18 @@ public class ReservationController {
 		
 		session.setAttribute("totalPrice", totalPrice);
 		session.setAttribute("selectedSeats", selectedSeatsList);
-		session.setAttribute("3href", href);
 		
 		return nextPage;
 	}
 	
 	@GetMapping({"/step4"})
-	public String home() {
+	public String home(HttpSession session,
+            @RequestParam("discount") int discount,
+            @RequestParam("step3") String step3) {
 		log.info("[ReservationController] step4()");
 		
+		session.setAttribute("discount", discount);
+		session.setAttribute("step3", step3);
 		String nextPage = "ticket_reservation/ticket_reservation_step4";
 		
 		return nextPage;
@@ -94,7 +96,9 @@ public class ReservationController {
 	    session.setAttribute("selectedTime", time);
 	    session.setAttribute("p_id", p_id);
 	    
-	    return "success";
+	    UserDto userDto = (UserDto) session.getAttribute("loginedUserDto");
+	    
+	    return userDto == null ? "logout" : "login";
 	}
 	
 	@GetMapping("/getDateTime")
@@ -118,56 +122,78 @@ public class ReservationController {
 	@ResponseBody
 	public List<Integer> getReserveSeat(@RequestParam("t_no") String t_no,
 										 @RequestParam("selectedDate") String selectedDate,
-										 @RequestParam("selectedTimeInfo") String selectedTimeInfo) {
+										 @RequestParam("selectedTimeInfo") String selectedTimeInfo,
+										 HttpSession session) {
 		log.info("[ReservationController] getReserveSeat()");
 		
+		
+		session.setAttribute("t_no", t_no);
 		return reservationService.getReserveSeat(t_no, selectedDate, selectedTimeInfo); 
 	}
 	
 	@GetMapping("/getInfoForStep3")
 	@ResponseBody
-	public Map<String, Object> getMethodName(HttpSession session) {
+	public Map<String, Object> getInfoForStep3(HttpSession session) {
 		log.info("[ReservationController] getInfoForStep3()");
 		
 		Map<String, Object> hashMap = new HashMap<>();
 		
 		hashMap.put("totalPrice", session.getAttribute("totalPrice"));
 		hashMap.put("selectedSeats", session.getAttribute("selectedSeats"));
+		hashMap.put("t_no", session.getAttribute("t_no"));
 		UserDto userDto = (UserDto) session.getAttribute("loginedUserDto");
 		hashMap.put("u_id", userDto.getU_id());
 		
 		return hashMap;
 	}
 	
-	@PostMapping("/setTikietInfo")
+	@GetMapping("/getInfoForStep4")
 	@ResponseBody
-	public String setTikietInfo(@RequestBody List<HashMap<String, Object>> tiketInfos) {
-		log.info("[ReservationController] setTikietInfo()");
-		
-		HashMap<String, Object> hashMap = tiketInfos.get(0);
-		
-		log.info("u_id" + ">>>>>" + hashMap.get("u_id"));
-		log.info("r_sub_phone" + ">>>>>" + hashMap.get("r_sub_phone"));
-		log.info("r_date" + ">>>>>" + hashMap.get("r_date"));
-		log.info("r_time" + ">>>>>" + hashMap.get("r_time"));
-		log.info("r_take_ticket" + ">>>>>" + hashMap.get("r_take_ticket"));
-		log.info("r_price" + ">>>>>" + hashMap.get("r_price"));
-		log.info("t_seat" + ">>>>>" + hashMap.get("t_seat"));
-		log.info("r_discount" + ">>>>>" + hashMap.get("r_discount"));
-		
-		HashMap<String, Object> hashMap2 = tiketInfos.get(1);
-		
-		log.info("u_id" + ">>>>>" + hashMap2.get("u_id"));
-		log.info("r_sub_phone" + ">>>>>" + hashMap2.get("r_sub_phone"));
-		log.info("r_date" + ">>>>>" + hashMap2.get("r_date"));
-		log.info("r_time" + ">>>>>" + hashMap2.get("r_time"));
-		log.info("r_take_ticket" + ">>>>>" + hashMap2.get("r_take_ticket"));
-		log.info("r_price" + ">>>>>" + hashMap2.get("r_price"));
-		log.info("t_seat" + ">>>>>" + hashMap2.get("t_seat"));
-		log.info("r_discount" + ">>>>>" + hashMap2.get("r_discount"));
-		
-		return null;
+	public Map<String, Object> getInfoForStep4(HttpSession session) {
+	    log.info("[ReservationController] getInfoForStep4()");
+	    
+	    Map<String, Object> hashMap = new HashMap<>();
+	    hashMap.put("totalPrice", session.getAttribute("totalPrice"));
+		hashMap.put("selectedSeats", session.getAttribute("selectedSeats"));
+	    hashMap.put("discount", session.getAttribute("discount"));
+	    hashMap.put("step3", session.getAttribute("step3"));
+	    
+	    UserDto userDto = (UserDto) session.getAttribute("loginedUserDto");
+	    hashMap.put("u_id", userDto.getU_id());
+	    hashMap.put("u_mail", userDto.getU_mail());
+	    hashMap.put("u_name", userDto.getU_name());
+	    
+	    return hashMap;
 	}
 	
+	@PostMapping("/setTikietInfo")
+	@ResponseBody
+	public String setTikietInfo(@RequestBody HashMap<String, Object> tiketInfo,
+								HttpSession session) {
+		log.info("[ReservationController] setTikietInfo()");
+		
+		session.setAttribute("tiketInfo", tiketInfo);
+		
+		return "티켓 정보 저장";
+	}
+	
+	@GetMapping("/getUserInfo")
+	public UserDto getUserInfo(@RequestParam("p_id") String p_id,
+								HttpSession session) {
+		log.info("[ReservationController] getUserInfo()");
+
+		return (UserDto) session.getAttribute("loginedUserDto");
+	}
+	
+	@SuppressWarnings("unchecked")
+	@GetMapping("/reserveConfirm")
+	@ResponseBody
+	public int reserveConfirm(HttpSession session) {
+		log.info("[ReservationController] reserveConfirm()");
+		
+		Map<String, Object> hashMap =  (HashMap<String, Object>) session.getAttribute("tiketInfo");
+		
+		return reservationService.reserveConfirm(hashMap);
+	}
 	
 } 
