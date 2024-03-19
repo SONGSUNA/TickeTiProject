@@ -82,5 +82,10 @@ public class ProductController {
 	    return productService.toggleLike(p_id, u_id);
 	}
 	
-	
+	@ResponseBody
+	@GetMapping("/product/avg_star")
+	public double avgStar(@RequestParam("p_id") String p_id) {
+		
+		return reviewService.starAvg(p_id);
+	}
 }
