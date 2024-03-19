@@ -48,7 +48,11 @@ public interface AdminDaoForMyBatis {
 	public void updateUserWithoutPw(UserDto userDto);
 
 	public List<PerfomanceDto> selectAllPerfomance();
-
+	//페이지네이션 테스트================
+	public List<PerfomanceDto> selectPerfomanceByPage(@Param("offset") int offset,@Param("size") int size);
+	
+	public int selectPerfomanceCount();
+	//====================================
 	public List<PerfomanceDto> selectAllPerfomanceNoTicket();
 
 	public List<PerfomanceDto> selectAllPerfomanceByName(String p_name);

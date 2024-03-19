@@ -153,3 +153,9 @@ p {
 .preview img {
 	max-width: 150px;
 }
+div.pagination a {
+	color: #242424;
+}
+div.pagination {
+	text-align: center;
+}
