@@ -272,7 +272,6 @@ public class UserService {
 		List<ReservationDto> myReservationDto  = new ArrayList<>();
 		
 		myReservationDto = IUserDao.getMyTicketinfo(u_id);
-		System.out.println("myReservationDto===>" + myReservationDto);
 		 if (myReservationDto != null && !myReservationDto.isEmpty()) {
 			 
 		// t_no , view에서 보여줄 내역 다 뽑아내기
@@ -283,7 +282,7 @@ public class UserService {
 		List<String> r_take_ticket_colection = new ArrayList<>();
 		List<String> r_payment_state_colection = new ArrayList<>();
 		List<String> ticket_numbers = new ArrayList<>();
-		int r_take_ticket_result = 0;
+		int r_take_ticket_result = 1;
 		int r_payment_result = 0;
 		
 		for(ReservationDto reservationDto : myReservationDto) {
@@ -294,13 +293,13 @@ public class UserService {
 			r_time_colection.add(reservationDto.getR_time());
 			r_take_ticket_result = reservationDto.getR_take_ticket(); 
 			
-			if(r_take_ticket_result == 0) {
+			if(r_take_ticket_result == 1) {
 				r_take_ticket_colection.add("현장 수령");
 				
-			} else if(r_take_ticket_result == 1) {
-				r_take_ticket_colection.add("이메일 발송");
-				
 			} else if(r_take_ticket_result == 2) {
+				r_take_ticket_colection.add("메일 발송");
+				
+			} else if(r_take_ticket_result == 3) {
 				r_take_ticket_colection.add("문자 발송");
 				
 			} else {
@@ -310,10 +309,10 @@ public class UserService {
 			
 			r_payment_result = reservationDto.getR_payment_state();
 			if(r_payment_result == 0) {
-				r_payment_state_colection.add("입금 대기");
+				r_payment_state_colection.add("미결제");
 				
 			} else if(r_payment_result == 1) {
-				r_payment_state_colection.add("입금 완료");
+				r_payment_state_colection.add("결제 완료");
 				
 			} else {
 				r_payment_state_colection.add("오류");
@@ -363,7 +362,6 @@ public class UserService {
 		
 		Map<String, Object> combinedRvInfo = new HashMap<>();
 		List<ReviewDto> rvInfo = IUserDao.getMyReviewInfo(u_id);
-		System.out.println("rvInfo ========>>"+rvInfo );
 		
 		if (rvInfo != null && !rvInfo.isEmpty()) {
 		
