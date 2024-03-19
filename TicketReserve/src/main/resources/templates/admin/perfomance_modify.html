@@ -33,8 +33,8 @@
 							<th>공연명</th>
 							<th>시작 날짜</th>
 							<th>종료 날짜</th>
-							<th>연령 등급</th>
 							<th>시설</th>
+							<th>연령 등급</th>
 							<th>장르</th>
 							<th>좌석수</th>
 							<th>현재 예약수</th>
@@ -61,7 +61,7 @@
 					</tbody>
 				</table>
 				<div class="pagination">
-				    <a th:href="@{/admin/performance_modify(page=${((currentPage - 1) / 10) * 10})}" th:if="${currentPage > 10}">이전</a>
+				    <a th:href="@{/admin/performance_modify(page=${((currentPage - 1) / 10) * 10})}" th:if="${currentPage > 10}">&lt;</a>
 				    
 				    <th:block th:with="startPage=${((currentPage - 1) / 10) * 10 + 1}, endPage=${startPage + 9}">
 				        <span th:each="page : ${#numbers.sequence(startPage, endPage < totalPages ? endPage : totalPages)}">
@@ -69,7 +69,7 @@
 				        </span>
 				    </th:block>
 				    
-				    <a th:href="@{/admin/performance_modify(page=${((currentPage - 1) / 10 + 1) * 10 + 1})}" th:if="${currentPage < totalPages - 9}">다음</a>
+				    <a th:href="@{/admin/performance_modify(page=${((currentPage - 1) / 10 + 1) * 10 + 1})}" th:if="${currentPage < totalPages - 9}">&gt;</a>
 				</div>
 			</div>
 			
@@ -116,7 +116,7 @@
 						<div class="scroll">
 							<input type="hidden" name="p_id">
 						
-							<p>ID</p>
+							<p>ID</p><br>
 							<input type="text" name="p_id_show" disabled="disabled" readonly="readonly">
 							<br>
 							<p>공연명</p>
@@ -196,7 +196,7 @@
 							<p>기획사 정보</p>
 							<textarea name="p_agency_info"></textarea>
 							<br>
-							<p>주최</p>
+							<p>주최</p><br>
 							<textarea name="p_host"></textarea>
 							<br>
 							<p>상담 번호</p>
@@ -206,7 +206,9 @@
 							<textarea name="p_detail_cautions" placeholder="유의사항이 있을시 입력"></textarea>
 							<br>
 						</div>
-						<input type="button" value="수정"	onclick="perfomanceModify()">
+						<div class="button_wrap">
+						  <input type="button" value="수정" onclick="perfomanceModify()">
+						</div>
 					</form>
 				</div>
 			</div>
