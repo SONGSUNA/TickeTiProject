@@ -49,6 +49,8 @@
 			TBL_REVIEW
 		WHERE
 			U_ID = #{u_id}
+		ORDER BY
+			RV_REG_DATE	DESC
 	</select>
 	
 </mapper>
