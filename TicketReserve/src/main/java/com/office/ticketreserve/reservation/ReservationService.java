@@ -78,6 +78,15 @@ public class ReservationService {
 	}
 
 
+	public void cancelConfirm(int r_no) {
+		log.info("[ReservationService] cancelConfirm()");
+		
+		log.info(">>>>>>>>>>>>>>>>>>>>>>" + r_no);
+		
+		reservationDao.updateReservationForCancel(r_no);
+	}
+
+
 	// util ========================================================================================
 	public static String convertTimeFormat(String time) {
 		String numberOnly = time.replaceAll("[^0-9]", "");
