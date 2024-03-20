@@ -36,7 +36,7 @@
 					<div class="pay_method">
 						<p> 결제 방법 선택 </p>
 						<img id="payment_kakao" th:src="@{/img/ticket_reservation/kakaopay.svg}" >
-						<img id="payment_payco" th:src="@{/img/ticket_reservation/payco.png}" onclick="payco()">
+						<img id="payment_payco" th:src="@{/img/ticket_reservation/toss.png}" onclick="tossPay()">
 					</div>
 					
 					<div class="pay_info">
@@ -121,7 +121,7 @@
     <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
     <script th:src="@{/js/ticket_reservation/payment_kakao.js}"></script>
-    <script th:src="@{/js/ticket_reservation/payment_payco.js}"></script>
+    <script th:src="@{/js/ticket_reservation/payment_toss.js}"></script>
 <!-- 포트원 결제 -->
 
 </html>

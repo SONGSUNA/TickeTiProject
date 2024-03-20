@@ -117,3 +117,14 @@ img {
     white-space: normal; /* 텍스트가 너무 길 경우 줄 바꿈 허용 */
     z-index: 9999; /* 다른 요소 위로 띄움 */
 }
+
+.mtp_content_wrap	button {
+	border: 1px solid #dadada;
+	width: 40px;
+	height: 25px;
+	line-height: 10px;
+	
+	&:hover {
+		cursor: pointer;
+	}
+}
