@@ -65,10 +65,7 @@ div.section_wrap .top_menu_container{
     gap: 60px;
 }
 
-.cd_img {
-    border-bottom: #dadada solid 1px;
 
-}
 
 a {
     text-decoration: none;
@@ -105,11 +102,10 @@ a {
 }
 
 #date_time_choice {
-    max-width: 1600;
     max-width: 1600px;
     margin: auto;
     display: flex;
-    border: 1px solid #dadada;
+
 }
 
 #date_time_choice .left,
@@ -127,7 +123,7 @@ a {
     width: 350px;
     text-align: center;
     padding: 30px;
-    border-right: #dadada 1px solid;
+   
 }
 
 #date_time_choice .calendar_wrap {
