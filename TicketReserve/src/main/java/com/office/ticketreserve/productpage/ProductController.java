@@ -28,25 +28,6 @@ public class ProductController {
 	@Autowired
 	ReviewService reviewService;
 	
-	
-//	@RequestMapping("/product/{p_id}")
-//	public String productPage(@PathVariable("p_id") String p_id, Model model) {
-//		log.info("productPage()");
-//		
-//		
-//		PerfomanceDto productDto = productService.productPage(p_id);
-//
-//		List<ReviewDto> reviewDtos = reviewService.allReviewsForPid(p_id);
-//		
-//		model.addAttribute("productDto", productDto);
-//		model.addAttribute("reviewDtos", reviewDtos);
-//		
-//		
-//		
-//		String nextPage = "/product_page/product_page";
-//		
-//		return nextPage;
-//	}
 	@RequestMapping("/product/{p_id}")
 	public String productPage(@PathVariable("p_id") String p_id, Model model, HttpSession session) {
 	    log.info("productPage()");
@@ -71,7 +52,7 @@ public class ProductController {
 	    model.addAttribute("starAvg", starAvg);
 	    
 	    
-	    String nextPage = "/product_page/product_page_test";
+	    String nextPage = "/product_page/product_page";
 	    return nextPage;
 	}
 	@ResponseBody
