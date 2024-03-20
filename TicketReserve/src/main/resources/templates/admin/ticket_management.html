@@ -49,6 +49,17 @@
 						</tr>
 					</tbody>
 				</table>
+				<div class="pagination">
+				    <a th:href="@{/admin/ticket_management(page=${((currentPage - 1) / 10) * 10})}" th:if="${currentPage > 10}">&lt;</a>
+				    
+				    <th:block th:with="startPage=${((currentPage - 1) / 10) * 10 + 1}, endPage=${startPage + 9}">
+				        <span th:each="page : ${#numbers.sequence(startPage, endPage < totalPages ? endPage : totalPages)}">
+				            <a th:href="@{/admin/ticket_management(page=${page})}" th:text="${page}" th:classappend="${page == currentPage ? 'active' : ''}"></a>
+				        </span>
+				    </th:block>
+				    
+				    <a th:href="@{/admin/ticket_management(page=${((currentPage - 1) / 10 + 1) * 10 + 1})}" th:if="${currentPage < totalPages - 9}">&gt;</a>
+				</div>
 			</div>
 			
 			<div class="yet_table">

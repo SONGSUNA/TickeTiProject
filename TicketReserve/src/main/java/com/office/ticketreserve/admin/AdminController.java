@@ -43,13 +43,20 @@ public class AdminController {
 	}
 	
 	@GetMapping("/user_management")
-	public String user_management(Model model) {
+	public String user_management(Model model,@RequestParam(value = "size", defaultValue = "10") int size,
+								 			  @RequestParam(value = "page", defaultValue = "1") int page) {
 		log.info("[AdminController] user_management()");
 		
-		List<UserDto> userDtos = adminService.getAllUserDto();
+		List<UserDto> userDtos = adminService.getAllUserDtoByPage(size,page);
+		
+	    int totalCount = adminService.getUserCount();
+	    int totalPages = (int) Math.ceil((double) totalCount / size);
 		
 		model.addAttribute("userList", userDtos);
-		
+	    model.addAttribute("currentPage", page);
+	    model.addAttribute("totalPages", totalPages);
+	    
+	    
 		String nextPage = "admin/user_management";
 		
 		return nextPage;
@@ -228,15 +235,22 @@ public class AdminController {
 	}
 	
 	@GetMapping("/ticket_management")
-	public String ticketManagement(Model model) {
+	public String ticketManagement(@RequestParam(value = "page", defaultValue = "1") int page,
+									@RequestParam(value = "size", defaultValue = "10") int size,
+						            Model model) {
 		log.info("[AdminController] ticketManagement()");
 		
 		String nextPage = "/admin/ticket_management";
 		
-		List<PerfomanceDto> perfomanceDtos = adminService.getAllPerfomance();
+		List<PerfomanceDto> perfomanceDtos = adminService.getPerfomanceByPage(page, size);
+		
+	    int totalCount = adminService.getPerfomanceCount();
+	    int totalPages = (int) Math.ceil((double) totalCount / size);
 		
 		model.addAttribute("perfomanceDtos", perfomanceDtos);
-		
+	    model.addAttribute("currentPage", page);
+	    model.addAttribute("totalPages", totalPages);
+	    
 		return nextPage;
 	}
 	
@@ -300,17 +314,8 @@ public class AdminController {
 		return nextPage;
 	}
 	
-	
-	@GetMapping("/ticket_state")
-	public String ticketState () {
-		log.info("[AdminController] ticketState()");
-		
-		String nextPage = "/admin/ticket_state";
-			
-		return nextPage;
-	}
-	
 	//페이지네이션 테스트===================
+
 	@GetMapping("/performance_modify")
 	public String perfomanceModify(@RequestParam(value = "page", defaultValue = "1") int page,
 									@RequestParam(value = "size", defaultValue = "10") int size,
@@ -384,12 +389,20 @@ public class AdminController {
 	}
 	
 	@GetMapping("/review_management")
-	public String reviewManagement(Model model) {
+	public String reviewManagement(Model model,
+	                               @RequestParam(value = "size", defaultValue = "10") int size,
+	                               @RequestParam(value = "page", defaultValue = "1") int page,
+	                               @RequestParam(value = "review_u_id", required = false) String u_id,
+	                               @RequestParam(value = "review_p_name", required = false) String p_name) {
 	    log.info("[AdminController] reviewManagement()");
-	   
-	    List<ReviewDto> searchReviewDto = adminService.searchReview(null, null);
+	    
+	    List<ReviewDto> searchReviewDto = adminService.searchReview(u_id, p_name, page, size);
+	    int totalCount = adminService.getTotalReviewCount(u_id, p_name);
+	    int totalPages = (int) Math.ceil((double) totalCount / size);
 	    
 	    model.addAttribute("searchReviewDto", searchReviewDto);
+	    model.addAttribute("currentPage", page);
+	    model.addAttribute("totalPages", totalPages);
 	    
 	    return "admin/review_management";
 	}
@@ -407,16 +420,31 @@ public class AdminController {
 		return result;
 	}
 
-	@ResponseBody
 	@GetMapping("/review_search")
+	@ResponseBody
 	public List<ReviewDto> reviewSearch(@RequestParam(value = "review_u_id", required = false) String u_id,
-	                                     @RequestParam(value = "review_p_name", required = false) String p_name) {
-	   
-		List<ReviewDto> searchReviewDto = adminService.searchReview(u_id, p_name);
-		
-		return searchReviewDto.isEmpty() ? null : searchReviewDto;
+	                                     @RequestParam(value = "review_p_name", required = false) String p_name,
+	                                     @RequestParam(value = "page", defaultValue = "1") int page,
+	                                     @RequestParam(value = "size", defaultValue = "10") int size) {
+	    return adminService.searchReview(u_id, p_name, page, size);
+	}
+
+	@GetMapping("/review_count")
+	@ResponseBody
+	public int reviewCount(@RequestParam(value = "review_u_id", required = false) String u_id,
+	                       @RequestParam(value = "review_p_name", required = false) String p_name) {
+	    return adminService.getReviewCount(u_id, p_name);
 	}
 	
+   @GetMapping("/ticket_state")
+   public String ticketState () {
+      log.info("[AdminController] ticketState()");
+      
+      String nextPage = "/admin/ticket_state";
+         
+      return nextPage;
+   }
+   
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		log.info("[AdminController] logout()");

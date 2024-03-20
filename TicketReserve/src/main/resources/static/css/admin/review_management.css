@@ -169,3 +169,63 @@ th:nth-child(8),
 td:nth-child(8) {
   width: 80px;
 }
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination a {
+    display: inline-block;
+    padding: 6px 10px;
+    margin: 0 5px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #333;
+    background-color: #fff;
+    border: 1px solid #dadada;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.pagination a:hover {
+    color: #fff;
+    background-color: #333;
+}
+
+.pagination .active {
+    color: #fff;
+    background-color: #333;
+}
+
+.pagination a:first-child,
+.pagination a:last-child {
+    padding: 10px 20px;
+}
+
+.pagination a:first-child::before {
+
+    margin-right: 5px;
+}
+
+.pagination a:last-child::after {
+
+    margin-left: 5px;
+}
+
+.pagination a:first-child:hover::before,
+.pagination a:last-child:hover::after {
+    color: #fff;
+}
+
+.review_search button {
+  background-color: #265073;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}

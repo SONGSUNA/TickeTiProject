@@ -19,7 +19,9 @@ public interface AdminDaoForMyBatis {
 
 	public int insertAdmin(AdminDto adminDto);
 
-	public List<UserDto> selectAllUsers();
+	public List<UserDto> selectAllUsers(@Param("offset") int offset,@Param("size") int size);
+	
+	public int selectUserCount();
 
 	public List<UserDto> selectUsersById(String u_id);
 
@@ -76,14 +78,21 @@ public interface AdminDaoForMyBatis {
 	public int updatePfWithImg(PerfomanceDto perfomanceDto);
 
 	public List<ReservationDto> selectRsvInfo(@Param("stDate") String stDate, 
-											@Param("edDate") String edDate);
+											  @Param("edDate") String edDate);
 
 	public TicketDto selectTicket(int t_no);
 
 	public int deleteReviewByRv_no(int rv_no);
 
-	public List<ReviewDto> selectReviewBySearch(@Param("u_id") String u_id, 
-												@Param("p_name") String p_name);
 	
+	public List<ReviewDto> selectReviewBySearch(@Param("u_id") String u_id,
+									            @Param("p_name") String p_name,
+									            @Param("offset") int offset,
+									            @Param("size") int size);
 
+	public int selectTotalReviewCount(@Param("u_id") String u_id,
+									  @Param("p_name") String p_name);
+	
+	int selectReviewCount(@Param("u_id") String u_id,
+            			  @Param("p_name") String p_name);
 }

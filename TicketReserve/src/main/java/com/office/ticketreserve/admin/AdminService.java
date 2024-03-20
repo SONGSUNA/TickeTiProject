@@ -37,14 +37,17 @@ public class AdminService {
 	@Autowired
 	AdminChartDto adminChartDto;
 
-	public List<UserDto> getAllUserDto() {
+	public List<UserDto> getAllUserDtoByPage(int size,int page) {
 		log.info("[AdminService] getAllUserDto()");
 		
-		List<UserDto> userDtos = adminDao.selectAllUsers();
+		List<UserDto> userDtos = adminDao.selectAllUsers(size,page);
 		
 		return userDtos;
 	}
-
+	public int getUserCount() {
+		return adminDao.selectUserCount();
+	}
+	
 	public List<UserDto> getSelectUserDtos(String u_id, String u_name, String u_mail) {
 		log.info("[AdminService] getSelectUserDtos()");
 		
@@ -390,13 +393,18 @@ public class AdminService {
 	}
 
 	
-	public List<ReviewDto> searchReview(String u_id, String p_name) {
-	   
-		return adminDao.selectReviewBySearch(u_id, p_name);
+	public List<ReviewDto> searchReview(String u_id, String p_name, int page, int size) {
+	    int offset = (page - 1) * size;
+	    return adminDao.selectReviewBySearch(u_id, p_name, offset, size);
 	}
 
+	public int getTotalReviewCount(String u_id, String p_name) {
+	    return adminDao.selectTotalReviewCount(u_id, p_name);
+	}
 
-
+    public int getReviewCount(String u_id, String p_name) {
+        return adminDao.selectReviewCount(u_id, p_name);
+    }
 }
 
 
