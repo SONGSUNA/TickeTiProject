@@ -25,10 +25,22 @@
 	</insert>
 
 	<select id="selectAllUsers" resultType="com.office.ticketreserve.user.UserDto">
-	    SELECT 
-	        * 
-	    FROM 
-	        TBL_USER 
+	  SELECT *
+        FROM (
+            SELECT ROWNUM AS rn, p.*
+            FROM (
+                SELECT *
+                FROM TBL_USER
+                ORDER BY u_no DESC
+            ) p
+            WHERE ROWNUM &lt;= #{offset} + #{size}
+        )
+        WHERE rn &gt; #{offset}
+	</select>
+	
+	<select id="selectUserCount" resultType="int">
+        SELECT COUNT(*)
+        FROM TBL_USER
 	</select>
 	
 	<select id="selectUsersById" 
@@ -449,27 +461,6 @@
 			SELECT * FROM TBL_TICKET WHERE T_NO = #{t_no}
 	</select>
 	
-	<delete id="deleteReviewByRv_no"
-			parameterType="int">
-			
-			DELETE FROM TBL_REVIEW WHERE RV_NO = #{rv_no}
-	</delete>
-	
-	<select id="selectReviewBySearch" parameterType="map" resultType="com.office.ticketreserve.review.ReviewDto">
-	 
-	  SELECT * FROM TBL_REVIEW
-	  
-	  <where>
-		  <if test="u_id != null and u_id != ''">
-		    AND U_ID LIKE '%' || #{u_id} || '%'
-		  </if>
-		  <if test="p_name != null and p_name != ''">
-		    AND P_NAME LIKE '%' || #{p_name} || '%'
-		  </if>
-	  </where>
-	  
-	</select>
-	
 	<select id="selectPerfomanceByPage" resultType="com.office.ticketreserve.productpage.PerfomanceDto">
         
         SELECT *
@@ -490,5 +481,57 @@
         FROM TBL_PERFOMANCE
     </select>
 	
-	
+	<select id="selectReviewBySearch" resultType="com.office.ticketreserve.review.ReviewDto">
+        SELECT *
+        FROM (
+            SELECT rv_no, u_id, p_name, rv_score, rv_txt, rv_reg_date, rv_mod_date, ROWNUM AS rnum
+            FROM (
+                SELECT *
+                FROM TBL_REVIEW
+                <where>
+                    <if test="u_id != null and u_id != ''">
+                        AND u_id LIKE '%' || #{u_id} || '%'
+                    </if>
+                    <if test="p_name != null and p_name != ''">
+                        AND p_name LIKE '%' || #{p_name} || '%'
+                    </if>
+                </where>
+                ORDER BY rv_no DESC
+            )
+            WHERE ROWNUM &lt;= #{offset} + #{size}
+        )
+        WHERE rnum &gt; #{offset}
+    </select>
+    
+    <select id="selectTotalReviewCount" resultType="int">
+        SELECT COUNT(*)
+        FROM TBL_REVIEW
+        <where>
+            <if test="u_id != null and u_id != ''">
+                AND u_id LIKE '%' || #{u_id} || '%'
+            </if>
+            <if test="p_name != null and p_name != ''">
+                AND p_name LIKE '%' || #{p_name} || '%'
+            </if>
+        </where>
+    </select>
+    
+    <select id="selectReviewCount" resultType="int">
+	    SELECT COUNT(*)
+	    FROM TBL_REVIEW
+	    <where>
+	        <if test="u_id != null and u_id != ''">
+	            AND u_id LIKE '%' || #{u_id} || '%'
+	        </if>
+	        <if test="p_name != null and p_name != ''">
+	            AND p_name LIKE '%' || #{p_name} || '%'
+	        </if>
+	    </where>
+	</select>
+    
+   	<delete id="deleteReviewByRv_no"
+			parameterType="int">
+			
+		DELETE FROM TBL_REVIEW WHERE RV_NO = #{rv_no}
+	</delete>
 </mapper>

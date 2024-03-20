@@ -20,13 +20,13 @@
 			<h1>리뷰 관리</h1>
 			
 			<div class="review_search">
-				<form th:action="@{/admin/review_search}" name="review_search_form" method="post">
-					<span>아이디</span>
-					<input type="text" name="review_u_id">
-					<span>공연이름</span>
-					<input type="text" name="review_p_name">
-					
-				</form> 
+				<form th:action="@{/admin/review_search}" name="review_search_form" method="get">
+				  <span>아이디</span>
+				  <input type="text" name="review_u_id">
+				  <span>공연이름</span>
+				  <input type="text" name="review_p_name">
+				  <button type="submit">검색</button>
+				</form>
 			</div>
 			
 			<div class="review_manage_table">
@@ -58,6 +58,15 @@
 					  </tr>
 					</tbody>
 				</table>
+			</div>
+			<div class="pagination">
+			  <a th:if="${currentPage > 1}" th:href="'#'" th:data-page="${currentPage - 1}">&lt;</a>
+			  <a th:each="page : ${#numbers.sequence(1, totalPages)}"
+			     th:href="'#'" 
+			     th:data-page="${page}"
+			     th:text="${page}"
+			     th:class="${page == currentPage ? 'active' : ''}"></a>
+			  <a th:if="${currentPage < totalPages}" th:href="'#'" th:data-page="${currentPage + 1}">&gt;</a>
 			</div>
 		</div>	
 			
