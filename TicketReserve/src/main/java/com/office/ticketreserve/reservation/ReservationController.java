@@ -197,10 +197,11 @@ public class ReservationController {
 	}
 	
 	@GetMapping("/cancel_confirm")
-	public String cancelConfirm(@RequestParam("r_no") int r_no) {
+	public String cancelConfirm(@RequestParam("r_no") int r_no,
+								@RequestParam("t_no") int t_no) {
 		log.info("[ReservationController] cancel_confirm()");
 		
-		reservationService.cancelConfirm(r_no);
+		reservationService.cancelConfirm(r_no, t_no);
 		
 		return "redirect:/user/my_ticket_page";
 	}
