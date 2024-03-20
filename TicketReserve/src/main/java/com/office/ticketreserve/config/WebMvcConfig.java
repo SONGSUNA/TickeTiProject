@@ -7,6 +7,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.office.ticketreserve.interceptor.AdminInterceptor;
+import com.office.ticketreserve.interceptor.ReservationInterceptor;
 import com.office.ticketreserve.interceptor.UserLoginInterceptor;
 
 @Configuration
@@ -43,6 +44,12 @@ public class WebMvcConfig implements WebMvcConfigurer {
 			    .excludePathPatterns("/user/doFindId")
 			    .excludePathPatterns("/user/user_find_id_ok")
 			    .excludePathPatterns("/user/user_find_id_ng");
+	    
+	    // 예매 인터셉터
+	    registry.addInterceptor(new ReservationInterceptor())
+	    		.addPathPatterns("/reservation/**")
+	    		.excludePathPatterns("/reservation/getInfoForReservation")
+	    		.excludePathPatterns("/reservation/saveDateTime");
 	}
 	
 }
