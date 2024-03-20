@@ -2,9 +2,43 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+
+<title th:replace="~{include/title.html::title}"></title>
+
+<link rel="stylesheet" th:href="@{/css/admin/ticket_state.css}">
+
 </head>
 <body>
 
+	<div class="container">
+	
+		<div th:replace="~{/admin/side_bar.html::sidebar}"></div>
+		
+		<div class="main">
+			<h1>티켓 예매 현황</h1>
+			
+			<table>
+				<thead>
+					<tr>
+						<th>티켓번호</th>
+						<th>공연명</th>
+						<th>공연 날짜</th>
+						<th>공연 시간</th>
+						<th>ID</th>
+						<th>예매 가격</th>
+						<th>할인</th>
+						<th>예매 시각</th>
+					</tr>
+				</thead>
+				<tbody>
+				
+				</tbody>
+			</table>
+			<div class="pagination">
+			    
+			</div>
+		</div>
+	</div>
+	
 </body>
 </html>

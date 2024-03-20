@@ -38,15 +38,16 @@ public class AdminService {
 	AdminChartDto adminChartDto;
 
 	public List<UserDto> getAllUserDtoByPage(int size,int page) {
-		log.info("[AdminService] getAllUserDto()");
-		int offset = (page - 1) * size;
-		List<UserDto> userDtos = adminDao.selectAllUsers(offset,size);
-		
-		return userDtos;
-	}
-	public int getUserCount() {
-		return adminDao.selectUserCount();
-	}
+	      log.info("[AdminService] getAllUserDto()");
+	      int offset = (page - 1) * size;
+	      List<UserDto> userDtos = adminDao.selectAllUsers(offset,size);
+	      
+	      return userDtos;
+	   }
+	
+    public int getUserCount() {
+      return adminDao.selectUserCount();
+    }
 	
 	public List<UserDto> getSelectUserDtos(String u_id, String u_name, String u_mail) {
 		log.info("[AdminService] getSelectUserDtos()");
@@ -181,6 +182,13 @@ public class AdminService {
 	    return adminDao.selectPerfomanceByPage(offset, size);
 	}
 
+	public List<ReservationDto> gerReservationByPage(int page, int size) {
+		log.info("[AdminService] gerReservationByPage()");
+	    int offset = (page - 1) * size;
+	    return adminDao.selectReservationeByPage(offset, size);
+	}
+	
+	
 	public int getPerfomanceCount() {
 	    log.info("[AdminService] getPerfomanceCount()");
 	    return adminDao.selectPerfomanceCount();
@@ -327,6 +335,8 @@ public class AdminService {
 		
 		return sortedSalesByDate;
 	}
+	
+	
 	
 	private List<AdminChartDto> returnAdminChartDtos(List<ReservationDto> rsvDto) {
 		

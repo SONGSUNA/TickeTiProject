@@ -1,0 +1,141 @@
+@font-face {
+    font-family: 'LINESeedKR-Th';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Th.woff2') format('woff2');
+    font-weight: 100;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'LINESeedKR-Rg';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Rg.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+ @font-face {
+    font-family: 'LINESeedKR-Bd';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+          
+body {
+    font-family: 'LINESeedKR-Rg';
+}
+
+a {
+	text-decoration: none;
+	color: #fff;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.container	h1 {
+	margin-left: 20px;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #265073;
+  color: #fff;
+  padding: 20px;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, .2);
+}
+
+.sidebar li.ticket_state {
+  background-color: #2D9596;
+}
+
+.sidebar li.logout {
+	position: absolute;
+  	bottom: 10px;
+  	width: 250px;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(255, 255, 255, .2);
+} 
+
+.sidebar li	a {
+	display: inline-block;
+	width: 100%;
+}
+
+
+/* 테이블 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+td {
+  vertical-align: middle;
+}
+
+td button {
+  padding: 5px 10px;
+  border: none;
+  background-color: #265073;
+  color: #fff;
+  cursor: pointer;
+}
+th:nth-child(1), td:nth-child(1) {
+  width: 100px;
+}
+
+th:nth-child(2), td:nth-child(2) {
+  width: 400px;
+}
+
+th:nth-child(3), td:nth-child(3),
+th:nth-child(4), td:nth-child(4) {
+  width: 100px;
+}
+
+th:nth-child(5), td:nth-child(5) {
+  width: 120px;
+}
+
+th:nth-child(6), td:nth-child(6),
+th:nth-child(7), td:nth-child(7),
+th:nth-child(8), td:nth-child(8),
+th:nth-child(9), td:nth-child(9) {
+  width: 100px;
+}
+
+th:nth-child(10), td:nth-child(10) {
+  width: 220px;
+}
+
+th:nth-child(11), td:nth-child(11) {
+  width: 120px;
+}
+
+tr:nth-child(2n){
+	background-color: #f9f9f9
+}
