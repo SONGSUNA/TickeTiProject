@@ -23,7 +23,7 @@ window.onload = function() {
 	            ticket = data.ticketDto;
 	
 	            if (data.ticketDto && data.ticketDto.t_p_date) {
-	                dayAndTime = data.ticketDto.t_p_date;
+	                dayAndTime = data.ticketDto.t_p_date.replace(/요일/g, ' ');
 	                drawCalendar(new Date().getMonth(), new Date().getFullYear());
 	            } else {
 	                calendar.innerHTML = "<div class='no-reservation-info'>예약 가능 정보가 곧 추가될 예정입니다.</div>";
@@ -135,25 +135,12 @@ window.onload = function() {
 
     // 선택 가능 시간 추가 ==============================================================================================================
 	function getTimeSlots(dayAndTime, selectedDayOfWeek) {
-	    const regex = new RegExp(`${selectedDayOfWeek}요일\\d{2}:\\d{2}`, 'g');
-	    const matches = dayAndTime.replace(/[\[\]]/g, '').match(regex); // 대괄호를 제거한 후 매칭 시도
+	    const regex = new RegExp(`${selectedDayOfWeek}\\s\\d{2}:\\d{2}`, 'g');
+	    const matches = dayAndTime.match(regex);
 	    
-	    // matches 배열 내의 각 시간 문자열을 hh:mm 형식으로 조정
-	    return matches ? matches.map(match => {
-	        let time = match.slice(4); // 기존 코드에서 시간 부분만 추출
-	        let [hours, minutes] = time.split(':'); // 시간과 분을 분리
-	        
-	        // 시간(hours)이 한 자리 숫자일 경우 앞에 0을 붙여줌
-	        if (hours.length === 1) {
-	            hours = '0' + hours;
-	        }
-	        
-	        // 분(minutes)이 한 자리 숫자일 경우 (이 경우는 없겠지만) 앞에 0을 붙여줌
-	        if (minutes.length === 1) {
-	            minutes = '0' + minutes;
-	        }
-	        
-	        return `${hours}:${minutes}`; // 조정된 시간 포맷 반환
+	    return matches ? matches.map((match) => {
+	        const time = match.split(' ')[1]; // 공백을 기준으로 분리하여 시간 부분만 추출
+	        return time;
 	    }) : [];
 	}
 };
