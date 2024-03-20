@@ -16,4 +16,10 @@ public interface ReservationDao {
 
 	int updateReservationForCancel(int r_no);
 
+	String selectPId(int t_no);
+
+	void updateNowReserve(String p_id);
+
+	void updateNowReserveDown(String p_id);
+
 }

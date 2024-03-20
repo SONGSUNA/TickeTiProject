@@ -60,7 +60,9 @@
 						    </td>
 						    <td th:text="${#strings.substringBefore(reservation.r_reg_date, '.')}"></td>
 						    <td>
-						    	<button th:attr="onclick='ticket_cancel(\'' + ${reservation.r_no} + '\')'">취소</button>
+						    	<th:block th:if="${reservation.r_payment_state != -1}">
+							    	<button th:onclick="'ticket_cancel(\'' + ${reservation.r_no} + '\')'">취소</button>
+							    </th:block>
 						    </td>
 						</tr>
 					</tbody>

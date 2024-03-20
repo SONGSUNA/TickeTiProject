@@ -53,41 +53,41 @@
 						  </tr>
 						</thead>
 						<tbody>
-						    <th:block th:if="${combinedDto != null and not #lists.isEmpty(combinedDto['r_reg_date_colection'])}">
-						        <tr th:each="index : ${#numbers.sequence(0, ((#arrays.length(combinedDto['r_reg_date_colection'])) - 1))}" th:class="'ticket-row-' + ${index}">
-						            <td th:text="${#strings.substringBefore(combinedDto['r_reg_date_colection'][index], ' ')}"></td>
-						            <td th:text="${combinedDto['r_no_colection'][index]}" th:id="'reservation-number-' + ${index}"></td>
-						            <td th:text="${combinedDto['ticket_numbers'][index]}"></td>
-						            <td>
-						                <a th:href="@{/product/{id}(id=${combinedDto['myPIdsList'][index]})}">
-						                    <img th:src="${combinedDto['p_thum_colectiion'][index]}" alt="썸네일">
-						                </a>
-						            </td>
-						            <td>
-						                <a th:href="@{/product/{id}(id=${combinedDto['myPIdsList'][index]})}">
-						                    <span th:text="${combinedDto['p_name_colection'][index]}"></span>
-						                </a>
-						            </td>
-						            <td th:text="${combinedDto['t_seat_colection'][index]}"></td>
-						            <td th:text="${#strings.substringBefore(combinedDto['r_date_colection'][index], ' ')} + ' ' + ${combinedDto['r_time_colection'][index]}"></td>
-						            <td th:text="${combinedDto['r_take_ticket_colection'][index]}"></td>
-						            <td th:text="${combinedDto['r_payment_state_colection'][index]}"></td>
-						            <td>
-						                <th:block th:if="${combinedDto['r_payment_state_colection'][index]} == '결제 취소'">
-						                    취소 완료
-						                </th:block>
-						                <th:block th:unless="${combinedDto['r_payment_state_colection'][index]} == '결제 취소'">
-						                    <button onclick="ticket_cancel(this)">취소</button>
-						                </th:block>
-						            </td>
-						        </tr>
-						    </th:block>
-						    <th:block th:if="${combinedDto == null or #lists.isEmpty(combinedDto['r_reg_date_colection'])}">
-						        <tr>
-						            <td colspan="10" th:text="${noTicketsMessage}"></td>
-						        </tr>
-						    </th:block>
-						</tbody>
+					    <th:block th:if="${combinedDto != null and not #lists.isEmpty(combinedDto['r_reg_date_colection'])}">
+					        <tr th:each="index : ${#numbers.sequence(0, ((#arrays.length(combinedDto['r_reg_date_colection'])) - 1))}" th:class="'ticket-row-' + ${index}">
+					            <td th:text="${#strings.substringBefore(combinedDto['r_reg_date_colection'][index], ' ')}"></td>
+					            <td th:text="${combinedDto['r_no_colection'][index]}" th:id="'reservation-number-' + ${index}"></td>
+					            <td th:text="${combinedDto['ticket_numbers'][index]}" th:id="'ticket-number-' + ${index}"></td>
+					            <td>
+					                <a th:href="@{/product/{id}(id=${combinedDto['myPIdsList'][index]})}">
+					                    <img th:src="${combinedDto['p_thum_colectiion'][index]}" alt="썸네일">
+					                </a>
+					            </td>
+					            <td>
+					                <a th:href="@{/product/{id}(id=${combinedDto['myPIdsList'][index]})}">
+					                    <span th:text="${combinedDto['p_name_colection'][index]}"></span>
+					                </a>
+					            </td>
+					            <td th:text="${combinedDto['t_seat_colection'][index]}"></td>
+					            <td th:text="${#strings.substringBefore(combinedDto['r_date_colection'][index], ' ')} + ' ' + ${combinedDto['r_time_colection'][index]}"></td>
+					            <td th:text="${combinedDto['r_take_ticket_colection'][index]}"></td>
+					            <td th:text="${combinedDto['r_payment_state_colection'][index]}"></td>
+					            <td>
+					                <th:block th:if="${combinedDto['r_payment_state_colection'][index]} == '결제 취소'">
+					                    취소 완료
+					                </th:block>
+					                <th:block th:unless="${combinedDto['r_payment_state_colection'][index]} == '결제 취소'">
+					                    <button onclick="ticket_cancel(this)">취소</button>
+					                </th:block>
+					            </td>
+					        </tr>
+					    </th:block>
+					    <th:block th:if="${combinedDto == null or #lists.isEmpty(combinedDto['r_reg_date_colection'])}">
+					        <tr>
+					            <td colspan="10" th:text="${noTicketsMessage}"></td>
+					        </tr>
+					    </th:block>
+					</tbody>
 					</table>
 				</div>
 			</div>

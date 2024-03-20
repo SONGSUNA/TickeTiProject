@@ -42,5 +42,31 @@
 		UPDATE TBL_RESERVE SET R_PAYMENT_STATE = - 1 WHERE R_NO = #{r_no}
 	
 	</update>
+	
+	<select id="selectPId" 
+			parameterType="Integer" 
+			resultType="String">
+	
+	    SELECT P_ID FROM TBL_TICKET WHERE T_NO = #{t_no}
+	    
+	</select>
 
+	<update id="updateNowReserve"
+			parameterType="String">
+	
+	    UPDATE TBL_PERFOMANCE
+	    SET P_NOW_RESERVE = P_NOW_RESERVE + 1
+	    WHERE P_ID = #{p_id}
+	
+	</update>
+
+	<update id="updateNowReserveDown"
+			parameterType="String">
+	
+	    UPDATE TBL_PERFOMANCE
+	    SET P_NOW_RESERVE = P_NOW_RESERVE - 1
+	    WHERE P_ID = #{p_id}
+	
+	</update>
+	
 </mapper>

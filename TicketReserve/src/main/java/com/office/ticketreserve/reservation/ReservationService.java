@@ -67,23 +67,30 @@ public class ReservationService {
 	public int reserveConfirm(Map<String, Object> hashMap) {
 		log.info("[ReservationService] reserveConfirm()");
 		
-		log.info(hashMap.get("r_discount"));
+		int t_no = Integer.parseInt(String.valueOf(hashMap.get("t_no")));
+		String p_id = reservationDao.selectPId(t_no);
 		
 		int result = reservationDao.insertReservationSeat1(hashMap);
+		if (result > 0)
+			reservationDao.updateNowReserve(p_id);
 		
-		if (hashMap.get("t_seat2") != null)
+		if (hashMap.get("t_seat2") != null) {
 			result = reservationDao.insertReservationSeat2(hashMap);
+			reservationDao.updateNowReserve(p_id);
+		}
 		
 		return result;
 	}
 
 
-	public void cancelConfirm(int r_no) {
+	public void cancelConfirm(int r_no, int t_no) {
 		log.info("[ReservationService] cancelConfirm()");
 		
 		log.info(">>>>>>>>>>>>>>>>>>>>>>" + r_no);
 		
 		reservationDao.updateReservationForCancel(r_no);
+		String p_id = reservationDao.selectPId(t_no);
+		reservationDao.updateNowReserveDown(p_id);
 	}
 
 
