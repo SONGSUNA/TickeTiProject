@@ -89,6 +89,13 @@ public class UserService {
 		log.info("[UserService] checkId()");
 		
 		boolean result = userDao.isUser(u_id_check); 
+		if(!result) {
+			AdminDto adminDtos= adminDaoForMyBatis.selectAdminById(u_id_check);
+			if(adminDtos != null) {
+				result = true;
+				return result;
+			}
+		}
 		
         return result;
     }
