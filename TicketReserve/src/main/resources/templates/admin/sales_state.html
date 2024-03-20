@@ -21,21 +21,24 @@
 		<div th:replace="~{/admin/side_bar.html::sidebar}"></div>
 		
 		<div class="main">
-			<form th:action="@{/admin/sales_state_search}" name="sales_state_search" method="get" class="search_form">
-				<span>검색 시작일 : <input type="date" name="stDate"> ~ 검색 종료일 : <input type="date" name="edDate"></span>
-				<span>
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					<input type="checkbox" value="concert"><label for="concert">콘서트</label>
-					<input type="checkbox" value="musical"><label for="musical">뮤지컬</label>
-					<input type="checkbox" value="theater"><label for="theater">연극</label>
-					<input type="checkbox" value="classic"><label for="classic">클래식</label>
-					<input type="checkbox" value="koreanMusic"><label for="koreanMusic">국악</label>
-				</span>
-				<input type="button" value="검색" id="sales_state_search_btn">
-			</form>
-			
-			<div class="graph">
-				<canvas id="myChart"></canvas>
+			<h1>매출 현황</h1>
+				<div class="main2">
+					<form th:action="@{/admin/sales_state_search}" name="sales_state_search" method="get" class="search_form">
+					<span>검색 시작일 : <input type="date" name="stDate"> ~ 검색 종료일 : <input type="date" name="edDate"></span>
+					<span>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="checkbox" value="concert"><label for="concert">콘서트</label>
+						<input type="checkbox" value="musical"><label for="musical">뮤지컬</label>
+						<input type="checkbox" value="theater"><label for="theater">연극</label>
+						<input type="checkbox" value="classic"><label for="classic">클래식</label>
+						<input type="checkbox" value="koreanMusic"><label for="koreanMusic">국악</label>
+					</span>
+					<input type="button" value="검색" id="sales_state_search_btn">
+				</form>
+				
+				<div class="graph">
+					<canvas id="myChart"></canvas>
+				</div>
 			</div>
 		</div>
 		

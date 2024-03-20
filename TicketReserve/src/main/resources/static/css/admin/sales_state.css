@@ -71,13 +71,16 @@ body {
 	width: 100%;
 }
 
-.main {
+.main2 {
     text-align: center; /* 가로 중앙 정렬 */
    	width: 1200px;
 }
 
+h1 {
+	margin: 10px 20px;
+}
+
 .search_form {
-	margin-top: 30px;
     display: inline-block; /* fieldset을 인라인 요소로 설정하여 중앙 정렬을 가능하게 함 */
     padding: 20px; /* 내부 여백 설정 */
 }
@@ -88,6 +91,11 @@ form input[type="checkbox"] {
 
 form input[type="checkbox"] + label {
     margin-right: 30px; /* 체크박스와 텍스트 다음 요소의 간격 설정 */
+}
+
+form input[type="button"] {
+    border-radius: 0;
+    border: 1px solid #000;
 }
 
 #chart {
