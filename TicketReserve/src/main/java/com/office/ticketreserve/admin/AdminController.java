@@ -299,6 +299,17 @@ public class AdminController {
 		nextPage = "/admin/ticket_modify_success";
 		return nextPage;
 	}
+	
+	
+	@GetMapping("/ticket_state")
+	public String ticketState () {
+		log.info("[AdminController] ticketState()");
+		
+		String nextPage = "/admin/ticket_state";
+			
+		return nextPage;
+	}
+	
 	//페이지네이션 테스트===================
 	@GetMapping("/performance_modify")
 	public String perfomanceModify(@RequestParam(value = "page", defaultValue = "1") int page,
