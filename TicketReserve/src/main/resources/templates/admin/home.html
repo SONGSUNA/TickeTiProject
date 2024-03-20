@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-
-<title th:replace="~{include/title.html::title}"></title>
-
-<link rel="stylesheet" th:href="@{/css/admin/home.css}">
-
+    <meta charset="UTF-8">
+    <title th:replace="~{include/title.html::title}"></title>
+    <link rel="stylesheet" th:href="@{/css/admin/home.css}">
 </head>
 <body>
-
-	<div class="container">
-	
-		<div th:replace="~{/admin/side_bar.html::sidebar}"></div>
-		
-		<div class="main" th:obecjt="${perfomanceDtos}">
-			<h1>어드민 홈</h1>
-			
-			✨🎈🎁🎀❤💝✨🎉🎊🎡🎁🌈💟✨🎈🎁🎀❤💝✨🎉🎊🎡🎁🌈💟
-			
-		</div>
-	</div>
-	
+    <div class="container">
+        <div th:replace="~{/admin/side_bar.html::sidebar}"></div>
+        <div class="main-content">
+            <div class="logo">
+                <img th:src="@{/img/include/logo.png}" alt="Logo">
+            </div>
+            <div class="main" th:obecjt="${perfomanceDtos}">
+                <h1>어드민 홈</h1>
+                <div class="admin-info">
+                    <p>접속 아이디</p>
+                    <p th:text="${session.loginedAdminDto.a_id}" class="admin-id"></p>
+                    <span class="note">※ 어드민 계정 등록 및 관리는 슈퍼어드민 계정만 가능합니다.</span>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
