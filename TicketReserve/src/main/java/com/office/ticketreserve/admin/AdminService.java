@@ -15,6 +15,7 @@ import org.springframework.util.StringUtils;
 import com.office.ticketreserve.config.TicketDto;
 import com.office.ticketreserve.productpage.PerfomanceDto;
 import com.office.ticketreserve.reservation.ReservationDto;
+import com.office.ticketreserve.reservation.ReservationDtoForAdmin;
 import com.office.ticketreserve.review.ReviewDto;
 import com.office.ticketreserve.user.IUserDaoForMybatis;
 import com.office.ticketreserve.user.UserDto;
@@ -195,6 +196,11 @@ public class AdminService {
 	}
 	//페이지네이션 테스트===================
 	
+	public int getReservationCount() {
+		log.info("[AdminService] getReservationCount()");
+		return adminDao.selectReservationCount();
+	}
+
 	public List<PerfomanceDto> getNoTicketPfs() {
 		log.info("[AdminService] getNoTicketPfs()");
 		
@@ -338,6 +344,12 @@ public class AdminService {
 	
 	
 	
+	public List<ReservationDtoForAdmin> getReservationByName(String p_name) {
+		log.info("[AdminController] getReservationByName()");
+		
+		return adminDao.selectAllReservationByName(p_name);
+	}
+
 	private List<AdminChartDto> returnAdminChartDtos(List<ReservationDto> rsvDto) {
 		
 		List<AdminChartDto> searchResult = new ArrayList<>();

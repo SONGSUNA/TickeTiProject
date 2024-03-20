@@ -16,6 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.office.ticketreserve.config.TicketDto;
 import com.office.ticketreserve.productpage.PerfomanceDto;
 import com.office.ticketreserve.reservation.ReservationDto;
+import com.office.ticketreserve.reservation.ReservationDtoForAdmin;
+import com.office.ticketreserve.reservation.ReservationService;
 import com.office.ticketreserve.review.ReviewDto;
 import com.office.ticketreserve.user.UserDto;
 import com.office.ticketreserve.util.FileUploadService;
@@ -33,6 +35,9 @@ public class AdminController {
 	
 	@Autowired
 	FileUploadService fileUploadService;
+	
+	@Autowired
+	ReservationService reservationService;
 
 	@GetMapping({"/", ""})
 	public String admin_home(Model model) {
@@ -44,7 +49,7 @@ public class AdminController {
 	}
 	
 	@GetMapping("/user_management")
-	public String user_management(Model model,@RequestParam(value = "size", defaultValue = "10") int size,
+	public String user_management(Model model,@RequestParam(value = "size", defaultValue = "8") int size,
 								 			  @RequestParam(value = "page", defaultValue = "1") int page) {
 		log.info("[AdminController] user_management()");
 		
@@ -237,7 +242,7 @@ public class AdminController {
 	
 	@GetMapping("/ticket_management")
 	public String ticketManagement(@RequestParam(value = "page", defaultValue = "1") int page,
-									@RequestParam(value = "size", defaultValue = "10") int size,
+									@RequestParam(value = "size", defaultValue = "8") int size,
 						            Model model) {
 		log.info("[AdminController] ticketManagement()");
 		
@@ -319,7 +324,7 @@ public class AdminController {
 
 	@GetMapping("/performance_modify")
 	public String perfomanceModify(@RequestParam(value = "page", defaultValue = "1") int page,
-									@RequestParam(value = "size", defaultValue = "10") int size,
+									@RequestParam(value = "size", defaultValue = "8") int size,
 	                               Model model) {
 	    log.info("[AdminController] admin_delete_confirm()");
 
@@ -391,7 +396,7 @@ public class AdminController {
 	
 	@GetMapping("/review_management")
 	public String reviewManagement(Model model,
-	                               @RequestParam(value = "size", defaultValue = "10") int size,
+	                               @RequestParam(value = "size", defaultValue = "8") int size,
 	                               @RequestParam(value = "page", defaultValue = "1") int page,
 	                               @RequestParam(value = "review_u_id", required = false) String u_id,
 	                               @RequestParam(value = "review_p_name", required = false) String p_name) {
@@ -426,7 +431,7 @@ public class AdminController {
 	public List<ReviewDto> reviewSearch(@RequestParam(value = "review_u_id", required = false) String u_id,
 	                                     @RequestParam(value = "review_p_name", required = false) String p_name,
 	                                     @RequestParam(value = "page", defaultValue = "1") int page,
-	                                     @RequestParam(value = "size", defaultValue = "10") int size) {
+	                                     @RequestParam(value = "size", defaultValue = "8") int size) {
 	    return adminService.searchReview(u_id, p_name, page, size);
 	}
 
@@ -439,7 +444,7 @@ public class AdminController {
 	
    @GetMapping("/ticket_state")
    public String ticketState (@RequestParam(value = "page", defaultValue = "1") int page,
-							  @RequestParam(value = "size", defaultValue = "10") int size,
+							  @RequestParam(value = "size", defaultValue = "8") int size,
 				              Model model) {
       log.info("[AdminController] ticketState()");
       
@@ -454,6 +459,26 @@ public class AdminController {
       String nextPage = "/admin/ticket_state";
          
       return nextPage;
+   }
+   
+   @GetMapping("/getReservationByName")
+   @ResponseBody
+   public List<ReservationDtoForAdmin> getReservationByName(@RequestParam("p_name") String p_name) {
+		log.info("[AdminController] getReservationByName()");
+		
+		List<ReservationDtoForAdmin> noTicketPfs = adminService.getReservationByName(p_name);
+		
+		return noTicketPfs.isEmpty() ? null : noTicketPfs;
+	}
+   
+   @GetMapping("/ticket_cancel_confirm")
+   @ResponseBody
+   public String ticketCancelConfirm(@RequestParam("r_no") int r_no) {
+	   log.info("[AdminController] ticketCancelConfirm()");
+	   
+	   reservationService.cancelConfirm(r_no);
+	   
+	   return "Success";
    }
    
 	@GetMapping("/logout")
