@@ -26,7 +26,7 @@
 				<a th:href="@{/user/create_account_form}">회원가입</a>
 			</div>
 			<div  th:unless="${session.loginedUserDto == null}" class="drop_content">
-				<a th:href="@{/user/my_ticket_page}">나의티켓</a>
+				<!-- <a th:href="@{/user/my_ticket_page}">나의티켓</a> -->
 				<a th:href="@{/user/user_modify_form}">정보수정</a>
 				<a th:href="@{/user/user_logout_confirm}">로그아웃</a>
 				<a th:href="@{/user/user_delete_form}">회원탈퇴</a>
