@@ -39,8 +39,8 @@ public class AdminService {
 
 	public List<UserDto> getAllUserDtoByPage(int size,int page) {
 		log.info("[AdminService] getAllUserDto()");
-		
-		List<UserDto> userDtos = adminDao.selectAllUsers(size,page);
+		int offset = (page - 1) * size;
+		List<UserDto> userDtos = adminDao.selectAllUsers(offset,size);
 		
 		return userDtos;
 	}
