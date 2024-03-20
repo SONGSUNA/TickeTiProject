@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.office.ticketreserve.config.TicketDto;
 import com.office.ticketreserve.productpage.PerfomanceDto;
+import com.office.ticketreserve.reservation.ReservationDto;
 import com.office.ticketreserve.review.ReviewDto;
 import com.office.ticketreserve.user.UserDto;
 import com.office.ticketreserve.util.FileUploadService;
@@ -437,8 +438,18 @@ public class AdminController {
 	}
 	
    @GetMapping("/ticket_state")
-   public String ticketState () {
+   public String ticketState (@RequestParam(value = "page", defaultValue = "1") int page,
+							  @RequestParam(value = "size", defaultValue = "10") int size,
+				              Model model) {
       log.info("[AdminController] ticketState()");
+      
+      List<ReservationDto> reservationDtos = adminService.gerReservationByPage(page, size);
+	    int totalCount = adminService.getReservationCount();
+	    int totalPages = (int) Math.ceil((double) totalCount / size);
+
+	    model.addAttribute("reservationDtos", reservationDtos);
+	    model.addAttribute("currentPage", page);
+	    model.addAttribute("totalPages", totalPages);
       
       String nextPage = "/admin/ticket_state";
          

@@ -95,4 +95,6 @@ public interface AdminDaoForMyBatis {
 	
 	int selectReviewCount(@Param("u_id") String u_id,
             			  @Param("p_name") String p_name);
+
+	public List<ReservationDto> selectReservationeByPage(@Param("offset") int offset,@Param("size") int size);
 }
