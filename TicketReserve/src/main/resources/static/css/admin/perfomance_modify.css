@@ -230,13 +230,19 @@ tr {
   height: 70px;
 }
 
-td button {
+td button,
+.search_form button {
   padding: 5px 10px;
   border: none;
   background-color: #265073;
   color: #fff;
   cursor: pointer;
+  border-radius: 5px;
 }
+input[name="search_p_name"]{
+	padding: 5px;
+}
+
 th:nth-child(1), td:nth-child(1) {
   width: 80px;
 }
