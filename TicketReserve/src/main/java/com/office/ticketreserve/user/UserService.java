@@ -63,7 +63,10 @@ public class UserService {
 		if (!isMember) {
 			
 //			userDto.setU_pw(passwordEncoder.encode(userDto.getU_pw()));
-			
+			AdminDto adminDtos= adminDaoForMyBatis.selectAdminById(userDto.getU_id());
+			if(adminDtos != null) {
+				return ID_ALREADY_EXIST;
+			}
 			int result = userDao.insertUser(userDto);
 			
 			if (result == DATABASE_COMMUNICATION_TROUBLE) {
