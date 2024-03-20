@@ -128,3 +128,63 @@ img {
 		cursor: pointer;
 	}
 }
+
+
+/* 캔슬 모달창 */
+/* 모달 래퍼 */
+.modal_wrap {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* 캔슬 모달창 */
+.cancel_modal {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 30px;
+  width: 400px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  animation-name: modalFadeIn;
+  animation-duration: 0.4s;
+  text-align: center;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.cancel_modal p {
+  font-size: .95em;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.cancel_modal button {
+  background-color: #265073;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.cancel_modal button:hover {
+  background-color: #1e3d59;
+}

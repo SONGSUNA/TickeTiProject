@@ -13,6 +13,7 @@
 	        T_NO = #{t_no}
 	        AND TRUNC(R_DATE) = TO_DATE(#{date}, 'YYYY-MM-DD')
 	        AND R_TIME = #{time}
+	        AND R_PAYMENT_STATE != -1
 	    </where>
 	    
 	</select>
@@ -34,5 +35,12 @@
 		VALUES
 			(RESERVE_SEQ.NEXTVAL, #{u_id}, #{r_sub_phone}, #{t_no}, #{r_date}, #{r_time}, #{r_take_ticket}, #{r_price}, 1, #{t_seat2}, SYSTIMESTAMP, SYSTIMESTAMP, #{r_discount})
 	</insert>
+	
+	<update id="updateReservationForCancel"
+			parameterType="Integer">
+	
+		UPDATE TBL_RESERVE SET R_PAYMENT_STATE = - 1 WHERE R_NO = #{r_no}
+	
+	</update>
 
 </mapper>

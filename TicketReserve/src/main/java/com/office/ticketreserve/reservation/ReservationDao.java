@@ -14,4 +14,6 @@ public interface ReservationDao {
 
 	int insertReservationSeat2(Map<String, Object> hashMap);
 
+	int updateReservationForCancel(int r_no);
+
 }

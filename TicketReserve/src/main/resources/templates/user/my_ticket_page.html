@@ -56,8 +56,8 @@
 						    <th:block th:if="${combinedDto != null and not #lists.isEmpty(combinedDto['r_reg_date_colection'])}">
 						        <tr th:each="index : ${#numbers.sequence(0, ((#arrays.length(combinedDto['r_reg_date_colection'])) - 1))}" th:class="'ticket-row-' + ${index}">
 						            <td th:text="${#strings.substringBefore(combinedDto['r_reg_date_colection'][index], ' ')}"></td>
-						            <td th:text="${combinedDto['r_no_colection'][index]}" ></td>
-						            <td th:text="${combinedDto['ticket_numbers'][index]}" th:id="'ticket-number-' + ${index}"></td>
+						            <td th:text="${combinedDto['r_no_colection'][index]}" th:id="'reservation-number-' + ${index}"></td>
+						            <td th:text="${combinedDto['ticket_numbers'][index]}"></td>
 						            <td>
 						                <a th:href="@{/product/{id}(id=${combinedDto['myPIdsList'][index]})}">
 						                    <img th:src="${combinedDto['p_thum_colectiion'][index]}" alt="썸네일">
@@ -122,9 +122,20 @@
 			</div>
 		</div>
 		
-		</div>		
-				
-	
+		</div>
+		
+		<div class="modal_wrap">
+			<div class="cancel_modal">
+				<p>예매 취소는 번복할 수 없는 중요한 결정입니다. <br>
+				예약하신 좌석은 취소 즉시 다른 고객께서 예매하실 수 있게 됩니다. <br> 
+				취소 후에는 동일한 좌석을 다시 예약하실 수 없을 수도 있습니다. <br>
+				신중히 고려하신 후에 진행해 주시기 바랍니다. <br>
+				정말로 예매를 취소하시겠습니까?</p>
+				<button onclick="cancel_confirm()">확인</button>
+				<button onclick="cancel_modal_close()">닫기</button>
+			</div>
+		</div>
+
 	</section>
 	
 	
