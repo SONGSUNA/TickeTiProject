@@ -5,7 +5,7 @@ $(document).ready(function() {
 	    var userId = $("input[name='review_u_id']").val();
 	    var performanceName = $("input[name='review_p_name']").val();
 	    var page = 1;
-	    var size = 10;
+	    var size = 6;
 	    searchReviews(page, size, userId, performanceName);
         
         $.ajax({
@@ -41,7 +41,7 @@ $(document).ready(function() {
                         var userId = $("input[name='review_u_id']").val();
                         var performanceName = $("input[name='review_p_name']").val();
                         var page = parseInt($(".pagination .active").text());
-                        var size = 10;
+                        var size = 6;
                         searchReviews(page, size, userId, performanceName);
                     } else {
                         alert("리뷰 삭제에 실패했습니다.");
@@ -58,7 +58,7 @@ $(document).ready(function() {
     $(document).on("click", ".pagination a", function(event) {
 	    event.preventDefault();
 	    var page = $(this).data("page");
-	    var size = 10;
+	    var size = 6;
 	    var userId = $("input[name='review_u_id']").val();
 	    var performanceName = $("input[name='review_p_name']").val();
 	    searchReviews(page, size, userId, performanceName);

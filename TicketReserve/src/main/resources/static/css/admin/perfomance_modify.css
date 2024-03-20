@@ -225,8 +225,9 @@ th {
   font-weight: bold;
 }
 
-td {
+tr {
   vertical-align: middle;
+  height: 70px;
 }
 
 td button {
