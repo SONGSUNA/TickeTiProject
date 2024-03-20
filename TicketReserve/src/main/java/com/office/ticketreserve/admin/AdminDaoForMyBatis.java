@@ -9,6 +9,7 @@ import org.springframework.security.access.method.P;
 import com.office.ticketreserve.config.TicketDto;
 import com.office.ticketreserve.productpage.PerfomanceDto;
 import com.office.ticketreserve.reservation.ReservationDto;
+import com.office.ticketreserve.reservation.ReservationDtoForAdmin;
 import com.office.ticketreserve.review.ReviewDto;
 import com.office.ticketreserve.user.UserDto;
 
@@ -54,6 +55,9 @@ public interface AdminDaoForMyBatis {
 	public List<PerfomanceDto> selectPerfomanceByPage(@Param("offset") int offset,@Param("size") int size);
 	
 	public int selectPerfomanceCount();
+	
+	public int selectReservationCount();
+
 	//====================================
 	public List<PerfomanceDto> selectAllPerfomanceNoTicket();
 
@@ -97,4 +101,6 @@ public interface AdminDaoForMyBatis {
             			  @Param("p_name") String p_name);
 
 	public List<ReservationDto> selectReservationeByPage(@Param("offset") int offset,@Param("size") int size);
+
+	public List<ReservationDtoForAdmin> selectAllReservationByName(String p_name);
 }

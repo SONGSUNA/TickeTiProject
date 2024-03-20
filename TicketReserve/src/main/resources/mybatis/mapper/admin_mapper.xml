@@ -534,4 +534,43 @@
 			
 		DELETE FROM TBL_REVIEW WHERE RV_NO = #{rv_no}
 	</delete>
+	
+	<select id="selectReservationeByPage" 
+			resultType="com.office.ticketreserve.reservation.ReservationDtoForAdmin">
+	
+	    SELECT *
+	    FROM (
+	        SELECT ROWNUM AS rn, p.*
+	        FROM (
+	            SELECT r.*, p.P_NAME
+	            FROM TBL_RESERVE r
+	            JOIN TBL_TICKET t ON r.T_NO = t.T_NO
+	            JOIN TBL_PERFOMANCE p ON t.P_ID = p.P_ID
+	            ORDER BY r.R_NO DESC
+	        ) p
+	        WHERE ROWNUM &lt;= #{offset} + #{size}
+	    )
+	    WHERE rn &gt; #{offset}
+	    
+	</select>
+	    
+    <select id="selectReservationCount" resultType="int">
+        SELECT COUNT(*)
+        FROM TBL_RESERVE
+    </select>
+	
+	    
+	<select id="selectAllReservationByName" 
+			parameterType="String" 
+			resultType="com.office.ticketreserve.reservation.ReservationDtoForAdmin">
+	
+	    SELECT r.R_NO, r.U_ID, r.R_SUB_PHONE, r.T_NO, r.R_DATE, r.R_TIME, r.R_TAKE_TICKET, r.R_PRICE, r.R_PAYMENT_STATE, r.T_SEAT, r.R_REG_DATE, r.R_MOD_DATE, r.R_DISCOUNT, p.P_NAME
+	    FROM TBL_RESERVE r
+	    JOIN TBL_TICKET t ON r.T_NO = t.T_NO
+	    JOIN TBL_PERFOMANCE p ON t.P_ID = p.P_ID
+	    WHERE p.P_NAME LIKE '%' || #{p_name} || '%'
+	    ORDER BY r.R_NO DESC
+	    
+	</select>
+	
 </mapper>

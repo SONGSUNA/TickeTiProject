@@ -7,6 +7,9 @@
 
 <link rel="stylesheet" th:href="@{/css/admin/ticket_state.css}">
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript" th:src="@{/js/admin/ticket_state.js}"></script>
+
 </head>
 <body>
 
@@ -17,26 +20,95 @@
 		<div class="main">
 			<h1>티켓 예매 현황</h1>
 			
-			<table>
-				<thead>
-					<tr>
-						<th>티켓번호</th>
-						<th>공연명</th>
-						<th>공연 날짜</th>
-						<th>공연 시간</th>
-						<th>ID</th>
-						<th>예매 가격</th>
-						<th>할인</th>
-						<th>예매 시각</th>
-					</tr>
-				</thead>
-				<tbody>
-				
-				</tbody>
-			</table>
-			<div class="pagination">
-			    
+			<div class="list_menu">
+				<div class="all"	onclick="allPerfomance()">		전체 공연 목록</div>
+				<div class="search"	onclick="searchPerfomance()">	공연 검색</div>
 			</div>
+			
+			<div class="all_table">
+				<table>
+					<thead>
+						<tr>
+							<th>티켓번호</th>
+							<th>공연명</th>
+							<th>공연 날짜</th>
+							<th>공연 시간</th>
+							<th>ID</th>
+							<th>예매 가격</th>
+							<th>좌석 번호</th>
+							<th>할인</th>
+							<th>결제 상태</th>
+							<th>예매 시각</th>
+							<th>예매 취소</th>
+					</thead>
+					<tbody>
+						<tr th:each="reservation : ${reservationDtos}" th:class="${reservation.r_no}">
+						    <td th:text="${reservation.r_no}"></td>
+						    <td th:text="${reservation.p_name}"></td>
+						    <td th:text="${#strings.substring(reservation.r_date, 0, 10)}"></td>
+						    <td th:text="${#strings.substring(reservation.r_time, 0, 5)}"></td>
+						    <td th:text="${reservation.u_id}"></td>
+						    <td th:text="${#numbers.formatDecimal(reservation.r_price, 0, 'COMMA', 0, 'POINT')}"></td>
+						    <td th:text="${reservation.t_seat}"></td>
+						    <td th:text="${reservation.r_discount}"></td>
+						    <td th:class="payment_state">
+						        <th:block th:switch="${reservation.r_payment_state}">
+						            <span th:case="0">결제 전</span>
+						            <span th:case="1">결제 완료</span>
+						            <span th:case="-1">예매 취소</span>
+						        </th:block>
+						    </td>
+						    <td th:text="${#strings.substringBefore(reservation.r_reg_date, '.')}"></td>
+						    <td>
+						    	<button th:attr="onclick='ticket_cancel(\'' + ${reservation.r_no} + '\')'">취소</button>
+						    </td>
+						</tr>
+					</tbody>
+				</table>
+				
+				<div class="pagination">
+			    <a th:href="@{/admin/ticket_state(page=${((currentPage - 1) / 10) * 10})}" th:if="${currentPage > 10}">&lt;</a>
+			    
+			    <th:block th:with="startPage=${((currentPage - 1) / 10) * 10 + 1}, endPage=${startPage + 9}">
+			        <span th:each="page : ${#numbers.sequence(startPage, endPage < totalPages ? endPage : totalPages)}">
+			            <a th:href="@{/admin/ticket_state(page=${page})}" th:text="${page}" th:classappend="${page == currentPage ? 'active' : ''}"></a>
+			        </span>
+			    </th:block>
+			    
+			    <a th:href="@{/admin/ticket_state(page=${((currentPage - 1) / 10 + 1) * 10 + 1})}" th:if="${currentPage < totalPages - 9}">&gt;</a>
+			</div>
+			</div>
+			
+			<div class="search_table">
+				<div class="search_form">
+					<p>공연명 : </p>
+					<input type="text" name="search_p_name" id="search_p_name">
+					<button onclick="search_pf()">검색</button>
+				</div>	
+			
+				<table>
+					<thead>
+						<tr>
+							<th>티켓번호</th>
+							<th>공연명</th>
+							<th>공연 날짜</th>
+							<th>공연 시간</th>
+							<th>ID</th>
+							<th>예매 가격</th>
+							<th>좌석 번호</th>
+							<th>할인</th>
+							<th>결제 상태</th>
+							<th>예매 시각</th>
+							<th>예매 취소</th>
+						</tr>
+					</thead>
+					<tbody>
+						
+					</tbody>
+				</table>
+			</div>
+			
+			
 		</div>
 	</div>
 	
