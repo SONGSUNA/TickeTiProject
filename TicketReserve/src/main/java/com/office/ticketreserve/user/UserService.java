@@ -280,6 +280,7 @@ public class UserService {
 		List<String> r_take_ticket_colection = new ArrayList<>();
 		List<String> r_payment_state_colection = new ArrayList<>();
 		List<String> ticket_numbers = new ArrayList<>();
+		List<String> r_no_colection = new ArrayList<>();
 		int r_take_ticket_result = 1;
 		int r_payment_result = 0;
 		
@@ -290,6 +291,8 @@ public class UserService {
 			r_date_colection.add(reservationDto.getR_date());
 			r_time_colection.add(reservationDto.getR_time());
 			r_take_ticket_result = reservationDto.getR_take_ticket(); 
+			r_no_colection.add(Integer.toString(reservationDto.getR_no()));
+			
 			
 			if(r_take_ticket_result == 1) {
 				r_take_ticket_colection.add("현장 수령");
@@ -349,6 +352,7 @@ public class UserService {
 		combinedInfo.put("p_thum_colectiion", p_thum_colectiion);
 		combinedInfo.put("myPIdsList", myPIdsList);
 		combinedInfo.put("ticket_numbers", ticket_numbers);
+		combinedInfo.put("r_no_colection", r_no_colection);
 		
 		}
 		return combinedInfo;
