@@ -24,93 +24,136 @@
 			
 			<div class="perfomance_regist">
 				<form th:action="@{/admin/perfomance_regist_confirm}" name="perfomance_regist_form" method="post" enctype="multipart/form-data">
-					<div class="scroll">
-						<p>ID</p>
-						<input type="text" name="p_id" placeholder="PF000000">
-						<input type="button" id="checkId" value="ID중복 검사"><span id="check_id_msg"></span>
-						<br>
-						<p>공연명</p>
-						<input type="text" name="p_name">
-						<br>
-						<p>공연 시작 날짜</p>
-						<input type="date" name="p_start_date">	
-						<br>
-						<p>공연 종료 날짜</p>
-						<input type="date" name="p_end_date">
-						<br>
-						<p>연령 등급</p>
-						<select name="p_grade">
-							<option value="none">--연령등급 선택--</option>
-							<option value="전체 관람가">전체 관람가</option>
-							<option value="12개월 이상">12개월 이상</option>
-							<option value="24개월 이상">24개월 이상</option>
-							<option value="36개월 이상">36개월 이상</option>
-							<option value="만 7세 이상">만 7세 이상</option>
-							<option value="만 12세 이상">만 12세 이상</option>
-							<option value="만 15세 이상">만 15세 이상</option>
-							<option value="만 19세 이상">만 19세 이상</option>
-						</select>
-						<br>
-						<p>공연 시설명</p>
-						<input type="text" name="p_theater">
-						<br>
-						<p>시설 주소</p>
-			            <div class="input_info">
-							 <input type="text" id="postcode" name="postcode" placeholder="우편번호">
-							 <input type="button" id="find_zip_code"onclick="execDaumPostcode()" value="우편번호 찾기"><br>
-							 <input type="text" id="address" name="address" placeholder="주소"><br>
-							 <input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소">
-						     <input type="text" id="extraAddress" name="extraAddress" placeholder="참고항목"><br>
-							 <input type="hidden" name="p_place">
+					<div class="form-row">
+						<div class="form-group id-group">
+							<label for="p_id">ID</label>
+							<div class="input-wrapper">
+								<input type="text" id="p_id" name="p_id" placeholder="PF000000">
+								<input type="button" id="checkId" value="ID중복 검사">
+							</div>
+							<span id="check_id_msg"></span>
 						</div>
-						<p>주소 위도</p>
-						<input type="number" name="p_latitude">
-						<br>
-						<p>주소 경도</p>
-						<input type="number" name="p_lognitude">
-						<br>
-						<p>썸네일 이미지</p>
-						<input type="file" id="thum_img" name="thum_img">
-						<img id="thumbPreview" src="#" alt="Thumbnail Preview" style="display: none;"/>
-						<br>
-						<p>카테고리</p>
-						<select name="p_category">
-							<option value="none">--장르 선택--</option>
-							<option value="대중음악">콘서트</option>
-							<option value="뮤지컬">뮤지컬</option>
-							<option value="연극">연극</option>
-							<option value="서양음악(클래식)">서양음악(클래식)</option>
-							<option value="한국음악(국악)">한국음악(국악)</option>
-						</select>
-						<br>
-						<p>좌석 수</p>
-						<input type="number" name="p_max_reserve">
-						<br>
-						<p>관람 시간</p>
-						<input type="text" name="p_running_time" placeholder="0시간 00분">
-						<br>
-						<p>출연진</p>
-						<input type="text" name="p_characters" placeholder="김ㅇㅇ, 박ㅇㅇ, 이ㅇㅇ">
-						<br>
-						<p>상세페이지 이미지</p>
-						<input type="file" id="detail_img" name="detail_img">
-						<img id="detailImgPreview" src="#" alt="Detail Image Preview" style="display: none;"/>
-						<br>
-						<p>기획사 정보</p>
-						<textarea name="p_agency_info"></textarea>
-						<br>
-						<p>주최</p>
-						<textarea name="p_host"></textarea>
-						<br>
-						<p>상담 번호</p>
-						<textarea name="p_inquiry"></textarea>
-						<br>
-						<p>유의사항</p>
-						<textarea name="p_detail_cautions" placeholder="유의사항이 있을시 입력"></textarea>
-						<br>
+						<div class="form-group">
+							<label for="p_name">공연명</label>
+							<input type="text" id="p_name" name="p_name">
+						</div>
+						<div class="form-group">
+							<label for="p_start_date">공연 시작 날짜</label>
+							<input type="date" id="p_start_date" name="p_start_date">
+						</div>
+						<div class="form-group">
+							<label for="p_end_date">공연 종료 날짜</label>
+							<input type="date" id="p_end_date" name="p_end_date">
+						</div>
 					</div>
-					<input type="button" value="등록"	onclick="perfomanceRegist()">
-					<input type="reset"	 value="초기화">
+					<div class="form-row">
+						<div class="form-group">
+							<label for="p_grade">연령 등급</label>
+							<select id="p_grade" name="p_grade">
+								<option value="none">--연령등급 선택--</option>
+								<option value="전체 관람가">전체 관람가</option>
+								<option value="12개월 이상">12개월 이상</option>
+								<option value="24개월 이상">24개월 이상</option>
+								<option value="36개월 이상">36개월 이상</option>
+								<option value="만 7세 이상">만 7세 이상</option>
+								<option value="만 12세 이상">만 12세 이상</option>
+								<option value="만 15세 이상">만 15세 이상</option>
+								<option value="만 19세 이상">만 19세 이상</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="p_theater">공연 시설명</label>
+							<input type="text" id="p_theater" name="p_theater">
+						</div>
+						<div class="form-group">
+							<label for="p_max_reserve">좌석 수</label>
+							<input type="number" id="p_max_reserve" name="p_max_reserve">
+						</div>
+						<div class="form-group">
+							<label for="p_running_time">관람 시간</label>
+							<input type="text" id="p_running_time" name="p_running_time" placeholder="0시간 00분">
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group address-group">
+							<label>시설 주소</label>
+							<div class="input_info">
+								<div class="postcode-wrapper">
+									<input type="text" id="postcode" name="postcode" placeholder="우편번호">
+									<input type="button" id="find_zip_code"onclick="execDaumPostcode()" value="우편번호 찾기">
+								</div>
+								<input type="text" id="address" name="address" placeholder="주소"><br>
+								<input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소">
+								<input type="text" id="extraAddress" name="extraAddress" placeholder="참고항목"><br>
+								<input type="hidden" name="p_place">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="p_latitude">주소 위도</label>
+							<input type="number" id="p_latitude" name="p_latitude">
+						</div>
+						<div class="form-group">
+							<label for="p_lognitude">주소 경도</label>
+							<input type="number" id="p_lognitude" name="p_lognitude">
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group">
+							<label for="thum_img">썸네일 이미지</label>
+							<input type="file" id="thum_img" name="thum_img">
+							<div class="image-preview">
+								<img id="thumbPreview" src="#" alt="Thumbnail Preview" style="display: none;"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="detail_img">상세페이지 이미지</label>
+							<input type="file" id="detail_img" name="detail_img">
+							<div class="image-preview">
+								<img id="detailImgPreview" src="#" alt="Detail Image Preview" style="display: none;"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="p_category">카테고리</label>
+							<select id="p_category" name="p_category">
+								<option value="none">--장르 선택--</option>
+								<option value="대중음악">콘서트</option>
+								<option value="뮤지컬">뮤지컬</option>
+								<option value="연극">연극</option>
+								<option value="서양음악(클래식)">서양음악(클래식)</option>
+								<option value="한국음악(국악)">한국음악(국악)</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group">
+							<label for="p_characters">출연진</label>
+							<input type="text" id="p_characters" name="p_characters" placeholder="김ㅇㅇ, 박ㅇㅇ, 이ㅇㅇ">
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group">
+							<label for="p_agency_info">기획사 정보</label>
+							<textarea id="p_agency_info" name="p_agency_info"></textarea>
+						</div>
+						<div class="form-group">
+							<label for="p_host">주최</label>
+							<textarea id="p_host" name="p_host"></textarea>
+						</div>
+						<div class="form-group">
+							<label for="p_inquiry">상담 번호</label>
+							<textarea id="p_inquiry" name="p_inquiry"></textarea>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group full-width">
+							<label for="p_detail_cautions">유의사항</label>
+							<textarea id="p_detail_cautions" name="p_detail_cautions" placeholder="유의사항이 있을시 입력"></textarea>
+						</div>
+					</div>
+					<div class="button-wrapper">
+						<input type="button" value="등록"	onclick="perfomanceRegist()">
+						<input type="reset"	 value="초기화">
+					</div>
 				</form>
 			</div>
 		</div>

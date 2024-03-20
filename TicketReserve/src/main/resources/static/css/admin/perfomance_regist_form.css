@@ -1,41 +1,43 @@
 @font-face {
-    font-family: 'LINESeedKR-Th';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Th.woff2') format('woff2');
-    font-weight: 100;
-    font-style: normal;
+  font-family: 'LINESeedKR-Th';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Th.woff2') format('woff2');
+  font-weight: 100;
+  font-style: normal;
 }
+
 @font-face {
-    font-family: 'LINESeedKR-Rg';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Rg.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
+  font-family: 'LINESeedKR-Rg';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Rg.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
 }
- @font-face {
-    font-family: 'LINESeedKR-Bd';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
+
+@font-face {
+  font-family: 'LINESeedKR-Bd';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
 }
-          
+
 body {
-    font-family: 'LINESeedKR-Rg';
-      margin: 0;
-  	padding: 0;
-  	display: flex
+  font-family: 'LINESeedKR-Rg';
 }
 
 a {
-	text-decoration: none;
-	color: #fff;
+  text-decoration: none;
+  color: #fff;
 }
 
-p {
-	display: inline-block;
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  height: 100vh;
 }
 
 .container {
   display: flex;
-  height: 100vh;
+  height: 100%;
 }
 
 .sidebar {
@@ -43,6 +45,7 @@ p {
   background-color: #265073;
   color: #fff;
   padding: 20px;
+  position: relative;
 }
 
 .sidebar ul {
@@ -60,24 +63,153 @@ p {
 }
 
 .sidebar li.logout {
-	position: absolute;
-  	bottom: 10px;
-  	width: 250px;
-    box-sizing: border-box;
-    border-top: 1px solid rgba(255, 255, 255, .2);
-} 
-
-.sidebar li	a {
-	display: inline-block;
-	width: 100%;
+  position: absolute;
+  bottom: 10px;
+  width: 210px;
+  box-sizing: border-box;
+  border-top: 1px solid rgba(255, 255, 255, .2);
 }
 
-img .thumbPreview,
-img ,detailImgPreview {
-	width: 200px;
+.sidebar li a {
+  display: inline-block;
+  width: 100%;
 }
 
-.scroll {
-  overflow-y: scroll;
-  height: 600px;
-} 
+.main {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.main h1 {
+  margin-left: 20px;
+}
+
+.perfomance_regist {
+
+  padding: 20px;
+}
+
+input[type="button"],
+input[type="reset"] {
+  margin: 10px;
+  padding: 8px 16px;
+  border: none;
+  background-color: #265073;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+input[type="button"]:hover,
+input[type="reset"]:hover {
+  background-color: #1c3d5a;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+select,
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10px;
+}
+
+.form-group {
+  flex: 1;
+  padding: 0 10px;
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.input-wrapper input[type="text"] {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.input-wrapper input[type="button"] {
+  margin: 0;
+}
+
+.input_info input[type="text"] {
+  margin-bottom: 5px;
+}
+
+.image-preview {
+  margin-top: 10px;
+}
+
+.image-preview img {
+  max-width: 200px;
+  max-height: 200px;
+}
+
+#check_id_msg {
+  margin-top: 5px;
+  display: block;
+}
+
+.address-group {
+  flex: 2;
+}
+
+.id-group {
+  flex: 1.5;
+}
+
+.postcode-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.postcode-wrapper input[type="text"] {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.postcode-wrapper input[type="button"] {
+  margin: 0;
+}
+
+.full-width {
+  flex-basis: 100%;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.button-wrapper input[type="button"],
+.button-wrapper input[type="reset"] {
+  margin-left: 10px;
+}

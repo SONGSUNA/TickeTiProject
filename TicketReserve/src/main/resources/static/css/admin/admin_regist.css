@@ -1,29 +1,32 @@
 @font-face {
-    font-family: 'LINESeedKR-Th';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Th.woff2') format('woff2');
-    font-weight: 100;
-    font-style: normal;
+  font-family: 'LINESeedKR-Th';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Th.woff2') format('woff2');
+  font-weight: 100;
+  font-style: normal;
 }
+
 @font-face {
-    font-family: 'LINESeedKR-Rg';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Rg.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
+  font-family: 'LINESeedKR-Rg';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Rg.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
 }
- @font-face {
-    font-family: 'LINESeedKR-Bd';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
+
+@font-face {
+  font-family: 'LINESeedKR-Bd';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
 }
-          
+
 body {
-    font-family: 'LINESeedKR-Rg';
+  font-family: 'LINESeedKR-Rg';
+
 }
 
 a {
-	text-decoration: none;
-	color: #fff;
+  text-decoration: none;
+  color: #fff;
 }
 
 body {
@@ -59,14 +62,63 @@ body {
 }
 
 .sidebar li.logout {
-	position: absolute;
-  	bottom: 10px;
-  	width: 250px;
-    box-sizing: border-box;
-    border-top: 1px solid rgba(255, 255, 255, .2);
-} 
+  position: absolute;
+  bottom: 10px;
+  width: 250px;
+  box-sizing: border-box;
+  border-top: 1px solid rgba(255, 255, 255, .2);
+}
 
-.sidebar li	a {
-	display: inline-block;
-	width: 100%;
+.sidebar li a {
+  display: inline-block;
+  width: 100%;
+}
+
+
+
+.main h1 {
+  margin-left: 20px;
+
+}
+
+.user_search {
+  margin-left: 20px;
+  padding: 20px;
+}
+
+input[type="button"],
+input[type="reset"] {
+  margin: 10px;
+  padding: 8px 16px;
+  border: none;
+  background-color: #265073;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+
+}
+
+input[type="button"]:hover,
+input[type="reset"]:hover {
+  background-color: #1c3d5a;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+input[type="text"],
+input[type="password"],
+input[type="number"] {
+	height: 20px;
+}
+
+.phone_info input {
+	width: 50px;
+}
+
+.input_info {
+	margin: 10px;
 }
