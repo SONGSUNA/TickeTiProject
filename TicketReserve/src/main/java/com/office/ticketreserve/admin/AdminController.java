@@ -313,6 +313,8 @@ public class AdminController {
 		nextPage = "/admin/ticket_modify_success";
 		return nextPage;
 	}
+	
+	//페이지네이션 테스트===================
 
 	@GetMapping("/performance_modify")
 	public String perfomanceModify(@RequestParam(value = "page", defaultValue = "1") int page,
