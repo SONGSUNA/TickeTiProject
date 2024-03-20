@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import com.office.ticketreserve.config.TicketDto;
 import com.office.ticketreserve.productpage.PerfomanceDto;
@@ -18,6 +17,7 @@ import com.office.ticketreserve.reservation.ReservationDto;
 import com.office.ticketreserve.reservation.ReservationDtoForAdmin;
 import com.office.ticketreserve.review.ReviewDto;
 import com.office.ticketreserve.user.IUserDaoForMybatis;
+import com.office.ticketreserve.user.UserDao;
 import com.office.ticketreserve.user.UserDto;
 
 import lombok.extern.log4j.Log4j2;
@@ -34,6 +34,9 @@ public class AdminService {
 	
 	@Autowired
 	IUserDaoForMybatis userDao;
+	
+	@Autowired
+	UserDao userDaoNoBatis;
 	
 	@Autowired
 	AdminChartDto adminChartDto;
@@ -93,7 +96,9 @@ public class AdminService {
 		
 		AdminDto adminDto = adminDao.selectAdminById(adminId);
 		if (adminDto != null) return result;
-		else return false;
+		if (userDaoNoBatis.isUser(adminId)) return result;
+		
+		return false;
 	}
 
 	public int adminRegist(AdminDto adminDto) {
