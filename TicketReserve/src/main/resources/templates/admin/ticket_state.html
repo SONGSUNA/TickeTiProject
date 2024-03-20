@@ -29,7 +29,7 @@
 				<table>
 					<thead>
 						<tr>
-							<th>티켓번호</th>
+							<th>예약 번호</th>
 							<th>공연명</th>
 							<th>공연 날짜</th>
 							<th>공연 시간</th>
@@ -44,7 +44,7 @@
 					<tbody>
 						<tr th:each="reservation : ${reservationDtos}" th:class="${reservation.r_no}">
 						    <td th:text="${reservation.r_no}"></td>
-						    <td th:text="${reservation.p_name}"></td>
+						    <td th:class="p_name" th:text="${reservation.p_name}"></td>
 						    <td th:text="${#strings.substring(reservation.r_date, 0, 10)}"></td>
 						    <td th:text="${#strings.substring(reservation.r_time, 0, 5)}"></td>
 						    <td th:text="${reservation.u_id}"></td>
@@ -59,7 +59,7 @@
 						        </th:block>
 						    </td>
 						    <td th:text="${#strings.substringBefore(reservation.r_reg_date, '.')}"></td>
-						    <td>
+						    <td class="cancel">
 						    	<th:block th:if="${reservation.r_payment_state != -1}">
 							    	<button th:onclick="'ticket_cancel(\'' + ${reservation.r_no} + '\')'">취소</button>
 							    </th:block>
@@ -91,7 +91,7 @@
 				<table>
 					<thead>
 						<tr>
-							<th>티켓번호</th>
+							<th>예약 번호</th>
 							<th>공연명</th>
 							<th>공연 날짜</th>
 							<th>공연 시간</th>

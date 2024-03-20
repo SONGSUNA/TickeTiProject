@@ -35,34 +35,37 @@ function search_pf() {
 	    success: function (data) {
 	        if (data != "") {
 	            let html = '';
-	            
-				$.each(data, function(index, reservation) {
-				    let paymentState;
-				    if (reservation.r_payment_state == 0)
-				        paymentState = '결제 전';
-				    else if (reservation.r_payment_state == 1)
-				        paymentState = '결제완료';
-				    else if (reservation.r_payment_state == -1)
-				        paymentState = '예매취소';
-				
-				    console.log(reservation.r_discount);
-				
-				    html += '<tr class=' + reservation.r_no + '>';
-				    html += '<td>' + reservation.r_no + '</td>';
-				    html += '<td>' + reservation.p_name + '</td>';
-				    html += '<td>' + reservation.r_date.substring(0, 10) + '</td>'; // r_date 형식 변경
-				    html += '<td>' + reservation.r_time.substring(0, 5) + '</td>'; // r_time 형식 변경
-				    html += '<td>' + reservation.u_id + '</td>';
-				    html += '<td>' + reservation.r_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>';
-				    html += '<td>' + reservation.t_seat + '</td>';
-				    html += '<td>' + reservation.r_discount + '</td>';
-				    html += '<td class="payment_state">' + paymentState + '</td>';
-				    html += '<td>' + reservation.r_reg_date.substring(0, 19) + '</td>';
-				    html += '<td><button onclick="ticket_cancel(\'' + reservation.r_no + '\')">취소</button></td>';
-				    html += '</tr>';
-				});
-				
-				$('.search_table table tbody').html(html);
+	            $.each(data, function(index, reservation) {
+	                let paymentState;
+	                if (reservation.r_payment_state == 0)
+	                    paymentState = '결제 전';
+	                else if (reservation.r_payment_state == 1)
+	                    paymentState = '결제완료';
+	                else if (reservation.r_payment_state == -1)
+	                    paymentState = '예매취소';
+	
+	                console.log(reservation.r_discount);
+	
+	                html += '<tr class="' + reservation.r_no + '">';
+	                html += '<td>' + reservation.r_no + '</td>';
+	                html += '<td class="p_name">' + reservation.p_name + '</td>';
+	                html += '<td>' + reservation.r_date.substring(0, 10) + '</td>'; // r_date 형식 변경
+	                html += '<td>' + reservation.r_time.substring(0, 5) + '</td>'; // r_time 형식 변경
+	                html += '<td>' + reservation.u_id + '</td>';
+	                html += '<td>' + reservation.r_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>';
+	                html += '<td>' + reservation.t_seat + '</td>';
+	                html += '<td>' + reservation.r_discount + '</td>';
+	                html += '<td class="payment_state">' + paymentState + '</td>';
+	                html += '<td>' + reservation.r_reg_date.substring(0, 19) + '</td>';
+	                if (paymentState !== '예매취소') {
+	                    html += '<td class="cancel"><button onclick="ticket_cancel(\'' + reservation.r_no + '\')">취소</button></td>';
+	                }
+	                else {
+	                    html += '<td></td>';
+	                }
+	                html += '</tr>';
+	            });
+            	$('.search_table table tbody').html(html);
 			}
 			else {
 				let html = '<tr><td colspan="11">검색 결과가 존재하지 않습니다.</td></tr>';
@@ -93,6 +96,7 @@ function ticket_cancel(r_no) {
 			console.log("ticketCancelConfirm() " + data);
 			
 			$("tr." + r_no + " td.payment_state").text("예매 취소");
+			$("tr." + r_no + " td.cancel").html('');
 		},
 	    error: function (xhr, status, error) {
 		        console.log("AJAX 요청 실패: " + status);

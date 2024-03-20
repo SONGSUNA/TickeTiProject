@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.office.ticketreserve.config.TicketDto;
 import com.office.ticketreserve.productpage.PerfomanceDto;
+import com.office.ticketreserve.reservation.ReservationDao;
 import com.office.ticketreserve.reservation.ReservationDto;
 import com.office.ticketreserve.reservation.ReservationDtoForAdmin;
 import com.office.ticketreserve.review.ReviewDto;
@@ -40,6 +41,9 @@ public class AdminService {
 	
 	@Autowired
 	AdminChartDto adminChartDto;
+	
+	@Autowired
+	ReservationDao reservationDao;
 
 	public List<UserDto> getAllUserDtoByPage(int size,int page) {
 	      log.info("[AdminService] getAllUserDto()");
