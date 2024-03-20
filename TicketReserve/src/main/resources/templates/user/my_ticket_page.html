@@ -73,7 +73,12 @@
 						            <td th:text="${combinedDto['r_take_ticket_colection'][index]}"></td>
 						            <td th:text="${combinedDto['r_payment_state_colection'][index]}"></td>
 						            <td>
-						                <button onclick="ticket_cancel(this)">취소</button>
+						                <th:block th:if="${combinedDto['r_payment_state_colection'][index]} == '결제 취소'">
+						                    취소 완료
+						                </th:block>
+						                <th:block th:unless="${combinedDto['r_payment_state_colection'][index]} == '결제 취소'">
+						                    <button onclick="ticket_cancel(this)">취소</button>
+						                </th:block>
 						            </td>
 						        </tr>
 						    </th:block>
