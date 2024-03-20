@@ -315,6 +315,9 @@ public class UserService {
 			} else if(r_payment_result == 1) {
 				r_payment_state_colection.add("결제 완료");
 				
+			} else if(r_payment_result == -1) {
+				r_payment_state_colection.add("결제 취소");
+				
 			} else {
 				r_payment_state_colection.add("오류");
 				
