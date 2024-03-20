@@ -201,8 +201,7 @@ td:nth-child(8) {
     background-color: #333;
 }
 
-.pagination a:first-child,
-.pagination a:last-child {
+.pagination a {
     padding: 10px 20px;
 }
 
@@ -220,7 +219,6 @@ td:nth-child(8) {
 .pagination a:last-child:hover::after {
     color: #fff;
 }
-
 .review_search button {
   background-color: #265073;
   color: #fff;
