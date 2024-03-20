@@ -476,7 +476,8 @@ public class AdminController {
    public String ticketCancelConfirm(@RequestParam("r_no") int r_no) {
 	   log.info("[AdminController] ticketCancelConfirm()");
 	   
-	   reservationService.cancelConfirm(r_no);
+	   int t_no = reservationService.getTNoByRNo(r_no);
+	   reservationService.cancelConfirm(r_no, t_no);
 	   
 	   return "Success";
    }

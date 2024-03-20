@@ -22,4 +22,8 @@ public interface ReservationDao {
 
 	void updateNowReserveDown(String p_id);
 
+	void selectPIdByPName(String p_name);
+
+	int selectTNoByRNo(int r_no);
+
 }

@@ -83,10 +83,15 @@ public class ReservationService {
 	}
 
 
-	public void cancelConfirm(int r_no, int t_no) {
+	public int getTNoByRNo(int r_no) {
 		log.info("[ReservationService] cancelConfirm()");
 		
-		log.info(">>>>>>>>>>>>>>>>>>>>>>" + r_no);
+		return reservationDao.selectTNoByRNo(r_no);
+	}
+
+
+	public void cancelConfirm(int r_no, int t_no) {
+		log.info("[ReservationService] cancelConfirm()");
 		
 		reservationDao.updateReservationForCancel(r_no);
 		String p_id = reservationDao.selectPId(t_no);

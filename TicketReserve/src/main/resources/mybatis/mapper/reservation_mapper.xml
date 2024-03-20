@@ -50,6 +50,14 @@
 	    SELECT P_ID FROM TBL_TICKET WHERE T_NO = #{t_no}
 	    
 	</select>
+	
+	<select id="selectTNoByRNo" 
+			parameterType="Integer" 
+			resultType="Integer">
+	
+	    SELECT T_NO FROM TBL_RESERVE WHERE R_NO = #{r_no}
+	    
+	</select>
 
 	<update id="updateNowReserve"
 			parameterType="String">
