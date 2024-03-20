@@ -22,37 +22,41 @@
 			<div class="user_search">
 				<form th:action="@{/admin/admin_regist_confirm}" name="regist_form" method="post">
 	          		<div class="input_info">
-	          		  <label><b>아이디  &emsp;&emsp;&emsp;</b><br/>
-	           			<input type="text" name="a_id"></label> 
-	           			<input type="button" id="checkId" value="ID중복 검사"><span id="check_id_msg"></span><br>
+	          		  	<label><b>아이디</b><br>
+		           			<input type="text" name="a_id">
+		           			<input type="button" id="checkId" value="ID중복 검사"><span id="check_id_msg"></span>
+	           			</label> 
 					</div>
 					
 					<div class="input_info">
-		           		 <label><b>비밀번호  &emsp;&emsp;&emsp;</b> <br/>
-		           		 <input type="password" name="a_pw" class="a_pw" id="a_pw"></label> <br />
-		           		 <span id="regexp"></span>
+		           		 <label><b>비밀번호</b> <br/>
+			           		 <input type="password" name="a_pw" class="a_pw" id="a_pw"><br />
+			           		 <span id="regexp"></span>
+		           		 </label>
 					</div>
 					
 					<div class="input_info">
-		           		 <label><b>비밀번호 재확인  &emsp;&emsp;&emsp;</b><br/>
-		          		 <input type="password" name="a_pw_confirm" class="a_pw" id="a_pw_check"></label>
-		          		 <span id="pw_matching"></span><br/>
+		           		 <label><b>비밀번호 재확인</b><br/>
+			          		 <input type="password" name="a_pw_confirm" class="a_pw" id="a_pw_check">
+			          		 <span id="pw_matching"></span><br/>
+		          		 </label>
 					</div>
 					
 					<div class="input_info">
-				         <label><b>이름  &emsp;&emsp;&emsp;</b><br>
-				         <input type="text" name="a_name"></label> <br>
+				         <label><b>이름</b><br>
+				         <input type="text" name="a_name"></label><br>
 			       </div>
 			        
 			        <div class="input_info">
-				         <label><b>이메일  &emsp;&emsp;&emsp;</b><br>
-				         <input type="text" name="a_mail_pre"></label> <span>@</span> 
+				         <label><b>이메일</b><br>
+				         <input type="text" name="a_mail_pre"> <span>@</span> 
 				         <input type="text" name="a_mail_suf"><br>
 			             <input type="hidden" name="a_mail">
+			             </label>
 		             </div>
 		             
-		             <div class="input_info">
-			           	 <label for="a_phone_pre"><b>휴대전화	&emsp;&emsp;&emsp;</b></label><br>
+		             <div class="input_info phone_info">
+			           	 <label for="a_phone_pre"><b>휴대전화</b></label><br>
 			             <input type="number" class="a_phone" value="010" name="a_phone_bas"> - 
 			             <input type="number" id="a_phone_pre" class="a_phone" name="a_phone_pre"> - 
 			             <input type="number" class="a_phone" name="a_phone_suf"><br>
