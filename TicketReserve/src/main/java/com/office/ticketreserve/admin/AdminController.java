@@ -324,7 +324,7 @@ public class AdminController {
 
 	@GetMapping("/performance_modify")
 	public String perfomanceModify(@RequestParam(value = "page", defaultValue = "1") int page,
-									@RequestParam(value = "size", defaultValue = "8") int size,
+									@RequestParam(value = "size", defaultValue = "6") int size,
 	                               Model model) {
 	    log.info("[AdminController] admin_delete_confirm()");
 
@@ -396,7 +396,7 @@ public class AdminController {
 	
 	@GetMapping("/review_management")
 	public String reviewManagement(Model model,
-	                               @RequestParam(value = "size", defaultValue = "8") int size,
+	                               @RequestParam(value = "size", defaultValue = "6") int size,
 	                               @RequestParam(value = "page", defaultValue = "1") int page,
 	                               @RequestParam(value = "review_u_id", required = false) String u_id,
 	                               @RequestParam(value = "review_p_name", required = false) String p_name) {
@@ -431,7 +431,7 @@ public class AdminController {
 	public List<ReviewDto> reviewSearch(@RequestParam(value = "review_u_id", required = false) String u_id,
 	                                     @RequestParam(value = "review_p_name", required = false) String p_name,
 	                                     @RequestParam(value = "page", defaultValue = "1") int page,
-	                                     @RequestParam(value = "size", defaultValue = "8") int size) {
+	                                     @RequestParam(value = "size", defaultValue = "6") int size) {
 	    return adminService.searchReview(u_id, p_name, page, size);
 	}
 
