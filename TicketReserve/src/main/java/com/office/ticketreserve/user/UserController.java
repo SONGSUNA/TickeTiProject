@@ -1,5 +1,6 @@
 package com.office.ticketreserve.user;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -316,9 +317,9 @@ public class UserController {
 	    String u_id = userDto.getU_id();
 	    
 	    Map<String, Object> combinedDto = userService.getMyTicketInfo(u_id);
+	    
 	    if (combinedDto != null && !combinedDto.isEmpty()) {
 	        model.addAttribute("combinedDto", combinedDto);
-	        
 	    } else {
 	        model.addAttribute("noTicketsMessage", "예매 내역이 없습니다.");
 	    }
