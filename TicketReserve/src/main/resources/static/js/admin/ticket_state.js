@@ -56,7 +56,7 @@ function search_pf() {
 	                html += '<td>' + reservation.t_seat + '</td>';
 	                html += '<td>' + reservation.r_discount + '</td>';
 	                html += '<td class="payment_state">' + paymentState + '</td>';
-	                html += '<td>' + reservation.r_reg_date.substring(0, 19) + '</td>';
+	                html += '<td>' + reservation.r_reg_date.substring(0, 10) + '</td>';
 	                if (paymentState !== '예매취소') {
 	                    html += '<td class="cancel"><button onclick="ticket_cancel(\'' + reservation.r_no + '\')">취소</button></td>';
 	                }

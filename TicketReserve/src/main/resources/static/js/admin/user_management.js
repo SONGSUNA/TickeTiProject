@@ -28,8 +28,8 @@ $(document).ready(function () {
 		                html += '<td>' + user.u_name + '</td>';
 		                html += '<td>' + user.u_mail + '</td>';
 		                html += '<td>' + user.u_phone + '</td>';
-		                html += '<td>' + user.u_reg_date + '</td>';
-		                html += '<td>' + user.u_mod_date + '</td>';
+						html += '<td>' + user.u_reg_date.substring(0, 10) + '</td>';
+						html += '<td>' + user.u_mod_date.substring(0, 10) + '</td>';
 		                html += '<td>';
 		                html += '<button onclick="UserModify(' + user.u_no + ')">수정</button>';
 						html += '<button onclick="UserDelete(' + user.u_no + ',\'' + user.u_id + '\')">삭제</button>';
