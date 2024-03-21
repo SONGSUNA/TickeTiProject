@@ -1,3 +1,5 @@
+let idCheck = false;
+
 function createAccountForm() {
    console.log('createAccountForm()  clicked!!!');
    
@@ -65,6 +67,9 @@ function createAccountForm() {
       alert('주소를 입력해주세요');
       form.address.focus();
       
+   } else if (!idCheck) {
+	   alert("아이디 중복체크를 먼저 성공해주세요.")
+      
    }else {
       
       form.submit();
@@ -100,13 +105,13 @@ $(document).ready(function () {
             data: {"u_id_check": userId},
             success: function (data) {
                 if (!data) {
-					isIdChecked = true; 
+					idCheck = true; 
                     alert('사용 가능한 아이디입니다.');
                     $('#check_id_msg').text('사용 가능한 아이디입니다.');
                     $('#check_id_msg').css('color', 'green')
                     				  .css('font-size','0.6em');
                 } else {
-					 isIdChecked = false;
+					 idCheck = false;
 	               alert('이미 사용중인 아이디입니다.');
                     $('#check_id_msg').text('이미 사용 중인 아이디입니다.');
                     $('#check_id_msg').css('color', 'red')
