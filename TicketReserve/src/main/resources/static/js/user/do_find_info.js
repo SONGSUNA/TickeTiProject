@@ -19,6 +19,7 @@ function findPassword() {
     	 form.u_mail_suf.focus();
     	 
 	} else {
+		document.querySelector('.modal_wrap').style.display = 'block';
 		form.submit();
 	}
 	 
