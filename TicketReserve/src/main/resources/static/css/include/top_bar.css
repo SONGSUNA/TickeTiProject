@@ -60,6 +60,8 @@
 
 .search form input[type=text]:focus{
 	outline:none;
+    background: rgba(255,255,255,0.5);
+	
 }
 
 .search form input[type=submit]:hover{
