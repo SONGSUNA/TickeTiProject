@@ -10,7 +10,11 @@ function modifyFwBtn(){
       alert('기존 비밀번호를 입력해주세요.');
       form.u_pw.focus();
       
-   } else if (form.new_pw.value === '') {
+   } else if(form.u_pw.value === form.new_pw.value){
+		alert('기존 비밀번호와 다른 비밀번호를 입력하세요.');
+		form.new_pw.focus();
+		
+	}else if (form.new_pw.value === '') {
 		alert('새 비밀번호를 설정해주세요.');
 		form.new_pw.value.focus();
 		
