@@ -317,24 +317,33 @@ public class AdminService {
 				dto.setR_reg_date(date);
 				salesByDate.put(date, dto);
 			}
+
 			
 			salesByDate.get(date).setDaySales(salesByDate.get(date).getDaySales() + searchResult.get(i).getR_price());
 			
 			switch (searchResult.get(i).getP_category()) {
 				case "대중음악":
 					salesByDate.get(date).setConcertSales(salesByDate.get(date).getConcertSales() + searchResult.get(i).getR_price());
+					log.info("setConcertSales" + salesByDate.get(date).getConcertSales());
 					break;
 				case "연극":
 					salesByDate.get(date).setTheaterSales(salesByDate.get(date).getTheaterSales() + searchResult.get(i).getR_price());
+					log.info("setConcertSales" + salesByDate.get(date).getTheaterSales());
 					break;
 				case "서양음악(클래식)":
 					salesByDate.get(date).setClassicSales(salesByDate.get(date).getClassicSales() + searchResult.get(i).getR_price());
+					log.info("setConcertSales" + salesByDate.get(date).getClassicSales());
 					break;
 				case "뮤지컬":
 					salesByDate.get(date).setMusicalSales(salesByDate.get(date).getMusicalSales() + searchResult.get(i).getR_price());
+					log.info("setConcertSales" + salesByDate.get(date).getMusicalSales());
 					break;
 				case "한국음악(국악)":
 					salesByDate.get(date).setKoreanMusicSales(salesByDate.get(date).getKoreanMusicSales() + searchResult.get(i).getR_price());
+					log.info("setConcertSales" + salesByDate.get(date).getKoreanMusicSales());
+				default : //ETC
+					salesByDate.get(date).setEtcSalesETC(salesByDate.get(date).getEtcSalesETC() + searchResult.get(i).getR_price());
+					log.info("setConcertSales" + salesByDate.get(date).getEtcSalesETC());
 					break;
 			}
 		}
