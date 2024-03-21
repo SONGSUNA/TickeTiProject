@@ -61,15 +61,16 @@
 					</tbody>
 				</table>
 				<div class="pagination">
-				    <a th:href="@{/admin/performance_modify(page=${((currentPage - 1) / 10) * 10})}" th:if="${currentPage > 10}">&lt;</a>
-				    
-				    <th:block th:with="startPage=${((currentPage - 1) / 10) * 10 + 1}, endPage=${startPage + 9}">
-				        <span th:each="page : ${#numbers.sequence(startPage, endPage < totalPages ? endPage : totalPages)}">
-				            <a th:href="@{/admin/performance_modify(page=${page})}" th:text="${page}" th:classappend="${page == currentPage ? 'active' : ''}"></a>
-				        </span>
-				    </th:block>
-				    
-				    <a th:href="@{/admin/performance_modify(page=${((currentPage - 1) / 10 + 1) * 10 + 1})}" th:if="${currentPage < totalPages - 9}">&gt;</a>
+				  <a th:href="@{/admin/performance_modify(page=${currentPage - 10})}" th:if="${currentPage > 10}">&lt;</a>
+				  
+				  <th:block th:with="startPage=${(currentPage - 1) / 10 * 10 + 1}, endPage=${(startPage + 9 < totalPages ? startPage + 9 : totalPages)}">
+				    <span th:each="page : ${#numbers.sequence(startPage, endPage)}">
+				      <a th:href="@{/admin/performance_modify(page=${page})}" th:text="${page}" th:classappend="${page == currentPage ? 'active' : ''}"></a>
+				    </span>
+				  </th:block>
+				  
+				  <a th:href="@{/admin/performance_modify(page=${totalPages})}" th:if="${currentPage + 9 <= totalPages && currentPage + 10 > totalPages}">&gt;</a>
+				  <a th:href="@{/admin/performance_modify(page=${currentPage + 10})}" th:if="${currentPage + 9 <= totalPages && currentPage + 10 <= totalPages}">&gt;</a>
 				</div>
 			</div>
 			
