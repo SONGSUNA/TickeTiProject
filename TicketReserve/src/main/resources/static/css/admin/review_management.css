@@ -69,11 +69,12 @@ body {
 
 .main {
   flex: 1;
-  padding: 20px;
+  padding: 50px;
 }
 
 h1 {
   margin-top: 0;
+  color: #265073;
 }
 
 .review_search {
