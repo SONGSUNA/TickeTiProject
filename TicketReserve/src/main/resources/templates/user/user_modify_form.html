@@ -83,8 +83,8 @@
 					 <input type="text" id="postcode" name="postcode" placeholder="우편번호" th:value="${zipCode}"></label>
 					 <input type="button" id="find_zip_code"onclick="execDaumPostcode()" value="우편번호 찾기"><br>
 					 <input type="text" id="address" name="address" placeholder="주소" th:value="${mainAdr}"><br>
-					 <input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소">
-				     <input type="text" id="extraAddress" name="extraAddress" placeholder="참고항목"><br>
+					 <input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소" th:value="${detailAdr != null ? detailAdr : ''}">
+				     <input type="text" id="extraAddress" name="extraAddress" placeholder="참고항목" th:value="${extraAdr != null ? extraAdr : ''}"><br>
 					 <input type="hidden" name="u_address">
 				</div>
 				
