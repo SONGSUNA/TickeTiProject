@@ -16,4 +16,5 @@ public class AdminChartDto {
 	private int theaterSales;
 	private int classicSales;
 	private int koreanMusicSales;
+	private int etcSalesETC;
 }

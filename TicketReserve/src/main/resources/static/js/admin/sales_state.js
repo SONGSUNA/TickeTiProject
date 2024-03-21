@@ -171,7 +171,7 @@ function drawChart(labels, daySalesValues, daySalesConcert, daySalesMusical, day
     
     // 전체 매출에서 각 장르별 매출 데이터를 뺀 값을 데이터셋으로 추가
 	datasets.push({
-        label: '하루 매출',
+        label: '기타 매출',
         data: totalMinusGenres,
         backgroundColor: 'rgba(128, 128, 128, 0.2)',
         borderColor: 'rgba(128, 128, 128, 1)',
