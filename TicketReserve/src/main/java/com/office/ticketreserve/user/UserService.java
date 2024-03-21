@@ -193,7 +193,7 @@ public class UserService {
 				MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true, "utf-8");
 				mimeMessageHelper.setTo(toMailAddr);
 				mimeMessageHelper.setSubject("[TikeTi] 새 비밀번호 안내입니다.");
-				String emailBody = "새 비밀번호: " + newPassword +  "로그인 후 보안을 위해 비밀번호를 변경해주세요.";
+				String emailBody = "새 비밀번호: " + newPassword +  "\n로그인 후 보안을 위해 비밀번호를 변경해주세요.";
 				mimeMessageHelper.setText(emailBody, false);
 			}
 		};
