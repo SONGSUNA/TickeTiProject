@@ -330,8 +330,12 @@ public class AdminController {
 
 	    List<PerfomanceDto> perfomanceDtos = adminService.getPerfomanceByPage(page, size);
 	    int totalCount = adminService.getPerfomanceCount();
-	    int totalPages = (int) Math.ceil((double) totalCount / size);
-
+	    int totalPages = (int) Math.round((double) totalCount / size);
+	   
+	    log.info(totalPages);
+	    log.info(totalCount);
+	    log.info(size);
+	    
 	    model.addAttribute("perfomanceDtos", perfomanceDtos);
 	    model.addAttribute("currentPage", page);
 	    model.addAttribute("totalPages", totalPages);

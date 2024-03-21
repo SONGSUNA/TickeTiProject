@@ -359,3 +359,10 @@ td {
 th:nth-child(1){
 	width:64px;
 }
+
+#location_info div:nth-child(1) {
+	margin:40px;
+}
+#location_info div h2{
+	margin-bottom:20px;
+}

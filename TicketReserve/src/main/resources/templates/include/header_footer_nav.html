@@ -32,34 +32,9 @@
 </header>
 
 
-<nav th:fragment="nav">
-	<div class="nav_wrap">
-		<div class="list_change_btn"> 
-			<a href="#none">조회순</a>
-			<a href="#none">인기순</a>
-			<a href="#none">최신순</a>
-		</div>
-		
-		<div class="search">
-			<div class="serach_txt">
-				<input type="text" 		placeholder="토너먼트를 검색하세요.">
-				<input type="button" 	value="검색">
-			</div>
-		</div>
-	</div>
-</nav>
-
 
 <footer th:fragment="footer">
 	<div class="footer_wrap"> 
-		<div class="footer_link">
-			<a href="#none">회사소개</a>&nbsp;|
-			<a href="#none">이용약관</a>&nbsp;|
-			<a href="#none">개인정보처리방침</a>&nbsp;|
-			<a href="#none">청소년보호정책</a>&nbsp;|
-			<a href="#none">이용안내</a>&nbsp;|
-			<a href="#none">티켓판매안내</a>
-		</div>
 		<div class="footer_info">
 			<div class="footer_logo">
 			<a th:href=@{/}><img alt="" th:src="@{/img/include/logo.png}"></a>
