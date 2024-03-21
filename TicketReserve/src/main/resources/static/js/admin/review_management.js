@@ -103,8 +103,8 @@ $(document).ready(function() {
                 row.append($("<td>").text(review.p_name));
                 row.append($("<td>").text(review.rv_score));
                 row.append($("<td>").text(review.rv_txt));
-                row.append($("<td>").text(review.rv_reg_date));
-                row.append($("<td>").text(review.rv_mod_date));
+                row.append($("<td>").text(review.rv_reg_date.substring(0, 10)));
+                row.append($("<td>").text(review.rv_mod_date.substring(0, 10)));
                 row.append($("<td>").html("<button class='delete_btn' data-review-no='" + review.rv_no + "'>삭제</button>"));
                 tableBody.append(row);
             });

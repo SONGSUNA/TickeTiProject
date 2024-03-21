@@ -38,7 +38,7 @@
 							<th>좌석 번호</th>
 							<th>할인</th>
 							<th>결제 상태</th>
-							<th>예매 시각</th>
+							<th>예매 날짜</th>
 							<th>예매 취소</th>
 					</thead>
 					<tbody>
@@ -58,7 +58,7 @@
 						            <span th:case="-1">예매 취소</span>
 						        </th:block>
 						    </td>
-						    <td th:text="${#strings.substringBefore(reservation.r_reg_date, '.')}"></td>
+						    <td th:text="${#strings.substring(reservation.r_reg_date, 0, 10)}"></td>
 						    <td class="cancel">
 						    	<th:block th:if="${reservation.r_payment_state != -1}">
 							    	<button th:onclick="'ticket_cancel(\'' + ${reservation.r_no} + '\')'">취소</button>

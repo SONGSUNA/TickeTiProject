@@ -50,8 +50,8 @@
 					    <td th:text="${review.p_name}"></td>
 					    <td th:text="${review.rv_score}"></td>
 					    <td th:text="${review.rv_txt}"></td>
-					    <td th:text="${review.rv_reg_date}"></td>
-					    <td th:text="${review.rv_mod_date}"></td>
+					    <td th:text="${#strings.substring(review.rv_reg_date, 0, 10)}"></td>
+					    <td th:text="${#strings.substring(review.rv_mod_date, 0, 10)}"></td>
 					    <td>
 					      <button class="delete_btn" th:data-review-no="${review.rv_no}">삭제</button>
 					    </td>

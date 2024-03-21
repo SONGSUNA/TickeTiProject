@@ -35,7 +35,7 @@
 				<table>
 					<thead>
 						<tr>
-							<th>No</th>
+							<th>어드민번호</th>
 							<th>아이디</th>
 							<th>이름</th>
 							<th>메일</th>
@@ -52,8 +52,8 @@
 					        <td th:text="${admin.a_name}"></td>
 					        <td th:text="${admin.a_mail}"></td>
 					        <td th:text="${admin.a_phone}"></td>
-					        <td th:text="${admin.a_reg_date}"></td>
-					        <td th:text="${admin.a_mod_date}"></td>
+					        <td th:text="${#strings.substring(admin.a_reg_date, 0, 10)}"></td>
+					        <td th:text="${#strings.substring(admin.a_mod_date, 0, 10)}"></td>
 					        <td>
 								<button th:attr="onclick='adminModify(\'' + ${admin.a_id} + '\')'">수정</button>
 								<button th:attr="onclick='adminDelete(\'' + ${admin.a_no} + '\',\'' + ${admin.a_id} + '\')'">삭제</button>

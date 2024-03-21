@@ -28,8 +28,8 @@ $(document).ready(function () {
 		                html += '<td>' + admin.a_name + '</td>';
 		                html += '<td>' + admin.a_mail + '</td>';
 		                html += '<td>' + admin.a_phone + '</td>';
-		                html += '<td>' + admin.a_reg_date + '</td>';
-		                html += '<td>' + admin.a_mod_date + '</td>';
+		                html += '<td>' + admin.a_reg_date.substring(0, 10) + '</td>';
+		                html += '<td>' + admin.a_mod_date.substring(0, 10) + '</td>';
 		                html += '<td>';
 		                html += '<button onclick="adminModify(' + admin.a_id + ')">수정</button>';
 						html += '<button onclick="adminDelete(' + admin.a_no + ',\'' + admin.a_id + '\')">삭제</button>';
