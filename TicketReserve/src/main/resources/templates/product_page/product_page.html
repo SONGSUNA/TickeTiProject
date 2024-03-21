@@ -70,7 +70,7 @@
                             <li>출연</li>
                             <li>가격</li>
                         </ul>
-                        <ul>
+                        <ul class="cd_info_list">
                             <li th:text="*{p_grade}"></li>
                             <li th:if="*{not #strings.isEmpty(p_running_time)}" th:text="*{p_running_time}"></li>
                             <li th:unless="*{not #strings.isEmpty(p_running_time)}" th:text="정보없음"></li>

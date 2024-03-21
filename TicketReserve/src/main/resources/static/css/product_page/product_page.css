@@ -12,6 +12,12 @@ a {
 ul {
     list-style: none;
 }
+.cd_info_list {
+	margin-left: 50px;
+}
+.time_info {
+	padding: 42px 0 42px 0;
+}
 #header_top_bar .top_bar {
     position: fixed; 
     top: 0;
