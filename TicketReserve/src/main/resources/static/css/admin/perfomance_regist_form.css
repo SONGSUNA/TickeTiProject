@@ -21,18 +21,15 @@
 
 body {
   font-family: 'LINESeedKR-Rg';
+  margin: 0;
+  padding: 0;
+  display: flex;
+  height: 100vh;
 }
 
 a {
   text-decoration: none;
   color: #fff;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  height: 100vh;
 }
 
 .container {
@@ -78,27 +75,51 @@ body {
 .main {
   flex: 1;
   padding: 20px;
+  padding-left: 50px;
   overflow-y: auto;
+  height: calc(100vh - 40px);
+  box-sizing: border-box;
+}
+
+.main::-webkit-scrollbar {
+  width: 10px;
+}
+  
+.main::-webkit-scrollbar-thumb {
+  background-color: #265073;
+  border-radius: 10px;
+  background-clip: padding-box;
+  border: 2px solid transparent;
+}
+
+.main::-webkit-scrollbar-track {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 5px white;
 }
 
 .main h1 {
-  margin-left: 20px;
+  color: #265073;
 }
 
 .perfomance_regist {
-
   padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 input[type="button"],
 input[type="reset"] {
   margin: 10px;
-  padding: 8px 16px;
+  padding: 12px 24px;
   border: none;
   background-color: #265073;
   color: #fff;
   cursor: pointer;
   border-radius: 4px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
 }
 
 input[type="button"]:hover,
@@ -120,11 +141,18 @@ input[type="date"],
 select,
 textarea {
   width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
+  padding: 12px;
+  margin-bottom: 15px;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+  font-size: 14px;
+}
+
+textarea#p_detail_cautions {
+	min-height: 100px;
+	max-height: 100px;
+	margin-bottom: 0;
 }
 
 .form-row {
@@ -137,12 +165,14 @@ textarea {
   flex: 1;
   padding: 0 10px;
   margin-bottom: 20px;
+  min-width: 200px;
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
   font-weight: bold;
+  color: #333;
 }
 
 .input-wrapper {
@@ -160,29 +190,39 @@ textarea {
 }
 
 .input_info input[type="text"] {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .image-preview {
-  margin-top: 10px;
+  margin-top: 15px;
+  width: 200px;
+  height: 200px;
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .image-preview img {
-  max-width: 200px;
-  max-height: 200px;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
 
 #check_id_msg {
   margin-top: 5px;
   display: block;
+  color: #ff0000;
 }
 
 .address-group {
   flex: 2;
+  min-width: 400px;
 }
 
 .id-group {
   flex: 1.5;
+  min-width: 300px;
 }
 
 .postcode-wrapper {
@@ -206,10 +246,17 @@ textarea {
 .button-wrapper {
   display: flex;
   justify-content: flex-end;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .button-wrapper input[type="button"],
 .button-wrapper input[type="reset"] {
   margin-left: 10px;
+}
+
+
+
+
+input[type="button"] {
+	align-self: baseline !important;
 }

@@ -32,6 +32,14 @@ body {
   display: flex;
 }
 
+.main {
+	padding: 20px;
+}
+
+.main	h1 {
+	color: #265073;
+}
+
 .container {
   display: flex;
   height: 100vh;

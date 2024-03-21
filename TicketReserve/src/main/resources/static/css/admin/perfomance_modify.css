@@ -31,8 +31,14 @@ body {
   padding: 0;
   display: flex;
 }
+
+.main {
+	padding: 25px;
+}
+
 .main h1{
 	margin-left: 20px;
+	color: #265073;
 }
 
 .container {

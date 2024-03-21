@@ -109,6 +109,23 @@ body {
     box-sizing: border-box;
 }
 
+.seating-area::-webkit-scrollbar {
+  width: 10px;
+}
+  
+.seating-area::-webkit-scrollbar-thumb {
+  background-color: #265073;
+  border-radius: 10px;
+  background-clip: padding-box;
+  border: 2px solid transparent;
+}
+
+.seating-area::-webkit-scrollbar-track {
+  background-color: #dadada;
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 5px white;
+}
+
 
 .section-row {
     display: flex;
