@@ -121,9 +121,6 @@ public class UserController {
 		String mainAdr = loginedMemberDto.getU_address().split("/")[1];
 		String detailAdr = loginedMemberDto.getU_address().split("/")[2];
 		String extraAdr = loginedMemberDto.getU_address().split("/")[3];
-		System.out.println("detailAdr------>>>"+detailAdr);
-		System.out.println("extraAdr------>>>"+extraAdr);
-		/* String referenceAdr = loginedUserMemberDto.getU_address().split("//")[1]; */
 
 		model.addAttribute("loginedMemberDto", loginedMemberDto);
 		model.addAttribute("scNumPre", scNumPre);
@@ -135,8 +132,6 @@ public class UserController {
 		model.addAttribute("mainAdr", mainAdr);
 		model.addAttribute("detailAdr", detailAdr);
 		model.addAttribute("extraAdr", extraAdr);
-		
-		/* model.addAttribute("referenceAdr", referenceAdr); */
 
 		return nextPage;
 	}

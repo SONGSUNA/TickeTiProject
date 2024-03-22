@@ -229,9 +229,7 @@ public class UserService {
 				stringBuffer.append(String.valueOf(chars[index]).toLowerCase());
 			
 		}
-		
-		System.out.println("[AdminMemberService] NEW PASSWORD: " + stringBuffer.toString());
-		
+				
 		return stringBuffer.toString();
 		
 	}
