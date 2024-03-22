@@ -153,10 +153,15 @@ window.onload = function() {
    // page btn =======================================================================================================
 	const preBtn = document.querySelector('.pre_button');
 	preBtn.addEventListener('click', () => {
-		console.log(href);
 		location.href = href;
 	});
-
+	
+	const colseBtn = document.querySelector('.next_button');
+	colseBtn.addEventListener('click', () => {
+		let closeConfirm = confirm("예매를 취소하시겠습니까?");
+		if(!closeConfirm) return;
+		window.close();
+	});
 	
 	// 금액에 ,를 삽입하는 함수
 	function formatNumber(number) {
