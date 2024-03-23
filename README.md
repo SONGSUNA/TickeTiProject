@@ -9,18 +9,18 @@
 공연에 관련한 모든 것을 한 사이트 안에 담은 All-in-One service를 제공하는 사이트입니다.   
 
 ### 맴버 구성 및 역할 
-* 팀장 : 유상원    
+#### * 팀장 : 유상원    
 메인 페이지 제작 / 공연API추출 / DB작업 / 유저용 공연 검색 / 매출 현황 페이지
 프레젠테이션 발표 / 일정표 제작
 
-* 팀원 : 송수나   
+#### * 팀원 : 송수나   
 회원 가입 / 로그인 / 정보수정 / 탈퇴 및 로그아웃   
 My Ticket 페이지 / PPT 제작 / 구성도
    
-* 팀원 : 방종민   
+#### * 팀원 : 방종민   
 상세페이지 제작 / 카테고리 페이지 제작 /  상세 페이지 내 REVIEW 작성·수정·삭제   
 별점 및 좋아요 /  ADMIN REVIEW 관리 / 구성도   
-* 팀원 : 장지현
+#### * 팀원 : 장지현
 Admin 페이지 제작 / 유저관리 / 어드민 등록 및 관리 / 공연등록 및 수정   
 티켓 등록 및 수정 / 예매 현황 관리 /  공연 예매 / 인터셉터
 
@@ -35,7 +35,9 @@ Oracle Database / DBeaver
 #### * Services   
 Git Hub / Google Sheets / Font Awesome Docs / Apache Commons   
 
-
+### 참조   
+#### PPT   
+Link : https://docs.google.com/presentation/d/1TQ3O_aQe4e7ezkNc568rVhR5uwomxNgH/edit#slide=id.p4
 
 
 
