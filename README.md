@@ -14,7 +14,7 @@
 프레젠테이션 발표 / 일정표 제작
 
 * 팀원 : 송수나   
-회원 가입 / 로그인 / 정보수정 / 탈퇴 및 로그아웃
+회원 가입 / 로그인 / 정보수정 / 탈퇴 및 로그아웃   
 My Ticket 페이지 / PPT 제작 / 구성도
    
 * 팀원 : 방종민   
@@ -23,6 +23,17 @@ My Ticket 페이지 / PPT 제작 / 구성도
 * 팀원 : 장지현
 Admin 페이지 제작 / 유저관리 / 어드민 등록 및 관리 / 공연등록 및 수정   
 티켓 등록 및 수정 / 예매 현황 관리 /  공연 예매 / 인터셉터
+
+
+### 개발 환경
+#### * Client (View)   
+HTML / JS / CSS / JQUERY / Thymeleaf / AJAX      
+#### * Backend   
+Spring boot / JAVA / MyBatis / Apache Tomcat   
+#### * Data   
+Oracle Database / DBeaver   
+#### * Services   
+Git Hub / Google Sheets / Font Awesome Docs / Apache Commons   
 
 
 
