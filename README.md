@@ -26,18 +26,14 @@ Admin 페이지 제작 / 유저관리 / 어드민 등록 및 관리 / 공연등�
 
 
 ### 개발 환경
-#### * Client (View)   
-HTML / JS / CSS / JQUERY / Thymeleaf / AJAX      
-#### * Backend   
-Spring boot / JAVA / MyBatis / Apache Tomcat   
-#### * Data   
-Oracle Database / DBeaver   
-#### * Services   
-Git Hub / Google Sheets / Font Awesome Docs / Apache Commons   
+**Client (View)**   : HTML / JS / CSS / JQUERY / Thymeleaf / AJAX      
+**Backend**   : Spring boot / JAVA / MyBatis / Apache Tomcat   
+**Data**   : Oracle Database / DBeaver   
+**Services**   : Git Hub / Google Sheets / Font Awesome Docs / Apache Commons   
 
 ### 참조   
 #### PPT   
-Link : https://docs.google.com/presentation/d/1TQ3O_aQe4e7ezkNc568rVhR5uwomxNgH/edit#slide=id.p4
+https://docs.google.com/presentation/d/1TQ3O_aQe4e7ezkNc568rVhR5uwomxNgH/edit#slide=id.p4
 
 
 
