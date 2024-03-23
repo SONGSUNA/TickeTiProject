@@ -31,7 +31,7 @@ Admin 페이지 제작 / 유저관리 / 어드민 등록 및 관리 / 공연등�
 **Backend**   : Spring boot / JAVA / MyBatis / Apache Tomcat   
 **Data**   : Oracle Database / DBeaver   
 **Services**   : Git Hub / Google Sheets / Font Awesome Docs / Apache Commons   
-** API & Library** :   
+**API & Library** :   
 - Pay : 포트원 결제 시스템 , 카카오페이 , 토스페이
 - Perfomance : 공연관리 API, 카카오지도 API, 카카오주소 API, OwlCarousel, Chart.js
 - Member : Spring security, Java Mail Sender
