@@ -38,6 +38,9 @@ Admin 페이지 제작 / 유저관리 / 어드민 등록 및 관리 / 공연등�
   
 
 ### 참조   
+#### 시연영상   
+https://youtu.be/s1lZedO9Vlo    
+
 #### PPT   
 https://docs.google.com/presentation/d/1dLEcGzRC5q02BqhWx2vUTE6hi9UgFeII/edit?usp=drive_link&ouid=101182859250953470024&rtpof=true&sd=true
 
